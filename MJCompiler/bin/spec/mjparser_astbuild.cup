@@ -80,6 +80,7 @@ nonterminal DesignatorStatement DesignatorStatement;
 nonterminal Designator Designator;
 nonterminal OpChoice OpChoice;
 nonterminal DesignatorList DesignatorList;
+nonterminal ElseOpt ElseOpt;
 nonterminal ActPars ActPars;
 nonterminal Label Label;
 nonterminal Assignop Assignop;
@@ -87,6 +88,7 @@ nonterminal Relop Relop;
 nonterminal Addop Addop;
 nonterminal Mulop Mulop;
 nonterminal DesignatorParts DesignatorParts;
+nonterminal BracketsOpt BracketsOpt;
 nonterminal Condition Condition;
 nonterminal CondTerm CondTerm;
 nonterminal CondFact CondFact;
@@ -99,6 +101,7 @@ nonterminal AddopTermList AddopTermList;
 nonterminal MulopFactorList MulopFactorList;
 nonterminal NewChoice NewChoice;
 nonterminal DesignatorStmtList DesignatorStmtList;
+nonterminal MethodDeclListOpt MethodDeclListOpt;
 
 
 
@@ -110,7 +113,7 @@ precedence left ELSE;
 
 /* Grammar */
 
-Program ::= (Program) PROG IDENT:I1 NamespaceList:N2 DeclList:D3 LBRACE MethodDeclList:M4 RBRACE {: RESULT=new Program(I1, N2, D3, M4); RESULT.setLine(I1left); :};
+Program ::= (Programt) PROG IDENT:I1 NamespaceList:N2 DeclList:D3 LBRACE MethodDeclList:M4 RBRACE {: RESULT=new Programt(I1, N2, D3, M4); RESULT.setLine(I1left); :};
 
 NamespaceList ::= (NamespaceListYes) NamespaceList:N1 Namespace:N2 {: RESULT=new NamespaceListYes(N1, N2); RESULT.setLine(N1left); :}
 			   |
@@ -128,15 +131,15 @@ MethodDeclList ::= (MethodDeclListYes) MethodDeclList:M1 MethodDecl:M2 {: RESULT
 				|
 				(MethodDeclListNo) {: RESULT=new MethodDeclListNo(); :} /* epsilon */;
 
-Namespace ::= NAMESP IDENT:I1 LBRACE DeclList:D2 LBRACE MethodDeclList:M3 RBRACE RBRACE {: RESULT=new NamespaceDerived1(I1, D2, M3); RESULT.setLine(I1left); :};
+Namespace ::= (Namespacet) NAMESP IDENT:I1 LBRACE DeclList:D2 LBRACE MethodDeclList:M3 RBRACE RBRACE {: RESULT=new Namespacet(I1, D2, M3); RESULT.setLine(I1left); :};
 
-ConstDecl ::= (ConstDecl) ConstParts:C1 SEMI {: RESULT=new ConstDecl(C1); RESULT.setLine(C1left); :};
+ConstDecl ::= (ConstDeclt) ConstParts:C1 SEMI {: RESULT=new ConstDeclt(C1); RESULT.setLine(C1left); :};
 
 ConstParts ::= (ConstDeclList) ConstParts:C1 COMMA ConstPart:C2 {: RESULT=new ConstDeclList(C1, C2); RESULT.setLine(C1left); :}
 		    |
 		    (ConstDeclSingle) CONST Type:T1 ConstPart:C2 {: RESULT=new ConstDeclSingle(T1, C2); RESULT.setLine(T1left); :};
 
-ConstPart ::= (ConstPart) IDENT:I1 ASSIGN ConstChoice:C2 {: RESULT=new ConstPart(I1, C2); RESULT.setLine(I1left); :};
+ConstPart ::= (ConstPartt) IDENT:I1 ASSIGN ConstChoice:C2 {: RESULT=new ConstPartt(I1, C2); RESULT.setLine(I1left); :};
 
 ConstChoice ::= (ConstNum) NUM_CONST:N1 {: RESULT=new ConstNum(N1); RESULT.setLine(N1left); :}
 			 |
@@ -144,9 +147,13 @@ ConstChoice ::= (ConstNum) NUM_CONST:N1 {: RESULT=new ConstNum(N1); RESULT.setLi
 			 |
 			 (ConstBool) BOOL_CONST:B1 {: RESULT=new ConstBool(B1); RESULT.setLine(B1left); :};
 
-VarDecl ::= (VarDecl) VarParts:V1 SEMI {: RESULT=new VarDecl(V1); RESULT.setLine(V1left); :};
+VarDecl ::= (VarDeclt) VarParts:V1 SEMI {: RESULT=new VarDeclt(V1); RESULT.setLine(V1left); :}
+		 |
+		 (VarDecltError) error SEMI:l {: parser.report_error("Bad declaration of variable. Performed recovery until ; in line " + lleft, null); :} {: RESULT=new VarDecltError(); :};
 
 VarParts ::= (VarDeclListParts) VarParts:V1 COMMA VarPart:V2 {: RESULT=new VarDeclListParts(V1, V2); RESULT.setLine(V1left); :}
+		  |
+		  (VarDeclListPartsError) error COMMA:l {: parser.report_error("Bad declaration of variable. Performed recovery until , in line " + lleft, null); :} VarPart:V1 {: RESULT=new VarDeclListPartsError(V1); RESULT.setLine(V1left); :}
 		  |
 		  (VarDeclSingle) Type:T1 VarPart:V2 {: RESULT=new VarDeclSingle(T1, V2); RESULT.setLine(T1left); :};
 
@@ -154,13 +161,17 @@ VarPart ::= (VarPartYes) IDENT:I1 LBRACKET RBRACKET {: RESULT=new VarPartYes(I1)
 		 |
 		 (VarPartNo) IDENT:I1 {: RESULT=new VarPartNo(I1); RESULT.setLine(I1left); :};
 
-ClassDecl ::= (ClassDeclYesYes) CLASS IDENT:I1 EXTENDS Type:T2 LBRACE StatVarDeclList:S3 StatInitList:S4 VarDeclList:V5 LBRACE MethodDeclList:M6 RBRACE RBRACE {: RESULT=new ClassDeclYesYes(I1, T2, S3, S4, V5, M6); RESULT.setLine(I1left); :}
+ClassDecl ::= (ClassDeclYes) CLASS IDENT:I1 EXTENDS Type:T2 LBRACE StatVarDeclList:S3 StatInitList:S4 VarDeclList:V5 MethodDeclListOpt:M6 RBRACE {: RESULT=new ClassDeclYes(I1, T2, S3, S4, V5, M6); RESULT.setLine(I1left); :}
 		   |
-		   (ClassDeclYesNo) CLASS IDENT:I1 EXTENDS Type:T2 LBRACE StatVarDeclList:S3 StatInitList:S4 VarDeclList:V5 RBRACE {: RESULT=new ClassDeclYesNo(I1, T2, S3, S4, V5); RESULT.setLine(I1left); :}
+		   (ClassDeclYesError) CLASS IDENT:I1 EXTENDS error LBRACE:l {: parser.report_error("Bad class extension. Performed recovery until { in line " + lleft, null); :} StatVarDeclList:S2 StatInitList:S3 VarDeclList:V4 MethodDeclListOpt:M5 RBRACE {: RESULT=new ClassDeclYesError(I1, S2, S3, V4, M5); RESULT.setLine(I1left); :}
 		   |
-		   (ClassDeclNoYes) CLASS IDENT:I1 LBRACE StatVarDeclList:S2 StatInitList:S3 VarDeclList:V4 LBRACE MethodDeclList:M5 RBRACE RBRACE {: RESULT=new ClassDeclNoYes(I1, S2, S3, V4, M5); RESULT.setLine(I1left); :}
-		   |
-		   (ClassDeclNoNo) CLASS IDENT:I1 LBRACE StatVarDeclList:S2 StatInitList:S3 VarDeclList:V4 RBRACE {: RESULT=new ClassDeclNoNo(I1, S2, S3, V4); RESULT.setLine(I1left); :};
+		   (ClassDeclNo) CLASS IDENT:I1 LBRACE StatVarDeclList:S2 StatInitList:S3 VarDeclList:V4 MethodDeclListOpt:M5 RBRACE {: RESULT=new ClassDeclNo(I1, S2, S3, V4, M5); RESULT.setLine(I1left); :};
+
+MethodDeclListOpt ::= (MethListYes) LBRACE MethodDeclList:M1 RBRACE {: RESULT=new MethListYes(M1); RESULT.setLine(M1left); :}
+				   |
+				   (MathListError) error LBRACE:l {: parser.report_error("Bad variable declaration. Performed recovery until { in line " + lleft, null); :} MethodDeclList:M1 RBRACE {: RESULT=new MathListError(M1); RESULT.setLine(M1left); :}
+				   |
+				   (MethListNo) {: RESULT=new MethListNo(); :} /* epsilon */;
 
 StatVarDeclList ::= (StatVarDeclListYes) StatVarDeclList:S1 STATIC VarDecl:V2 {: RESULT=new StatVarDeclListYes(S1, V2); RESULT.setLine(S1left); :}
 				 |
@@ -174,7 +185,7 @@ VarDeclList ::= (VarDeclListYes) VarDeclList:V1 VarDecl:V2 {: RESULT=new VarDecl
 			 |
 			 (VarDeclListNo) {: RESULT=new VarDeclListNo(); :} /* epsilon */;
 
-StaticInitializer ::= (StaticInitializer) STATIC LBRACE StatementList:S1 RBRACE {: RESULT=new StaticInitializer(S1); RESULT.setLine(S1left); :};
+StaticInitializer ::= (StaticInitializert) STATIC LBRACE StatementList:S1 RBRACE {: RESULT=new StaticInitializert(S1); RESULT.setLine(S1left); :};
 
 StatementList ::= (StatementListYes) StatementList:S1 Statement:S2 {: RESULT=new StatementListYes(S1, S2); RESULT.setLine(S1left); :}
 			   |
@@ -182,19 +193,25 @@ StatementList ::= (StatementListYes) StatementList:S1 Statement:S2 {: RESULT=new
 
 MethodDecl ::= (MethodDeclYes) ReturnType:R1 IDENT:I2 LPAREN FormPars:F3 RPAREN VarDeclList:V4 LBRACE StatementList:S5 RBRACE {: RESULT=new MethodDeclYes(R1, I2, F3, V4, S5); RESULT.setLine(R1left); :}
 			|
+			(MethodDeclYesError) ReturnType:R1 IDENT:I2 LPAREN error RPAREN:l {: parser.report_error("Bad formal parameters definition. Performed recovery until ) in line " + lleft, null); :} VarDeclList:V3 LBRACE StatementList:S4 RBRACE {: RESULT=new MethodDeclYesError(R1, I2, V3, S4); RESULT.setLine(R1left); :}
+			|
 			(MethodDeclNo) ReturnType:R1 IDENT:I2 LPAREN RPAREN VarDeclList:V3 LBRACE StatementList:S4 RBRACE {: RESULT=new MethodDeclNo(R1, I2, V3, S4); RESULT.setLine(R1left); :};
 
 ReturnType ::= (ReturnTypeType) Type:T1 {: RESULT=new ReturnTypeType(T1); RESULT.setLine(T1left); :}
 			|
 			(ReturnTypeVoid) VOID {: RESULT=new ReturnTypeVoid(); :};
 			 
-FormPars ::= (FormParsListYes) FormPars:F1 COMMA Type:T2 IDENT:I3 LBRACKET RBRACKET {: RESULT=new FormParsListYes(F1, T2, I3); RESULT.setLine(F1left); :} 
+FormPars ::= (FormParsList) FormPars:F1 COMMA Type:T2 IDENT:I3 BracketsOpt:B4 {: RESULT=new FormParsList(F1, T2, I3, B4); RESULT.setLine(F1left); :}
 		  |
-		  (FormParsListNo) FormPars:F1 COMMA Type:T2 IDENT:I3 {: RESULT=new FormParsListNo(F1, T2, I3); RESULT.setLine(F1left); :}
+		  (FormParsListError) error COMMA:l {: parser.report_error("Bad formal parameters definition. Performed recovery until , in line " + lleft, null); :} Type:T1 IDENT:I2 BracketsOpt:B3 {: RESULT=new FormParsListError(T1, I2, B3); RESULT.setLine(T1left); :}
 		  |
 		  (FormParsSingleYes) Type:T1 IDENT:I2 LBRACKET RBRACKET {: RESULT=new FormParsSingleYes(T1, I2); RESULT.setLine(T1left); :}
 		  |
 		  (FormParsSingleNo) Type:T1 IDENT:I2 {: RESULT=new FormParsSingleNo(T1, I2); RESULT.setLine(T1left); :};
+
+BracketsOpt ::= (BracketsOptYes) LBRACKET RBRACKET {: RESULT=new BracketsOptYes(); :}
+			 |
+			 (BracketsOptNo) {: RESULT=new BracketsOptNo(); :} /* epsilon */;
 
 Type ::= (TypeYes) IDENT:I1 RESOLUTION IDENT:I2 {: RESULT=new TypeYes(I1, I2); RESULT.setLine(I1left); :}
 	  |
@@ -202,9 +219,11 @@ Type ::= (TypeYes) IDENT:I1 RESOLUTION IDENT:I2 {: RESULT=new TypeYes(I1, I2); R
 
 Statement ::= (StmtDesignator) DesignatorStatement:D1 SEMI {: RESULT=new StmtDesignator(D1); RESULT.setLine(D1left); :}
 		   |
-		   (StmtIfElseYes) IF LPAREN Condition:C1 RPAREN Statement:S2 ELSE Statement:S3 {: RESULT=new StmtIfElseYes(C1, S2, S3); RESULT.setLine(C1left); :}
+		   (StmtDesignatorError) error SEMI:l {: parser.report_error("Bad designator statement. Performed recovery until ; in line " + lleft, null); :} {: RESULT=new StmtDesignatorError(); :}
 		   |
-		   (StmtIfElseNo) IF LPAREN Condition:C1 RPAREN Statement:S2 {: RESULT=new StmtIfElseNo(C1, S2); RESULT.setLine(C1left); :}
+		   (StmtIfElse) IF LPAREN Condition:C1 RPAREN Statement:S2 ElseOpt:E3 {: RESULT=new StmtIfElse(C1, S2, E3); RESULT.setLine(C1left); :}
+		   |
+		   (StmtIfElseError) IF LPAREN error RPAREN:l {: parser.report_error("Bad IF condition. Performed recovery until ) in line " + lleft, null); :} Statement:S1 ElseOpt:E2 {: RESULT=new StmtIfElseError(S1, E2); RESULT.setLine(S1left); :}
 		   |
 		   (StmtBreak) BREAK SEMI {: RESULT=new StmtBreak(); :}
 		   |
@@ -237,6 +256,10 @@ Statement ::= (StmtDesignator) DesignatorStatement:D1 SEMI {: RESULT=new StmtDes
 		   (StmtForNoNoNo) FOR LPAREN SEMI SEMI RPAREN Statement:S1 {: RESULT=new StmtForNoNoNo(S1); RESULT.setLine(S1left); :}
 		   |
 		   (StmtBlock) LBRACE StatementList:S1 RBRACE {: RESULT=new StmtBlock(S1); RESULT.setLine(S1left); :};
+
+ElseOpt ::= (ElseOptYes) ELSE Statement:S1 {: RESULT=new ElseOptYes(S1); RESULT.setLine(S1left); :}
+		 |
+		 (ElseOptNo) {: RESULT=new ElseOptNo(); :} /* epsilon */;
 				   
 DesignatorStmtList ::= (DesignatorStmtListYes) DesignatorStmtList:D1 COMMA DesignatorStatement:D2 {: RESULT=new DesignatorStmtListYes(D1, D2); RESULT.setLine(D1left); :}
 					|
@@ -270,13 +293,13 @@ ActPars ::= (ActParsList) ActPars:A1 COMMA Expr:E2 {: RESULT=new ActParsList(A1,
 		 |
 		 (ActParsSingle) Expr:E1 {: RESULT=new ActParsSingle(E1); RESULT.setLine(E1left); :};
 
-Condition ::= (Condition) CondTerm:C1 CondTermList:C2 {: RESULT=new Condition(C1, C2); RESULT.setLine(C1left); :};
+Condition ::= (Conditiont) CondTerm:C1 CondTermList:C2 {: RESULT=new Conditiont(C1, C2); RESULT.setLine(C1left); :};
 
 CondTermList ::= (CondTermListYes) CondTermList:C1 OR CondTerm:C2 {: RESULT=new CondTermListYes(C1, C2); RESULT.setLine(C1left); :}
 			  |
 			  (CondTermListNo) {: RESULT=new CondTermListNo(); :} /* epsilon */;
 
-CondTerm ::= (CondTerm) CondFact:C1 CondFactList:C2 {: RESULT=new CondTerm(C1, C2); RESULT.setLine(C1left); :};
+CondTerm ::= (CondTermt) CondFact:C1 CondFactList:C2 {: RESULT=new CondTermt(C1, C2); RESULT.setLine(C1left); :};
 
 CondFactList ::= (CondFactListYes) CondFactList:C1 AND CondFact:C2 {: RESULT=new CondFactListYes(C1, C2); RESULT.setLine(C1left); :}
 			  |
@@ -294,7 +317,7 @@ AddopTermList ::= (AddopTermListYes) AddopTermList:A1 Addop:A2 Term:T3 {: RESULT
 			   |
 			   (AddopTermListNo) {: RESULT=new AddopTermListNo(); :} /* epsilon */;
 
-Term ::= (Term) Factor:F1 MulopFactorList:M2 {: RESULT=new Term(F1, M2); RESULT.setLine(F1left); :};
+Term ::= (Termt) Factor:F1 MulopFactorList:M2 {: RESULT=new Termt(F1, M2); RESULT.setLine(F1left); :};
 
 MulopFactorList ::= (MulopFactorListYes) MulopFactorList:M1 Mulop:M2 Factor:F3 {: RESULT=new MulopFactorListYes(M1, M2, F3); RESULT.setLine(M1left); :}
 				 |
@@ -334,9 +357,9 @@ DesignatorParts ::= (DesignatorPartsIdent) DesignatorParts:D1 DOT IDENT:I2 {: RE
 				 |
 				 (DesignatorPartsNo) {: RESULT=new DesignatorPartsNo(); :} /* epsilon */;
 
-Label ::= (Label) IDENT:I1 {: RESULT=new Label(I1); RESULT.setLine(I1left); :};
+Label ::= (Labelt) IDENT:I1 {: RESULT=new Labelt(I1); RESULT.setLine(I1left); :};
 
-Assignop ::= (AssignopAssign) ASSIGN {: RESULT=new AssignopAssign(); :};
+Assignop ::= (AssignopAssignt) ASSIGN {: RESULT=new AssignopAssignt(); :};
 
 Relop ::= (RelopEqual) EQUAL {: RESULT=new RelopEqual(); :}
 	   |

@@ -5,12 +5,13 @@ namespace sizes{
 	{}
 }
 
-class Table {
+class Table extends Object Something {
 	static int id;
 	static{
 		id = 0;
 	}
-	int pos[], neg[], factor;
+	int pos[], neg[], factor lele;
+	int mozda, radi; int ali vrv ne
 	{
 		void setfactor(int factor) {this.factor = factor;}
 		void putp (int a, int idx) { this.pos[idx] = a; }
@@ -21,13 +22,14 @@ class Table {
 }
 
 Table val;
-int rows, columns;
+int rows s s, m, n, g, ss, columns lp;
 
 {
-	void f(char ch, int a, int arg)
+	void f(char ch yn, int a, int arg, int nesto1, int nesto2 nesto3)
 		int x;
 	{
 		x = arg;
+		x = 5 7 5;
 	}
 
 	void main() int x, i; char c; int arr[];
@@ -53,11 +55,11 @@ int rows, columns;
 		x =rows;
 		for (;;){
 			if(x <= 0) break;
-			if (0 <= x && x < sizes::tableSize)
+			if (0 <= x < && x < sizes::tableSize <)
 			{
 				val.putp(val.getp(x)+1);
 			}
-			else if (-sizes::tableSize < x && x < 0)
+			else if (< -sizes::tableSize < x && x < 0 <)
 			{
 				val.putn(val.getn(x)+1);
 			}
