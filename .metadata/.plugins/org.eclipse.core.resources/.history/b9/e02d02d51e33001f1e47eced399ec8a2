@@ -1,0 +1,16 @@
+INFO  04:23:29,150 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program.mj
+INFO  04:23:29,152 - #1 program
+INFO  04:23:29,152 - #4 MJProgram
+INFO  04:23:29,152 - #4 int
+INFO  04:23:29,152 - #4 x
+INFO  04:23:29,152 - #8 ,
+INFO  04:23:29,152 - #4 y
+INFO  04:23:29,152 - #9 ;
+INFO  04:23:29,152 - #12 {
+INFO  04:23:29,152 - #15 void
+INFO  04:23:29,152 - #4 main
+INFO  04:23:29,152 - #10 (
+INFO  04:23:29,152 - #11 )
+INFO  04:23:29,152 - #12 {
+INFO  04:23:29,152 - #13 }
+INFO  04:23:29,152 - #13 }

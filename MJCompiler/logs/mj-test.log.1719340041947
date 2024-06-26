@@ -1,0 +1,166 @@
+INFO  20:24:48,531 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_parser.mj
+INFO  20:24:48,541 - #2 program
+INFO  20:24:48,541 - #17 MJProgram
+INFO  20:24:48,541 - #17 int
+INFO  20:24:48,542 - #17 x
+INFO  20:24:48,542 - #5 ;
+INFO  20:24:48,542 - #17 int
+INFO  20:24:48,543 - #17 y
+INFO  20:24:48,543 - #5 ;
+INFO  20:24:48,543 - #3 {
+INFO  20:24:48,543 - #17 int
+INFO  20:24:48,543 - #17 main
+INFO  20:24:48,543 - #6 (
+INFO  20:24:48,543 - #7 )
+INFO  20:24:48,543 - #3 {
+INFO  20:24:48,543 - #12 print
+INFO  20:24:48,544 - #6 (
+INFO  20:24:48,544 - #16 1
+INFO  20:24:48,544 - #7 )
+INFO  20:24:48,544 - #5 ;
+INFO  20:24:48,545 - #17 x
+INFO  20:24:48,545 - #8 =
+INFO  20:24:48,545 - #17 y
+INFO  20:24:48,545 - #10 +
+INFO  20:24:48,546 - #16 5
+INFO  20:24:48,546 - #5 ;
+INFO  20:24:48,546 - #17 x
+INFO  20:24:48,546 - #8 =
+INFO  20:24:48,546 - #17 y
+INFO  20:24:48,546 - #10 +
+INFO  20:24:48,546 - #16 5
+INFO  20:24:48,546 - #10 +
+INFO  20:24:48,546 - #5 ;
+ERROR 20:24:48,546 - Sintaksna greska na liniji 7
+INFO  20:24:48,546 - #17 w
+INFO  20:24:48,546 - #8 =
+INFO  20:24:48,546 - #17 z
+ERROR 20:24:48,546 - Izvrsen oporavak do ; u liniji 7
+INFO  20:24:48,547 - #10 +
+INFO  20:24:48,547 - #17 z
+INFO  20:24:48,547 - #5 ;
+INFO  20:24:48,547 - #12 print
+INFO  20:24:48,547 - #6 (
+INFO  20:24:48,547 - #16 2
+INFO  20:24:48,547 - #7 )
+INFO  20:24:48,547 - #5 ;
+INFO  20:24:48,547 - #4 }
+INFO  20:24:48,547 - #4 }
+INFO  20:24:48,548 - Program(
+ MJProgram
+  VarDeclarations(
+    VarDeclarations(
+      NoVarDecl(
+      ) [NoVarDecl]
+      VarDecl(
+        Type(
+         int
+        ) [Type]
+       x
+      ) [VarDecl]
+    ) [VarDeclarations]
+    VarDecl(
+      Type(
+       int
+      ) [Type]
+     y
+    ) [VarDecl]
+  ) [VarDeclarations]
+  MethodDeclarations(
+    NoMethodDecl(
+    ) [NoMethodDecl]
+    MethodDecl(
+      Type(
+       int
+      ) [Type]
+     main
+      NoFormParam(
+      ) [NoFormParam]
+      NoVarDecl(
+      ) [NoVarDecl]
+      Statements(
+        Statements(
+          Statements(
+            Statements(
+              Statements(
+                NoStmt(
+                ) [NoStmt]
+                PrintStmt(
+                  TermExpr(
+                    Term(
+                      Const(
+                       1
+                      ) [Const]
+                    ) [Term]
+                  ) [TermExpr]
+                ) [PrintStmt]
+              ) [Statements]
+              Assignment(
+                Designator(
+                 x
+                ) [Designator]
+                AddExpr(
+                  TermExpr(
+                    Term(
+                      Var(
+                        Designator(
+                         y
+                        ) [Designator]
+                      ) [Var]
+                    ) [Term]
+                  ) [TermExpr]
+                  Addop(
+                  ) [Addop]
+                  Term(
+                    Const(
+                     5
+                    ) [Const]
+                  ) [Term]
+                ) [AddExpr]
+              ) [Assignment]
+            ) [Statements]
+            ErrorStmt(
+            ) [ErrorStmt]
+          ) [Statements]
+          Assignment(
+            Designator(
+             w
+            ) [Designator]
+            AddExpr(
+              TermExpr(
+                Term(
+                  Var(
+                    Designator(
+                     z
+                    ) [Designator]
+                  ) [Var]
+                ) [Term]
+              ) [TermExpr]
+              Addop(
+              ) [Addop]
+              Term(
+                Var(
+                  Designator(
+                   z
+                  ) [Designator]
+                ) [Var]
+              ) [Term]
+            ) [AddExpr]
+          ) [Assignment]
+        ) [Statements]
+        PrintStmt(
+          TermExpr(
+            Term(
+              Const(
+               2
+              ) [Const]
+            ) [Term]
+          ) [TermExpr]
+        ) [PrintStmt]
+      ) [Statements]
+    ) [MethodDecl]
+  ) [MethodDeclarations]
+) [Program]
+INFO  20:24:48,548 - ===================================
+INFO  20:24:48,549 -  Print count calls = 2
+INFO  20:24:48,549 -  Deklarisanih promenljivih ima = 2

@@ -1,0 +1,8 @@
+program MJProgram
+	int x; int y;
+{
+	int main() {
+		print(1);
+		print(2);
+	}
+}
