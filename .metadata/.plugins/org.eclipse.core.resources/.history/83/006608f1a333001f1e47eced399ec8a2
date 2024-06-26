@@ -1,0 +1,253 @@
+package rs.ac.bg.etf.pp1;
+
+import java_cup.runtime.*;
+import org.apache.log4j.*;
+import rs.ac.bg.etf.pp1.ast.*;
+
+parser code {:
+
+	Logger log = Logger.getLogger(getClass());
+     
+    public void report_fatal_error(String message, Object info) throws java.lang.Exception {
+      done_parsing();
+      report_error(message, info);
+    }
+  
+    public void syntax_error(Symbol cur_token) {
+        report_error("Syntax error", cur_token);
+    }
+  
+    public void unrecovered_syntax_error(Symbol cur_token) throws java.lang.Exception {
+        report_fatal_error("Fatal error, parsing couldn't be continued", cur_token);
+    }
+
+    public void report_error(String message, Object info) {
+    	StringBuilder msg = new StringBuilder(message); 
+    	if (info instanceof Symbol)
+            msg.append (" on line ").append(((Symbol)info).left);
+        log.error(msg.toString());
+    }
+
+:}
+
+scan with {:
+	Symbol s = this.getScanner().next_token();
+	if (s != null && s.value != null) 
+		log.info(s.toString() + " " + s.value.toString());
+	return s;
+:}
+
+
+
+/* Terminals */
+
+terminal PROG, LBRACE, RBRACE, NAMESP, COMMA, CONST, SEMI, ASSIGN, LBRACKET, RBRACKET, CLASS, EXTENDS, STATIC;
+terminal LPAREN, RPAREN, VOID, RESOLUTION, INC, DEC, EQUAL, NOT_EQUAL, GRT, GRT_EQUAL, LESS, LESS_EQUAL;
+terminal PLUS, MINUS, MUL, DIV, MOD, DOT, OR, AND; 
+terminal String IDENT;
+terminal Integer NUM_CONST;
+terminal Boolean BOOL_CONST;
+terminal Character CHAR_CONST;
+
+
+
+/* Non-terminals */
+
+nonterminal Program, NamespaceList, DeclList, MethodDeclList, Namespace, ConstDecl, VarDecl, ClassDecl, MethodDecl;
+nonterminal ConstParts, ConstPart, Type, ConstChoice, VarParts, VarPart, BracketsOpt, ExtendsOpt, StatVarDeclList;
+nonterminal StatInitList, VarDeclList, ClassMethodsOpt, StaticInitializer, StatementList, Statement, ReturnType;
+nonterminal FormParsOpt, FormPars, ResolutionOpt, DesignatorStatement, Designator, OpChoice, DesignatorList;
+nonterminal Expr, ActParsOpt, ActPars, DesignatorOpt, Label, Assignop, Relop, Addop, Mulop, DesignatorParts;
+nonterminal Condition, CondTerm, CondFact, Expr, Term, Factor, CondTermList, CondFactList, RelopExprOpt; 
+
+
+
+/* Precedendes */
+
+precedence left ELSE;
+
+
+
+/* Grammar */
+
+Program ::= (Program) PROG IDENT NamespaceList DeclList LBRACE MethodDeclList RBRACE;
+
+NamespaceList ::= (NamespaceListYes) NamespaceList Namespace
+			   |
+			   (NamespaceListNo) /* epsilon */;
+
+DeclList ::= (DeclListConst) DeclList ConstDecl
+		  |
+		  (DeclListVar) DeclList VarDecl
+		  |
+		  (DeclListClass) DeclList ClassDecl
+		  |
+		  (DeclListNo) /* epsilon */;
+
+MethodDeclList ::= (MethodDeclListYes) MethodDeclList MethodDecl
+				|
+				(MethodDeclListNo) /* epsilon */;
+
+Namespace ::= NAMESP IDENT LBRACE DeclList LBRACE MethodDeclList RBRACE RBRACE;
+
+ConstDecl ::= (ConstDecl) ConstParts SEMI;
+
+ConstParts ::= (ConstDeclList) ConstParts COMMA ConstPart
+		    |
+		    (ConstDeclSingle) CONST Type ConstPart;
+
+ConstPart ::= (ConstPart) IDENT ASSIGN ConstChoice;
+
+ConstChoice ::= (ConstNum) NUM_CONST
+			 |
+			 (ConstChar) CHAR_CONST
+			 |
+			 (ConstBool) BOOL_CONST;
+
+VarDecl ::= (VarDecl) VarParts SEMI;
+
+VarParts ::= (VarDeclList) VarParts COMMA VarPart
+		  |
+		  (VarDeclSingle) Type VarPart;
+
+VarPart ::= (VarPart) IDENT BracketsOpt;
+
+BracketsOpt ::= (BracketsOptYes) LBRACKET RBRACKET
+			 |
+			 (BracketsOptNo) /* epsilon */;
+
+ClassDecl ::= (ClassDecl) CLASS IDENT ExtendsOpt LBRACE StatVarDeclList StatInitList VarDeclList ClassMethodsOpt RBRACE;
+
+ExtendsOpt ::= (ExtendsOptYes) EXTENDS Type
+			|
+			(ExtendsOptNo) /* epsilon */;
+
+StatVarDeclList ::= (StatVarDeclListYes) StatVarDeclList STATIC VarDecl
+				 |
+				 (StatVarDeclListNo) /* epsilon */;
+
+StatInitList ::= (StatInitListYes) StatInitList StaticInitializer
+			  |
+			  (StatInitListNo) /* epsilon */;
+
+VarDeclList ::= (VarDeclListYes) VarDeclList VarDecl
+			 |
+			 (VarDeclListNo) /* epsilon */;
+
+ClassMethodsOpt ::= (ClassMethodsOptYes) LBRACE MethodDeclList RBRACE
+				 |
+				 (ClassMethodsOptNo) /* epsilon */;
+
+StaticInitializer ::= (StaticInitializer) STATIC LBRACE StatementList RBRACE;
+
+StatementList ::= (StatementListYes) StatementList Statement
+			   |
+			   (StatementListNo) /* epsilon */; 
+
+MethodDecl ::= (MethodDecl) ReturnType IDENT LPAREN FormParsOpt RPAREN VarDeclList LBRACE StatementList RBRACE;
+
+ReturnType ::= (ReturnTypeType) Type
+			|
+			(ReturnTypeVoid) VOID;
+			
+FormParsOpt ::= (FormParsOptYes) FormPars
+			 |
+			 (FormParsOptNo) /* epsilon */;
+			 
+FormPars ::= (FormParsList) FormPars COMMA Type IDENT BracketsOpt  
+		  |
+		  (FormParsSingle) Type IDENT BracketsOpt;
+
+Type ::= (Type) ResolutionOpt IDENT;
+
+ResolutionOpt ::= (ResolutionOptYes) IDENT RESOLUTION
+			   |
+			   (ResolutionOptNo) /* epsilon */;
+
+Statement ::= 
+
+DesignatorStatement ::= (DesignatorStmtFirst) Designator OpChoice
+					 |
+					 (DesignatorStmtSecond) LBRACKET DesignatorList MUL Designator RBRACKET ASSIGN Designator;
+					 
+OpChoice ::= (OpChoiceExpr) Assignop Expr
+		  |
+		  (OpChoiceActPars) LPAREN ActParsOpt RPAREN
+		  |
+		  (OpChoiceInc) INC
+		  |
+		  (OpChoiceDec) DEC;
+
+ActParsOpt ::= (ActParsOptYes) ActPars
+			|
+			(ActParsOptNo) /* epsilon */;
+
+DesignatorList ::= (DesignatorListYes) DesignatorList DesignatorOpt COMMA
+				|
+				(DesignatorListNo) /* epsilon */;
+				
+DesignatorOpt ::= (DesignatorOptYes) Designator
+			   |
+			   (DesignatorOptNo) /* epsilon */;
+
+ActPars ::= (ActParsList) ActPars COMMA Expr
+		 |
+		 (ActParsSingle) Expr;
+
+Condition ::= (Condition) CondTerm CondTermList;
+
+CondTermList ::= (CondTermListYes) CondTermList OR CondTerm
+			  |
+			  (CondTermListNo) /* epsilon */;
+
+CondTerm ::= (CondTerm) CondFact CondFactList;
+
+CondFactList ::= (CondFactListYes) CondFactList AND CondFact
+			  |
+			  (CondFactListNo) /* epsilon */;
+
+CondFact ::= Expr RelopExprOpt
+
+RelopExprOpt ::= (RelopExprOptYes) 
+			  |
+			  (RelopExprOptNo) /* epsilon */;
+
+Expr ::= 
+
+Term ::= 
+
+Factor ::= 
+
+Designator ::= (Designator) ResolutionOpt IDENT DesignatorParts;
+
+DesignatorParts ::= (DesignatorPartsIdent) DesignatorParts DOT IDENT
+				 |
+				 (DesignatorPartsExpr) DesignatorParts LBRACKET Expr RBRACKET
+				 |
+				 (DesignatorPartsNo) /* epsilon */;
+
+Label ::= (Label) IDENT;
+
+Assignop ::= (AssignopAssign) ASSIGN;
+
+Relop ::= (RelopEqual) EQUAL
+	   |
+	   (RelopNotEqual) NOT_EQUAL
+	   |
+	   (RelopGrt) GRT
+	   |
+	   (RelopGrtEqual) GRT_EQUAL
+	   |
+	   (RelopLess) LESS
+	   |
+	   (RelopLessEqual) LESS_EQUAL;
+
+Addop ::= (AddopPlus) PLUS
+	   |
+	   (AddopMinus) MINUS;
+
+Mulop ::= (MulopMul) MUL
+	   |
+	   (MulopDiv) DIV
+	   |
+	   (MulopMod) MOD;

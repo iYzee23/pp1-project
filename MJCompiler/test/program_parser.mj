@@ -4,7 +4,6 @@ program MJProgram
 	int main() {
 		print(1);
 		x = y + 5;
-		x = y + 5 + ;
 		w = z + z;
 		print(2);
 	}

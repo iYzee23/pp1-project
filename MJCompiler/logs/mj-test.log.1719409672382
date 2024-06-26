@@ -1,0 +1,32 @@
+INFO  15:46:16,609 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program.mj
+INFO  15:46:16,643 - #2 program
+INFO  15:46:16,643 - #48 p
+INFO  15:46:16,643 - #5 namespace
+INFO  15:46:16,644 - #48 sizes
+INFO  15:46:16,644 - #3 {
+INFO  15:46:16,644 - #7 const
+INFO  15:46:16,644 - #48 int
+INFO  15:46:16,644 - #48 tableSize
+INFO  15:46:16,644 - #9 =
+INFO  15:46:16,644 - #49 10
+INFO  15:46:16,644 - #8 ;
+INFO  15:46:16,645 - #3 {
+INFO  15:46:16,645 - #4 }
+INFO  15:46:16,645 - #4 }
+INFO  15:46:16,645 - #12 class
+INFO  15:46:16,646 - #48 Table
+INFO  15:46:16,646 - #3 {
+INFO  15:46:16,646 - #48 int
+INFO  15:46:16,646 - #48 pos
+INFO  15:46:16,647 - #10 [
+INFO  15:46:16,647 - #11 ]
+INFO  15:46:16,647 - #6 ,
+INFO  15:46:16,647 - #48 neg
+INFO  15:46:16,647 - #10 [
+INFO  15:46:16,647 - #11 ]
+INFO  15:46:16,647 - #6 ,
+INFO  15:46:16,647 - #48 factor
+INFO  15:46:16,647 - #8 ;
+INFO  15:46:16,647 - #14 static
+ERROR 15:46:16,647 - Syntax error on line 10
+ERROR 15:46:16,647 - Fatal error, parsing couldn't be continued on line 10

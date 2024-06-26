@@ -1,27 +1,15 @@
 // generated with ast extension for cup
 // version 0.8
-// 25/5/2024 20:26:48
+// 26/5/2024 15:44:25
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class Type implements SyntaxNode {
+public abstract class Type implements SyntaxNode {
 
     private SyntaxNode parent;
+
     private int line;
-    private String typeName;
-
-    public Type (String typeName) {
-        this.typeName=typeName;
-    }
-
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName=typeName;
-    }
 
     public SyntaxNode getParent() {
         return parent;
@@ -39,31 +27,11 @@ public class Type implements SyntaxNode {
         this.line=line;
     }
 
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
-    }
+    public abstract void accept(Visitor visitor);
+    public abstract void childrenAccept(Visitor visitor);
+    public abstract void traverseTopDown(Visitor visitor);
+    public abstract void traverseBottomUp(Visitor visitor);
 
-    public void childrenAccept(Visitor visitor) {
-    }
-
-    public void traverseTopDown(Visitor visitor) {
-        accept(visitor);
-    }
-
-    public void traverseBottomUp(Visitor visitor) {
-        accept(visitor);
-    }
-
-    public String toString(String tab) {
-        StringBuffer buffer=new StringBuffer();
-        buffer.append(tab);
-        buffer.append("Type(\n");
-
-        buffer.append(" "+tab+typeName);
-        buffer.append("\n");
-
-        buffer.append(tab);
-        buffer.append(") [Type]");
-        return buffer.toString();
-    }
+    public String toString() { return toString(""); }
+    public abstract String toString(String tab);
 }
