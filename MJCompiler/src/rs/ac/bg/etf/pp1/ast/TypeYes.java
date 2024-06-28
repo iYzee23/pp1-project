@@ -1,34 +1,34 @@
 // generated with ast extension for cup
 // version 0.8
-// 26/5/2024 22:37:14
+// 28/5/2024 23:52:22
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class TypeYes extends Type {
 
-    private String I1;
-    private String I2;
+    private String namespaceName;
+    private String typeName;
 
-    public TypeYes (String I1, String I2) {
-        this.I1=I1;
-        this.I2=I2;
+    public TypeYes (String namespaceName, String typeName) {
+        this.namespaceName=namespaceName;
+        this.typeName=typeName;
     }
 
-    public String getI1() {
-        return I1;
+    public String getNamespaceName() {
+        return namespaceName;
     }
 
-    public void setI1(String I1) {
-        this.I1=I1;
+    public void setNamespaceName(String namespaceName) {
+        this.namespaceName=namespaceName;
     }
 
-    public String getI2() {
-        return I2;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setI2(String I2) {
-        this.I2=I2;
+    public void setTypeName(String typeName) {
+        this.typeName=typeName;
     }
 
     public void accept(Visitor visitor) {
@@ -51,10 +51,10 @@ public class TypeYes extends Type {
         buffer.append(tab);
         buffer.append("TypeYes(\n");
 
-        buffer.append(" "+tab+I1);
+        buffer.append(" "+tab+namespaceName);
         buffer.append("\n");
 
-        buffer.append(" "+tab+I2);
+        buffer.append(" "+tab+typeName);
         buffer.append("\n");
 
         buffer.append(tab);

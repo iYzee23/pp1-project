@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 26/5/2024 22:37:14
+// 28/5/2024 23:52:22
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -11,6 +11,7 @@ public interface Visitor {
     public void visit(Mulop Mulop);
     public void visit(MethodDecl MethodDecl);
     public void visit(Relop Relop);
+    public void visit(NamespaceName NamespaceName);
     public void visit(Namespace Namespace);
     public void visit(Assignop Assignop);
     public void visit(MulopFactorList MulopFactorList);
@@ -26,6 +27,7 @@ public interface Visitor {
     public void visit(CondFactList CondFactList);
     public void visit(DeclList DeclList);
     public void visit(Designator Designator);
+    public void visit(MethodName MethodName);
     public void visit(Term Term);
     public void visit(DesignatorParts DesignatorParts);
     public void visit(Condition Condition);
@@ -35,7 +37,6 @@ public interface Visitor {
     public void visit(StatVarDeclList StatVarDeclList);
     public void visit(Label Label);
     public void visit(NewChoice NewChoice);
-    public void visit(ConstChoice ConstChoice);
     public void visit(ConstParts ConstParts);
     public void visit(OpChoice OpChoice);
     public void visit(StatInitList StatInitList);
@@ -44,6 +45,7 @@ public interface Visitor {
     public void visit(ActPars ActPars);
     public void visit(DesignatorList DesignatorList);
     public void visit(DesignatorStatement DesignatorStatement);
+    public void visit(ProgName ProgName);
     public void visit(Statement Statement);
     public void visit(VarDecl VarDecl);
     public void visit(Type Type);
@@ -149,6 +151,7 @@ public interface Visitor {
     public void visit(FormParsList FormParsList);
     public void visit(ReturnTypeVoid ReturnTypeVoid);
     public void visit(ReturnTypeType ReturnTypeType);
+    public void visit(MethodNamet MethodNamet);
     public void visit(MethodDeclNo MethodDeclNo);
     public void visit(MethodDeclYesError MethodDeclYesError);
     public void visit(MethodDeclYes MethodDeclYes);
@@ -174,13 +177,13 @@ public interface Visitor {
     public void visit(VarDeclListParts VarDeclListParts);
     public void visit(VarDecltError VarDecltError);
     public void visit(VarDeclt VarDeclt);
-    public void visit(ConstBool ConstBool);
-    public void visit(ConstChar ConstChar);
-    public void visit(ConstNum ConstNum);
-    public void visit(ConstPartt ConstPartt);
+    public void visit(ConstPartBool ConstPartBool);
+    public void visit(ConstPartChar ConstPartChar);
+    public void visit(ConstPartNum ConstPartNum);
     public void visit(ConstDeclSingle ConstDeclSingle);
     public void visit(ConstDeclList ConstDeclList);
     public void visit(ConstDeclt ConstDeclt);
+    public void visit(NamespaceNamet NamespaceNamet);
     public void visit(Namespacet Namespacet);
     public void visit(MethodDeclListNo MethodDeclListNo);
     public void visit(MethodDeclListYes MethodDeclListYes);
@@ -190,6 +193,7 @@ public interface Visitor {
     public void visit(DeclListConst DeclListConst);
     public void visit(NamespaceListNo NamespaceListNo);
     public void visit(NamespaceListYes NamespaceListYes);
+    public void visit(ProgNamet ProgNamet);
     public void visit(Programt Programt);
 
 }

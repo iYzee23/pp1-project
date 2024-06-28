@@ -1,0 +1,131 @@
+package rs.ac.bg.etf.pp1;
+
+import org.apache.log4j.Logger;
+import rs.ac.bg.etf.pp1.ast.*;
+import rs.etf.pp1.symboltable.concepts.*;
+import rs.etf.pp1.symboltable.visitors.*;
+import rs.etf.pp1.symboltable.structure.*;
+
+public class SemanticAnalyzer extends VisitorAdaptor {
+	
+	Logger log = Logger.getLogger(getClass());
+	
+	public void report_error(String message, SyntaxNode info) {
+		errorDetected = true;
+		StringBuilder msg = new StringBuilder(message);
+		int line = (info == null) ? 0: info.getLine();
+		if (line != 0)
+			msg.append (" na liniji ").append(line);
+		log.error(msg.toString());
+	}
+
+	public void report_info(String message, SyntaxNode info) {
+		StringBuilder msg = new StringBuilder(message); 
+		int line = (info == null) ? 0: info.getLine();
+		if (line != 0)
+			msg.append (" na liniji ").append(line);
+		log.info(msg.toString());
+	}
+	
+	String currNamespace = "";
+	Obj currClass = null;
+	Obj currMethod = null;
+	
+	boolean mainFound = false;
+	boolean returnFound = false;
+	boolean errorDetected = false;
+	
+	// Program
+	
+	public void visit(ProgNamet progName) {
+		progName.obj = Tabb.insert(Obj.Prog, progName.getProgName(), Tabb.noType);
+		Tabb.openScope();
+	}
+	
+	public void visit(Programt program) {
+		Tabb.chainLocalSymbols(program.getProgName().obj);
+		Tabb.closeScope();
+	}
+	
+	// Namespace
+	
+	public void visit(NamespaceNamet namespaceName) {
+		// 7 is kind for Namespace
+		namespaceName.obj = Tabb.insert(7, namespaceName.getNamespaceName(), Tabb.noType);
+		currNamespace = namespaceName.getNamespaceName() + "::";
+	}
+	
+	public void visit(Namespacet namespace) {
+		currNamespace = "";
+	}
+	
+	// ConstDecl
+	
+	// VarDecl
+	
+	// ClassDecl
+	
+	// StaticInitializer
+	
+	// MethodDecl
+	
+	// FormPars
+	
+	// Type
+	
+	public void visit(TypeYes typeYes) {
+		Obj namespaceObj = Tabb.find(typeYes.getNamespaceName());
+		Obj typeObj = Tabb.find(typeYes.getTypeName());
+		typeYes.struct = typeObj.getType();
+		
+		// 7 is kind for Namespace
+		if (namespaceObj == Tabb.noObj || namespaceObj.getKind() != 7) {
+			report_error("Can't resolve namespace: " + typeYes.getNamespaceName(), typeYes);
+		}
+		
+		if (typeObj == Tabb.noObj || typeObj.getKind() != Obj.Type) {
+			report_error("Can't resolve type: " + typeYes.getTypeName(), typeYes);
+		}
+	}
+	
+	public void visit(TypeNo typeNo) {
+		Obj typeObj = Tabb.find(typeNo.getTypeName());
+		typeNo.struct = typeObj.getType();
+		
+		if (typeObj == Tabb.noObj || typeObj.getKind() != Obj.Type) {
+			report_error("Can't resolve type: " + typeNo.getTypeName(), typeNo);
+		}
+	}
+	
+	// Statement
+	
+	// DesignatorStatement
+	
+	// ActPars
+	
+	// Condition
+	
+	// CondTerm
+	
+	// CondFact
+	
+	// Expr
+	
+	// Term
+	
+	// Factor
+	
+	// Designator
+	
+	// Label
+	
+	// Assignop
+	
+	// Relop
+	
+	// Addop
+	
+	// Mulop
+	
+
+}

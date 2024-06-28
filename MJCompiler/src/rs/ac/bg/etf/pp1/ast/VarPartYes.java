@@ -1,24 +1,24 @@
 // generated with ast extension for cup
 // version 0.8
-// 26/5/2024 22:37:14
+// 28/5/2024 23:52:22
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class VarPartYes extends VarPart {
 
-    private String I1;
+    private String varName;
 
-    public VarPartYes (String I1) {
-        this.I1=I1;
+    public VarPartYes (String varName) {
+        this.varName=varName;
     }
 
-    public String getI1() {
-        return I1;
+    public String getVarName() {
+        return varName;
     }
 
-    public void setI1(String I1) {
-        this.I1=I1;
+    public void setVarName(String varName) {
+        this.varName=varName;
     }
 
     public void accept(Visitor visitor) {
@@ -41,7 +41,7 @@ public class VarPartYes extends VarPart {
         buffer.append(tab);
         buffer.append("VarPartYes(\n");
 
-        buffer.append(" "+tab+I1);
+        buffer.append(" "+tab+varName);
         buffer.append("\n");
 
         buffer.append(tab);

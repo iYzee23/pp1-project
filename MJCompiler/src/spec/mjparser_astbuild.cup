@@ -7,6 +7,8 @@ import rs.ac.bg.etf.pp1.ast.*;
 parser code {:
 
 	Logger log = Logger.getLogger(getClass());
+	
+	boolean errorDetected;
      
     public void report_fatal_error(String message, Object info) throws java.lang.Exception {
       done_parsing();
@@ -22,12 +24,17 @@ parser code {:
     }
 
     public void report_error(String message, Object info) {
+    	errorDetected = true;
     	StringBuilder msg = new StringBuilder(message); 
     	if (info instanceof Symbol)
             msg.append (" on line ").append(((Symbol)info).left);
         log.error(msg.toString());
     }
 
+:}
+
+init with {:
+	errorDetected = false;
 :}
 
 scan with {:
@@ -64,8 +71,6 @@ nonterminal ClassDecl ClassDecl;
 nonterminal MethodDecl MethodDecl;
 nonterminal ConstParts ConstParts;
 nonterminal ConstPart ConstPart;
-nonterminal Type Type;
-nonterminal ConstChoice ConstChoice;
 nonterminal VarParts VarParts;
 nonterminal VarPart VarPart;
 nonterminal StatVarDeclList StatVarDeclList;
@@ -103,6 +108,11 @@ nonterminal NewChoice NewChoice;
 nonterminal DesignatorStmtList DesignatorStmtList;
 nonterminal MethodDeclListOpt MethodDeclListOpt;
 
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj NamespaceName;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj MethodName;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Type;
+
 
 
 /* Precedences */
@@ -113,7 +123,9 @@ precedence left ELSE;
 
 /* Grammar */
 
-Program ::= (Programt) PROG IDENT:I1 NamespaceList:N2 DeclList:D3 LBRACE MethodDeclList:M4 RBRACE {: RESULT=new Programt(I1, N2, D3, M4); RESULT.setLine(I1left); :};
+Program ::= (Programt) PROG ProgName:P1 NamespaceList:N2 DeclList:D3 LBRACE MethodDeclList:M4 RBRACE {: RESULT=new Programt(P1, N2, D3, M4); RESULT.setLine(P1left); :};
+
+ProgName ::= (ProgNamet) IDENT:progName {: RESULT=new ProgNamet(progName); RESULT.setLine(progNameleft); :};
 
 NamespaceList ::= (NamespaceListYes) NamespaceList:N1 Namespace:N2 {: RESULT=new NamespaceListYes(N1, N2); RESULT.setLine(N1left); :}
 			   |
@@ -131,7 +143,9 @@ MethodDeclList ::= (MethodDeclListYes) MethodDeclList:M1 MethodDecl:M2 {: RESULT
 				|
 				(MethodDeclListNo) {: RESULT=new MethodDeclListNo(); :} /* epsilon */;
 
-Namespace ::= (Namespacet) NAMESP IDENT:I1 LBRACE DeclList:D2 LBRACE MethodDeclList:M3 RBRACE RBRACE {: RESULT=new Namespacet(I1, D2, M3); RESULT.setLine(I1left); :};
+Namespace ::= (Namespacet) NAMESP NamespaceName:N1 LBRACE DeclList:D2 LBRACE MethodDeclList:M3 RBRACE RBRACE {: RESULT=new Namespacet(N1, D2, M3); RESULT.setLine(N1left); :};
+
+NamespaceName ::= (NamespaceNamet) IDENT:namespaceName {: RESULT=new NamespaceNamet(namespaceName); RESULT.setLine(namespaceNameleft); :};
 
 ConstDecl ::= (ConstDeclt) ConstParts:C1 SEMI {: RESULT=new ConstDeclt(C1); RESULT.setLine(C1left); :};
 
@@ -139,13 +153,11 @@ ConstParts ::= (ConstDeclList) ConstParts:C1 COMMA ConstPart:C2 {: RESULT=new Co
 		    |
 		    (ConstDeclSingle) CONST Type:T1 ConstPart:C2 {: RESULT=new ConstDeclSingle(T1, C2); RESULT.setLine(T1left); :};
 
-ConstPart ::= (ConstPartt) IDENT:I1 ASSIGN ConstChoice:C2 {: RESULT=new ConstPartt(I1, C2); RESULT.setLine(I1left); :};
-
-ConstChoice ::= (ConstNum) NUM_CONST:N1 {: RESULT=new ConstNum(N1); RESULT.setLine(N1left); :}
-			 |
-			 (ConstChar) CHAR_CONST:C1 {: RESULT=new ConstChar(C1); RESULT.setLine(C1left); :}
-			 |
-			 (ConstBool) BOOL_CONST:B1 {: RESULT=new ConstBool(B1); RESULT.setLine(B1left); :};
+ConstPart ::= (ConstPartNum) IDENT:constName ASSIGN NUM_CONST:constValue {: RESULT=new ConstPartNum(constName, constValue); RESULT.setLine(constNameleft); :}
+		   |
+		   (ConstPartChar) IDENT:constName ASSIGN CHAR_CONST:constValue {: RESULT=new ConstPartChar(constName, constValue); RESULT.setLine(constNameleft); :}
+		   |
+		   (ConstPartBool) IDENT:constName ASSIGN BOOL_CONST:constValue {: RESULT=new ConstPartBool(constName, constValue); RESULT.setLine(constNameleft); :};
 
 VarDecl ::= (VarDeclt) VarParts:V1 SEMI {: RESULT=new VarDeclt(V1); RESULT.setLine(V1left); :}
 		 |
@@ -157,9 +169,9 @@ VarParts ::= (VarDeclListParts) VarParts:V1 COMMA VarPart:V2 {: RESULT=new VarDe
 		  |
 		  (VarDeclSingle) Type:T1 VarPart:V2 {: RESULT=new VarDeclSingle(T1, V2); RESULT.setLine(T1left); :};
 
-VarPart ::= (VarPartYes) IDENT:I1 LBRACKET RBRACKET {: RESULT=new VarPartYes(I1); RESULT.setLine(I1left); :}
+VarPart ::= (VarPartYes) IDENT:varName LBRACKET RBRACKET {: RESULT=new VarPartYes(varName); RESULT.setLine(varNameleft); :}
 		 |
-		 (VarPartNo) IDENT:I1 {: RESULT=new VarPartNo(I1); RESULT.setLine(I1left); :};
+		 (VarPartNo) IDENT:varName {: RESULT=new VarPartNo(varName); RESULT.setLine(varNameleft); :};
 
 ClassDecl ::= (ClassDeclYes) CLASS IDENT:I1 EXTENDS Type:T2 LBRACE StatVarDeclList:S3 StatInitList:S4 VarDeclList:V5 MethodDeclListOpt:M6 RBRACE {: RESULT=new ClassDeclYes(I1, T2, S3, S4, V5, M6); RESULT.setLine(I1left); :}
 		   |
@@ -191,31 +203,33 @@ StatementList ::= (StatementListYes) StatementList:S1 Statement:S2 {: RESULT=new
 			   |
 			   (StatementListNo) {: RESULT=new StatementListNo(); :} /* epsilon */; 
 
-MethodDecl ::= (MethodDeclYes) ReturnType:R1 IDENT:I2 LPAREN FormPars:F3 RPAREN VarDeclList:V4 LBRACE StatementList:S5 RBRACE {: RESULT=new MethodDeclYes(R1, I2, F3, V4, S5); RESULT.setLine(R1left); :}
+MethodDecl ::= (MethodDeclYes) ReturnType:R1 MethodName:M2 LPAREN FormPars:F3 RPAREN VarDeclList:V4 LBRACE StatementList:S5 RBRACE {: RESULT=new MethodDeclYes(R1, M2, F3, V4, S5); RESULT.setLine(R1left); :}
 			|
-			(MethodDeclYesError) ReturnType:R1 IDENT:I2 LPAREN error RPAREN:l {: parser.report_error("Bad formal parameters definition. Performed recovery until ) in line " + lleft, null); :} VarDeclList:V3 LBRACE StatementList:S4 RBRACE {: RESULT=new MethodDeclYesError(R1, I2, V3, S4); RESULT.setLine(R1left); :}
+			(MethodDeclYesError) ReturnType:R1 MethodName:M2 LPAREN error RPAREN:l {: parser.report_error("Bad formal parameters definition. Performed recovery until ) in line " + lleft, null); :} VarDeclList:V3 LBRACE StatementList:S4 RBRACE {: RESULT=new MethodDeclYesError(R1, M2, V3, S4); RESULT.setLine(R1left); :}
 			|
-			(MethodDeclNo) ReturnType:R1 IDENT:I2 LPAREN RPAREN VarDeclList:V3 LBRACE StatementList:S4 RBRACE {: RESULT=new MethodDeclNo(R1, I2, V3, S4); RESULT.setLine(R1left); :};
+			(MethodDeclNo) ReturnType:R1 MethodName:M2 LPAREN RPAREN VarDeclList:V3 LBRACE StatementList:S4 RBRACE {: RESULT=new MethodDeclNo(R1, M2, V3, S4); RESULT.setLine(R1left); :};
+			
+MethodName ::= (MethodNamet) IDENT:methName {: RESULT=new MethodNamet(methName); RESULT.setLine(methNameleft); :};
 
 ReturnType ::= (ReturnTypeType) Type:T1 {: RESULT=new ReturnTypeType(T1); RESULT.setLine(T1left); :}
 			|
 			(ReturnTypeVoid) VOID {: RESULT=new ReturnTypeVoid(); :};
 			 
-FormPars ::= (FormParsList) FormPars:F1 COMMA Type:T2 IDENT:I3 BracketsOpt:B4 {: RESULT=new FormParsList(F1, T2, I3, B4); RESULT.setLine(F1left); :}
+FormPars ::= (FormParsList) FormPars:F1 COMMA Type:T2 IDENT:paramName BracketsOpt:B3 {: RESULT=new FormParsList(F1, T2, paramName, B3); RESULT.setLine(F1left); :}
 		  |
 		  (FormParsListError) error COMMA:l {: parser.report_error("Bad formal parameters definition. Performed recovery until , in line " + lleft, null); :} Type:T1 IDENT:I2 BracketsOpt:B3 {: RESULT=new FormParsListError(T1, I2, B3); RESULT.setLine(T1left); :}
 		  |
-		  (FormParsSingleYes) Type:T1 IDENT:I2 LBRACKET RBRACKET {: RESULT=new FormParsSingleYes(T1, I2); RESULT.setLine(T1left); :}
+		  (FormParsSingleYes) Type:T1 IDENT:paramName LBRACKET RBRACKET {: RESULT=new FormParsSingleYes(T1, paramName); RESULT.setLine(T1left); :}
 		  |
-		  (FormParsSingleNo) Type:T1 IDENT:I2 {: RESULT=new FormParsSingleNo(T1, I2); RESULT.setLine(T1left); :};
+		  (FormParsSingleNo) Type:T1 IDENT:paramName {: RESULT=new FormParsSingleNo(T1, paramName); RESULT.setLine(T1left); :};
 
 BracketsOpt ::= (BracketsOptYes) LBRACKET RBRACKET {: RESULT=new BracketsOptYes(); :}
 			 |
 			 (BracketsOptNo) {: RESULT=new BracketsOptNo(); :} /* epsilon */;
 
-Type ::= (TypeYes) IDENT:I1 RESOLUTION IDENT:I2 {: RESULT=new TypeYes(I1, I2); RESULT.setLine(I1left); :}
+Type ::= (TypeYes) IDENT:namespaceName RESOLUTION IDENT:typeName {: RESULT=new TypeYes(namespaceName, typeName); RESULT.setLine(namespaceNameleft); :}
 	  |
-	  (TypeNo) IDENT:I1 {: RESULT=new TypeNo(I1); RESULT.setLine(I1left); :};
+	  (TypeNo) IDENT:typeName {: RESULT=new TypeNo(typeName); RESULT.setLine(typeNameleft); :};
 
 Statement ::= (StmtDesignator) DesignatorStatement:D1 SEMI {: RESULT=new StmtDesignator(D1); RESULT.setLine(D1left); :}
 		   |

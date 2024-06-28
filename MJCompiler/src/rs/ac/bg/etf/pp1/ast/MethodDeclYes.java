@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 26/5/2024 22:37:14
+// 28/5/2024 23:52:22
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,15 +8,16 @@ package rs.ac.bg.etf.pp1.ast;
 public class MethodDeclYes extends MethodDecl {
 
     private ReturnType ReturnType;
-    private String I2;
+    private MethodName MethodName;
     private FormPars FormPars;
     private VarDeclList VarDeclList;
     private StatementList StatementList;
 
-    public MethodDeclYes (ReturnType ReturnType, String I2, FormPars FormPars, VarDeclList VarDeclList, StatementList StatementList) {
+    public MethodDeclYes (ReturnType ReturnType, MethodName MethodName, FormPars FormPars, VarDeclList VarDeclList, StatementList StatementList) {
         this.ReturnType=ReturnType;
         if(ReturnType!=null) ReturnType.setParent(this);
-        this.I2=I2;
+        this.MethodName=MethodName;
+        if(MethodName!=null) MethodName.setParent(this);
         this.FormPars=FormPars;
         if(FormPars!=null) FormPars.setParent(this);
         this.VarDeclList=VarDeclList;
@@ -33,12 +34,12 @@ public class MethodDeclYes extends MethodDecl {
         this.ReturnType=ReturnType;
     }
 
-    public String getI2() {
-        return I2;
+    public MethodName getMethodName() {
+        return MethodName;
     }
 
-    public void setI2(String I2) {
-        this.I2=I2;
+    public void setMethodName(MethodName MethodName) {
+        this.MethodName=MethodName;
     }
 
     public FormPars getFormPars() {
@@ -71,6 +72,7 @@ public class MethodDeclYes extends MethodDecl {
 
     public void childrenAccept(Visitor visitor) {
         if(ReturnType!=null) ReturnType.accept(visitor);
+        if(MethodName!=null) MethodName.accept(visitor);
         if(FormPars!=null) FormPars.accept(visitor);
         if(VarDeclList!=null) VarDeclList.accept(visitor);
         if(StatementList!=null) StatementList.accept(visitor);
@@ -79,6 +81,7 @@ public class MethodDeclYes extends MethodDecl {
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
         if(ReturnType!=null) ReturnType.traverseTopDown(visitor);
+        if(MethodName!=null) MethodName.traverseTopDown(visitor);
         if(FormPars!=null) FormPars.traverseTopDown(visitor);
         if(VarDeclList!=null) VarDeclList.traverseTopDown(visitor);
         if(StatementList!=null) StatementList.traverseTopDown(visitor);
@@ -86,6 +89,7 @@ public class MethodDeclYes extends MethodDecl {
 
     public void traverseBottomUp(Visitor visitor) {
         if(ReturnType!=null) ReturnType.traverseBottomUp(visitor);
+        if(MethodName!=null) MethodName.traverseBottomUp(visitor);
         if(FormPars!=null) FormPars.traverseBottomUp(visitor);
         if(VarDeclList!=null) VarDeclList.traverseBottomUp(visitor);
         if(StatementList!=null) StatementList.traverseBottomUp(visitor);
@@ -103,7 +107,10 @@ public class MethodDeclYes extends MethodDecl {
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        buffer.append(" "+tab+I2);
+        if(MethodName!=null)
+            buffer.append(MethodName.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
         buffer.append("\n");
 
         if(FormPars!=null)

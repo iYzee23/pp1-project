@@ -1,0 +1,18 @@
+package rs.ac.bg.etf.pp1;
+
+import org.apache.log4j.Logger;
+import rs.ac.bg.etf.pp1.ast.*;
+import rs.etf.pp1.symboltable.*;
+import rs.etf.pp1.symboltable.concepts.*;
+import rs.etf.pp1.symboltable.visitors.*;
+import rs.etf.pp1.symboltable.structure.*;
+
+public class SemanticAnalyzer extends VisitorAdaptor {
+	
+	Logger log = Logger.getLogger(getClass());
+	
+	public void visit(ProgNamet progName) {
+		Tab
+	}
+
+}

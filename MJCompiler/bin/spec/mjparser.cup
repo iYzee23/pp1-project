@@ -7,6 +7,8 @@ import rs.ac.bg.etf.pp1.ast.*;
 parser code {:
 
 	Logger log = Logger.getLogger(getClass());
+	
+	boolean errorDetected;
      
     public void report_fatal_error(String message, Object info) throws java.lang.Exception {
       done_parsing();
@@ -22,12 +24,17 @@ parser code {:
     }
 
     public void report_error(String message, Object info) {
+    	errorDetected = true;
     	StringBuilder msg = new StringBuilder(message); 
     	if (info instanceof Symbol)
             msg.append (" on line ").append(((Symbol)info).left);
         log.error(msg.toString());
     }
 
+:}
+
+init with {:
+	errorDetected = false;
 :}
 
 scan with {:
@@ -54,12 +61,17 @@ terminal Character CHAR_CONST;
 /* Non-terminals */
 
 nonterminal Program, NamespaceList, DeclList, MethodDeclList, Namespace, ConstDecl, VarDecl, ClassDecl, MethodDecl;
-nonterminal ConstParts, ConstPart, Type, ConstChoice, VarParts, VarPart, StatVarDeclList;
+nonterminal ConstParts, ConstPart, VarParts, VarPart, StatVarDeclList;
 nonterminal StatInitList, VarDeclList, StaticInitializer, StatementList, Statement, ReturnType;
 nonterminal FormPars, DesignatorStatement, Designator, OpChoice, DesignatorList, ElseOpt;
 nonterminal ActPars, Label, Assignop, Relop, Addop, Mulop, DesignatorParts, BracketsOpt;
 nonterminal Condition, CondTerm, CondFact, Expr, Term, Factor, CondTermList, CondFactList; 
 nonterminal AddopTermList, MulopFactorList, NewChoice, DesignatorStmtList, MethodDeclListOpt;
+
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj NamespaceName;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj MethodName;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Type;
 
 
 
@@ -71,7 +83,9 @@ precedence left ELSE;
 
 /* Grammar */
 
-Program ::= (Programt) PROG IDENT NamespaceList DeclList LBRACE MethodDeclList RBRACE;
+Program ::= (Programt) PROG ProgName NamespaceList DeclList LBRACE MethodDeclList RBRACE;
+
+ProgName ::= (ProgNamet) IDENT:progName;
 
 NamespaceList ::= (NamespaceListYes) NamespaceList Namespace
 			   |
@@ -89,7 +103,9 @@ MethodDeclList ::= (MethodDeclListYes) MethodDeclList MethodDecl
 				|
 				(MethodDeclListNo) /* epsilon */;
 
-Namespace ::= (Namespacet) NAMESP IDENT LBRACE DeclList LBRACE MethodDeclList RBRACE RBRACE;
+Namespace ::= (Namespacet) NAMESP NamespaceName LBRACE DeclList LBRACE MethodDeclList RBRACE RBRACE;
+
+NamespaceName ::= (NamespaceNamet) IDENT:namespaceName;
 
 ConstDecl ::= (ConstDeclt) ConstParts SEMI;
 
@@ -97,13 +113,11 @@ ConstParts ::= (ConstDeclList) ConstParts COMMA ConstPart
 		    |
 		    (ConstDeclSingle) CONST Type ConstPart;
 
-ConstPart ::= (ConstPartt) IDENT ASSIGN ConstChoice;
-
-ConstChoice ::= (ConstNum) NUM_CONST
-			 |
-			 (ConstChar) CHAR_CONST
-			 |
-			 (ConstBool) BOOL_CONST;
+ConstPart ::= (ConstPartNum) IDENT:constName ASSIGN NUM_CONST:constValue
+		   |
+		   (ConstPartChar) IDENT:constName ASSIGN CHAR_CONST:constValue
+		   |
+		   (ConstPartBool) IDENT:constName ASSIGN BOOL_CONST:constValue;
 
 VarDecl ::= (VarDeclt) VarParts SEMI
 		 |
@@ -115,9 +129,9 @@ VarParts ::= (VarDeclListParts) VarParts COMMA VarPart
 		  |
 		  (VarDeclSingle) Type VarPart;
 
-VarPart ::= (VarPartYes) IDENT LBRACKET RBRACKET
+VarPart ::= (VarPartYes) IDENT:varName LBRACKET RBRACKET
 		 |
-		 (VarPartNo) IDENT;
+		 (VarPartNo) IDENT:varName;
 
 ClassDecl ::= (ClassDeclYes) CLASS IDENT EXTENDS Type LBRACE StatVarDeclList StatInitList VarDeclList MethodDeclListOpt RBRACE
 		   |
@@ -149,31 +163,33 @@ StatementList ::= (StatementListYes) StatementList Statement
 			   |
 			   (StatementListNo) /* epsilon */; 
 
-MethodDecl ::= (MethodDeclYes) ReturnType IDENT LPAREN FormPars RPAREN VarDeclList LBRACE StatementList RBRACE
+MethodDecl ::= (MethodDeclYes) ReturnType MethodName LPAREN FormPars RPAREN VarDeclList LBRACE StatementList RBRACE
 			|
-			(MethodDeclYesError) ReturnType IDENT LPAREN error RPAREN:l {: parser.report_error("Bad formal parameters definition. Performed recovery until ) in line " + lleft, null); :} VarDeclList LBRACE StatementList RBRACE
+			(MethodDeclYesError) ReturnType MethodName LPAREN error RPAREN:l {: parser.report_error("Bad formal parameters definition. Performed recovery until ) in line " + lleft, null); :} VarDeclList LBRACE StatementList RBRACE
 			|
-			(MethodDeclNo) ReturnType IDENT LPAREN RPAREN VarDeclList LBRACE StatementList RBRACE;
+			(MethodDeclNo) ReturnType MethodName LPAREN RPAREN VarDeclList LBRACE StatementList RBRACE;
+			
+MethodName ::= (MethodNamet) IDENT:methName;
 
 ReturnType ::= (ReturnTypeType) Type
 			|
 			(ReturnTypeVoid) VOID;
 			 
-FormPars ::= (FormParsList) FormPars COMMA Type IDENT BracketsOpt
+FormPars ::= (FormParsList) FormPars COMMA Type IDENT:paramName BracketsOpt
 		  |
 		  (FormParsListError) error COMMA:l {: parser.report_error("Bad formal parameters definition. Performed recovery until , in line " + lleft, null); :} Type IDENT BracketsOpt
 		  |
-		  (FormParsSingleYes) Type IDENT LBRACKET RBRACKET
+		  (FormParsSingleYes) Type IDENT:paramName LBRACKET RBRACKET
 		  |
-		  (FormParsSingleNo) Type IDENT;
+		  (FormParsSingleNo) Type IDENT:paramName;
 
 BracketsOpt ::= (BracketsOptYes) LBRACKET RBRACKET
 			 |
 			 (BracketsOptNo) /* epsilon */;
 
-Type ::= (TypeYes) IDENT RESOLUTION IDENT
+Type ::= (TypeYes) IDENT:namespaceName RESOLUTION IDENT:typeName
 	  |
-	  (TypeNo) IDENT;
+	  (TypeNo) IDENT:typeName;
 
 Statement ::= (StmtDesignator) DesignatorStatement SEMI
 		   |
