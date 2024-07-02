@@ -82,12 +82,11 @@ nonterminal Statement Statement;
 nonterminal ReturnType ReturnType;
 nonterminal FormPars FormPars;
 nonterminal DesignatorStatement DesignatorStatement;
-nonterminal Designator Designator;
 nonterminal OpChoice OpChoice;
 nonterminal DesignatorList DesignatorList;
 nonterminal ElseOpt ElseOpt;
 nonterminal ActPars ActPars;
-nonterminal Label Label;
+nonterminal ActParsTemp ActParsTemp;
 nonterminal Assignop Assignop;
 nonterminal Relop Relop;
 nonterminal Addop Addop;
@@ -97,9 +96,6 @@ nonterminal BracketsOpt BracketsOpt;
 nonterminal Condition Condition;
 nonterminal CondTerm CondTerm;
 nonterminal CondFact CondFact;
-nonterminal Expr Expr;
-nonterminal Term Term;
-nonterminal Factor Factor;
 nonterminal CondTermList CondTermList;
 nonterminal CondFactList CondFactList; 
 nonterminal AddopTermList AddopTermList;
@@ -111,7 +107,12 @@ nonterminal MethodDeclListOpt MethodDeclListOpt;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj NamespaceName;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj MethodName;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj Designator;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj Label;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct Type;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Term;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Factor;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Expr;
 
 
 
@@ -303,9 +304,11 @@ DesignatorList ::= (DesignatorListYesYes) DesignatorList:D1 Designator:D2 COMMA 
 				|
 				(DesignatorListNo) {: RESULT=new DesignatorListNo(); :} /* epsilon */;
 
-ActPars ::= (ActParsList) ActPars:A1 COMMA Expr:E2 {: RESULT=new ActParsList(A1, E2); RESULT.setLine(A1left); :}
-		 |
-		 (ActParsSingle) Expr:E1 {: RESULT=new ActParsSingle(E1); RESULT.setLine(E1left); :};
+ActPars ::= (ActParst) ActParsTemp:A1 {: RESULT=new ActParst(A1); RESULT.setLine(A1left); :};
+		 
+ActParsTemp ::= (ActParsTempList) ActParsTemp:A1 COMMA Expr:E2 {: RESULT=new ActParsTempList(A1, E2); RESULT.setLine(A1left); :}
+			 |
+			 (ActParsTempSingle) Expr:E1 {: RESULT=new ActParsTempSingle(E1); RESULT.setLine(E1left); :};
 
 Condition ::= (Conditiont) CondTerm:C1 CondTermList:C2 {: RESULT=new Conditiont(C1, C2); RESULT.setLine(C1left); :};
 
@@ -361,17 +364,17 @@ NewChoice ::= (NewChoiceExpr) LBRACKET Expr:E1 RBRACKET {: RESULT=new NewChoiceE
 		   |
 		   (NewChoiceActParsNo) LPAREN RPAREN {: RESULT=new NewChoiceActParsNo(); :};
 
-Designator ::= (DesignatorYes) IDENT:I1 RESOLUTION IDENT:I2 DesignatorParts:D3 {: RESULT=new DesignatorYes(I1, I2, D3); RESULT.setLine(I1left); :}
+Designator ::= (DesignatorYes) IDENT:nspName RESOLUTION IDENT:dsgName DesignatorParts:D1 {: RESULT=new DesignatorYes(nspName, dsgName, D1); RESULT.setLine(nspNameleft); :}
 			|
-			(DesignatorNo) IDENT:I1 DesignatorParts:D2 {: RESULT=new DesignatorNo(I1, D2); RESULT.setLine(I1left); :};
+			(DesignatorNo) IDENT:dsgName DesignatorParts:D1 {: RESULT=new DesignatorNo(dsgName, D1); RESULT.setLine(dsgNameleft); :};
 
-DesignatorParts ::= (DesignatorPartsIdent) DesignatorParts:D1 DOT IDENT:I2 {: RESULT=new DesignatorPartsIdent(D1, I2); RESULT.setLine(D1left); :}
+DesignatorParts ::= (DesignatorPartsIdent) DesignatorParts:D1 DOT IDENT:dsgName {: RESULT=new DesignatorPartsIdent(D1, dsgName); RESULT.setLine(D1left); :}
 				 |
 				 (DesignatorPartsExpr) DesignatorParts:D1 LBRACKET Expr:E2 RBRACKET {: RESULT=new DesignatorPartsExpr(D1, E2); RESULT.setLine(D1left); :}
 				 |
 				 (DesignatorPartsNo) {: RESULT=new DesignatorPartsNo(); :} /* epsilon */;
 
-Label ::= (Labelt) IDENT:I1 {: RESULT=new Labelt(I1); RESULT.setLine(I1left); :};
+Label ::= (Labelt) IDENT:labName {: RESULT=new Labelt(labName); RESULT.setLine(labNameleft); :};
 
 Assignop ::= (AssignopAssignt) ASSIGN {: RESULT=new AssignopAssignt(); :};
 

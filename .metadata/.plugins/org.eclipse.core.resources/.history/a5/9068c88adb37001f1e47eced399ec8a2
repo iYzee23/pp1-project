@@ -1,0 +1,365 @@
+package rs.ac.bg.etf.pp1;
+
+import java_cup.runtime.*;
+import org.apache.log4j.*;
+import rs.ac.bg.etf.pp1.ast.*;
+
+parser code {:
+
+	Logger log = Logger.getLogger(getClass());
+	
+	boolean errorDetected;
+     
+    public void report_fatal_error(String message, Object info) throws java.lang.Exception {
+      done_parsing();
+      report_error(message, info);
+    }
+  
+    public void syntax_error(Symbol cur_token) {
+        report_error("Syntax error", cur_token);
+    }
+  
+    public void unrecovered_syntax_error(Symbol cur_token) throws java.lang.Exception {
+        report_fatal_error("Fatal error, parsing couldn't be continued", cur_token);
+    }
+
+    public void report_error(String message, Object info) {
+    	errorDetected = true;
+    	StringBuilder msg = new StringBuilder(message); 
+    	if (info instanceof Symbol)
+            msg.append (" on line ").append(((Symbol)info).left);
+        log.error(msg.toString());
+    }
+
+:}
+
+init with {:
+	errorDetected = false;
+:}
+
+scan with {:
+	Symbol s = this.getScanner().next_token();
+	if (s != null && s.value != null) 
+		log.info(s.toString() + " " + s.value.toString());
+	return s;
+:}
+
+
+
+/* Terminals */
+
+terminal PROG, LBRACE, RBRACE, NAMESP, COMMA, CONST, SEMI, ASSIGN, LBRACKET, RBRACKET, CLASS, EXTENDS, STATIC, COLON;
+terminal LPAREN, RPAREN, VOID, RESOLUTION, INC, DEC, EQUAL, NOT_EQUAL, GRT, GRT_EQUAL, LESS, LESS_EQUAL, PRINT, ARROW;
+terminal PLUS, MINUS, MUL, DIV, MOD, DOT, OR, AND, NEW, RANGE, FOR, IN, IF, ELSE, BREAK, CONTINUE, RETURN, READ; 
+terminal String IDENT;
+terminal Integer NUM_CONST;
+terminal Boolean BOOL_CONST;
+terminal Character CHAR_CONST;
+
+
+
+/* Non-terminals */
+
+nonterminal Program, NamespaceList, DeclList, MethodDeclList, Namespace, ConstDecl, VarDecl, ClassDecl, MethodDecl;
+nonterminal ConstParts, ConstPart, VarParts, VarPart, StatVarDeclList;
+nonterminal StatInitList, VarDeclList, StaticInitializer, StatementList, Statement, ReturnType;
+nonterminal FormPars, DesignatorStatement, OpChoice, DesignatorList, ElseOpt;
+nonterminal ActParst, Assignop, Relop, Addop, Mulop, DesignatorParts, BracketsOpt;
+nonterminal Condition, CondTerm, CondFact, CondTermList, CondFactList; 
+nonterminal AddopTermList, MulopFactorList, NewChoice, DesignatorStmtList, MethodDeclListOpt;
+
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj NamespaceName;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj MethodName;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj Designator;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj Label;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Type;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Term;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Factor;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Expr;
+
+
+
+/* Precedences */
+
+precedence left ELSE;
+
+
+
+/* Grammar */
+
+Program ::= (Programt) PROG ProgName NamespaceList DeclList LBRACE MethodDeclList RBRACE;
+
+ProgName ::= (ProgNamet) IDENT:progName;
+
+NamespaceList ::= (NamespaceListYes) NamespaceList Namespace
+			   |
+			   (NamespaceListNo) /* epsilon */;
+
+DeclList ::= (DeclListConst) DeclList ConstDecl
+		  |
+		  (DeclListVar) DeclList VarDecl
+		  |
+		  (DeclListClass) DeclList ClassDecl
+		  |
+		  (DeclListNo) /* epsilon */;
+
+MethodDeclList ::= (MethodDeclListYes) MethodDeclList MethodDecl
+				|
+				(MethodDeclListNo) /* epsilon */;
+
+Namespace ::= (Namespacet) NAMESP NamespaceName LBRACE DeclList LBRACE MethodDeclList RBRACE RBRACE;
+
+NamespaceName ::= (NamespaceNamet) IDENT:namespaceName;
+
+ConstDecl ::= (ConstDeclt) ConstParts SEMI;
+
+ConstParts ::= (ConstDeclList) ConstParts COMMA ConstPart
+		    |
+		    (ConstDeclSingle) CONST Type ConstPart;
+
+ConstPart ::= (ConstPartNum) IDENT:constName ASSIGN NUM_CONST:constValue
+		   |
+		   (ConstPartChar) IDENT:constName ASSIGN CHAR_CONST:constValue
+		   |
+		   (ConstPartBool) IDENT:constName ASSIGN BOOL_CONST:constValue;
+
+VarDecl ::= (VarDeclt) VarParts SEMI
+		 |
+		 (VarDecltError) error SEMI:l {: parser.report_error("Bad declaration of variable. Performed recovery until ; in line " + lleft, null); :};
+
+VarParts ::= (VarDeclListParts) VarParts COMMA VarPart
+		  |
+		  (VarDeclListPartsError) error COMMA:l {: parser.report_error("Bad declaration of variable. Performed recovery until , in line " + lleft, null); :} VarPart
+		  |
+		  (VarDeclSingle) Type VarPart;
+
+VarPart ::= (VarPartYes) IDENT:varName LBRACKET RBRACKET
+		 |
+		 (VarPartNo) IDENT:varName;
+
+ClassDecl ::= (ClassDeclYes) CLASS IDENT EXTENDS Type LBRACE StatVarDeclList StatInitList VarDeclList MethodDeclListOpt RBRACE
+		   |
+		   (ClassDeclYesError) CLASS IDENT EXTENDS error LBRACE:l {: parser.report_error("Bad class extension. Performed recovery until { in line " + lleft, null); :} StatVarDeclList StatInitList VarDeclList MethodDeclListOpt RBRACE
+		   |
+		   (ClassDeclNo) CLASS IDENT LBRACE StatVarDeclList StatInitList VarDeclList MethodDeclListOpt RBRACE;
+
+MethodDeclListOpt ::= (MethListYes) LBRACE MethodDeclList RBRACE
+				   |
+				   (MathListError) error LBRACE:l {: parser.report_error("Bad variable declaration. Performed recovery until { in line " + lleft, null); :} MethodDeclList RBRACE
+				   |
+				   (MethListNo) /* epsilon */;
+
+StatVarDeclList ::= (StatVarDeclListYes) StatVarDeclList STATIC VarDecl
+				 |
+				 (StatVarDeclListNo) /* epsilon */;
+
+StatInitList ::= (StatInitListYes) StaticInitializer StatInitList
+			  |
+			  (StatInitListNo) /* epsilon */;
+
+VarDeclList ::= (VarDeclListYes) VarDeclList VarDecl
+			 |
+			 (VarDeclListNo) /* epsilon */;
+
+StaticInitializer ::= (StaticInitializert) STATIC LBRACE StatementList RBRACE;
+
+StatementList ::= (StatementListYes) StatementList Statement
+			   |
+			   (StatementListNo) /* epsilon */; 
+
+MethodDecl ::= (MethodDeclYes) ReturnType MethodName LPAREN FormPars RPAREN VarDeclList LBRACE StatementList RBRACE
+			|
+			(MethodDeclYesError) ReturnType MethodName LPAREN error RPAREN:l {: parser.report_error("Bad formal parameters definition. Performed recovery until ) in line " + lleft, null); :} VarDeclList LBRACE StatementList RBRACE
+			|
+			(MethodDeclNo) ReturnType MethodName LPAREN RPAREN VarDeclList LBRACE StatementList RBRACE;
+			
+MethodName ::= (MethodNamet) IDENT:methName;
+
+ReturnType ::= (ReturnTypeType) Type
+			|
+			(ReturnTypeVoid) VOID;
+			 
+FormPars ::= (FormParsList) FormPars COMMA Type IDENT:paramName BracketsOpt
+		  |
+		  (FormParsListError) error COMMA:l {: parser.report_error("Bad formal parameters definition. Performed recovery until , in line " + lleft, null); :} Type IDENT BracketsOpt
+		  |
+		  (FormParsSingleYes) Type IDENT:paramName LBRACKET RBRACKET
+		  |
+		  (FormParsSingleNo) Type IDENT:paramName;
+
+BracketsOpt ::= (BracketsOptYes) LBRACKET RBRACKET
+			 |
+			 (BracketsOptNo) /* epsilon */;
+
+Type ::= (TypeYes) IDENT:namespaceName RESOLUTION IDENT:typeName
+	  |
+	  (TypeNo) IDENT:typeName;
+
+Statement ::= (StmtDesignator) DesignatorStatement SEMI
+		   |
+		   (StmtDesignatorError) error SEMI:l {: parser.report_error("Bad designator statement. Performed recovery until ; in line " + lleft, null); :}
+		   |
+		   (StmtIfElse) IF LPAREN Condition RPAREN Statement ElseOpt
+		   |
+		   (StmtIfElseError) IF LPAREN error RPAREN:l {: parser.report_error("Bad IF condition. Performed recovery until ) in line " + lleft, null); :} Statement ElseOpt
+		   |
+		   (StmtBreak) BREAK SEMI
+		   |
+		   (StmtContinue) CONTINUE SEMI
+		   |
+		   (StmtReturnYes) RETURN Expr SEMI
+		   |
+		   (StmtReturnNo) RETURN SEMI
+		   |
+		   (StmtRead) READ LPAREN Designator RPAREN SEMI
+		   |
+		   (StmtPrintYes) PRINT LPAREN Expr COMMA NUM_CONST RPAREN SEMI
+		   |
+		   (StmtPrintNo) PRINT LPAREN Expr RPAREN SEMI
+		   |
+		   (StmtForYesYesYes) FOR LPAREN DesignatorStatement DesignatorStmtList SEMI CondFact SEMI DesignatorStatement DesignatorStmtList RPAREN Statement
+		   |
+		   (StmtForYesYesNo) FOR LPAREN DesignatorStatement DesignatorStmtList SEMI CondFact SEMI RPAREN Statement
+		   |
+		   (StmtForYesNoYes) FOR LPAREN SEMI CondFact SEMI DesignatorStatement DesignatorStmtList RPAREN Statement
+		   |
+		   (StmtForYesNoNo) FOR LPAREN SEMI CondFact SEMI RPAREN Statement
+		   |
+		   (StmtForNoYesYes) FOR LPAREN DesignatorStatement DesignatorStmtList SEMI SEMI DesignatorStatement DesignatorStmtList RPAREN Statement
+		   |
+		   (StmtForNoYesNo) FOR LPAREN DesignatorStatement DesignatorStmtList SEMI SEMI RPAREN Statement
+		   |
+		   (StmtForNoNoYes) FOR LPAREN SEMI SEMI DesignatorStatement DesignatorStmtList RPAREN Statement
+		   |
+		   (StmtForNoNoNo) FOR LPAREN SEMI SEMI RPAREN Statement
+		   |
+		   (StmtBlock) LBRACE StatementList RBRACE;
+
+ElseOpt ::= (ElseOptYes) ELSE Statement
+		 |
+		 (ElseOptNo) /* epsilon */;
+				   
+DesignatorStmtList ::= (DesignatorStmtListYes) DesignatorStmtList COMMA DesignatorStatement
+					|
+					(DesignatorStmtListNo) /* epsilon */;
+
+DesignatorStatement ::= (DesignatorStmtFirst) Designator OpChoice
+					 |
+					 (DesignatorStmtSecond) LBRACKET DesignatorList MUL Designator RBRACKET ASSIGN Designator
+					 |
+					 (DesignatorStmtThirdYes) Designator ASSIGN LBRACKET FOR Expr IN Designator IF Condition RBRACKET
+					 |
+					 (DesignatorStmtThirdNo) Designator ASSIGN LBRACKET FOR Expr IN Designator RBRACKET;
+					 
+OpChoice ::= (OpChoiceExpr) Assignop Expr
+		  |
+		  (OpChoiceActParsYes) LPAREN ActPars RPAREN
+		  |
+		  (OpChoiceActParsNo) LPAREN RPAREN
+		  |
+		  (OpChoiceInc) INC
+		  |
+		  (OpChoiceDec) DEC;
+
+DesignatorList ::= (DesignatorListYesYes) DesignatorList Designator COMMA
+				|
+				(DesignatorListYesNo) DesignatorList COMMA
+				|
+				(DesignatorListNo) /* epsilon */;
+
+ActPars ::= (ActParst) ActParsTemp;
+		 
+ActParsTemp ::= (ActParsTempList) ActParsTemp COMMA Expr
+			 |
+			 (ActParsTempSingle) Expr;
+
+Condition ::= (Conditiont) CondTerm CondTermList;
+
+CondTermList ::= (CondTermListYes) CondTermList OR CondTerm
+			  |
+			  (CondTermListNo) /* epsilon */;
+
+CondTerm ::= (CondTermt) CondFact CondFactList;
+
+CondFactList ::= (CondFactListYes) CondFactList AND CondFact
+			  |
+			  (CondFactListNo) /* epsilon */;
+
+CondFact ::= (CondFactYes) Expr Relop Expr
+		  |
+		  (CondFactNo) Expr;
+
+Expr ::= (ExprYes) MINUS Term AddopTermList
+	  |
+	  (ExprNo) Term AddopTermList;
+
+AddopTermList ::= (AddopTermListYes) AddopTermList Addop Term
+			   |
+			   (AddopTermListNo) /* epsilon */;
+
+Term ::= (Termt) Factor MulopFactorList;
+
+MulopFactorList ::= (MulopFactorListYes) MulopFactorList Mulop Factor
+				 |
+				 (MulopFactorListNo) /* epsilon */;
+
+Factor ::= (FactorDesignatorFirst) Designator LPAREN ActPars RPAREN
+		|
+		(FactorDesignatorSecond) Designator LPAREN RPAREN
+		|
+		(FactorDesignatorThird) Designator
+		|
+		(FactorNum) NUM_CONST
+		|
+		(FactorChar) CHAR_CONST
+		|
+		(FactorBool) BOOL_CONST
+		|
+		(FactorNew) NEW Type NewChoice
+		|
+		(FactorExpr) LPAREN Expr RPAREN
+		|
+		(FactorRange) RANGE LPAREN Expr RPAREN;
+
+NewChoice ::= (NewChoiceExpr) LBRACKET Expr RBRACKET
+		   |
+		   (NewChoiceActParsYes) LPAREN ActPars RPAREN
+		   |
+		   (NewChoiceActParsNo) LPAREN RPAREN;
+
+Designator ::= (DesignatorYes) IDENT:nspName RESOLUTION IDENT:dsgName DesignatorParts
+			|
+			(DesignatorNo) IDENT:dsgName DesignatorParts;
+
+DesignatorParts ::= (DesignatorPartsIdent) DesignatorParts DOT IDENT:dsgName
+				 |
+				 (DesignatorPartsExpr) DesignatorParts LBRACKET Expr RBRACKET
+				 |
+				 (DesignatorPartsNo) /* epsilon */;
+
+Label ::= (Labelt) IDENT:labName;
+
+Assignop ::= (AssignopAssignt) ASSIGN;
+
+Relop ::= (RelopEqual) EQUAL
+	   |
+	   (RelopNotEqual) NOT_EQUAL
+	   |
+	   (RelopGrt) GRT
+	   |
+	   (RelopGrtEqual) GRT_EQUAL
+	   |
+	   (RelopLess) LESS
+	   |
+	   (RelopLessEqual) LESS_EQUAL;
+
+Addop ::= (AddopPlus) PLUS
+	   |
+	   (AddopMinus) MINUS;
+
+Mulop ::= (MulopMul) MUL
+	   |
+	   (MulopDiv) DIV
+	   |
+	   (MulopMod) MOD;

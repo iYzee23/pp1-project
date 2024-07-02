@@ -1,0 +1,62 @@
+program P
+
+namespace NP {
+	int p, P;
+	
+	{
+	
+	}
+}
+
+namespace NP {
+	int m;
+	
+	{
+	
+	}
+}
+
+namespace NM {
+	int p, P, m;
+	
+	{
+	
+	}
+}
+
+namespace NN {
+	const int X = 5;
+	const char Y = 'a';
+	const bool Z = true, W = false;
+	
+	{
+	
+	}
+}
+
+int p;
+const int X = 5;
+const char Y = 'a';
+const bool Z = true, W = false;
+
+{
+
+	void main() {
+
+	}
+	
+	int pr(int s, char p, char P, char Z[], bool W[]) {
+	
+	}
+	
+	int mi() int s; char p, P, Z[]; bool W[]; {
+	
+	}
+	
+	int sl(int s1, char p1, char P1, char Z1[], bool W1[])
+	int s; char p, P, Z[]; bool W[];
+	{
+	
+	}
+
+}

@@ -1,0 +1,20 @@
+INFO  15:27:19,935 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer.mj
+INFO  15:27:19,973 - #2 program
+INFO  15:27:19,973 - #48 P
+INFO  15:27:19,973 - #5 namespace
+INFO  15:27:19,974 - #48 NP
+INFO  15:27:19,974 - #3 {
+INFO  15:27:19,974 - #48 int
+INFO  15:27:19,974 - #48 p
+INFO  15:27:19,974 - #8 ;
+INFO  15:27:19,974 - #4 }
+ERROR 15:27:19,974 - Syntax error on line 5
+INFO  15:27:19,974 - #3 {
+INFO  15:27:19,975 - #18 void
+INFO  15:27:19,975 - #48 main
+INFO  15:27:19,975 - #16 (
+INFO  15:27:19,975 - #17 )
+INFO  15:27:19,975 - #3 {
+INFO  15:27:19,975 - #4 }
+INFO  15:27:19,975 - #4 }
+ERROR 15:27:19,975 - Fatal error, parsing couldn't be continued on line 14

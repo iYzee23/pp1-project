@@ -1,0 +1,36 @@
+INFO  14:38:56,055 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer.mj
+INFO  14:38:56,095 - #2 program
+INFO  14:38:56,095 - #48 P
+INFO  14:38:56,095 - #3 {
+INFO  14:38:56,096 - #18 void
+INFO  14:38:56,096 - #48 main
+INFO  14:38:56,097 - #16 (
+INFO  14:38:56,097 - #17 )
+INFO  14:38:56,097 - #3 {
+INFO  14:38:56,098 - #4 }
+INFO  14:38:56,098 - #4 }
+INFO  14:38:56,101 - Programt(
+  ProgNamet(
+   P
+  ) [ProgNamet]
+  NamespaceListNo(
+  ) [NamespaceListNo]
+  DeclListNo(
+  ) [DeclListNo]
+  MethodDeclListYes(
+    MethodDeclListNo(
+    ) [MethodDeclListNo]
+    MethodDeclNo(
+      ReturnTypeVoid(
+      ) [ReturnTypeVoid]
+      MethodNamet(
+       main
+      ) [MethodNamet]
+      VarDeclListNo(
+      ) [VarDeclListNo]
+      StatementListNo(
+      ) [StatementListNo]
+    ) [MethodDeclNo]
+  ) [MethodDeclListYes]
+) [Programt]
+ERROR 14:38:56,103 - Method 'void main() { ...}' not found na liniji 1

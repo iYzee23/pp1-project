@@ -1,0 +1,65 @@
+INFO  15:01:22,880 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer.mj
+INFO  15:01:22,933 - #2 program
+INFO  15:01:22,933 - #48 P
+INFO  15:01:22,933 - #3 {
+INFO  15:01:22,934 - #18 void
+INFO  15:01:22,934 - #48 main
+INFO  15:01:22,934 - #16 (
+INFO  15:01:22,935 - #17 )
+INFO  15:01:22,935 - #3 {
+INFO  15:01:22,935 - #4 }
+INFO  15:01:22,935 - #48 int
+INFO  15:01:22,935 - #48 p
+INFO  15:01:22,936 - #16 (
+INFO  15:01:22,936 - #48 int
+INFO  15:01:22,936 - #48 r
+INFO  15:01:22,936 - #17 )
+INFO  15:01:22,936 - #3 {
+INFO  15:01:22,936 - #4 }
+INFO  15:01:22,936 - #4 }
+INFO  15:01:22,939 - Programt(
+  ProgNamet(
+   P
+  ) [ProgNamet]
+  NamespaceListNo(
+  ) [NamespaceListNo]
+  DeclListNo(
+  ) [DeclListNo]
+  MethodDeclListYes(
+    MethodDeclListYes(
+      MethodDeclListNo(
+      ) [MethodDeclListNo]
+      MethodDeclNo(
+        ReturnTypeVoid(
+        ) [ReturnTypeVoid]
+        MethodNamet(
+         main
+        ) [MethodNamet]
+        VarDeclListNo(
+        ) [VarDeclListNo]
+        StatementListNo(
+        ) [StatementListNo]
+      ) [MethodDeclNo]
+    ) [MethodDeclListYes]
+    MethodDeclYes(
+      ReturnTypeType(
+        TypeNo(
+         int
+        ) [TypeNo]
+      ) [ReturnTypeType]
+      MethodNamet(
+       p
+      ) [MethodNamet]
+      FormParsSingleNo(
+        TypeNo(
+         int
+        ) [TypeNo]
+       r
+      ) [FormParsSingleNo]
+      VarDeclListNo(
+      ) [VarDeclListNo]
+      StatementListNo(
+      ) [StatementListNo]
+    ) [MethodDeclYes]
+  ) [MethodDeclListYes]
+) [Programt]

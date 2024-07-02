@@ -1,0 +1,67 @@
+INFO  15:43:12,377 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer.mj
+INFO  15:43:12,430 - #2 program
+INFO  15:43:12,430 - #48 P
+INFO  15:43:12,430 - #5 namespace
+INFO  15:43:12,430 - #48 NP
+INFO  15:43:12,430 - #3 {
+INFO  15:43:12,430 - #48 int
+INFO  15:43:12,431 - #48 p
+INFO  15:43:12,431 - #8 ;
+INFO  15:43:12,431 - #3 {
+INFO  15:43:12,431 - #4 }
+INFO  15:43:12,431 - #4 }
+INFO  15:43:12,431 - #3 {
+INFO  15:43:12,431 - #18 void
+INFO  15:43:12,431 - #48 main
+INFO  15:43:12,432 - #16 (
+INFO  15:43:12,432 - #17 )
+INFO  15:43:12,432 - #3 {
+INFO  15:43:12,433 - #4 }
+INFO  15:43:12,433 - #4 }
+INFO  15:43:12,437 - Programt(
+  ProgNamet(
+   P
+  ) [ProgNamet]
+  NamespaceListYes(
+    NamespaceListNo(
+    ) [NamespaceListNo]
+    Namespacet(
+      NamespaceNamet(
+       NP
+      ) [NamespaceNamet]
+      DeclListVar(
+        DeclListNo(
+        ) [DeclListNo]
+        VarDeclt(
+          VarDeclSingle(
+            TypeNo(
+             int
+            ) [TypeNo]
+            VarPartNo(
+             p
+            ) [VarPartNo]
+          ) [VarDeclSingle]
+        ) [VarDeclt]
+      ) [DeclListVar]
+      MethodDeclListNo(
+      ) [MethodDeclListNo]
+    ) [Namespacet]
+  ) [NamespaceListYes]
+  DeclListNo(
+  ) [DeclListNo]
+  MethodDeclListYes(
+    MethodDeclListNo(
+    ) [MethodDeclListNo]
+    MethodDeclNo(
+      ReturnTypeVoid(
+      ) [ReturnTypeVoid]
+      MethodNamet(
+       main
+      ) [MethodNamet]
+      VarDeclListNo(
+      ) [VarDeclListNo]
+      StatementListNo(
+      ) [StatementListNo]
+    ) [MethodDeclNo]
+  ) [MethodDeclListYes]
+) [Programt]

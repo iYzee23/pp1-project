@@ -1,24 +1,24 @@
 // generated with ast extension for cup
 // version 0.8
-// 28/5/2024 23:52:22
+// 2/6/2024 4:11:1
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class Labelt extends Label {
 
-    private String I1;
+    private String labName;
 
-    public Labelt (String I1) {
-        this.I1=I1;
+    public Labelt (String labName) {
+        this.labName=labName;
     }
 
-    public String getI1() {
-        return I1;
+    public String getLabName() {
+        return labName;
     }
 
-    public void setI1(String I1) {
-        this.I1=I1;
+    public void setLabName(String labName) {
+        this.labName=labName;
     }
 
     public void accept(Visitor visitor) {
@@ -41,7 +41,7 @@ public class Labelt extends Label {
         buffer.append(tab);
         buffer.append("Labelt(\n");
 
-        buffer.append(" "+tab+I1);
+        buffer.append(" "+tab+labName);
         buffer.append("\n");
 
         buffer.append(tab);

@@ -1,0 +1,68 @@
+INFO  15:30:11,175 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer.mj
+INFO  15:30:11,215 - #2 program
+INFO  15:30:11,215 - #48 P
+INFO  15:30:11,215 - #5 namespace
+INFO  15:30:11,215 - #48 NP
+INFO  15:30:11,215 - #3 {
+INFO  15:30:11,215 - #48 int
+INFO  15:30:11,216 - #48 p
+INFO  15:30:11,216 - #8 ;
+INFO  15:30:11,216 - #3 {
+INFO  15:30:11,216 - #4 }
+INFO  15:30:11,216 - #4 }
+INFO  15:30:11,216 - #3 {
+INFO  15:30:11,216 - #18 void
+INFO  15:30:11,216 - #48 main
+INFO  15:30:11,217 - #16 (
+INFO  15:30:11,217 - #17 )
+INFO  15:30:11,217 - #3 {
+INFO  15:30:11,217 - #4 }
+INFO  15:30:11,218 - #4 }
+INFO  15:30:11,221 - Programt(
+  ProgNamet(
+   P
+  ) [ProgNamet]
+  NamespaceListYes(
+    NamespaceListNo(
+    ) [NamespaceListNo]
+    Namespacet(
+      NamespaceNamet(
+       NP
+      ) [NamespaceNamet]
+      DeclListVar(
+        DeclListNo(
+        ) [DeclListNo]
+        VarDeclt(
+          VarDeclSingle(
+            TypeNo(
+             int
+            ) [TypeNo]
+            VarPartNo(
+             p
+            ) [VarPartNo]
+          ) [VarDeclSingle]
+        ) [VarDeclt]
+      ) [DeclListVar]
+      MethodDeclListNo(
+      ) [MethodDeclListNo]
+    ) [Namespacet]
+  ) [NamespaceListYes]
+  DeclListNo(
+  ) [DeclListNo]
+  MethodDeclListYes(
+    MethodDeclListNo(
+    ) [MethodDeclListNo]
+    MethodDeclNo(
+      ReturnTypeVoid(
+      ) [ReturnTypeVoid]
+      MethodNamet(
+       main
+      ) [MethodNamet]
+      VarDeclListNo(
+      ) [VarDeclListNo]
+      StatementListNo(
+      ) [StatementListNo]
+    ) [MethodDeclNo]
+  ) [MethodDeclListYes]
+) [Programt]
+ERROR 15:30:11,222 - Can't resolve type: int na liniji 4

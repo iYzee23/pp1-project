@@ -14,7 +14,6 @@ import org.apache.log4j.xml.DOMConfigurator;
 
 import rs.ac.bg.etf.pp1.ast.Program;
 import rs.ac.bg.etf.pp1.util.Log4JUtils;
-import rs.etf.pp1.symboltable.Tab;
 
 public class MJAnalyzerTest {
 
@@ -29,7 +28,7 @@ public class MJAnalyzerTest {
 		
 		Reader br = null;
 		try {
-			File sourceCode = new File("test/program.mj");
+			File sourceCode = new File("test/program_analyzer.mj");
 			log.info("Compiling source file: " + sourceCode.getAbsolutePath());
 			
 			br = new BufferedReader(new FileReader(sourceCode));
@@ -39,7 +38,7 @@ public class MJAnalyzerTest {
 	        Symbol s = p.parse();  //pocetak parsiranja
 	        
 	        Program prog = (Program)(s.value); 
-	        Tab.init();
+	        Tabb.init();
 	        
 			// ispis sintaksnog stabla
 			log.info(prog.toString(""));
@@ -50,7 +49,8 @@ public class MJAnalyzerTest {
 			prog.traverseBottomUp(v); 
 	      
 			// log.info(" Print count calls = " + v.printCallCount);
-			Tab.dump();			
+			NewVisitor nv = new NewVisitor();
+			Tabb.dump(nv);			
 		} 
 		finally {
 			if (br != null) try { br.close(); } catch (IOException e1) { log.error(e1.getMessage(), e1); }

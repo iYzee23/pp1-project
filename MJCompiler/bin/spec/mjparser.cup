@@ -63,15 +63,20 @@ terminal Character CHAR_CONST;
 nonterminal Program, NamespaceList, DeclList, MethodDeclList, Namespace, ConstDecl, VarDecl, ClassDecl, MethodDecl;
 nonterminal ConstParts, ConstPart, VarParts, VarPart, StatVarDeclList;
 nonterminal StatInitList, VarDeclList, StaticInitializer, StatementList, Statement, ReturnType;
-nonterminal FormPars, DesignatorStatement, Designator, OpChoice, DesignatorList, ElseOpt;
-nonterminal ActPars, Label, Assignop, Relop, Addop, Mulop, DesignatorParts, BracketsOpt;
-nonterminal Condition, CondTerm, CondFact, Expr, Term, Factor, CondTermList, CondFactList; 
+nonterminal FormPars, DesignatorStatement, OpChoice, DesignatorList, ElseOpt;
+nonterminal ActPars, ActParsTemp, Assignop, Relop, Addop, Mulop, DesignatorParts, BracketsOpt;
+nonterminal Condition, CondTerm, CondFact, CondTermList, CondFactList; 
 nonterminal AddopTermList, MulopFactorList, NewChoice, DesignatorStmtList, MethodDeclListOpt;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj NamespaceName;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj MethodName;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj Designator;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj Label;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct Type;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Term;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Factor;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Expr;
 
 
 
@@ -263,9 +268,11 @@ DesignatorList ::= (DesignatorListYesYes) DesignatorList Designator COMMA
 				|
 				(DesignatorListNo) /* epsilon */;
 
-ActPars ::= (ActParsList) ActPars COMMA Expr
-		 |
-		 (ActParsSingle) Expr;
+ActPars ::= (ActParst) ActParsTemp;
+		 
+ActParsTemp ::= (ActParsTempList) ActParsTemp COMMA Expr
+			 |
+			 (ActParsTempSingle) Expr;
 
 Condition ::= (Conditiont) CondTerm CondTermList;
 
@@ -321,17 +328,17 @@ NewChoice ::= (NewChoiceExpr) LBRACKET Expr RBRACKET
 		   |
 		   (NewChoiceActParsNo) LPAREN RPAREN;
 
-Designator ::= (DesignatorYes) IDENT RESOLUTION IDENT DesignatorParts
+Designator ::= (DesignatorYes) IDENT:nspName RESOLUTION IDENT:dsgName DesignatorParts
 			|
-			(DesignatorNo) IDENT DesignatorParts;
+			(DesignatorNo) IDENT:dsgName DesignatorParts;
 
-DesignatorParts ::= (DesignatorPartsIdent) DesignatorParts DOT IDENT
+DesignatorParts ::= (DesignatorPartsIdent) DesignatorParts DOT IDENT:dsgName
 				 |
 				 (DesignatorPartsExpr) DesignatorParts LBRACKET Expr RBRACKET
 				 |
 				 (DesignatorPartsNo) /* epsilon */;
 
-Label ::= (Labelt) IDENT;
+Label ::= (Labelt) IDENT:labName;
 
 Assignop ::= (AssignopAssignt) ASSIGN;
 

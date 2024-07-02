@@ -1,0 +1,206 @@
+INFO  16:08:34,424 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer.mj
+INFO  16:08:34,464 - #2 program
+INFO  16:08:34,464 - #48 P
+INFO  16:08:34,464 - #5 namespace
+INFO  16:08:34,464 - #48 NP
+INFO  16:08:34,464 - #3 {
+INFO  16:08:34,465 - #48 int
+INFO  16:08:34,465 - #48 p
+INFO  16:08:34,465 - #6 ,
+INFO  16:08:34,465 - #48 P
+INFO  16:08:34,465 - #8 ;
+INFO  16:08:34,465 - #3 {
+INFO  16:08:34,465 - #4 }
+INFO  16:08:34,465 - #4 }
+INFO  16:08:34,466 - #5 namespace
+INFO  16:08:34,466 - #48 NP
+INFO  16:08:34,466 - #3 {
+INFO  16:08:34,466 - #48 int
+INFO  16:08:34,466 - #48 m
+INFO  16:08:34,466 - #8 ;
+INFO  16:08:34,466 - #3 {
+INFO  16:08:34,466 - #4 }
+INFO  16:08:34,466 - #4 }
+INFO  16:08:34,466 - #5 namespace
+INFO  16:08:34,466 - #48 NM
+INFO  16:08:34,466 - #3 {
+INFO  16:08:34,466 - #48 int
+INFO  16:08:34,466 - #48 p
+INFO  16:08:34,466 - #6 ,
+INFO  16:08:34,466 - #48 P
+INFO  16:08:34,466 - #6 ,
+INFO  16:08:34,466 - #48 m
+INFO  16:08:34,466 - #8 ;
+INFO  16:08:34,466 - #3 {
+INFO  16:08:34,466 - #4 }
+INFO  16:08:34,466 - #4 }
+INFO  16:08:34,466 - #48 int
+INFO  16:08:34,466 - #48 p
+INFO  16:08:34,466 - #8 ;
+INFO  16:08:34,466 - #7 const
+INFO  16:08:34,466 - #48 int
+INFO  16:08:34,466 - #48 X
+INFO  16:08:34,466 - #9 =
+INFO  16:08:34,466 - #49 5
+INFO  16:08:34,466 - #8 ;
+INFO  16:08:34,466 - #7 const
+INFO  16:08:34,466 - #48 char
+INFO  16:08:34,466 - #48 Y
+INFO  16:08:34,467 - #9 =
+INFO  16:08:34,467 - #49 10
+INFO  16:08:34,467 - #8 ;
+INFO  16:08:34,467 - #3 {
+INFO  16:08:34,467 - #18 void
+INFO  16:08:34,467 - #48 main
+INFO  16:08:34,467 - #16 (
+INFO  16:08:34,467 - #17 )
+INFO  16:08:34,467 - #3 {
+INFO  16:08:34,467 - #4 }
+INFO  16:08:34,468 - #4 }
+INFO  16:08:34,471 - Programt(
+  ProgNamet(
+   P
+  ) [ProgNamet]
+  NamespaceListYes(
+    NamespaceListYes(
+      NamespaceListYes(
+        NamespaceListNo(
+        ) [NamespaceListNo]
+        Namespacet(
+          NamespaceNamet(
+           NP
+          ) [NamespaceNamet]
+          DeclListVar(
+            DeclListNo(
+            ) [DeclListNo]
+            VarDeclt(
+              VarDeclListParts(
+                VarDeclSingle(
+                  TypeNo(
+                   int
+                  ) [TypeNo]
+                  VarPartNo(
+                   p
+                  ) [VarPartNo]
+                ) [VarDeclSingle]
+                VarPartNo(
+                 P
+                ) [VarPartNo]
+              ) [VarDeclListParts]
+            ) [VarDeclt]
+          ) [DeclListVar]
+          MethodDeclListNo(
+          ) [MethodDeclListNo]
+        ) [Namespacet]
+      ) [NamespaceListYes]
+      Namespacet(
+        NamespaceNamet(
+         NP
+        ) [NamespaceNamet]
+        DeclListVar(
+          DeclListNo(
+          ) [DeclListNo]
+          VarDeclt(
+            VarDeclSingle(
+              TypeNo(
+               int
+              ) [TypeNo]
+              VarPartNo(
+               m
+              ) [VarPartNo]
+            ) [VarDeclSingle]
+          ) [VarDeclt]
+        ) [DeclListVar]
+        MethodDeclListNo(
+        ) [MethodDeclListNo]
+      ) [Namespacet]
+    ) [NamespaceListYes]
+    Namespacet(
+      NamespaceNamet(
+       NM
+      ) [NamespaceNamet]
+      DeclListVar(
+        DeclListNo(
+        ) [DeclListNo]
+        VarDeclt(
+          VarDeclListParts(
+            VarDeclListParts(
+              VarDeclSingle(
+                TypeNo(
+                 int
+                ) [TypeNo]
+                VarPartNo(
+                 p
+                ) [VarPartNo]
+              ) [VarDeclSingle]
+              VarPartNo(
+               P
+              ) [VarPartNo]
+            ) [VarDeclListParts]
+            VarPartNo(
+             m
+            ) [VarPartNo]
+          ) [VarDeclListParts]
+        ) [VarDeclt]
+      ) [DeclListVar]
+      MethodDeclListNo(
+      ) [MethodDeclListNo]
+    ) [Namespacet]
+  ) [NamespaceListYes]
+  DeclListConst(
+    DeclListConst(
+      DeclListVar(
+        DeclListNo(
+        ) [DeclListNo]
+        VarDeclt(
+          VarDeclSingle(
+            TypeNo(
+             int
+            ) [TypeNo]
+            VarPartNo(
+             p
+            ) [VarPartNo]
+          ) [VarDeclSingle]
+        ) [VarDeclt]
+      ) [DeclListVar]
+      ConstDeclt(
+        ConstDeclSingle(
+          TypeNo(
+           int
+          ) [TypeNo]
+          ConstPartNum(
+           X
+           5
+          ) [ConstPartNum]
+        ) [ConstDeclSingle]
+      ) [ConstDeclt]
+    ) [DeclListConst]
+    ConstDeclt(
+      ConstDeclSingle(
+        TypeNo(
+         char
+        ) [TypeNo]
+        ConstPartNum(
+         Y
+         10
+        ) [ConstPartNum]
+      ) [ConstDeclSingle]
+    ) [ConstDeclt]
+  ) [DeclListConst]
+  MethodDeclListYes(
+    MethodDeclListNo(
+    ) [MethodDeclListNo]
+    MethodDeclNo(
+      ReturnTypeVoid(
+      ) [ReturnTypeVoid]
+      MethodNamet(
+       main
+      ) [MethodNamet]
+      VarDeclListNo(
+      ) [VarDeclListNo]
+      StatementListNo(
+      ) [StatementListNo]
+    ) [MethodDeclNo]
+  ) [MethodDeclListYes]
+) [Programt]
+ERROR 16:08:34,473 - Incompatibile value for constant: Y; Line: 29

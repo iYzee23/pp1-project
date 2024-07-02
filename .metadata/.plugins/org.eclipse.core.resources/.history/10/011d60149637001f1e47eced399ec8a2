@@ -1,0 +1,348 @@
+INFO  16:44:34,231 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer.mj
+INFO  16:44:34,271 - #2 program
+INFO  16:44:34,271 - #48 P
+INFO  16:44:34,271 - #5 namespace
+INFO  16:44:34,271 - #48 NP
+INFO  16:44:34,271 - #3 {
+INFO  16:44:34,271 - #48 int
+INFO  16:44:34,272 - #48 p
+INFO  16:44:34,272 - #6 ,
+INFO  16:44:34,272 - #48 P
+INFO  16:44:34,272 - #8 ;
+INFO  16:44:34,272 - #3 {
+INFO  16:44:34,272 - #4 }
+INFO  16:44:34,272 - #4 }
+INFO  16:44:34,272 - #5 namespace
+INFO  16:44:34,273 - #48 NP
+INFO  16:44:34,273 - #3 {
+INFO  16:44:34,273 - #48 int
+INFO  16:44:34,273 - #48 m
+INFO  16:44:34,273 - #8 ;
+INFO  16:44:34,273 - #3 {
+INFO  16:44:34,273 - #4 }
+INFO  16:44:34,273 - #4 }
+INFO  16:44:34,273 - #5 namespace
+INFO  16:44:34,273 - #48 NM
+INFO  16:44:34,273 - #3 {
+INFO  16:44:34,273 - #48 int
+INFO  16:44:34,273 - #48 p
+INFO  16:44:34,273 - #6 ,
+INFO  16:44:34,273 - #48 P
+INFO  16:44:34,273 - #6 ,
+INFO  16:44:34,273 - #48 m
+INFO  16:44:34,273 - #8 ;
+INFO  16:44:34,273 - #3 {
+INFO  16:44:34,273 - #4 }
+INFO  16:44:34,273 - #4 }
+INFO  16:44:34,273 - #5 namespace
+INFO  16:44:34,273 - #48 NN
+INFO  16:44:34,273 - #3 {
+INFO  16:44:34,273 - #7 const
+INFO  16:44:34,273 - #48 int
+INFO  16:44:34,273 - #48 X
+INFO  16:44:34,273 - #9 =
+INFO  16:44:34,273 - #49 5
+INFO  16:44:34,273 - #8 ;
+INFO  16:44:34,273 - #7 const
+INFO  16:44:34,273 - #48 char
+INFO  16:44:34,273 - #48 Y
+INFO  16:44:34,273 - #9 =
+INFO  16:44:34,274 - #51 a
+INFO  16:44:34,274 - #8 ;
+INFO  16:44:34,274 - #7 const
+INFO  16:44:34,274 - #48 bool
+INFO  16:44:34,274 - #48 Z
+INFO  16:44:34,274 - #9 =
+INFO  16:44:34,274 - #50 true
+INFO  16:44:34,274 - #6 ,
+INFO  16:44:34,274 - #48 W
+INFO  16:44:34,274 - #9 =
+INFO  16:44:34,274 - #50 false
+INFO  16:44:34,274 - #8 ;
+INFO  16:44:34,274 - #3 {
+INFO  16:44:34,274 - #4 }
+INFO  16:44:34,274 - #4 }
+INFO  16:44:34,274 - #48 int
+INFO  16:44:34,274 - #48 p
+INFO  16:44:34,274 - #8 ;
+INFO  16:44:34,274 - #7 const
+INFO  16:44:34,274 - #48 int
+INFO  16:44:34,274 - #48 X
+INFO  16:44:34,274 - #9 =
+INFO  16:44:34,275 - #49 5
+INFO  16:44:34,275 - #8 ;
+INFO  16:44:34,275 - #7 const
+INFO  16:44:34,275 - #48 char
+INFO  16:44:34,275 - #48 Y
+INFO  16:44:34,275 - #9 =
+INFO  16:44:34,275 - #51 a
+INFO  16:44:34,275 - #8 ;
+INFO  16:44:34,275 - #7 const
+INFO  16:44:34,275 - #48 bool
+INFO  16:44:34,275 - #48 Z
+INFO  16:44:34,275 - #9 =
+INFO  16:44:34,275 - #50 true
+INFO  16:44:34,275 - #6 ,
+INFO  16:44:34,275 - #48 W
+INFO  16:44:34,276 - #9 =
+INFO  16:44:34,276 - #50 false
+INFO  16:44:34,276 - #8 ;
+INFO  16:44:34,276 - #3 {
+INFO  16:44:34,276 - #18 void
+INFO  16:44:34,276 - #48 main
+INFO  16:44:34,276 - #16 (
+INFO  16:44:34,276 - #17 )
+INFO  16:44:34,276 - #3 {
+INFO  16:44:34,276 - #4 }
+INFO  16:44:34,276 - #48 int
+INFO  16:44:34,276 - #48 pr
+INFO  16:44:34,276 - #16 (
+INFO  16:44:34,276 - #48 int
+INFO  16:44:34,276 - #48 s
+INFO  16:44:34,276 - #17 )
+INFO  16:44:34,276 - #3 {
+INFO  16:44:34,276 - #4 }
+INFO  16:44:34,276 - #4 }
+INFO  16:44:34,279 - Programt(
+  ProgNamet(
+   P
+  ) [ProgNamet]
+  NamespaceListYes(
+    NamespaceListYes(
+      NamespaceListYes(
+        NamespaceListYes(
+          NamespaceListNo(
+          ) [NamespaceListNo]
+          Namespacet(
+            NamespaceNamet(
+             NP
+            ) [NamespaceNamet]
+            DeclListVar(
+              DeclListNo(
+              ) [DeclListNo]
+              VarDeclt(
+                VarDeclListParts(
+                  VarDeclSingle(
+                    TypeNo(
+                     int
+                    ) [TypeNo]
+                    VarPartNo(
+                     p
+                    ) [VarPartNo]
+                  ) [VarDeclSingle]
+                  VarPartNo(
+                   P
+                  ) [VarPartNo]
+                ) [VarDeclListParts]
+              ) [VarDeclt]
+            ) [DeclListVar]
+            MethodDeclListNo(
+            ) [MethodDeclListNo]
+          ) [Namespacet]
+        ) [NamespaceListYes]
+        Namespacet(
+          NamespaceNamet(
+           NP
+          ) [NamespaceNamet]
+          DeclListVar(
+            DeclListNo(
+            ) [DeclListNo]
+            VarDeclt(
+              VarDeclSingle(
+                TypeNo(
+                 int
+                ) [TypeNo]
+                VarPartNo(
+                 m
+                ) [VarPartNo]
+              ) [VarDeclSingle]
+            ) [VarDeclt]
+          ) [DeclListVar]
+          MethodDeclListNo(
+          ) [MethodDeclListNo]
+        ) [Namespacet]
+      ) [NamespaceListYes]
+      Namespacet(
+        NamespaceNamet(
+         NM
+        ) [NamespaceNamet]
+        DeclListVar(
+          DeclListNo(
+          ) [DeclListNo]
+          VarDeclt(
+            VarDeclListParts(
+              VarDeclListParts(
+                VarDeclSingle(
+                  TypeNo(
+                   int
+                  ) [TypeNo]
+                  VarPartNo(
+                   p
+                  ) [VarPartNo]
+                ) [VarDeclSingle]
+                VarPartNo(
+                 P
+                ) [VarPartNo]
+              ) [VarDeclListParts]
+              VarPartNo(
+               m
+              ) [VarPartNo]
+            ) [VarDeclListParts]
+          ) [VarDeclt]
+        ) [DeclListVar]
+        MethodDeclListNo(
+        ) [MethodDeclListNo]
+      ) [Namespacet]
+    ) [NamespaceListYes]
+    Namespacet(
+      NamespaceNamet(
+       NN
+      ) [NamespaceNamet]
+      DeclListConst(
+        DeclListConst(
+          DeclListConst(
+            DeclListNo(
+            ) [DeclListNo]
+            ConstDeclt(
+              ConstDeclSingle(
+                TypeNo(
+                 int
+                ) [TypeNo]
+                ConstPartNum(
+                 X
+                 5
+                ) [ConstPartNum]
+              ) [ConstDeclSingle]
+            ) [ConstDeclt]
+          ) [DeclListConst]
+          ConstDeclt(
+            ConstDeclSingle(
+              TypeNo(
+               char
+              ) [TypeNo]
+              ConstPartChar(
+               Y
+               a
+              ) [ConstPartChar]
+            ) [ConstDeclSingle]
+          ) [ConstDeclt]
+        ) [DeclListConst]
+        ConstDeclt(
+          ConstDeclList(
+            ConstDeclSingle(
+              TypeNo(
+               bool
+              ) [TypeNo]
+              ConstPartBool(
+               Z
+               true
+              ) [ConstPartBool]
+            ) [ConstDeclSingle]
+            ConstPartBool(
+             W
+             false
+            ) [ConstPartBool]
+          ) [ConstDeclList]
+        ) [ConstDeclt]
+      ) [DeclListConst]
+      MethodDeclListNo(
+      ) [MethodDeclListNo]
+    ) [Namespacet]
+  ) [NamespaceListYes]
+  DeclListConst(
+    DeclListConst(
+      DeclListConst(
+        DeclListVar(
+          DeclListNo(
+          ) [DeclListNo]
+          VarDeclt(
+            VarDeclSingle(
+              TypeNo(
+               int
+              ) [TypeNo]
+              VarPartNo(
+               p
+              ) [VarPartNo]
+            ) [VarDeclSingle]
+          ) [VarDeclt]
+        ) [DeclListVar]
+        ConstDeclt(
+          ConstDeclSingle(
+            TypeNo(
+             int
+            ) [TypeNo]
+            ConstPartNum(
+             X
+             5
+            ) [ConstPartNum]
+          ) [ConstDeclSingle]
+        ) [ConstDeclt]
+      ) [DeclListConst]
+      ConstDeclt(
+        ConstDeclSingle(
+          TypeNo(
+           char
+          ) [TypeNo]
+          ConstPartChar(
+           Y
+           a
+          ) [ConstPartChar]
+        ) [ConstDeclSingle]
+      ) [ConstDeclt]
+    ) [DeclListConst]
+    ConstDeclt(
+      ConstDeclList(
+        ConstDeclSingle(
+          TypeNo(
+           bool
+          ) [TypeNo]
+          ConstPartBool(
+           Z
+           true
+          ) [ConstPartBool]
+        ) [ConstDeclSingle]
+        ConstPartBool(
+         W
+         false
+        ) [ConstPartBool]
+      ) [ConstDeclList]
+    ) [ConstDeclt]
+  ) [DeclListConst]
+  MethodDeclListYes(
+    MethodDeclListYes(
+      MethodDeclListNo(
+      ) [MethodDeclListNo]
+      MethodDeclNo(
+        ReturnTypeVoid(
+        ) [ReturnTypeVoid]
+        MethodNamet(
+         main
+        ) [MethodNamet]
+        VarDeclListNo(
+        ) [VarDeclListNo]
+        StatementListNo(
+        ) [StatementListNo]
+      ) [MethodDeclNo]
+    ) [MethodDeclListYes]
+    MethodDeclYes(
+      ReturnTypeType(
+        TypeNo(
+         int
+        ) [TypeNo]
+      ) [ReturnTypeType]
+      MethodNamet(
+       pr
+      ) [MethodNamet]
+      FormParsSingleNo(
+        TypeNo(
+         int
+        ) [TypeNo]
+       s
+      ) [FormParsSingleNo]
+      VarDeclListNo(
+      ) [VarDeclListNo]
+      StatementListNo(
+      ) [StatementListNo]
+    ) [MethodDeclYes]
+  ) [MethodDeclListYes]
+) [Programt]

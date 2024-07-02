@@ -1,0 +1,67 @@
+INFO  14:46:55,615 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer.mj
+INFO  14:46:55,653 - #2 program
+INFO  14:46:55,653 - #48 P
+INFO  14:46:55,653 - #3 {
+INFO  14:46:55,653 - #18 void
+INFO  14:46:55,654 - #48 main
+INFO  14:46:55,654 - #16 (
+INFO  14:46:55,654 - #17 )
+INFO  14:46:55,654 - #3 {
+INFO  14:46:55,654 - #4 }
+INFO  14:46:55,655 - #48 int
+INFO  14:46:55,655 - #48 p
+INFO  14:46:55,655 - #16 (
+INFO  14:46:55,655 - #48 int
+INFO  14:46:55,655 - #48 r
+INFO  14:46:55,655 - #17 )
+INFO  14:46:55,655 - #3 {
+INFO  14:46:55,655 - #4 }
+INFO  14:46:55,655 - #4 }
+INFO  14:46:55,657 - Programt(
+  ProgNamet(
+   P
+  ) [ProgNamet]
+  NamespaceListNo(
+  ) [NamespaceListNo]
+  DeclListNo(
+  ) [DeclListNo]
+  MethodDeclListYes(
+    MethodDeclListYes(
+      MethodDeclListNo(
+      ) [MethodDeclListNo]
+      MethodDeclNo(
+        ReturnTypeVoid(
+        ) [ReturnTypeVoid]
+        MethodNamet(
+         main
+        ) [MethodNamet]
+        VarDeclListNo(
+        ) [VarDeclListNo]
+        StatementListNo(
+        ) [StatementListNo]
+      ) [MethodDeclNo]
+    ) [MethodDeclListYes]
+    MethodDeclYes(
+      ReturnTypeType(
+        TypeNo(
+         int
+        ) [TypeNo]
+      ) [ReturnTypeType]
+      MethodNamet(
+       p
+      ) [MethodNamet]
+      FormParsSingleNo(
+        TypeNo(
+         int
+        ) [TypeNo]
+       r
+      ) [FormParsSingleNo]
+      VarDeclListNo(
+      ) [VarDeclListNo]
+      StatementListNo(
+      ) [StatementListNo]
+    ) [MethodDeclYes]
+  ) [MethodDeclListYes]
+) [Programt]
+ERROR 14:46:55,659 - Formal parameter is already declared: r na liniji 9
+ERROR 14:46:55,659 - Method 'void main() { ...}' not found na liniji 1

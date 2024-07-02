@@ -1,0 +1,35 @@
+INFO  15:02:35,770 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer.mj
+INFO  15:02:35,821 - #2 program
+INFO  15:02:35,821 - #48 P
+INFO  15:02:35,821 - #3 {
+INFO  15:02:35,821 - #18 void
+INFO  15:02:35,822 - #48 main
+INFO  15:02:35,822 - #16 (
+INFO  15:02:35,822 - #17 )
+INFO  15:02:35,822 - #3 {
+INFO  15:02:35,823 - #4 }
+INFO  15:02:35,823 - #4 }
+INFO  15:02:35,826 - Programt(
+  ProgNamet(
+   P
+  ) [ProgNamet]
+  NamespaceListNo(
+  ) [NamespaceListNo]
+  DeclListNo(
+  ) [DeclListNo]
+  MethodDeclListYes(
+    MethodDeclListNo(
+    ) [MethodDeclListNo]
+    MethodDeclNo(
+      ReturnTypeVoid(
+      ) [ReturnTypeVoid]
+      MethodNamet(
+       main
+      ) [MethodNamet]
+      VarDeclListNo(
+      ) [VarDeclListNo]
+      StatementListNo(
+      ) [StatementListNo]
+    ) [MethodDeclNo]
+  ) [MethodDeclListYes]
+) [Programt]

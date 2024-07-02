@@ -1,0 +1,167 @@
+INFO  16:06:57,614 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer.mj
+INFO  16:06:57,658 - #2 program
+INFO  16:06:57,658 - #48 P
+INFO  16:06:57,658 - #5 namespace
+INFO  16:06:57,659 - #48 NP
+INFO  16:06:57,659 - #3 {
+INFO  16:06:57,659 - #48 int
+INFO  16:06:57,659 - #48 p
+INFO  16:06:57,659 - #6 ,
+INFO  16:06:57,659 - #48 P
+INFO  16:06:57,659 - #8 ;
+INFO  16:06:57,659 - #3 {
+INFO  16:06:57,659 - #4 }
+INFO  16:06:57,660 - #4 }
+INFO  16:06:57,660 - #5 namespace
+INFO  16:06:57,660 - #48 NP
+INFO  16:06:57,660 - #3 {
+INFO  16:06:57,660 - #48 int
+INFO  16:06:57,660 - #48 m
+INFO  16:06:57,660 - #8 ;
+INFO  16:06:57,660 - #3 {
+INFO  16:06:57,660 - #4 }
+INFO  16:06:57,661 - #4 }
+INFO  16:06:57,661 - #5 namespace
+INFO  16:06:57,661 - #48 NM
+INFO  16:06:57,661 - #3 {
+INFO  16:06:57,661 - #48 int
+INFO  16:06:57,661 - #48 p
+INFO  16:06:57,661 - #6 ,
+INFO  16:06:57,661 - #48 P
+INFO  16:06:57,661 - #6 ,
+INFO  16:06:57,661 - #48 m
+INFO  16:06:57,661 - #8 ;
+INFO  16:06:57,661 - #3 {
+INFO  16:06:57,661 - #4 }
+INFO  16:06:57,661 - #4 }
+INFO  16:06:57,661 - #48 int
+INFO  16:06:57,661 - #48 p
+INFO  16:06:57,661 - #8 ;
+INFO  16:06:57,661 - #3 {
+INFO  16:06:57,661 - #18 void
+INFO  16:06:57,661 - #48 main
+INFO  16:06:57,661 - #16 (
+INFO  16:06:57,661 - #17 )
+INFO  16:06:57,661 - #3 {
+INFO  16:06:57,662 - #4 }
+INFO  16:06:57,662 - #4 }
+INFO  16:06:57,665 - Programt(
+  ProgNamet(
+   P
+  ) [ProgNamet]
+  NamespaceListYes(
+    NamespaceListYes(
+      NamespaceListYes(
+        NamespaceListNo(
+        ) [NamespaceListNo]
+        Namespacet(
+          NamespaceNamet(
+           NP
+          ) [NamespaceNamet]
+          DeclListVar(
+            DeclListNo(
+            ) [DeclListNo]
+            VarDeclt(
+              VarDeclListParts(
+                VarDeclSingle(
+                  TypeNo(
+                   int
+                  ) [TypeNo]
+                  VarPartNo(
+                   p
+                  ) [VarPartNo]
+                ) [VarDeclSingle]
+                VarPartNo(
+                 P
+                ) [VarPartNo]
+              ) [VarDeclListParts]
+            ) [VarDeclt]
+          ) [DeclListVar]
+          MethodDeclListNo(
+          ) [MethodDeclListNo]
+        ) [Namespacet]
+      ) [NamespaceListYes]
+      Namespacet(
+        NamespaceNamet(
+         NP
+        ) [NamespaceNamet]
+        DeclListVar(
+          DeclListNo(
+          ) [DeclListNo]
+          VarDeclt(
+            VarDeclSingle(
+              TypeNo(
+               int
+              ) [TypeNo]
+              VarPartNo(
+               m
+              ) [VarPartNo]
+            ) [VarDeclSingle]
+          ) [VarDeclt]
+        ) [DeclListVar]
+        MethodDeclListNo(
+        ) [MethodDeclListNo]
+      ) [Namespacet]
+    ) [NamespaceListYes]
+    Namespacet(
+      NamespaceNamet(
+       NM
+      ) [NamespaceNamet]
+      DeclListVar(
+        DeclListNo(
+        ) [DeclListNo]
+        VarDeclt(
+          VarDeclListParts(
+            VarDeclListParts(
+              VarDeclSingle(
+                TypeNo(
+                 int
+                ) [TypeNo]
+                VarPartNo(
+                 p
+                ) [VarPartNo]
+              ) [VarDeclSingle]
+              VarPartNo(
+               P
+              ) [VarPartNo]
+            ) [VarDeclListParts]
+            VarPartNo(
+             m
+            ) [VarPartNo]
+          ) [VarDeclListParts]
+        ) [VarDeclt]
+      ) [DeclListVar]
+      MethodDeclListNo(
+      ) [MethodDeclListNo]
+    ) [Namespacet]
+  ) [NamespaceListYes]
+  DeclListVar(
+    DeclListNo(
+    ) [DeclListNo]
+    VarDeclt(
+      VarDeclSingle(
+        TypeNo(
+         int
+        ) [TypeNo]
+        VarPartNo(
+         p
+        ) [VarPartNo]
+      ) [VarDeclSingle]
+    ) [VarDeclt]
+  ) [DeclListVar]
+  MethodDeclListYes(
+    MethodDeclListNo(
+    ) [MethodDeclListNo]
+    MethodDeclNo(
+      ReturnTypeVoid(
+      ) [ReturnTypeVoid]
+      MethodNamet(
+       main
+      ) [MethodNamet]
+      VarDeclListNo(
+      ) [VarDeclListNo]
+      StatementListNo(
+      ) [StatementListNo]
+    ) [MethodDeclNo]
+  ) [MethodDeclListYes]
+) [Programt]

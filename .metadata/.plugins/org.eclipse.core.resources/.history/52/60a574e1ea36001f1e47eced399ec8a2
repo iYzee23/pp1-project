@@ -1,0 +1,34 @@
+package rs.ac.bg.etf.pp1;
+
+import rs.etf.pp1.symboltable.concepts.Obj;
+import rs.etf.pp1.symboltable.concepts.Scope;
+import rs.etf.pp1.symboltable.concepts.Struct;
+import rs.etf.pp1.symboltable.visitors.SymbolTableVisitor;
+
+public class NewVisitor extends SymbolTableVisitor {
+
+	@Override
+	public void visitObjNode(Obj objToVisit) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void visitScopeNode(Scope scopteToVisit) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void visitStructNode(Struct structToVisit) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String getOutput() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

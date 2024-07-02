@@ -7,6 +7,8 @@
 				<exclude name="RuleVisitor.java"/>
 				<exclude name="SemanticAnalyzer.java"/>
 				<exclude name="Tabb.java"/>
+				<exclude name="Objj.java"/>
+				<exclude name="NewVisitor.java"/>
 				<exclude name="util/Log4JUtils.java"/>
 			</fileset>
 		</delete>

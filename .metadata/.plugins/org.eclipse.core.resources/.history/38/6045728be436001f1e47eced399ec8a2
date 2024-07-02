@@ -1,0 +1,14 @@
+program P
+
+namespace NP {
+	int p;
+	{}
+}
+
+{
+
+	void main() {
+
+	}
+
+}

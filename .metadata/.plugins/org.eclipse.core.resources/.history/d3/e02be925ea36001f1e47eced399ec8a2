@@ -1,0 +1,36 @@
+program P
+
+namespace NP {
+	int p, P;
+	
+	{
+	
+	}
+}
+
+namespace NP {
+	int m;
+	
+	{
+	
+	}
+}
+
+namespace NM {
+	int p, P, m;
+	
+	{
+	
+	}
+}
+
+int p;
+const int X = 5;
+
+{
+
+	void main() {
+
+	}
+
+}
