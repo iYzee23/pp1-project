@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.symboltable.concepts.*;
 
+// TODO: videti na koji nacin treba da se obradi svaki error
 // TODO: proci kroz svaku smenu i videti jesam li zaboravio nesto
 
 public class SemanticAnalyzer extends VisitorAdaptor {
@@ -41,16 +42,18 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	Obj currClass = null;
 	Struct superClassType = null;
 	Obj pOverrideObj = null;
+	boolean staticClassActive = false;
 	
 	// designator processing
-	ArrayList<String> designatorParts = new ArrayList<>();
-	Obj currDesignator = null;
+	ArrayList<Obj> currDesignator = new ArrayList<>();
+	ArrayList<ArrayList<String>> designatorParts = new ArrayList<>();
+	ArrayList<Boolean> classDesignator = new ArrayList<>();
 	
 	// easy designator statement processing
 	static final int ASSIGNMENT = 1;
 	static final int INC_DEC = 2;
 	static final int FUNC_CALL = 3;
-	static final int FUNC_CALL_NO_ARG = 3;
+	static final int FUNC_CALL_NO_ARG = 4;
 	int designatorStatementKind = NOT_USED;
 	Struct currAssignmentExpr = null;
 	
@@ -65,7 +68,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	boolean returnFound = false;
 	boolean errorDetected = false;
 	boolean arrayActive = false;
-	boolean staticClassActive = false;
 	boolean labelCreationActive = false;
 	
 	// factor & term flags
@@ -86,6 +88,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(ProgNamet progName) {
 		progName.obj = Tabb.insert(Obj.Prog, progName.getProgName(), Tabb.noType);
+		
+		currDesignator.add(null);
+		designatorParts.add(new ArrayList<String>());
+		classDesignator.add(false);
+		
 		Tabb.openScope();
 		Tabb.programScope = Tabb.currentScope();
 	}
@@ -95,6 +102,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (mainObj == Tabb.noObj || mainObj.getKind() != Obj.Meth || mainObj.getType() != Tabb.noType || mainObj.getLevel() != 0) {
 			report_error("Method 'void main() { ...}' not found", null);
 		}
+		
+		currDesignator.remove(currDesignator.size() - 1);
+		designatorParts.remove(designatorParts.size() - 1);
+		classDesignator.remove(classDesignator.size() - 1);
 		
 		Tabb.chainLocalSymbols(program.getProgName().obj);
 		Tabb.closeScope();
@@ -211,7 +222,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		Struct arrType = new Struct(Struct.Array, currType);
 		if (currMethod != null) Tabb.insert(Obj.Var, localName, arrType);
-		else if (currClass != null && staticClassActive) Tabb.insertStatic(Objj.Stat, fullName, arrType);
+		else if (currClass != null && staticClassActive) {
+			String statName = currNamespace + currClass.getName() + "::" + localName;
+			Tabb.insertStatic(Objj.Stat, statName, arrType);
+		}
 		else if (currClass != null) Tabb.insert(Obj.Fld, localName, arrType);
 		else Tabb.insert(Obj.Var, fullName, arrType);
 	}
@@ -238,7 +252,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		}
 		
 		if (currMethod != null) Tabb.insert(Obj.Var, localName, currType);
-		else if (currClass != null && staticClassActive) Tabb.insertStatic(Objj.Stat, fullName, currType);
+		else if (currClass != null && staticClassActive) {
+			String statName = currNamespace + currClass.getName() + "::" + localName;
+			Tabb.insertStatic(Objj.Stat, statName, currType);
+		}
 		else if (currClass != null) Tabb.insert(Obj.Fld, localName, currType);
 		else Tabb.insert(Obj.Var, fullName, currType);
 	}
@@ -321,7 +338,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			methodObj = Tabb.find(fullName);
 		}
 		else {
-			Obj scMethObj = superClassType.getMembersTable().searchKey(localName);
+			Obj scMethObj = null;
+			if (superClassType != null) {
+				scMethObj = superClassType.getMembersTable().searchKey(localName);
+			}
 			methodObj = Tabb.findLocal(localName);
 			
 			boolean compatibility = false;
@@ -534,14 +554,15 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	public void visit(StmtRead stmt) {
 		Obj dsgObj = stmt.getDesignator().obj;
 		
-		if (dsgObj.getKind() != Obj.Var && dsgObj.getKind() != Obj.Elem && dsgObj.getKind() != Obj.Fld) {
+		if (dsgObj.getKind() != Obj.Var && dsgObj.getKind() != Objj.Stat && dsgObj.getKind() != Obj.Elem && dsgObj.getKind() != Obj.Fld) {
 			report_error("Designator inside parens must be Variable, Array element or Class field: " + dsgObj.getName(), stmt.getDesignator());
 		}
 		else if (!dsgObj.getType().equals(Tabb.intType) && !dsgObj.getType().equals(Tabb.charType) && !dsgObj.getType().equals(Tabb.boolType)) {
 			report_error("Type of Designator inside parens must be int, char or bool: " + dsgObj.getName(), stmt.getDesignator());
 		}
 		
-		currDesignator = null;
+		currDesignator.set(currDesignator.size() - 1, null);
+		classDesignator.set(classDesignator.size() - 1, false);
 	}
 	
 	public void visit(StmtPrintYes stmt) {
@@ -598,6 +619,18 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	// DesignatorStatement
 	
+	public void visit(TLParent lParen) {
+		currDesignator.add(null);
+		designatorParts.add(new ArrayList<String>());
+		classDesignator.add(false);
+	}
+	
+	public void visit(TRParent rParen) {
+		currDesignator.remove(currDesignator.size() - 1);
+		designatorParts.remove(designatorParts.size() - 1);
+		classDesignator.remove(classDesignator.size() - 1);
+	}
+	
 	public void visit(OpChoiceExpr opChoice) {
 		designatorStatementKind = ASSIGNMENT;
 		currAssignmentExpr = opChoice.getExpr().struct;
@@ -623,7 +656,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		Obj dsgObj = dsgStmt.getDesignator().obj;
 		
 		 if (designatorStatementKind == ASSIGNMENT) {
-			 if (dsgObj.getKind() != Obj.Var && dsgObj.getKind() != Obj.Elem && dsgObj.getKind() != Obj.Fld) {
+			 if (dsgObj.getKind() != Obj.Var && dsgObj.getKind() != Objj.Stat && dsgObj.getKind() != Obj.Elem && dsgObj.getKind() != Obj.Fld) {
 				 report_error("Designator must be Var, Array's elem or Field: " + dsgObj.getName(), dsgStmt.getDesignator());
 			 }
 			 else if (!currAssignmentExpr.assignableTo(dsgObj.getType())) {
@@ -631,7 +664,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			 }
 		 }
 		 else if (designatorStatementKind == INC_DEC) {
-			 if (dsgObj.getKind() != Obj.Var && dsgObj.getKind() != Obj.Elem && dsgObj.getKind() != Obj.Fld) {
+			 if (dsgObj.getKind() != Obj.Var && dsgObj.getKind() != Objj.Stat && dsgObj.getKind() != Obj.Elem && dsgObj.getKind() != Obj.Fld) {
 				 report_error("Designator must be Var, Array's elem or Field: " + dsgObj.getName(), dsgStmt.getDesignator());
 			 }
 			 else if (!dsgObj.getType().equals(Tabb.intType)) {
@@ -642,14 +675,15 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			 if (dsgObj.getKind() != Obj.Meth) {
 				 report_error("Designator must be non-static class method or global function: " + dsgObj.getName(), dsgStmt.getDesignator());
 			 }
-			 else if (designatorStatementKind == FUNC_CALL_NO_ARG && dsgObj.getLevel() > 0) {
-				 report_error("Number of formal and actual parameters must be the same: " + dsgObj.getName(), dsgStmt.getDesignator());
+			 else if (designatorStatementKind == FUNC_CALL_NO_ARG && dsgObj.getLevel() != (classDesignator.get(classDesignator.size() - 1) ? 1 : 0)) {
+					 report_error("Number of formal and actual parameters must be the same: " + dsgObj.getName(), dsgStmt.getDesignator());
 			 }
 		 }
 		 
 		 designatorStatementKind = NOT_USED;
 		 currAssignmentExpr = null;
-		 currDesignator = null;
+		 currDesignator.set(currDesignator.size() - 1, null);
+		 classDesignator.set(classDesignator.size() - 1, false);
 	}
 	
 	public void visit(DesignatorListYesYes dsgList) {
@@ -676,7 +710,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		else {
 			for (Obj elem: dsgStmtParts) {
 				if (elem != null) {
-					if (elem.getKind() != Obj.Var && elem.getKind() != Obj.Elem && elem.getKind() != Obj.Fld) {
+					if (elem.getKind() != Obj.Var && elem.getKind() != Objj.Stat && elem.getKind() != Obj.Elem && elem.getKind() != Obj.Fld) {
 						report_error("Designator before * must be either Var, Array's elem or Field in class: " + elem.getName(), dsgStmt);
 					}
 					if (!rDsgObj.getType().assignableTo(elem.getType())) {
@@ -686,7 +720,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			}
 		}
 		
-		currDesignator = null;
+		currDesignator.set(currDesignator.size() - 1, null);
+		classDesignator.set(classDesignator.size() - 1, false);
 		dsgStmtParts.clear();
 	}
 	
@@ -706,19 +741,23 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (currType != null) {
 			report_error("Only constructors without parameters are allowed", actPars);
 		}
-		else if (currDesignator.getKind() != Obj.Meth) {
-			report_error("Recognized designator must be a method", actPars);
-		}
-		else if (currDesignator.getLevel() != actParsCount) {
-			report_error("Number of formal and actual parameters must be the same", actPars);
-		}
 		else {
-			for (int i = 0; i < actParsCount; ++i) {
-				Struct actPar = actParsParts.get(i);
-				Struct formPar = Tabb.getFormalParam(currDesignator, i).getType();
-				if (!actPar.assignableTo(formPar)) {
-					report_error("Actual parameters must be assignable to the formal parameters", actPars);
-					break;
+			int additional = (classDesignator.get(classDesignator.size() - 2) ? 1 : 0);
+			
+			if (currDesignator.get(currDesignator.size() - 2).getKind() != Obj.Meth) {
+				report_error("Recognized designator must be a method", actPars);
+			}
+			else if (currDesignator.get(currDesignator.size() - 2).getLevel() != (actParsCount + additional)) {
+				report_error("Number of formal and actual parameters must be the same", actPars);
+			}
+			else {
+				for (int i = 0; i < actParsCount; ++i) {
+					Struct actPar = actParsParts.get(i);
+					Struct formPar = Tabb.getFormalParam(currDesignator.get(currDesignator.size() - 2), i + additional).getType();
+					if (!actPar.assignableTo(formPar)) {
+						report_error("Actual parameters must be assignable to the formal parameters", actPars);
+						break;
+					}
 				}
 			}
 		}
@@ -824,8 +863,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (dsgObj.getKind() != Obj.Meth) {
 			report_error("Designator must be Nonstatic Class or Global method", factor.getDesignator());
 		}
+		
 		factor.struct = dsgObj.getType();
-		currDesignator = null;
+		currDesignator.set(currDesignator.size() - 1, null);
+		classDesignator.set(classDesignator.size() - 1, false);
 	}
 	
 	public void visit(FactorDesignatorSecond factor) {
@@ -833,11 +874,13 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (dsgObj.getKind() != Obj.Meth) {
 			report_error("Designator must be Nonstatic Class or Global method", factor.getDesignator());
 		}
-		else if (dsgObj.getLevel() > 0) {
+		else if (dsgObj.getLevel() != (classDesignator.get(classDesignator.size() - 1) ? 1 : 0)) {
 			report_error("Number of formal and actual parameters must be the same", factor.getDesignator());
 		}
+		
 		factor.struct = dsgObj.getType();
-		currDesignator = null;
+		currDesignator.set(currDesignator.size() - 1, null);
+		classDesignator.set(classDesignator.size() - 1, false);
 	}
 	
 	public void visit(FactorDesignatorThird factor) {
@@ -845,8 +888,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (dsgObj.getKind() == Obj.Type || dsgObj.getKind() == Obj.Meth) {
 			report_error("Designator must be Constant or Variable", factor.getDesignator());
 		}
+		
 		factor.struct = dsgObj.getType();
-		currDesignator = null;
+		currDesignator.set(currDesignator.size() - 1, null);
+		classDesignator.set(classDesignator.size() - 1, false);
 	}
 	
 	public void visit(FactorNum factor) {
@@ -897,8 +942,20 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	// Designator
 	
+	public void visit(TLBrackett lBracket) {
+		currDesignator.add(null);
+		designatorParts.add(new ArrayList<String>());
+		classDesignator.add(false);
+	}
+	
+	public void visit(TRBrackett rBracket) {
+		currDesignator.remove(currDesignator.size() - 1);
+		designatorParts.remove(designatorParts.size() - 1);
+		classDesignator.remove(classDesignator.size() - 1);
+	}
+	
 	public void visit(DesignatorPartsIdent designator) {
-		designatorParts.add(designator.getDsgName());
+		designatorParts.get(designatorParts.size() - 1).add(designator.getDsgName());
 	}
 	
 	public void visit(DesignatorPartsExpr designator) {
@@ -906,7 +963,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (!exprType.equals(Tabb.intType)) {
 			report_error("Expr inside brackets must be integer", designator.getExpr());
 		}
-		designatorParts.add("[]");
+		designatorParts.get(designatorParts.size() - 1).add("[]");
 	}
 	
 	public void visit(DesignatorYes designator) {
@@ -920,11 +977,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		Obj dsgObj = Tabb.find(dsgName);
 		
 		int dsgKind = dsgObj.getKind();
-		if (dsgObj == Tabb.noObj || (dsgKind != Obj.Var && dsgKind != Obj.Con && dsgKind != Obj.Meth && dsgObj.getType().getKind() != Struct.Class)) {
+		if (dsgObj == Tabb.noObj || (dsgKind != Obj.Var && dsgKind != Obj.Fld && dsgKind != Objj.Stat && dsgKind != Obj.Con && dsgKind != Obj.Meth && dsgObj.getType().getKind() != Struct.Class)) {
 			report_error("Can't resolve designator: " + dsgName, designator);
 		}
 		else if (staticClassActive) {
-			if (dsgKind != Obj.Type) {
+			if (dsgKind != Obj.Type && dsgKind != Objj.Stat) {
 				report_error("In static initializer, you must refer to current class: " + dsgObj.getName(), designator);
 			}
 			else if (!dsgObj.getType().equals(currClass.getType())) {
@@ -933,25 +990,32 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		}
 		
 		Struct elemType = dsgObj.getType();
-		for (String elem: designatorParts) {
+		ArrayList<String> elems = designatorParts.get(designatorParts.size() - 1); 
+		for (String elem: elems) {
 			if (elem.equals("[]")) {
+				dsgName += "[]";
+				
 				if (elemType.getKind() != Struct.Array) {
-					report_error("Designator before brackets must be an Array type", designator);
+					report_error("Designator before brackets must be an Array type: " + dsgName, designator);
 					break;
 				}
+				
 				elemType = elemType.getElemType();
 				dsgObj = new Obj(Obj.Elem, "", elemType);
 			}
 			else {
+				dsgName += "." + elem;
+				classDesignator.set(classDesignator.size() - 1, true);
+				
 				if (elemType.getKind() != Struct.Class) {
-					report_error("Designator before dot must be a Class type", designator);
+					report_error("Designator before dot must be a Class type: " + dsgName, designator);
 					break;
 				}
 				
 				Obj tmpObj = elemType.getMembersTable().searchKey(elem);
 				if (tmpObj != null) {
 					if (dsgObj.getKind() == Obj.Type) {
-						report_error("Nonstatic field cannot be accessed via user defined type: " + dsgObj.getName(), designator);
+						report_error("Nonstatic field cannot be accessed via user defined type: " + dsgName, designator);
 						break;
 					}
 					else {
@@ -962,12 +1026,16 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 					tmpObj = Tabb.findStatic(elem, elemType);
 					if (tmpObj != Tabb.noObj) {
 						if (dsgObj.getKind() != Obj.Type) {
-							report_error("Static field cannot be accessed via object of user defined type: " + dsgObj.getName(), designator);
+							report_error("Static field cannot be accessed via object of user defined type: " + dsgName, designator);
 							break;
 						}
 						else {
 							dsgObj = tmpObj;
 						}
+					}
+					else {
+						report_error("Can't resolve designator: " + dsgName, designator);
+						break;
 					}
 				}
 				
@@ -975,8 +1043,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			}
 		}
 		
-		designatorParts.clear();
-		currDesignator = designator.obj = dsgObj;
+		designatorParts.get(designatorParts.size() - 1).clear();
+		currDesignator.set(currDesignator.size() - 1, designator.obj = dsgObj);
 	}
 	
 	public void visit(DesignatorNo designator) {
@@ -994,7 +1062,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		}
 		
 		int dsgKind = dsgObj.getKind();
-		if (dsgObj == Tabb.noObj || (dsgKind != Obj.Var && dsgKind != Objj.Stat && dsgKind != Obj.Con && dsgKind != Obj.Meth && dsgObj.getType().getKind() != Struct.Class)) {
+		if (dsgObj == Tabb.noObj || (dsgKind != Obj.Var && dsgKind != Obj.Fld && dsgKind != Objj.Stat && dsgKind != Obj.Con && dsgKind != Obj.Meth && dsgObj.getType().getKind() != Struct.Class)) {
 			report_error("Can't resolve designator: " + fullName, designator);
 		}
 		else if (staticClassActive) {
@@ -1006,26 +1074,37 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			}
 		}
 		
+		String dsgName = fullName;
 		Struct elemType = dsgObj.getType();
-		for (String elem: designatorParts) {
+		ArrayList<String> elems = designatorParts.get(designatorParts.size() - 1);
+		for (String elem: elems) {
 			if (elem.equals("[]")) {
+				dsgName += "[]";
+				
 				if (elemType.getKind() != Struct.Array) {
-					report_error("Designator before brackets must be an Array type", designator);
+					report_error("Designator before brackets must be an Array type: " + dsgName, designator);
 					break;
 				}
+				
 				elemType = elemType.getElemType();
 				dsgObj = new Obj(Obj.Elem, "", elemType);
 			}
 			else {
+				dsgName += "." + elem;
+				classDesignator.set(classDesignator.size() - 1, true);
+				
 				if (elemType.getKind() != Struct.Class) {
-					report_error("Designator before dot must be a Class type", designator);
+					report_error("Designator before dot must be a Class type: " + dsgName, designator);
 					break;
 				}
 				
-				Obj tmpObj = elemType.getMembersTable().searchKey(elem);
-				if (tmpObj != null) {
+				boolean ind = currClass != null && elemType.equals(currClass.getType());
+				Obj tmpObj = (ind ? Tabb.findOuterLocal(elem) : elemType.getMembersTable().searchKey(elem));
+				if (tmpObj == null) tmpObj = Tabb.noObj;
+				
+				if (tmpObj != Tabb.noObj) {
 					if (dsgObj.getKind() == Obj.Type) {
-						report_error("Nonstatic field cannot be accessed via user defined type: " + dsgObj.getName(), designator);
+						report_error("Nonstatic field cannot be accessed via user defined type: " + dsgName, designator);
 						break;
 					}
 					else {
@@ -1036,12 +1115,16 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 					tmpObj = Tabb.findStatic(elem, elemType);
 					if (tmpObj != Tabb.noObj) {
 						if (dsgObj.getKind() != Obj.Type) {
-							report_error("Static field cannot be accessed via object of user defined type: " + dsgObj.getName(), designator);
+							report_error("Static field cannot be accessed via object of user defined type: " + dsgName, designator);
 							break;
 						}
 						else {
 							dsgObj = tmpObj;
 						}
+					}
+					else {
+						report_error("Can't resolve designator: " + dsgName, designator);
+						break;
 					}
 				}
 				
@@ -1049,8 +1132,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			}
 		}
 		
-		designatorParts.clear();
-		currDesignator = designator.obj = dsgObj;
+		designatorParts.get(designatorParts.size() - 1).clear();
+		currDesignator.set(currDesignator.size() - 1, designator.obj = dsgObj);
 	}
 	
 	// Label

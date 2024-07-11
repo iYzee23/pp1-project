@@ -25,7 +25,7 @@ public class MJLexerTest {
 		Reader br = null;
 		try {
 			
-			File sourceCode = new File("test/program_analyzer.mj");	
+			File sourceCode = new File("test/program_analyzer_4.mj");	
 			log.info("Compiling source file: " + sourceCode.getAbsolutePath());
 			
 			br = new BufferedReader(new FileReader(sourceCode));

@@ -63,9 +63,9 @@ terminal Character CHAR_CONST;
 nonterminal Program, NamespaceList, DeclList, MethodDeclList, Namespace, ConstDecl, VarDecl, ClassDecl, MethodDecl;
 nonterminal ConstParts, ConstPart, VarParts, VarPart, StatVarDeclList, ForSymbol, ExtClass;
 nonterminal StatInitList, VarDeclList, StaticInitializer, StatementList, Statement, ReturnType;
-nonterminal FormPars, DesignatorStatement, OpChoice, DesignatorList, ElseOpt, StatInits;
+nonterminal FormPars, DesignatorStatement, OpChoice, DesignatorList, ElseOpt, StatInits, TLBracket, TRBracket;
 nonterminal ActPars, ActParsTemp, Assignop, Relop, Addop, Mulop, DesignatorParts, BracketsOpt;
-nonterminal Condition, CondTerm, CondFact, CondTermList, CondFactList, StatVarDeclInit; 
+nonterminal Condition, CondTerm, CondFact, CondTermList, CondFactList, StatVarDeclInit, TLParen, TRParen; 
 nonterminal AddopTermList, MulopFactorList, NewChoice, DesignatorStmtList, MethodDeclListOpt;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName;
@@ -265,13 +265,17 @@ DesignatorStatement ::= (DesignatorStmtFirst) Designator OpChoice
 					 
 OpChoice ::= (OpChoiceExpr) Assignop Expr
 		  |
-		  (OpChoiceActParsYes) LPAREN ActPars RPAREN
+		  (OpChoiceActParsYes) TLParen ActPars TRParen
 		  |
 		  (OpChoiceActParsNo) LPAREN RPAREN
 		  |
 		  (OpChoiceInc) INC
 		  |
 		  (OpChoiceDec) DEC;
+
+TLParen ::= (TLParent) LPAREN;
+
+TRParen ::= (TRParent) RPAREN;
 
 DesignatorList ::= (DesignatorListYesYes) DesignatorList Designator COMMA
 				|
@@ -315,7 +319,7 @@ MulopFactorList ::= (MulopFactorListYes) MulopFactorList Mulop Factor
 				 |
 				 (MulopFactorListNo) /* epsilon */;
 
-Factor ::= (FactorDesignatorFirst) Designator LPAREN ActPars RPAREN
+Factor ::= (FactorDesignatorFirst) Designator TLParen ActPars TRParen
 		|
 		(FactorDesignatorSecond) Designator LPAREN RPAREN
 		|
@@ -345,9 +349,13 @@ Designator ::= (DesignatorYes) IDENT:nspName RESOLUTION IDENT:dsgName Designator
 
 DesignatorParts ::= (DesignatorPartsIdent) DesignatorParts DOT IDENT:dsgName
 				 |
-				 (DesignatorPartsExpr) DesignatorParts LBRACKET Expr RBRACKET
+				 (DesignatorPartsExpr) DesignatorParts TLBracket Expr TRBracket
 				 |
 				 (DesignatorPartsNo) /* epsilon */;
+				 
+TLBracket ::= (TLBrackett) LBRACKET;
+
+TRBracket ::= (TRBrackett) RBRACKET;
 
 Label ::= (Labelt) IDENT:labName;
 

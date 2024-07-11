@@ -23,6 +23,12 @@ public class Tabb extends Tab {
 		return res;
 	}
 	
+	public static Obj findOuterLocal(String name) {
+		Obj res = Tab.currentScope().getOuter().findSymbol(name);
+		if (res == null) res = Tab.noObj;
+		return res;
+	}
+	
 	public static Obj insertStatic(int kind, String name, Struct type) {
 		Obj newObj = new Obj(kind, name, type, 0, 0); 
 		if (!programScope.addToLocals(newObj)) {
@@ -41,20 +47,22 @@ public class Tabb extends Tab {
 			for (Obj elem: objs) {
 				if (elem.getKind() == Objj.Stat && elem.getName().endsWith(name)) {
 					int lastIndexOf = elem.getName().lastIndexOf("::");
-					String goalPart = elem.getName().substring(0, lastIndexOf);
-					Struct goalType = Tabb.programScope.findSymbol(goalPart).getType();
-					Struct currentType = searchType;
-			        int currDistance = 0;
-			        
-			        while (currentType != null) {
-			            if (currentType.equals(goalType) && currDistance < minDistance) {
-			                minDistance = currDistance;
-			                resObj = elem;
-			                break;
-			            } 
-			            ++currDistance;
-			            currentType = currentType.getElemType();
-			        }
+					if (lastIndexOf != -1) {
+						String goalPart = elem.getName().substring(0, lastIndexOf);
+						Struct goalType = Tabb.programScope.findSymbol(goalPart).getType();
+						Struct currentType = searchType;
+				        int currDistance = 0;
+				        
+				        while (currentType != null) {
+				            if (currentType.equals(goalType) && currDistance < minDistance) {
+				                minDistance = currDistance;
+				                resObj = elem;
+				                break;
+				            } 
+				            ++currDistance;
+				            currentType = currentType.getElemType();
+				        }	
+					}
 				}
 				if (minDistance == 0) break;
 			}

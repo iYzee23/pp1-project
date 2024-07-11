@@ -88,6 +88,8 @@ nonterminal OpChoice OpChoice;
 nonterminal DesignatorList DesignatorList;
 nonterminal ElseOpt ElseOpt;
 nonterminal StatInits StatInits;
+nonterminal TLBracket TLBracket;
+nonterminal TRBracket TRBracket;
 nonterminal ActPars ActPars;
 nonterminal ActParsTemp ActParsTemp;
 nonterminal Assignop Assignop;
@@ -101,7 +103,9 @@ nonterminal CondTerm CondTerm;
 nonterminal CondFact CondFact;
 nonterminal CondTermList CondTermList;
 nonterminal CondFactList CondFactList;
-nonterminal StatVarDeclInit StatVarDeclInit; 
+nonterminal StatVarDeclInit StatVarDeclInit;
+nonterminal TLParen TLParen;
+nonterminal TRParen TRParen; 
 nonterminal AddopTermList AddopTermList;
 nonterminal MulopFactorList MulopFactorList;
 nonterminal NewChoice NewChoice;
@@ -305,13 +309,17 @@ DesignatorStatement ::= (DesignatorStmtFirst) Designator:D1 OpChoice:O2 {: RESUL
 					 
 OpChoice ::= (OpChoiceExpr) Assignop:A1 Expr:E2 {: RESULT=new OpChoiceExpr(A1, E2); RESULT.setLine(A1left); :}
 		  |
-		  (OpChoiceActParsYes) LPAREN ActPars:A1 RPAREN {: RESULT=new OpChoiceActParsYes(A1); RESULT.setLine(A1left); :}
+		  (OpChoiceActParsYes) TLParen:T1 ActPars:A2 TRParen:T3 {: RESULT=new OpChoiceActParsYes(T1, A2, T3); RESULT.setLine(T1left); :}
 		  |
 		  (OpChoiceActParsNo) LPAREN RPAREN {: RESULT=new OpChoiceActParsNo(); :}
 		  |
 		  (OpChoiceInc) INC {: RESULT=new OpChoiceInc(); :}
 		  |
 		  (OpChoiceDec) DEC {: RESULT=new OpChoiceDec(); :};
+
+TLParen ::= (TLParent) LPAREN {: RESULT=new TLParent(); :};
+
+TRParen ::= (TRParent) RPAREN {: RESULT=new TRParent(); :};
 
 DesignatorList ::= (DesignatorListYesYes) DesignatorList:D1 Designator:D2 COMMA {: RESULT=new DesignatorListYesYes(D1, D2); RESULT.setLine(D1left); :}
 				|
@@ -355,7 +363,7 @@ MulopFactorList ::= (MulopFactorListYes) MulopFactorList:M1 Mulop:M2 Factor:F3 {
 				 |
 				 (MulopFactorListNo) {: RESULT=new MulopFactorListNo(); :} /* epsilon */;
 
-Factor ::= (FactorDesignatorFirst) Designator:D1 LPAREN ActPars:A2 RPAREN {: RESULT=new FactorDesignatorFirst(D1, A2); RESULT.setLine(D1left); :}
+Factor ::= (FactorDesignatorFirst) Designator:D1 TLParen:T2 ActPars:A3 TRParen:T4 {: RESULT=new FactorDesignatorFirst(D1, T2, A3, T4); RESULT.setLine(D1left); :}
 		|
 		(FactorDesignatorSecond) Designator:D1 LPAREN RPAREN {: RESULT=new FactorDesignatorSecond(D1); RESULT.setLine(D1left); :}
 		|
@@ -385,9 +393,13 @@ Designator ::= (DesignatorYes) IDENT:nspName RESOLUTION IDENT:dsgName Designator
 
 DesignatorParts ::= (DesignatorPartsIdent) DesignatorParts:D1 DOT IDENT:dsgName {: RESULT=new DesignatorPartsIdent(D1, dsgName); RESULT.setLine(D1left); :}
 				 |
-				 (DesignatorPartsExpr) DesignatorParts:D1 LBRACKET Expr:E2 RBRACKET {: RESULT=new DesignatorPartsExpr(D1, E2); RESULT.setLine(D1left); :}
+				 (DesignatorPartsExpr) DesignatorParts:D1 TLBracket:T2 Expr:E3 TRBracket:T4 {: RESULT=new DesignatorPartsExpr(D1, T2, E3, T4); RESULT.setLine(D1left); :}
 				 |
 				 (DesignatorPartsNo) {: RESULT=new DesignatorPartsNo(); :} /* epsilon */;
+				 
+TLBracket ::= (TLBrackett) LBRACKET {: RESULT=new TLBrackett(); :};
+
+TRBracket ::= (TRBrackett) RBRACKET {: RESULT=new TRBrackett(); :};
 
 Label ::= (Labelt) IDENT:labName {: RESULT=new Labelt(labName); RESULT.setLine(labNameleft); :};
 

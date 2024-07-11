@@ -11,6 +11,7 @@ public class NewVisitor extends SymbolTableVisitor {
 	protected StringBuilder output = new StringBuilder();
 	protected final String indent = "   ";
 	protected StringBuilder currentIndent = new StringBuilder();
+	private Struct currClassType = null;
 	
 	protected void nextIndentationLevel() {
 		currentIndent.append(indent);
@@ -37,12 +38,19 @@ public class NewVisitor extends SymbolTableVisitor {
 		case Obj.Prog: output.append("Prog "); break;
 		case Objj.Namesp: output.append("Namesp "); break;
 		case Objj.Stat: output.append("Stat "); break;
+		case Objj.Labl: output.append("Labl "); break;
 		}
 		
 		output.append(objToVisit.getName());
 		output.append(": ");
 		
 		if ((Obj.Var == objToVisit.getKind()) && "this".equalsIgnoreCase(objToVisit.getName()))
+			output.append("");
+		else if ((objToVisit.getKind() == Obj.Fld) && currClassType != null && objToVisit.getType().equals(currClassType))
+			output.append("");
+		else if ((objToVisit.getKind() == Obj.Var) && currClassType != null && objToVisit.getType().equals(currClassType))
+			output.append("");
+		else if ((objToVisit.getKind() == Obj.Meth) && currClassType != null && objToVisit.getType().equals(currClassType))
 			output.append("");
 		else
 			objToVisit.getType().accept(this);
@@ -122,11 +130,13 @@ public class NewVisitor extends SymbolTableVisitor {
 			}
 			break;
 		case Struct.Class:
+			currClassType = structToVisit;
 			output.append("Class [");
 			for (Obj obj : structToVisit.getMembers()) {
 				obj.accept(this);
 			}
 			output.append("]");
+			currClassType = null;
 			break;
 		}
 

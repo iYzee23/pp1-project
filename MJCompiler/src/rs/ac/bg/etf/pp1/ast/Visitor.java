@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 11/6/2024 15:15:45
+// 11/6/2024 22:2:1
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,16 +8,19 @@ package rs.ac.bg.etf.pp1.ast;
 public interface Visitor { 
 
     public void visit(ReturnType ReturnType);
+    public void visit(TLParen TLParen);
     public void visit(Mulop Mulop);
     public void visit(MethodDecl MethodDecl);
     public void visit(Relop Relop);
     public void visit(NamespaceName NamespaceName);
+    public void visit(TRParen TRParen);
     public void visit(Namespace Namespace);
     public void visit(Assignop Assignop);
     public void visit(MulopFactorList MulopFactorList);
     public void visit(CondTermList CondTermList);
     public void visit(MethodDeclListOpt MethodDeclListOpt);
     public void visit(StatementList StatementList);
+    public void visit(TLBracket TLBracket);
     public void visit(VarPart VarPart);
     public void visit(ClassName ClassName);
     public void visit(NamespaceList NamespaceList);
@@ -49,6 +52,7 @@ public interface Visitor {
     public void visit(Expr Expr);
     public void visit(ActPars ActPars);
     public void visit(DesignatorList DesignatorList);
+    public void visit(TRBracket TRBracket);
     public void visit(DesignatorStatement DesignatorStatement);
     public void visit(ProgName ProgName);
     public void visit(Statement Statement);
@@ -77,6 +81,8 @@ public interface Visitor {
     public void visit(RelopEqual RelopEqual);
     public void visit(AssignopAssignt AssignopAssignt);
     public void visit(Labelt Labelt);
+    public void visit(TRBrackett TRBrackett);
+    public void visit(TLBrackett TLBrackett);
     public void visit(DesignatorPartsNo DesignatorPartsNo);
     public void visit(DesignatorPartsExpr DesignatorPartsExpr);
     public void visit(DesignatorPartsIdent DesignatorPartsIdent);
@@ -115,6 +121,8 @@ public interface Visitor {
     public void visit(DesignatorListNo DesignatorListNo);
     public void visit(DesignatorListYesNo DesignatorListYesNo);
     public void visit(DesignatorListYesYes DesignatorListYesYes);
+    public void visit(TRParent TRParent);
+    public void visit(TLParent TLParent);
     public void visit(OpChoiceDec OpChoiceDec);
     public void visit(OpChoiceInc OpChoiceInc);
     public void visit(OpChoiceActParsNo OpChoiceActParsNo);

@@ -1,0 +1,53 @@
+program Example 
+
+const int MAX_VALUE = 100;
+const int MAX_INT = 5;
+const char MAX_CHAR = 'A';
+const bool MAX_BOOL = true;
+
+class MyClass 
+{
+    static int a, b, c[];
+    static bool d, e[];
+    static MyClass g;
+
+    static 
+    {
+        a = 5;
+        c[1] = 6;
+        d = false;
+        e[2] = true;
+        MyClass.a = 5;
+        // g.myField = 2;
+        // MyClass.g.myField = 3;
+    }
+
+    int myField, myFieldArr[];
+    char yourField, yourFieldArr[];
+    bool ourField, ourFieldArr[];
+    MyClass theirField, theirFieldArr[];
+
+    {
+        void myMethod(int param) 
+        int i;
+        {
+            
+            for (i = 0; i < param; i++) {
+                if (i % 2 == 0) {
+                    print(i, 6);
+                } else {
+                    read(i);
+                }
+            }
+        }
+    }
+}
+
+{
+    void main()
+    MyClass obj;
+    {
+        obj = new MyClass();
+        obj.myMethod(10);
+    }
+}
