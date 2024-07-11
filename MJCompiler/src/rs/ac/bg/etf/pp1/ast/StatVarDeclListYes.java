@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 2/6/2024 4:11:0
+// 11/6/2024 0:18:33
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,11 +8,14 @@ package rs.ac.bg.etf.pp1.ast;
 public class StatVarDeclListYes extends StatVarDeclList {
 
     private StatVarDeclList StatVarDeclList;
+    private StatVarDeclInit StatVarDeclInit;
     private VarDecl VarDecl;
 
-    public StatVarDeclListYes (StatVarDeclList StatVarDeclList, VarDecl VarDecl) {
+    public StatVarDeclListYes (StatVarDeclList StatVarDeclList, StatVarDeclInit StatVarDeclInit, VarDecl VarDecl) {
         this.StatVarDeclList=StatVarDeclList;
         if(StatVarDeclList!=null) StatVarDeclList.setParent(this);
+        this.StatVarDeclInit=StatVarDeclInit;
+        if(StatVarDeclInit!=null) StatVarDeclInit.setParent(this);
         this.VarDecl=VarDecl;
         if(VarDecl!=null) VarDecl.setParent(this);
     }
@@ -23,6 +26,14 @@ public class StatVarDeclListYes extends StatVarDeclList {
 
     public void setStatVarDeclList(StatVarDeclList StatVarDeclList) {
         this.StatVarDeclList=StatVarDeclList;
+    }
+
+    public StatVarDeclInit getStatVarDeclInit() {
+        return StatVarDeclInit;
+    }
+
+    public void setStatVarDeclInit(StatVarDeclInit StatVarDeclInit) {
+        this.StatVarDeclInit=StatVarDeclInit;
     }
 
     public VarDecl getVarDecl() {
@@ -39,17 +50,20 @@ public class StatVarDeclListYes extends StatVarDeclList {
 
     public void childrenAccept(Visitor visitor) {
         if(StatVarDeclList!=null) StatVarDeclList.accept(visitor);
+        if(StatVarDeclInit!=null) StatVarDeclInit.accept(visitor);
         if(VarDecl!=null) VarDecl.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
         if(StatVarDeclList!=null) StatVarDeclList.traverseTopDown(visitor);
+        if(StatVarDeclInit!=null) StatVarDeclInit.traverseTopDown(visitor);
         if(VarDecl!=null) VarDecl.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
         if(StatVarDeclList!=null) StatVarDeclList.traverseBottomUp(visitor);
+        if(StatVarDeclInit!=null) StatVarDeclInit.traverseBottomUp(visitor);
         if(VarDecl!=null) VarDecl.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -61,6 +75,12 @@ public class StatVarDeclListYes extends StatVarDeclList {
 
         if(StatVarDeclList!=null)
             buffer.append(StatVarDeclList.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
+
+        if(StatVarDeclInit!=null)
+            buffer.append(StatVarDeclInit.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

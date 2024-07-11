@@ -1,23 +1,24 @@
 // generated with ast extension for cup
 // version 0.8
-// 2/6/2024 4:11:0
+// 11/6/2024 0:18:33
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class ClassDeclYes extends ClassDecl {
 
-    private String I1;
-    private Type Type;
+    private ClassName ClassName;
+    private ExtClass ExtClass;
     private StatVarDeclList StatVarDeclList;
     private StatInitList StatInitList;
     private VarDeclList VarDeclList;
     private MethodDeclListOpt MethodDeclListOpt;
 
-    public ClassDeclYes (String I1, Type Type, StatVarDeclList StatVarDeclList, StatInitList StatInitList, VarDeclList VarDeclList, MethodDeclListOpt MethodDeclListOpt) {
-        this.I1=I1;
-        this.Type=Type;
-        if(Type!=null) Type.setParent(this);
+    public ClassDeclYes (ClassName ClassName, ExtClass ExtClass, StatVarDeclList StatVarDeclList, StatInitList StatInitList, VarDeclList VarDeclList, MethodDeclListOpt MethodDeclListOpt) {
+        this.ClassName=ClassName;
+        if(ClassName!=null) ClassName.setParent(this);
+        this.ExtClass=ExtClass;
+        if(ExtClass!=null) ExtClass.setParent(this);
         this.StatVarDeclList=StatVarDeclList;
         if(StatVarDeclList!=null) StatVarDeclList.setParent(this);
         this.StatInitList=StatInitList;
@@ -28,20 +29,20 @@ public class ClassDeclYes extends ClassDecl {
         if(MethodDeclListOpt!=null) MethodDeclListOpt.setParent(this);
     }
 
-    public String getI1() {
-        return I1;
+    public ClassName getClassName() {
+        return ClassName;
     }
 
-    public void setI1(String I1) {
-        this.I1=I1;
+    public void setClassName(ClassName ClassName) {
+        this.ClassName=ClassName;
     }
 
-    public Type getType() {
-        return Type;
+    public ExtClass getExtClass() {
+        return ExtClass;
     }
 
-    public void setType(Type Type) {
-        this.Type=Type;
+    public void setExtClass(ExtClass ExtClass) {
+        this.ExtClass=ExtClass;
     }
 
     public StatVarDeclList getStatVarDeclList() {
@@ -81,7 +82,8 @@ public class ClassDeclYes extends ClassDecl {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(Type!=null) Type.accept(visitor);
+        if(ClassName!=null) ClassName.accept(visitor);
+        if(ExtClass!=null) ExtClass.accept(visitor);
         if(StatVarDeclList!=null) StatVarDeclList.accept(visitor);
         if(StatInitList!=null) StatInitList.accept(visitor);
         if(VarDeclList!=null) VarDeclList.accept(visitor);
@@ -90,7 +92,8 @@ public class ClassDeclYes extends ClassDecl {
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(Type!=null) Type.traverseTopDown(visitor);
+        if(ClassName!=null) ClassName.traverseTopDown(visitor);
+        if(ExtClass!=null) ExtClass.traverseTopDown(visitor);
         if(StatVarDeclList!=null) StatVarDeclList.traverseTopDown(visitor);
         if(StatInitList!=null) StatInitList.traverseTopDown(visitor);
         if(VarDeclList!=null) VarDeclList.traverseTopDown(visitor);
@@ -98,7 +101,8 @@ public class ClassDeclYes extends ClassDecl {
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(Type!=null) Type.traverseBottomUp(visitor);
+        if(ClassName!=null) ClassName.traverseBottomUp(visitor);
+        if(ExtClass!=null) ExtClass.traverseBottomUp(visitor);
         if(StatVarDeclList!=null) StatVarDeclList.traverseBottomUp(visitor);
         if(StatInitList!=null) StatInitList.traverseBottomUp(visitor);
         if(VarDeclList!=null) VarDeclList.traverseBottomUp(visitor);
@@ -111,11 +115,14 @@ public class ClassDeclYes extends ClassDecl {
         buffer.append(tab);
         buffer.append("ClassDeclYes(\n");
 
-        buffer.append(" "+tab+I1);
+        if(ClassName!=null)
+            buffer.append(ClassName.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
         buffer.append("\n");
 
-        if(Type!=null)
-            buffer.append(Type.toString("  "+tab));
+        if(ExtClass!=null)
+            buffer.append(ExtClass.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

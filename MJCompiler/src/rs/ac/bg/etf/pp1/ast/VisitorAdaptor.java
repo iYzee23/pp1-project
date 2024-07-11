@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 2/6/2024 4:11:1
+// 11/6/2024 0:18:33
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -19,6 +19,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(MethodDeclListOpt MethodDeclListOpt) { }
     public void visit(StatementList StatementList) { }
     public void visit(VarPart VarPart) { }
+    public void visit(ClassName ClassName) { }
     public void visit(NamespaceList NamespaceList) { }
     public void visit(ActParsTemp ActParsTemp) { }
     public void visit(Addop Addop) { }
@@ -34,10 +35,13 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(Condition Condition) { }
     public void visit(VarParts VarParts) { }
     public void visit(DesignatorStmtList DesignatorStmtList) { }
+    public void visit(StatInits StatInits) { }
     public void visit(BracketsOpt BracketsOpt) { }
     public void visit(StatVarDeclList StatVarDeclList) { }
+    public void visit(ForSymbol ForSymbol) { }
     public void visit(Label Label) { }
     public void visit(NewChoice NewChoice) { }
+    public void visit(ExtClass ExtClass) { }
     public void visit(ConstParts ConstParts) { }
     public void visit(OpChoice OpChoice) { }
     public void visit(StatInitList StatInitList) { }
@@ -58,6 +62,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(Program Program) { }
     public void visit(FormPars FormPars) { }
     public void visit(AddopTermList AddopTermList) { }
+    public void visit(StatVarDeclInit StatVarDeclInit) { }
     public void visit(ElseOpt ElseOpt) { }
     public void visit(MulopMod MulopMod) { visit(); }
     public void visit(MulopDiv MulopDiv) { visit(); }
@@ -123,6 +128,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(DesignatorStmtListYes DesignatorStmtListYes) { visit(); }
     public void visit(ElseOptNo ElseOptNo) { visit(); }
     public void visit(ElseOptYes ElseOptYes) { visit(); }
+    public void visit(ForSymbolt ForSymbolt) { visit(); }
     public void visit(StmtBlock StmtBlock) { visit(); }
     public void visit(StmtForNoNoNo StmtForNoNoNo) { visit(); }
     public void visit(StmtForNoNoYes StmtForNoNoYes) { visit(); }
@@ -162,13 +168,17 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(StaticInitializert StaticInitializert) { visit(); }
     public void visit(VarDeclListNo VarDeclListNo) { visit(); }
     public void visit(VarDeclListYes VarDeclListYes) { visit(); }
-    public void visit(StatInitListNo StatInitListNo) { visit(); }
-    public void visit(StatInitListYes StatInitListYes) { visit(); }
+    public void visit(StatInitsNo StatInitsNo) { visit(); }
+    public void visit(StatInitsYes StatInitsYes) { visit(); }
+    public void visit(StatInitListt StatInitListt) { visit(); }
+    public void visit(StatVarDeclInitt StatVarDeclInitt) { visit(); }
     public void visit(StatVarDeclListNo StatVarDeclListNo) { visit(); }
     public void visit(StatVarDeclListYes StatVarDeclListYes) { visit(); }
     public void visit(MethListNo MethListNo) { visit(); }
     public void visit(MathListError MathListError) { visit(); }
     public void visit(MethListYes MethListYes) { visit(); }
+    public void visit(ClassNamet ClassNamet) { visit(); }
+    public void visit(ExtClasst ExtClasst) { visit(); }
     public void visit(ClassDeclNo ClassDeclNo) { visit(); }
     public void visit(ClassDeclYesError ClassDeclYesError) { visit(); }
     public void visit(ClassDeclYes ClassDeclYes) { visit(); }

@@ -32,17 +32,34 @@ public class Tabb extends Tab {
 		return newObj;
 	}
 	
-	public static Obj findStatic(String name, Struct struct) {
-		for (Scope s = currentScope; s != null; s = s.getOuter()) {
-			if (s.getLocals() != null) {
-				Collection<Obj> objs = s.values();
-				for (Obj elem: objs) {
-					if (elem.getKind() == Objj.Stat && elem.getName().endsWith(name) && elem.getType().equals(struct))
-						return elem;
+	public static Obj findStatic(String name, Struct searchType) {
+		Obj resObj = Tabb.noObj;
+		int minDistance = 9999;
+		
+		if (programScope.getLocals() != null) {
+			Collection<Obj> objs = programScope.values();
+			for (Obj elem: objs) {
+				if (elem.getKind() == Objj.Stat && elem.getName().endsWith(name)) {
+					int lastIndexOf = elem.getName().lastIndexOf("::");
+					String goalPart = elem.getName().substring(0, lastIndexOf);
+					Struct goalType = Tabb.programScope.findSymbol(goalPart).getType();
+					Struct currentType = searchType;
+			        int currDistance = 0;
+			        
+			        while (currentType != null) {
+			            if (currentType.equals(goalType) && currDistance < minDistance) {
+			                minDistance = currDistance;
+			                resObj = elem;
+			                break;
+			            } 
+			            ++currDistance;
+			            currentType = currentType.getElemType();
+			        }
 				}
+				if (minDistance == 0) break;
 			}
 		}
-		return noObj;
+		return resObj;
 	}
 	
 	public static Obj getFormalParam(Obj meth, int index) {
@@ -52,6 +69,48 @@ public class Tabb extends Tab {
 				return elem;
 		}
 		return Tabb.noObj;
+	}
+	
+	public static void copyFromSuperclass(Struct currClass, Struct superClass) {
+		Collection<Obj> members = superClass.getMembers();
+		for (Obj elem: members) {
+			Obj newElem = Tabb.insert(elem.getKind(), elem.getName(), elem.getType());
+			newElem.setAdr(elem.getAdr());
+			newElem.setLevel(elem.getLevel());
+			
+			if (elem.getKind() == Obj.Meth) {
+				Collection<Obj> methMembers = elem.getLocalSymbols();
+				
+				Tabb.openScope();
+				for (Obj mElem: methMembers) {
+					Obj mNewElem = Tabb.insert(mElem.getKind(), mElem.getName(), mElem.getName().equals("this") ? currClass : superClass);
+					mNewElem.setAdr(mElem.getAdr());
+					mNewElem.setLevel(mElem.getLevel());
+				}
+				Tabb.chainLocalSymbols(newElem);
+				Tabb.closeScope();
+			}
+		}
+	}
+	
+	public static boolean compareTwoMethods(Obj firstMeth, Obj secondMeth) {
+		int len = firstMeth.getLevel();
+		if (secondMeth.getLevel() != len)
+			return false;
+		
+		for (int i = 0; i < len; ++i) {
+			Obj fVar = getFormalParam(firstMeth, i);
+			Obj sVar = getFormalParam(secondMeth, i);
+			if (!fVar.getType().equals(sVar.getType()))
+				return false;
+		}
+		return true;
+	}
+	
+	public static void overrideMethod(Obj overrideMeth) {
+		Tabb.currentScope().getLocals().deleteKey(overrideMeth.getName());
+		Tabb.currentScope().getLocals().insertKey(overrideMeth);
+		overrideMeth.setFpPos(1);
 	}
 
 }

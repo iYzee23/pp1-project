@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 2/6/2024 4:11:1
+// 11/6/2024 0:18:33
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -19,6 +19,7 @@ public interface Visitor {
     public void visit(MethodDeclListOpt MethodDeclListOpt);
     public void visit(StatementList StatementList);
     public void visit(VarPart VarPart);
+    public void visit(ClassName ClassName);
     public void visit(NamespaceList NamespaceList);
     public void visit(ActParsTemp ActParsTemp);
     public void visit(Addop Addop);
@@ -34,10 +35,13 @@ public interface Visitor {
     public void visit(Condition Condition);
     public void visit(VarParts VarParts);
     public void visit(DesignatorStmtList DesignatorStmtList);
+    public void visit(StatInits StatInits);
     public void visit(BracketsOpt BracketsOpt);
     public void visit(StatVarDeclList StatVarDeclList);
+    public void visit(ForSymbol ForSymbol);
     public void visit(Label Label);
     public void visit(NewChoice NewChoice);
+    public void visit(ExtClass ExtClass);
     public void visit(ConstParts ConstParts);
     public void visit(OpChoice OpChoice);
     public void visit(StatInitList StatInitList);
@@ -58,6 +62,7 @@ public interface Visitor {
     public void visit(Program Program);
     public void visit(FormPars FormPars);
     public void visit(AddopTermList AddopTermList);
+    public void visit(StatVarDeclInit StatVarDeclInit);
     public void visit(ElseOpt ElseOpt);
     public void visit(MulopMod MulopMod);
     public void visit(MulopDiv MulopDiv);
@@ -123,6 +128,7 @@ public interface Visitor {
     public void visit(DesignatorStmtListYes DesignatorStmtListYes);
     public void visit(ElseOptNo ElseOptNo);
     public void visit(ElseOptYes ElseOptYes);
+    public void visit(ForSymbolt ForSymbolt);
     public void visit(StmtBlock StmtBlock);
     public void visit(StmtForNoNoNo StmtForNoNoNo);
     public void visit(StmtForNoNoYes StmtForNoNoYes);
@@ -162,13 +168,17 @@ public interface Visitor {
     public void visit(StaticInitializert StaticInitializert);
     public void visit(VarDeclListNo VarDeclListNo);
     public void visit(VarDeclListYes VarDeclListYes);
-    public void visit(StatInitListNo StatInitListNo);
-    public void visit(StatInitListYes StatInitListYes);
+    public void visit(StatInitsNo StatInitsNo);
+    public void visit(StatInitsYes StatInitsYes);
+    public void visit(StatInitListt StatInitListt);
+    public void visit(StatVarDeclInitt StatVarDeclInitt);
     public void visit(StatVarDeclListNo StatVarDeclListNo);
     public void visit(StatVarDeclListYes StatVarDeclListYes);
     public void visit(MethListNo MethListNo);
     public void visit(MathListError MathListError);
     public void visit(MethListYes MethListYes);
+    public void visit(ClassNamet ClassNamet);
+    public void visit(ExtClasst ExtClasst);
     public void visit(ClassDeclNo ClassDeclNo);
     public void visit(ClassDeclYesError ClassDeclYesError);
     public void visit(ClassDeclYes ClassDeclYes);

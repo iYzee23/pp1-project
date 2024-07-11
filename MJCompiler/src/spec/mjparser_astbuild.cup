@@ -74,6 +74,8 @@ nonterminal ConstPart ConstPart;
 nonterminal VarParts VarParts;
 nonterminal VarPart VarPart;
 nonterminal StatVarDeclList StatVarDeclList;
+nonterminal ForSymbol ForSymbol;
+nonterminal ExtClass ExtClass;
 nonterminal StatInitList StatInitList;
 nonterminal VarDeclList VarDeclList;
 nonterminal StaticInitializer StaticInitializer;
@@ -85,6 +87,7 @@ nonterminal DesignatorStatement DesignatorStatement;
 nonterminal OpChoice OpChoice;
 nonterminal DesignatorList DesignatorList;
 nonterminal ElseOpt ElseOpt;
+nonterminal StatInits StatInits;
 nonterminal ActPars ActPars;
 nonterminal ActParsTemp ActParsTemp;
 nonterminal Assignop Assignop;
@@ -97,7 +100,8 @@ nonterminal Condition Condition;
 nonterminal CondTerm CondTerm;
 nonterminal CondFact CondFact;
 nonterminal CondTermList CondTermList;
-nonterminal CondFactList CondFactList; 
+nonterminal CondFactList CondFactList;
+nonterminal StatVarDeclInit StatVarDeclInit; 
 nonterminal AddopTermList AddopTermList;
 nonterminal MulopFactorList MulopFactorList;
 nonterminal NewChoice NewChoice;
@@ -105,6 +109,7 @@ nonterminal DesignatorStmtList DesignatorStmtList;
 nonterminal MethodDeclListOpt MethodDeclListOpt;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassName;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj NamespaceName;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj MethodName;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Designator;
@@ -174,11 +179,15 @@ VarPart ::= (VarPartYes) IDENT:varName LBRACKET RBRACKET {: RESULT=new VarPartYe
 		 |
 		 (VarPartNo) IDENT:varName {: RESULT=new VarPartNo(varName); RESULT.setLine(varNameleft); :};
 
-ClassDecl ::= (ClassDeclYes) CLASS IDENT:I1 EXTENDS Type:T2 LBRACE StatVarDeclList:S3 StatInitList:S4 VarDeclList:V5 MethodDeclListOpt:M6 RBRACE {: RESULT=new ClassDeclYes(I1, T2, S3, S4, V5, M6); RESULT.setLine(I1left); :}
+ClassDecl ::= (ClassDeclYes) CLASS ClassName:C1 ExtClass:E2 LBRACE StatVarDeclList:S3 StatInitList:S4 VarDeclList:V5 MethodDeclListOpt:M6 RBRACE {: RESULT=new ClassDeclYes(C1, E2, S3, S4, V5, M6); RESULT.setLine(C1left); :}
 		   |
-		   (ClassDeclYesError) CLASS IDENT:I1 EXTENDS error LBRACE:l {: parser.report_error("Bad class extension. Performed recovery until { in line " + lleft, null); :} StatVarDeclList:S2 StatInitList:S3 VarDeclList:V4 MethodDeclListOpt:M5 RBRACE {: RESULT=new ClassDeclYesError(I1, S2, S3, V4, M5); RESULT.setLine(I1left); :}
+		   (ClassDeclYesError) CLASS ClassName:C1 EXTENDS error LBRACE:l {: parser.report_error("Bad class extension. Performed recovery until { in line " + lleft, null); :} StatVarDeclList:S2 StatInitList:S3 VarDeclList:V4 MethodDeclListOpt:M5 RBRACE {: RESULT=new ClassDeclYesError(C1, S2, S3, V4, M5); RESULT.setLine(C1left); :}
 		   |
-		   (ClassDeclNo) CLASS IDENT:I1 LBRACE StatVarDeclList:S2 StatInitList:S3 VarDeclList:V4 MethodDeclListOpt:M5 RBRACE {: RESULT=new ClassDeclNo(I1, S2, S3, V4, M5); RESULT.setLine(I1left); :};
+		   (ClassDeclNo) CLASS ClassName:C1 LBRACE StatVarDeclList:S2 StatInitList:S3 VarDeclList:V4 MethodDeclListOpt:M5 RBRACE {: RESULT=new ClassDeclNo(C1, S2, S3, V4, M5); RESULT.setLine(C1left); :};
+		   
+ExtClass ::= (ExtClasst) EXTENDS Type:T1 {: RESULT=new ExtClasst(T1); RESULT.setLine(T1left); :};
+		   
+ClassName ::= (ClassNamet) IDENT:className {: RESULT=new ClassNamet(className); RESULT.setLine(classNameleft); :};
 
 MethodDeclListOpt ::= (MethListYes) LBRACE MethodDeclList:M1 RBRACE {: RESULT=new MethListYes(M1); RESULT.setLine(M1left); :}
 				   |
@@ -186,13 +195,17 @@ MethodDeclListOpt ::= (MethListYes) LBRACE MethodDeclList:M1 RBRACE {: RESULT=ne
 				   |
 				   (MethListNo) {: RESULT=new MethListNo(); :} /* epsilon */;
 
-StatVarDeclList ::= (StatVarDeclListYes) StatVarDeclList:S1 STATIC VarDecl:V2 {: RESULT=new StatVarDeclListYes(S1, V2); RESULT.setLine(S1left); :}
+StatVarDeclList ::= (StatVarDeclListYes) StatVarDeclList:S1 StatVarDeclInit:S2 VarDecl:V3 {: RESULT=new StatVarDeclListYes(S1, S2, V3); RESULT.setLine(S1left); :}
 				 |
 				 (StatVarDeclListNo) {: RESULT=new StatVarDeclListNo(); :} /* epsilon */;
+				 
+StatVarDeclInit ::= (StatVarDeclInitt) STATIC {: RESULT=new StatVarDeclInitt(); :};
 
-StatInitList ::= (StatInitListYes) StaticInitializer:S1 StatInitList:S2 {: RESULT=new StatInitListYes(S1, S2); RESULT.setLine(S1left); :}
+StatInitList ::= (StatInitListt) StatInits:S1 {: RESULT=new StatInitListt(S1); RESULT.setLine(S1left); :};
+			  
+StatInits ::= (StatInitsYes) StaticInitializer:S1 StatInits:S2 {: RESULT=new StatInitsYes(S1, S2); RESULT.setLine(S1left); :}
 			  |
-			  (StatInitListNo) {: RESULT=new StatInitListNo(); :} /* epsilon */;
+			  (StatInitsNo) {: RESULT=new StatInitsNo(); :} /* epsilon */;
 
 VarDeclList ::= (VarDeclListYes) VarDeclList:V1 VarDecl:V2 {: RESULT=new VarDeclListYes(V1, V2); RESULT.setLine(V1left); :}
 			 |
@@ -254,23 +267,25 @@ Statement ::= (StmtDesignator) DesignatorStatement:D1 SEMI {: RESULT=new StmtDes
 		   |
 		   (StmtPrintNo) PRINT LPAREN Expr:E1 RPAREN SEMI {: RESULT=new StmtPrintNo(E1); RESULT.setLine(E1left); :}
 		   |
-		   (StmtForYesYesYes) FOR LPAREN DesignatorStatement:D1 DesignatorStmtList:D2 SEMI CondFact:C3 SEMI DesignatorStatement:D4 DesignatorStmtList:D5 RPAREN Statement:S6 {: RESULT=new StmtForYesYesYes(D1, D2, C3, D4, D5, S6); RESULT.setLine(D1left); :}
+		   (StmtForYesYesYes) ForSymbol:F1 LPAREN DesignatorStatement:D2 DesignatorStmtList:D3 SEMI CondFact:C4 SEMI DesignatorStatement:D5 DesignatorStmtList:D6 RPAREN Statement:S7 {: RESULT=new StmtForYesYesYes(F1, D2, D3, C4, D5, D6, S7); RESULT.setLine(F1left); :}
 		   |
-		   (StmtForYesYesNo) FOR LPAREN DesignatorStatement:D1 DesignatorStmtList:D2 SEMI CondFact:C3 SEMI RPAREN Statement:S4 {: RESULT=new StmtForYesYesNo(D1, D2, C3, S4); RESULT.setLine(D1left); :}
+		   (StmtForYesYesNo) ForSymbol:F1 LPAREN DesignatorStatement:D2 DesignatorStmtList:D3 SEMI CondFact:C4 SEMI RPAREN Statement:S5 {: RESULT=new StmtForYesYesNo(F1, D2, D3, C4, S5); RESULT.setLine(F1left); :}
 		   |
-		   (StmtForYesNoYes) FOR LPAREN SEMI CondFact:C1 SEMI DesignatorStatement:D2 DesignatorStmtList:D3 RPAREN Statement:S4 {: RESULT=new StmtForYesNoYes(C1, D2, D3, S4); RESULT.setLine(C1left); :}
+		   (StmtForYesNoYes) ForSymbol:F1 LPAREN SEMI CondFact:C2 SEMI DesignatorStatement:D3 DesignatorStmtList:D4 RPAREN Statement:S5 {: RESULT=new StmtForYesNoYes(F1, C2, D3, D4, S5); RESULT.setLine(F1left); :}
 		   |
-		   (StmtForYesNoNo) FOR LPAREN SEMI CondFact:C1 SEMI RPAREN Statement:S2 {: RESULT=new StmtForYesNoNo(C1, S2); RESULT.setLine(C1left); :}
+		   (StmtForYesNoNo) ForSymbol:F1 LPAREN SEMI CondFact:C2 SEMI RPAREN Statement:S3 {: RESULT=new StmtForYesNoNo(F1, C2, S3); RESULT.setLine(F1left); :}
 		   |
-		   (StmtForNoYesYes) FOR LPAREN DesignatorStatement:D1 DesignatorStmtList:D2 SEMI SEMI DesignatorStatement:D3 DesignatorStmtList:D4 RPAREN Statement:S5 {: RESULT=new StmtForNoYesYes(D1, D2, D3, D4, S5); RESULT.setLine(D1left); :}
+		   (StmtForNoYesYes) ForSymbol:F1 LPAREN DesignatorStatement:D2 DesignatorStmtList:D3 SEMI SEMI DesignatorStatement:D4 DesignatorStmtList:D5 RPAREN Statement:S6 {: RESULT=new StmtForNoYesYes(F1, D2, D3, D4, D5, S6); RESULT.setLine(F1left); :}
 		   |
-		   (StmtForNoYesNo) FOR LPAREN DesignatorStatement:D1 DesignatorStmtList:D2 SEMI SEMI RPAREN Statement:S3 {: RESULT=new StmtForNoYesNo(D1, D2, S3); RESULT.setLine(D1left); :}
+		   (StmtForNoYesNo) ForSymbol:F1 LPAREN DesignatorStatement:D2 DesignatorStmtList:D3 SEMI SEMI RPAREN Statement:S4 {: RESULT=new StmtForNoYesNo(F1, D2, D3, S4); RESULT.setLine(F1left); :}
 		   |
-		   (StmtForNoNoYes) FOR LPAREN SEMI SEMI DesignatorStatement:D1 DesignatorStmtList:D2 RPAREN Statement:S3 {: RESULT=new StmtForNoNoYes(D1, D2, S3); RESULT.setLine(D1left); :}
+		   (StmtForNoNoYes) ForSymbol:F1 LPAREN SEMI SEMI DesignatorStatement:D2 DesignatorStmtList:D3 RPAREN Statement:S4 {: RESULT=new StmtForNoNoYes(F1, D2, D3, S4); RESULT.setLine(F1left); :}
 		   |
-		   (StmtForNoNoNo) FOR LPAREN SEMI SEMI RPAREN Statement:S1 {: RESULT=new StmtForNoNoNo(S1); RESULT.setLine(S1left); :}
+		   (StmtForNoNoNo) ForSymbol:F1 LPAREN SEMI SEMI RPAREN Statement:S2 {: RESULT=new StmtForNoNoNo(F1, S2); RESULT.setLine(F1left); :}
 		   |
 		   (StmtBlock) LBRACE StatementList:S1 RBRACE {: RESULT=new StmtBlock(S1); RESULT.setLine(S1left); :};
+		   
+ForSymbol ::= (ForSymbolt) FOR {: RESULT=new ForSymbolt(); :};
 
 ElseOpt ::= (ElseOptYes) ELSE Statement:S1 {: RESULT=new ElseOptYes(S1); RESULT.setLine(S1left); :}
 		 |

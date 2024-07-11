@@ -1,0 +1,245 @@
+INFO  04:25:28,004 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer_2.mj
+INFO  04:25:28,044 - #2 program
+INFO  04:25:28,044 - #48 P
+INFO  04:25:28,044 - #48 int
+INFO  04:25:28,045 - #48 nevajda
+INFO  04:25:28,045 - #8 ;
+INFO  04:25:28,045 - #3 {
+INFO  04:25:28,045 - #18 void
+INFO  04:25:28,045 - #48 pedja
+INFO  04:25:28,046 - #16 (
+INFO  04:25:28,046 - #48 int
+INFO  04:25:28,046 - #48 a
+INFO  04:25:28,046 - #17 )
+INFO  04:25:28,046 - #3 {
+INFO  04:25:28,046 - #48 a
+INFO  04:25:28,046 - #9 =
+INFO  04:25:28,047 - #48 nevajda
+INFO  04:25:28,047 - #8 ;
+INFO  04:25:28,048 - #4 }
+INFO  04:25:28,048 - #18 void
+INFO  04:25:28,049 - #48 main
+INFO  04:25:28,049 - #16 (
+INFO  04:25:28,049 - #17 )
+INFO  04:25:28,049 - #48 int
+INFO  04:25:28,049 - #48 a
+INFO  04:25:28,049 - #10 [
+INFO  04:25:28,049 - #11 ]
+INFO  04:25:28,049 - #8 ;
+INFO  04:25:28,049 - #3 {
+INFO  04:25:28,049 - #48 a
+INFO  04:25:28,049 - #10 [
+INFO  04:25:28,049 - #31 -
+INFO  04:25:28,049 - #49 1
+INFO  04:25:28,049 - #32 *
+INFO  04:25:28,049 - #49 5
+INFO  04:25:28,050 - #30 +
+INFO  04:25:28,050 - #49 2
+INFO  04:25:28,050 - #33 /
+INFO  04:25:28,050 - #49 3
+INFO  04:25:28,050 - #31 -
+INFO  04:25:28,051 - #49 4
+INFO  04:25:28,051 - #34 %
+INFO  04:25:28,051 - #49 2
+INFO  04:25:28,051 - #11 ]
+INFO  04:25:28,052 - #9 =
+INFO  04:25:28,052 - #49 5
+INFO  04:25:28,052 - #8 ;
+INFO  04:25:28,052 - #48 pedja
+INFO  04:25:28,052 - #16 (
+INFO  04:25:28,052 - #17 )
+INFO  04:25:28,052 - #8 ;
+INFO  04:25:28,052 - #4 }
+INFO  04:25:28,052 - #4 }
+INFO  04:25:28,054 - Programt(
+  ProgNamet(
+   P
+  ) [ProgNamet]
+  NamespaceListNo(
+  ) [NamespaceListNo]
+  DeclListVar(
+    DeclListNo(
+    ) [DeclListNo]
+    VarDeclt(
+      VarDeclSingle(
+        TypeNo(
+         int
+        ) [TypeNo]
+        VarPartNo(
+         nevajda
+        ) [VarPartNo]
+      ) [VarDeclSingle]
+    ) [VarDeclt]
+  ) [DeclListVar]
+  MethodDeclListYes(
+    MethodDeclListYes(
+      MethodDeclListNo(
+      ) [MethodDeclListNo]
+      MethodDeclYes(
+        ReturnTypeVoid(
+        ) [ReturnTypeVoid]
+        MethodNamet(
+         pedja
+        ) [MethodNamet]
+        FormParsSingleNo(
+          TypeNo(
+           int
+          ) [TypeNo]
+         a
+        ) [FormParsSingleNo]
+        VarDeclListNo(
+        ) [VarDeclListNo]
+        StatementListYes(
+          StatementListNo(
+          ) [StatementListNo]
+          StmtDesignator(
+            DesignatorStmtFirst(
+              DesignatorNo(
+               a
+                DesignatorPartsNo(
+                ) [DesignatorPartsNo]
+              ) [DesignatorNo]
+              OpChoiceExpr(
+                AssignopAssignt(
+                ) [AssignopAssignt]
+                ExprNo(
+                  Termt(
+                    FactorDesignatorThird(
+                      DesignatorNo(
+                       nevajda
+                        DesignatorPartsNo(
+                        ) [DesignatorPartsNo]
+                      ) [DesignatorNo]
+                    ) [FactorDesignatorThird]
+                    MulopFactorListNo(
+                    ) [MulopFactorListNo]
+                  ) [Termt]
+                  AddopTermListNo(
+                  ) [AddopTermListNo]
+                ) [ExprNo]
+              ) [OpChoiceExpr]
+            ) [DesignatorStmtFirst]
+          ) [StmtDesignator]
+        ) [StatementListYes]
+      ) [MethodDeclYes]
+    ) [MethodDeclListYes]
+    MethodDeclNo(
+      ReturnTypeVoid(
+      ) [ReturnTypeVoid]
+      MethodNamet(
+       main
+      ) [MethodNamet]
+      VarDeclListYes(
+        VarDeclListNo(
+        ) [VarDeclListNo]
+        VarDeclt(
+          VarDeclSingle(
+            TypeNo(
+             int
+            ) [TypeNo]
+            VarPartYes(
+             a
+            ) [VarPartYes]
+          ) [VarDeclSingle]
+        ) [VarDeclt]
+      ) [VarDeclListYes]
+      StatementListYes(
+        StatementListYes(
+          StatementListNo(
+          ) [StatementListNo]
+          StmtDesignator(
+            DesignatorStmtFirst(
+              DesignatorNo(
+               a
+                DesignatorPartsExpr(
+                  DesignatorPartsNo(
+                  ) [DesignatorPartsNo]
+                  ExprYes(
+                    Termt(
+                      FactorNum(
+                       1
+                      ) [FactorNum]
+                      MulopFactorListYes(
+                        MulopFactorListNo(
+                        ) [MulopFactorListNo]
+                        MulopMul(
+                        ) [MulopMul]
+                        FactorNum(
+                         5
+                        ) [FactorNum]
+                      ) [MulopFactorListYes]
+                    ) [Termt]
+                    AddopTermListYes(
+                      AddopTermListYes(
+                        AddopTermListNo(
+                        ) [AddopTermListNo]
+                        AddopPlus(
+                        ) [AddopPlus]
+                        Termt(
+                          FactorNum(
+                           2
+                          ) [FactorNum]
+                          MulopFactorListYes(
+                            MulopFactorListNo(
+                            ) [MulopFactorListNo]
+                            MulopDiv(
+                            ) [MulopDiv]
+                            FactorNum(
+                             3
+                            ) [FactorNum]
+                          ) [MulopFactorListYes]
+                        ) [Termt]
+                      ) [AddopTermListYes]
+                      AddopMinus(
+                      ) [AddopMinus]
+                      Termt(
+                        FactorNum(
+                         4
+                        ) [FactorNum]
+                        MulopFactorListYes(
+                          MulopFactorListNo(
+                          ) [MulopFactorListNo]
+                          MulopMod(
+                          ) [MulopMod]
+                          FactorNum(
+                           2
+                          ) [FactorNum]
+                        ) [MulopFactorListYes]
+                      ) [Termt]
+                    ) [AddopTermListYes]
+                  ) [ExprYes]
+                ) [DesignatorPartsExpr]
+              ) [DesignatorNo]
+              OpChoiceExpr(
+                AssignopAssignt(
+                ) [AssignopAssignt]
+                ExprNo(
+                  Termt(
+                    FactorNum(
+                     5
+                    ) [FactorNum]
+                    MulopFactorListNo(
+                    ) [MulopFactorListNo]
+                  ) [Termt]
+                  AddopTermListNo(
+                  ) [AddopTermListNo]
+                ) [ExprNo]
+              ) [OpChoiceExpr]
+            ) [DesignatorStmtFirst]
+          ) [StmtDesignator]
+        ) [StatementListYes]
+        StmtDesignator(
+          DesignatorStmtFirst(
+            DesignatorNo(
+             pedja
+              DesignatorPartsNo(
+              ) [DesignatorPartsNo]
+            ) [DesignatorNo]
+            OpChoiceActParsNo(
+            ) [OpChoiceActParsNo]
+          ) [DesignatorStmtFirst]
+        ) [StmtDesignator]
+      ) [StatementListYes]
+    ) [MethodDeclNo]
+  ) [MethodDeclListYes]
+) [Programt]

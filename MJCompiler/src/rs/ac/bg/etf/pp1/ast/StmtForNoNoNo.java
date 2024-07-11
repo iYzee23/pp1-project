@@ -1,17 +1,28 @@
 // generated with ast extension for cup
 // version 0.8
-// 2/6/2024 4:11:1
+// 11/6/2024 0:18:33
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class StmtForNoNoNo extends Statement {
 
+    private ForSymbol ForSymbol;
     private Statement Statement;
 
-    public StmtForNoNoNo (Statement Statement) {
+    public StmtForNoNoNo (ForSymbol ForSymbol, Statement Statement) {
+        this.ForSymbol=ForSymbol;
+        if(ForSymbol!=null) ForSymbol.setParent(this);
         this.Statement=Statement;
         if(Statement!=null) Statement.setParent(this);
+    }
+
+    public ForSymbol getForSymbol() {
+        return ForSymbol;
+    }
+
+    public void setForSymbol(ForSymbol ForSymbol) {
+        this.ForSymbol=ForSymbol;
     }
 
     public Statement getStatement() {
@@ -27,15 +38,18 @@ public class StmtForNoNoNo extends Statement {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(ForSymbol!=null) ForSymbol.accept(visitor);
         if(Statement!=null) Statement.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(ForSymbol!=null) ForSymbol.traverseTopDown(visitor);
         if(Statement!=null) Statement.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(ForSymbol!=null) ForSymbol.traverseBottomUp(visitor);
         if(Statement!=null) Statement.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -44,6 +58,12 @@ public class StmtForNoNoNo extends Statement {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
         buffer.append("StmtForNoNoNo(\n");
+
+        if(ForSymbol!=null)
+            buffer.append(ForSymbol.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
 
         if(Statement!=null)
             buffer.append(Statement.toString("  "+tab));

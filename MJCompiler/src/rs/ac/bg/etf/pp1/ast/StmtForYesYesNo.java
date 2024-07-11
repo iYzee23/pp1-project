@@ -1,18 +1,21 @@
 // generated with ast extension for cup
 // version 0.8
-// 2/6/2024 4:11:1
+// 11/6/2024 0:18:33
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class StmtForYesYesNo extends Statement {
 
+    private ForSymbol ForSymbol;
     private DesignatorStatement DesignatorStatement;
     private DesignatorStmtList DesignatorStmtList;
     private CondFact CondFact;
     private Statement Statement;
 
-    public StmtForYesYesNo (DesignatorStatement DesignatorStatement, DesignatorStmtList DesignatorStmtList, CondFact CondFact, Statement Statement) {
+    public StmtForYesYesNo (ForSymbol ForSymbol, DesignatorStatement DesignatorStatement, DesignatorStmtList DesignatorStmtList, CondFact CondFact, Statement Statement) {
+        this.ForSymbol=ForSymbol;
+        if(ForSymbol!=null) ForSymbol.setParent(this);
         this.DesignatorStatement=DesignatorStatement;
         if(DesignatorStatement!=null) DesignatorStatement.setParent(this);
         this.DesignatorStmtList=DesignatorStmtList;
@@ -21,6 +24,14 @@ public class StmtForYesYesNo extends Statement {
         if(CondFact!=null) CondFact.setParent(this);
         this.Statement=Statement;
         if(Statement!=null) Statement.setParent(this);
+    }
+
+    public ForSymbol getForSymbol() {
+        return ForSymbol;
+    }
+
+    public void setForSymbol(ForSymbol ForSymbol) {
+        this.ForSymbol=ForSymbol;
     }
 
     public DesignatorStatement getDesignatorStatement() {
@@ -60,6 +71,7 @@ public class StmtForYesYesNo extends Statement {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(ForSymbol!=null) ForSymbol.accept(visitor);
         if(DesignatorStatement!=null) DesignatorStatement.accept(visitor);
         if(DesignatorStmtList!=null) DesignatorStmtList.accept(visitor);
         if(CondFact!=null) CondFact.accept(visitor);
@@ -68,6 +80,7 @@ public class StmtForYesYesNo extends Statement {
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(ForSymbol!=null) ForSymbol.traverseTopDown(visitor);
         if(DesignatorStatement!=null) DesignatorStatement.traverseTopDown(visitor);
         if(DesignatorStmtList!=null) DesignatorStmtList.traverseTopDown(visitor);
         if(CondFact!=null) CondFact.traverseTopDown(visitor);
@@ -75,6 +88,7 @@ public class StmtForYesYesNo extends Statement {
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(ForSymbol!=null) ForSymbol.traverseBottomUp(visitor);
         if(DesignatorStatement!=null) DesignatorStatement.traverseBottomUp(visitor);
         if(DesignatorStmtList!=null) DesignatorStmtList.traverseBottomUp(visitor);
         if(CondFact!=null) CondFact.traverseBottomUp(visitor);
@@ -86,6 +100,12 @@ public class StmtForYesYesNo extends Statement {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
         buffer.append("StmtForYesYesNo(\n");
+
+        if(ForSymbol!=null)
+            buffer.append(ForSymbol.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
 
         if(DesignatorStatement!=null)
             buffer.append(DesignatorStatement.toString("  "+tab));

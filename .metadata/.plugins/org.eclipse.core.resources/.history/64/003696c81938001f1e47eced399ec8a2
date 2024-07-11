@@ -1,0 +1,9 @@
+program P
+
+{
+	void main() 
+	int a[];
+	{
+		a['z'] = 5;
+	}
+}

@@ -61,14 +61,15 @@ terminal Character CHAR_CONST;
 /* Non-terminals */
 
 nonterminal Program, NamespaceList, DeclList, MethodDeclList, Namespace, ConstDecl, VarDecl, ClassDecl, MethodDecl;
-nonterminal ConstParts, ConstPart, VarParts, VarPart, StatVarDeclList;
+nonterminal ConstParts, ConstPart, VarParts, VarPart, StatVarDeclList, ForSymbol, ExtClass;
 nonterminal StatInitList, VarDeclList, StaticInitializer, StatementList, Statement, ReturnType;
-nonterminal FormPars, DesignatorStatement, OpChoice, DesignatorList, ElseOpt;
+nonterminal FormPars, DesignatorStatement, OpChoice, DesignatorList, ElseOpt, StatInits;
 nonterminal ActPars, ActParsTemp, Assignop, Relop, Addop, Mulop, DesignatorParts, BracketsOpt;
-nonterminal Condition, CondTerm, CondFact, CondTermList, CondFactList; 
+nonterminal Condition, CondTerm, CondFact, CondTermList, CondFactList, StatVarDeclInit; 
 nonterminal AddopTermList, MulopFactorList, NewChoice, DesignatorStmtList, MethodDeclListOpt;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassName;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj NamespaceName;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj MethodName;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Designator;
@@ -138,11 +139,15 @@ VarPart ::= (VarPartYes) IDENT:varName LBRACKET RBRACKET
 		 |
 		 (VarPartNo) IDENT:varName;
 
-ClassDecl ::= (ClassDeclYes) CLASS IDENT EXTENDS Type LBRACE StatVarDeclList StatInitList VarDeclList MethodDeclListOpt RBRACE
+ClassDecl ::= (ClassDeclYes) CLASS ClassName ExtClass LBRACE StatVarDeclList StatInitList VarDeclList MethodDeclListOpt RBRACE
 		   |
-		   (ClassDeclYesError) CLASS IDENT EXTENDS error LBRACE:l {: parser.report_error("Bad class extension. Performed recovery until { in line " + lleft, null); :} StatVarDeclList StatInitList VarDeclList MethodDeclListOpt RBRACE
+		   (ClassDeclYesError) CLASS ClassName EXTENDS error LBRACE:l {: parser.report_error("Bad class extension. Performed recovery until { in line " + lleft, null); :} StatVarDeclList StatInitList VarDeclList MethodDeclListOpt RBRACE
 		   |
-		   (ClassDeclNo) CLASS IDENT LBRACE StatVarDeclList StatInitList VarDeclList MethodDeclListOpt RBRACE;
+		   (ClassDeclNo) CLASS ClassName LBRACE StatVarDeclList StatInitList VarDeclList MethodDeclListOpt RBRACE;
+		   
+ExtClass ::= (ExtClasst) EXTENDS Type;
+		   
+ClassName ::= (ClassNamet) IDENT:className;
 
 MethodDeclListOpt ::= (MethListYes) LBRACE MethodDeclList RBRACE
 				   |
@@ -150,13 +155,17 @@ MethodDeclListOpt ::= (MethListYes) LBRACE MethodDeclList RBRACE
 				   |
 				   (MethListNo) /* epsilon */;
 
-StatVarDeclList ::= (StatVarDeclListYes) StatVarDeclList STATIC VarDecl
+StatVarDeclList ::= (StatVarDeclListYes) StatVarDeclList StatVarDeclInit VarDecl
 				 |
 				 (StatVarDeclListNo) /* epsilon */;
+				 
+StatVarDeclInit ::= (StatVarDeclInitt) STATIC;
 
-StatInitList ::= (StatInitListYes) StaticInitializer StatInitList
+StatInitList ::= (StatInitListt) StatInits;
+			  
+StatInits ::= (StatInitsYes) StaticInitializer StatInits
 			  |
-			  (StatInitListNo) /* epsilon */;
+			  (StatInitsNo) /* epsilon */;
 
 VarDeclList ::= (VarDeclListYes) VarDeclList VarDecl
 			 |
@@ -218,23 +227,25 @@ Statement ::= (StmtDesignator) DesignatorStatement SEMI
 		   |
 		   (StmtPrintNo) PRINT LPAREN Expr RPAREN SEMI
 		   |
-		   (StmtForYesYesYes) FOR LPAREN DesignatorStatement DesignatorStmtList SEMI CondFact SEMI DesignatorStatement DesignatorStmtList RPAREN Statement
+		   (StmtForYesYesYes) ForSymbol LPAREN DesignatorStatement DesignatorStmtList SEMI CondFact SEMI DesignatorStatement DesignatorStmtList RPAREN Statement
 		   |
-		   (StmtForYesYesNo) FOR LPAREN DesignatorStatement DesignatorStmtList SEMI CondFact SEMI RPAREN Statement
+		   (StmtForYesYesNo) ForSymbol LPAREN DesignatorStatement DesignatorStmtList SEMI CondFact SEMI RPAREN Statement
 		   |
-		   (StmtForYesNoYes) FOR LPAREN SEMI CondFact SEMI DesignatorStatement DesignatorStmtList RPAREN Statement
+		   (StmtForYesNoYes) ForSymbol LPAREN SEMI CondFact SEMI DesignatorStatement DesignatorStmtList RPAREN Statement
 		   |
-		   (StmtForYesNoNo) FOR LPAREN SEMI CondFact SEMI RPAREN Statement
+		   (StmtForYesNoNo) ForSymbol LPAREN SEMI CondFact SEMI RPAREN Statement
 		   |
-		   (StmtForNoYesYes) FOR LPAREN DesignatorStatement DesignatorStmtList SEMI SEMI DesignatorStatement DesignatorStmtList RPAREN Statement
+		   (StmtForNoYesYes) ForSymbol LPAREN DesignatorStatement DesignatorStmtList SEMI SEMI DesignatorStatement DesignatorStmtList RPAREN Statement
 		   |
-		   (StmtForNoYesNo) FOR LPAREN DesignatorStatement DesignatorStmtList SEMI SEMI RPAREN Statement
+		   (StmtForNoYesNo) ForSymbol LPAREN DesignatorStatement DesignatorStmtList SEMI SEMI RPAREN Statement
 		   |
-		   (StmtForNoNoYes) FOR LPAREN SEMI SEMI DesignatorStatement DesignatorStmtList RPAREN Statement
+		   (StmtForNoNoYes) ForSymbol LPAREN SEMI SEMI DesignatorStatement DesignatorStmtList RPAREN Statement
 		   |
-		   (StmtForNoNoNo) FOR LPAREN SEMI SEMI RPAREN Statement
+		   (StmtForNoNoNo) ForSymbol LPAREN SEMI SEMI RPAREN Statement
 		   |
 		   (StmtBlock) LBRACE StatementList RBRACE;
+		   
+ForSymbol ::= (ForSymbolt) FOR;
 
 ElseOpt ::= (ElseOptYes) ELSE Statement
 		 |

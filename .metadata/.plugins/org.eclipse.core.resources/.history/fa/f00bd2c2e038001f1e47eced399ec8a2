@@ -1,0 +1,99 @@
+INFO  04:20:13,846 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer_2.mj
+INFO  04:20:13,890 - #2 program
+INFO  04:20:13,890 - #48 P
+INFO  04:20:13,890 - #3 {
+INFO  04:20:13,891 - #18 void
+INFO  04:20:13,891 - #48 main
+INFO  04:20:13,891 - #16 (
+INFO  04:20:13,891 - #17 )
+INFO  04:20:13,891 - #48 int
+INFO  04:20:13,892 - #48 a
+INFO  04:20:13,892 - #10 [
+INFO  04:20:13,892 - #11 ]
+INFO  04:20:13,892 - #8 ;
+INFO  04:20:13,892 - #3 {
+INFO  04:20:13,892 - #48 a
+INFO  04:20:13,892 - #10 [
+INFO  04:20:13,893 - #51 z
+INFO  04:20:13,893 - #11 ]
+INFO  04:20:13,894 - #9 =
+INFO  04:20:13,894 - #49 5
+INFO  04:20:13,895 - #8 ;
+INFO  04:20:13,895 - #4 }
+INFO  04:20:13,895 - #4 }
+INFO  04:20:13,897 - Programt(
+  ProgNamet(
+   P
+  ) [ProgNamet]
+  NamespaceListNo(
+  ) [NamespaceListNo]
+  DeclListNo(
+  ) [DeclListNo]
+  MethodDeclListYes(
+    MethodDeclListNo(
+    ) [MethodDeclListNo]
+    MethodDeclNo(
+      ReturnTypeVoid(
+      ) [ReturnTypeVoid]
+      MethodNamet(
+       main
+      ) [MethodNamet]
+      VarDeclListYes(
+        VarDeclListNo(
+        ) [VarDeclListNo]
+        VarDeclt(
+          VarDeclSingle(
+            TypeNo(
+             int
+            ) [TypeNo]
+            VarPartYes(
+             a
+            ) [VarPartYes]
+          ) [VarDeclSingle]
+        ) [VarDeclt]
+      ) [VarDeclListYes]
+      StatementListYes(
+        StatementListNo(
+        ) [StatementListNo]
+        StmtDesignator(
+          DesignatorStmtFirst(
+            DesignatorNo(
+             a
+              DesignatorPartsExpr(
+                DesignatorPartsNo(
+                ) [DesignatorPartsNo]
+                ExprNo(
+                  Termt(
+                    FactorChar(
+                     z
+                    ) [FactorChar]
+                    MulopFactorListNo(
+                    ) [MulopFactorListNo]
+                  ) [Termt]
+                  AddopTermListNo(
+                  ) [AddopTermListNo]
+                ) [ExprNo]
+              ) [DesignatorPartsExpr]
+            ) [DesignatorNo]
+            OpChoiceExpr(
+              AssignopAssignt(
+              ) [AssignopAssignt]
+              ExprNo(
+                Termt(
+                  FactorNum(
+                   5
+                  ) [FactorNum]
+                  MulopFactorListNo(
+                  ) [MulopFactorListNo]
+                ) [Termt]
+                AddopTermListNo(
+                ) [AddopTermListNo]
+              ) [ExprNo]
+            ) [OpChoiceExpr]
+          ) [DesignatorStmtFirst]
+        ) [StmtDesignator]
+      ) [StatementListYes]
+    ) [MethodDeclNo]
+  ) [MethodDeclListYes]
+) [Programt]
+ERROR 04:20:13,900 - Expr inside brackets must be integer ~~~ Line: 2

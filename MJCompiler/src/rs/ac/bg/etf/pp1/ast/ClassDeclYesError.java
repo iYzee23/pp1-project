@@ -1,20 +1,21 @@
 // generated with ast extension for cup
 // version 0.8
-// 2/6/2024 4:11:0
+// 11/6/2024 0:18:33
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class ClassDeclYesError extends ClassDecl {
 
-    private String I1;
+    private ClassName ClassName;
     private StatVarDeclList StatVarDeclList;
     private StatInitList StatInitList;
     private VarDeclList VarDeclList;
     private MethodDeclListOpt MethodDeclListOpt;
 
-    public ClassDeclYesError (String I1, StatVarDeclList StatVarDeclList, StatInitList StatInitList, VarDeclList VarDeclList, MethodDeclListOpt MethodDeclListOpt) {
-        this.I1=I1;
+    public ClassDeclYesError (ClassName ClassName, StatVarDeclList StatVarDeclList, StatInitList StatInitList, VarDeclList VarDeclList, MethodDeclListOpt MethodDeclListOpt) {
+        this.ClassName=ClassName;
+        if(ClassName!=null) ClassName.setParent(this);
         this.StatVarDeclList=StatVarDeclList;
         if(StatVarDeclList!=null) StatVarDeclList.setParent(this);
         this.StatInitList=StatInitList;
@@ -25,12 +26,12 @@ public class ClassDeclYesError extends ClassDecl {
         if(MethodDeclListOpt!=null) MethodDeclListOpt.setParent(this);
     }
 
-    public String getI1() {
-        return I1;
+    public ClassName getClassName() {
+        return ClassName;
     }
 
-    public void setI1(String I1) {
-        this.I1=I1;
+    public void setClassName(ClassName ClassName) {
+        this.ClassName=ClassName;
     }
 
     public StatVarDeclList getStatVarDeclList() {
@@ -70,6 +71,7 @@ public class ClassDeclYesError extends ClassDecl {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(ClassName!=null) ClassName.accept(visitor);
         if(StatVarDeclList!=null) StatVarDeclList.accept(visitor);
         if(StatInitList!=null) StatInitList.accept(visitor);
         if(VarDeclList!=null) VarDeclList.accept(visitor);
@@ -78,6 +80,7 @@ public class ClassDeclYesError extends ClassDecl {
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(ClassName!=null) ClassName.traverseTopDown(visitor);
         if(StatVarDeclList!=null) StatVarDeclList.traverseTopDown(visitor);
         if(StatInitList!=null) StatInitList.traverseTopDown(visitor);
         if(VarDeclList!=null) VarDeclList.traverseTopDown(visitor);
@@ -85,6 +88,7 @@ public class ClassDeclYesError extends ClassDecl {
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(ClassName!=null) ClassName.traverseBottomUp(visitor);
         if(StatVarDeclList!=null) StatVarDeclList.traverseBottomUp(visitor);
         if(StatInitList!=null) StatInitList.traverseBottomUp(visitor);
         if(VarDeclList!=null) VarDeclList.traverseBottomUp(visitor);
@@ -97,7 +101,10 @@ public class ClassDeclYesError extends ClassDecl {
         buffer.append(tab);
         buffer.append("ClassDeclYesError(\n");
 
-        buffer.append(" "+tab+I1);
+        if(ClassName!=null)
+            buffer.append(ClassName.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
         buffer.append("\n");
 
         if(StatVarDeclList!=null)

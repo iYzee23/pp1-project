@@ -1,0 +1,10 @@
+program P
+
+{
+	void main() 
+	int a[];
+	{
+		a[false] = 5;
+		6;
+	}
+}
