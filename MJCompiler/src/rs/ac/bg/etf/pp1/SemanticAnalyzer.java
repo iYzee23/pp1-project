@@ -1,16 +1,9 @@
 package rs.ac.bg.etf.pp1;
 
 import java.util.ArrayList;
-
 import org.apache.log4j.Logger;
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.symboltable.concepts.*;
-
-// TODO: ocistiti currDesignator gde je potrebno [DesignatorStatement]
-// kod lakog DesignatorStatement: cim se prepozna DesignatorStatement
-// kod teskog DesignatorStatement: razmisliti kako ovo treba da se handluje
-
-// TODO: videti gde sam sve "uposlio" promenljive iz klase, pa ih i "otposliti"
 
 // TODO: proci kroz svaku smenu i videti jesam li zaboravio nesto
 
@@ -53,6 +46,17 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	ArrayList<String> designatorParts = new ArrayList<>();
 	Obj currDesignator = null;
 	
+	// easy designator statement processing
+	static final int ASSIGNMENT = 1;
+	static final int INC_DEC = 2;
+	static final int FUNC_CALL = 3;
+	static final int FUNC_CALL_NO_ARG = 3;
+	int designatorStatementKind = NOT_USED;
+	Struct currAssignmentExpr = null;
+	
+	// hard designator statement processsing
+	ArrayList<Obj> dsgStmtParts = new ArrayList<>();
+	
 	// act pars processing
 	ArrayList<Struct> actParsParts = new ArrayList<>();
 	int actParsCount = 0;
@@ -78,17 +82,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	int relopKind = NOT_USED;
 	int forCnt = 0;
 	
-	// easy designator statement processing
-	static final int ASSIGNMENT = 1;
-	static final int INC_DEC = 2;
-	static final int FUNC_CALL = 3;
-	static final int FUNC_CALL_NO_ARG = 3;
-	int designatorStatementKind = NOT_USED;
-	Struct currAssignmentExpr = null;
-	
-	// hard designator statement processsing
-	ArrayList<Obj> dsgStmtParts = new ArrayList<>();
-	
 	// Program
 	
 	public void visit(ProgNamet progName) {
@@ -111,8 +104,14 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	// Namespace
 	
 	public void visit(NamespaceNamet namespaceName) {
-		// we allow multiple declarations of namespace with same name
-		Tabb.insert(Objj.Namesp, namespaceName.getNamespaceName(), Tabb.noType);
+		String name = namespaceName.getNamespaceName();
+		Obj nspObj = Tabb.insert(Objj.Namesp, name, Tabb.noType);
+		
+		if (nspObj != Tabb.noObj && nspObj.getKind() != Objj.Namesp) {
+			report_error("Object with the name of namespace already declared: " + name, namespaceName);
+			return;
+		}
+		
 		currNamespace = namespaceName.getNamespaceName() + "::";
 	}
 	
@@ -272,6 +271,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		Tabb.copyFromSuperclass(currClass.getType(), classType);
 		currClass.getType().setElementType(classType);
 		superClassType = classType;
+		currType = null;
 	}
 	
 	public void visit(ClassDeclYes classDecl) {
@@ -279,7 +279,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		Tabb.chainLocalSymbols(classObj.getType());
 		Tabb.closeScope();
-		currType = null;
 		currClass = null;
 		superClassType = null;
 	}
@@ -290,7 +289,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		Tabb.chainLocalSymbols(classObj.getType());
 		Tabb.closeScope();
 		currClass = null;
-		currType = null;
 		superClassType = null;
 	}
 	
@@ -305,6 +303,58 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	// MethodDecl
+	
+	public void visit(ReturnTypeType returnType) {
+		currType = returnType.getType().struct;
+	}
+	
+	public void visit(ReturnTypeVoid returnType) {
+		currType = Tabb.noType;
+	}
+	
+	public void visit(MethodNamet methodName) {
+		String localName = methodName.getMethName();
+		String fullName = currNamespace + localName;
+		
+		Obj methodObj = null;
+		if (currClass == null) {
+			methodObj = Tabb.find(fullName);
+		}
+		else {
+			Obj scMethObj = superClassType.getMembersTable().searchKey(localName);
+			methodObj = Tabb.findLocal(localName);
+			
+			boolean compatibility = false;
+			if (scMethObj != null) {
+				Struct tmpType = currType;
+				while (tmpType != null) {
+					if (scMethObj.getType().equals(tmpType)) {
+						compatibility = true;
+						break;
+					}
+					tmpType = tmpType.getElemType();
+				}
+			}
+			
+			if (methodObj.getKind() == Obj.Meth && methodObj.getFpPos() == 0 && compatibility) {
+				pOverrideObj = new Obj(Obj.Meth, localName, currType);
+			}
+		}
+		
+		if (methodObj != Tabb.noObj && pOverrideObj == null) {
+			report_error("Method is already declared: " + fullName, methodName);
+			currType = null;
+			return;
+		}
+		
+		currMethod = methodName.obj = (pOverrideObj == null ? Tabb.insert(Obj.Meth, currClass == null ? fullName : localName, currType) : pOverrideObj);
+		currType = null;
+		
+		Tabb.openScope();
+		if (currClass != null) {
+			Tabb.insert(Obj.Var, "this", currClass.getType());
+		}
+	}
 	
 	public void visit(MethodDeclYes methodDecl) {
 		Obj methObj = methodDecl.getMethodName().obj;
@@ -355,45 +405,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		pOverrideObj = null;
 	}
 	
-	public void visit(ReturnTypeType returnType) {
-		currType = returnType.getType().struct;
-	}
-	
-	public void visit(ReturnTypeVoid returnType) {
-		currType = Tabb.noType;
-	}
-	
-	public void visit(MethodNamet methodName) {
-		String localName = methodName.getMethName();
-		String fullName = currNamespace + localName;
-		
-		Obj methodObj = null;
-		if (currClass == null) {
-			methodObj = Tabb.find(fullName);
-		}
-		else {
-			Obj scMethObj = superClassType.getMembersTable().searchKey(localName);
-			methodObj = Tabb.findLocal(localName);
-			if (methodObj.getKind() == Obj.Meth && methodObj.getFpPos() == 0 && scMethObj != null && scMethObj.getType().equals(currType)) {
-				pOverrideObj = new Obj(Obj.Meth, localName, currType);
-			}
-		}
-		
-		if (methodObj != Tabb.noObj && pOverrideObj == null) {
-			report_error("Method is already declared: " + fullName, methodName);
-			currType = null;
-			return;
-		}
-		
-		currMethod = methodName.obj = (pOverrideObj == null ? Tabb.insert(Obj.Meth, currClass == null ? fullName : localName, currType) : pOverrideObj);
-		currType = null;
-		
-		Tabb.openScope();
-		if (currClass != null) {
-			Tabb.insert(Obj.Var, "this", currClass.getType());
-		}
-	}
-	
 	// FormPars
 	
 	public void visit(BracketsOptYes bracketsOpt) {
@@ -407,6 +418,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (paramObj != Tabb.noObj) {
 			report_error("Formal parameter" + (arrayActive ? " (array) " : " ") + "is already declared: " + paramName, formParam);
 			arrayActive = false;
+			currType = null;
 			return;
 		}
 		
@@ -528,6 +540,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		else if (!dsgObj.getType().equals(Tabb.intType) && !dsgObj.getType().equals(Tabb.charType) && !dsgObj.getType().equals(Tabb.boolType)) {
 			report_error("Type of Designator inside parens must be int, char or bool: " + dsgObj.getName(), stmt.getDesignator());
 		}
+		
+		currDesignator = null;
 	}
 	
 	public void visit(StmtPrintYes stmt) {
@@ -871,7 +885,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		if (!isNewFactorClass) factorType = new Struct(Struct.Array, factorType);
 		factor.struct = factorType;
+		
 		currType = null;
+		isNewFactorClass = false;
 	}
 	
 	public void visit(FactorExpr factor) {
@@ -880,8 +896,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	// Designator
-	
-	// ------------
 	
 	public void visit(DesignatorPartsIdent designator) {
 		designatorParts.add(designator.getDsgName());
@@ -969,7 +983,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		String localName = designator.getDsgName();
 		String fullName = currNamespace + localName;
 		
-		// method --> class --> static class --> namespace --> global
 		Obj dsgObj = Tabb.find(localName);
 		if (currClass != null && (dsgObj == Tabb.noObj || dsgObj.getLevel() == 0)) {
 			Obj tmpObj = Tabb.findStatic(localName, currClass.getType());

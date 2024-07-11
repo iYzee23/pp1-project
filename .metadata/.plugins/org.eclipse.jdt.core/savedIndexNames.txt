@@ -3,11 +3,11 @@ INDEX VERSION 1.134+C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\P
 1069719889.index
 2792787403.index
 570380218.index
-1726068343.index
+1464182320.index
 2598152.index
 158551806.index
 1401107734.index
-1464182320.index
+1726068343.index
 485005741.index
 2063763519.index
 3184491376.index
@@ -15,6 +15,8 @@ INDEX VERSION 1.134+C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\P
 1325091951.index
 3962426996.index
 1599200894.index
+2158471175.index
+476755445.index
 963485355.index
 3624875219.index
 1002677649.index
