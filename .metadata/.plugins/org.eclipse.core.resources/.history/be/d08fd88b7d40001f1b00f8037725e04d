@@ -1,0 +1,1510 @@
+INFO  19:25:13,046 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer_6.mj
+INFO  19:25:13,091 - #2 program
+INFO  19:25:13,091 - #48 Example
+INFO  19:25:13,091 - #7 const
+INFO  19:25:13,092 - #48 int
+INFO  19:25:13,092 - #48 MAX_VALUE
+INFO  19:25:13,093 - #9 =
+INFO  19:25:13,093 - #49 100
+INFO  19:25:13,093 - #8 ;
+INFO  19:25:13,093 - #7 const
+INFO  19:25:13,093 - #48 int
+INFO  19:25:13,093 - #48 MAX_INT
+INFO  19:25:13,093 - #9 =
+INFO  19:25:13,093 - #49 5
+INFO  19:25:13,093 - #8 ;
+INFO  19:25:13,093 - #7 const
+INFO  19:25:13,093 - #48 char
+INFO  19:25:13,093 - #48 MAX_CHAR
+INFO  19:25:13,093 - #9 =
+INFO  19:25:13,102 - #51 A
+INFO  19:25:13,102 - #8 ;
+INFO  19:25:13,102 - #7 const
+INFO  19:25:13,102 - #48 bool
+INFO  19:25:13,102 - #48 MAX_BOOL
+INFO  19:25:13,102 - #9 =
+INFO  19:25:13,102 - #50 true
+INFO  19:25:13,102 - #8 ;
+INFO  19:25:13,102 - #12 class
+INFO  19:25:13,102 - #48 MyClass
+INFO  19:25:13,102 - #3 {
+INFO  19:25:13,102 - #14 static
+INFO  19:25:13,102 - #48 int
+INFO  19:25:13,103 - #48 a
+INFO  19:25:13,103 - #6 ,
+INFO  19:25:13,103 - #48 b
+INFO  19:25:13,103 - #6 ,
+INFO  19:25:13,103 - #48 c
+INFO  19:25:13,103 - #10 [
+INFO  19:25:13,103 - #11 ]
+INFO  19:25:13,103 - #8 ;
+INFO  19:25:13,103 - #14 static
+INFO  19:25:13,103 - #48 bool
+INFO  19:25:13,103 - #48 d
+INFO  19:25:13,103 - #6 ,
+INFO  19:25:13,103 - #48 e
+INFO  19:25:13,103 - #10 [
+INFO  19:25:13,103 - #11 ]
+INFO  19:25:13,103 - #8 ;
+INFO  19:25:13,103 - #14 static
+INFO  19:25:13,103 - #48 MyClass
+INFO  19:25:13,104 - #48 g
+INFO  19:25:13,104 - #6 ,
+INFO  19:25:13,104 - #48 f
+INFO  19:25:13,104 - #10 [
+INFO  19:25:13,104 - #11 ]
+INFO  19:25:13,104 - #8 ;
+INFO  19:25:13,104 - #14 static
+INFO  19:25:13,104 - #3 {
+INFO  19:25:13,104 - #48 a
+INFO  19:25:13,104 - #9 =
+INFO  19:25:13,104 - #49 5
+INFO  19:25:13,105 - #8 ;
+INFO  19:25:13,106 - #48 c
+INFO  19:25:13,106 - #10 [
+INFO  19:25:13,106 - #49 1
+INFO  19:25:13,107 - #11 ]
+INFO  19:25:13,107 - #9 =
+INFO  19:25:13,108 - #49 6
+INFO  19:25:13,108 - #8 ;
+INFO  19:25:13,108 - #48 d
+INFO  19:25:13,108 - #9 =
+INFO  19:25:13,109 - #50 false
+INFO  19:25:13,109 - #8 ;
+INFO  19:25:13,109 - #48 e
+INFO  19:25:13,109 - #10 [
+INFO  19:25:13,109 - #49 2
+INFO  19:25:13,109 - #11 ]
+INFO  19:25:13,109 - #9 =
+INFO  19:25:13,109 - #50 true
+INFO  19:25:13,109 - #8 ;
+INFO  19:25:13,109 - #48 MyClass
+INFO  19:25:13,110 - #35 .
+INFO  19:25:13,110 - #48 a
+INFO  19:25:13,110 - #9 =
+INFO  19:25:13,110 - #49 5
+INFO  19:25:13,110 - #8 ;
+INFO  19:25:13,110 - #4 }
+INFO  19:25:13,110 - #48 int
+INFO  19:25:13,110 - #48 myField
+INFO  19:25:13,111 - #6 ,
+INFO  19:25:13,111 - #48 myFieldArr
+INFO  19:25:13,111 - #10 [
+INFO  19:25:13,111 - #11 ]
+INFO  19:25:13,111 - #8 ;
+INFO  19:25:13,111 - #48 char
+INFO  19:25:13,111 - #48 yourField
+INFO  19:25:13,111 - #6 ,
+INFO  19:25:13,111 - #48 yourFieldArr
+INFO  19:25:13,111 - #10 [
+INFO  19:25:13,111 - #11 ]
+INFO  19:25:13,111 - #8 ;
+INFO  19:25:13,111 - #48 bool
+INFO  19:25:13,111 - #48 ourField
+INFO  19:25:13,111 - #6 ,
+INFO  19:25:13,111 - #48 ourFieldArr
+INFO  19:25:13,111 - #10 [
+INFO  19:25:13,111 - #11 ]
+INFO  19:25:13,111 - #8 ;
+INFO  19:25:13,111 - #48 MyClass
+INFO  19:25:13,111 - #48 theirField
+INFO  19:25:13,111 - #6 ,
+INFO  19:25:13,111 - #48 theirFieldArr
+INFO  19:25:13,111 - #10 [
+INFO  19:25:13,111 - #11 ]
+INFO  19:25:13,111 - #8 ;
+INFO  19:25:13,111 - #48 int
+INFO  19:25:13,111 - #48 i
+INFO  19:25:13,111 - #8 ;
+INFO  19:25:13,111 - #3 {
+INFO  19:25:13,111 - #48 MyClass
+INFO  19:25:13,111 - #48 myMethod
+INFO  19:25:13,111 - #16 (
+INFO  19:25:13,111 - #48 int
+INFO  19:25:13,111 - #48 param
+INFO  19:25:13,111 - #17 )
+INFO  19:25:13,111 - #48 int
+INFO  19:25:13,112 - #48 i
+INFO  19:25:13,112 - #8 ;
+INFO  19:25:13,112 - #48 MyClass
+INFO  19:25:13,112 - #48 j
+INFO  19:25:13,112 - #8 ;
+INFO  19:25:13,112 - #3 {
+INFO  19:25:13,112 - #40 for
+INFO  19:25:13,112 - #16 (
+INFO  19:25:13,112 - #48 i
+INFO  19:25:13,112 - #9 =
+INFO  19:25:13,112 - #49 0
+INFO  19:25:13,112 - #8 ;
+INFO  19:25:13,113 - #48 i
+INFO  19:25:13,113 - #26 <
+INFO  19:25:13,113 - #48 param
+INFO  19:25:13,113 - #8 ;
+INFO  19:25:13,113 - #48 i
+INFO  19:25:13,114 - #20 ++
+INFO  19:25:13,114 - #17 )
+INFO  19:25:13,114 - #3 {
+INFO  19:25:13,114 - #42 if
+INFO  19:25:13,114 - #16 (
+INFO  19:25:13,114 - #48 i
+INFO  19:25:13,114 - #34 %
+INFO  19:25:13,114 - #49 2
+INFO  19:25:13,114 - #22 ==
+INFO  19:25:13,114 - #49 0
+INFO  19:25:13,114 - #17 )
+INFO  19:25:13,115 - #3 {
+INFO  19:25:13,115 - #28 print
+INFO  19:25:13,115 - #16 (
+INFO  19:25:13,115 - #48 i
+INFO  19:25:13,115 - #6 ,
+INFO  19:25:13,115 - #49 6
+INFO  19:25:13,115 - #17 )
+INFO  19:25:13,115 - #8 ;
+INFO  19:25:13,115 - #4 }
+INFO  19:25:13,115 - #43 else
+INFO  19:25:13,115 - #3 {
+INFO  19:25:13,115 - #47 read
+INFO  19:25:13,115 - #16 (
+INFO  19:25:13,115 - #48 i
+INFO  19:25:13,115 - #17 )
+INFO  19:25:13,115 - #8 ;
+INFO  19:25:13,115 - #4 }
+INFO  19:25:13,115 - #4 }
+INFO  19:25:13,115 - #48 MyClass
+INFO  19:25:13,116 - #35 .
+INFO  19:25:13,116 - #48 g
+INFO  19:25:13,116 - #35 .
+INFO  19:25:13,116 - #48 myField
+INFO  19:25:13,116 - #9 =
+INFO  19:25:13,116 - #49 2
+INFO  19:25:13,116 - #8 ;
+INFO  19:25:13,116 - #48 g
+INFO  19:25:13,116 - #35 .
+INFO  19:25:13,116 - #48 myFieldArr
+INFO  19:25:13,116 - #10 [
+INFO  19:25:13,116 - #49 2
+INFO  19:25:13,116 - #11 ]
+INFO  19:25:13,116 - #9 =
+INFO  19:25:13,116 - #49 5
+INFO  19:25:13,116 - #8 ;
+INFO  19:25:13,116 - #48 theirField
+INFO  19:25:13,116 - #35 .
+INFO  19:25:13,116 - #48 myField
+INFO  19:25:13,116 - #9 =
+INFO  19:25:13,116 - #49 2
+INFO  19:25:13,116 - #8 ;
+INFO  19:25:13,116 - #48 this
+INFO  19:25:13,116 - #35 .
+INFO  19:25:13,116 - #48 myField
+INFO  19:25:13,116 - #9 =
+INFO  19:25:13,116 - #49 5
+INFO  19:25:13,116 - #8 ;
+INFO  19:25:13,116 - #48 myField
+INFO  19:25:13,116 - #9 =
+INFO  19:25:13,116 - #49 2
+INFO  19:25:13,116 - #8 ;
+INFO  19:25:13,116 - #48 this
+INFO  19:25:13,116 - #35 .
+INFO  19:25:13,116 - #48 theirField
+INFO  19:25:13,116 - #35 .
+INFO  19:25:13,116 - #48 yourField
+INFO  19:25:13,116 - #9 =
+INFO  19:25:13,116 - #51 a
+INFO  19:25:13,116 - #8 ;
+INFO  19:25:13,116 - #48 i
+INFO  19:25:13,116 - #9 =
+INFO  19:25:13,116 - #49 5
+INFO  19:25:13,116 - #8 ;
+INFO  19:25:13,116 - #48 this
+INFO  19:25:13,116 - #35 .
+INFO  19:25:13,116 - #48 i
+INFO  19:25:13,116 - #9 =
+INFO  19:25:13,116 - #49 10
+INFO  19:25:13,116 - #8 ;
+INFO  19:25:13,116 - #46 return
+INFO  19:25:13,116 - #48 j
+INFO  19:25:13,116 - #8 ;
+INFO  19:25:13,116 - #4 }
+INFO  19:25:13,116 - #4 }
+INFO  19:25:13,116 - #4 }
+INFO  19:25:13,116 - #3 {
+INFO  19:25:13,116 - #18 void
+INFO  19:25:13,117 - #48 main
+INFO  19:25:13,117 - #16 (
+INFO  19:25:13,117 - #17 )
+INFO  19:25:13,117 - #48 MyClass
+INFO  19:25:13,117 - #48 obj
+INFO  19:25:13,117 - #8 ;
+INFO  19:25:13,117 - #3 {
+INFO  19:25:13,117 - #48 obj
+INFO  19:25:13,117 - #9 =
+INFO  19:25:13,117 - #38 new
+INFO  19:25:13,117 - #48 MyClass
+INFO  19:25:13,117 - #16 (
+INFO  19:25:13,117 - #17 )
+INFO  19:25:13,117 - #8 ;
+INFO  19:25:13,117 - #48 obj
+INFO  19:25:13,117 - #35 .
+INFO  19:25:13,117 - #48 myMethod
+INFO  19:25:13,117 - #16 (
+INFO  19:25:13,117 - #49 10
+INFO  19:25:13,118 - #17 )
+INFO  19:25:13,118 - #8 ;
+INFO  19:25:13,119 - #48 MyClass
+INFO  19:25:13,119 - #35 .
+INFO  19:25:13,119 - #48 g
+INFO  19:25:13,119 - #35 .
+INFO  19:25:13,119 - #48 myField
+INFO  19:25:13,119 - #9 =
+INFO  19:25:13,119 - #49 2
+INFO  19:25:13,119 - #8 ;
+INFO  19:25:13,119 - #48 MyClass
+INFO  19:25:13,119 - #35 .
+INFO  19:25:13,119 - #48 f
+INFO  19:25:13,119 - #10 [
+INFO  19:25:13,119 - #49 1
+INFO  19:25:13,119 - #11 ]
+INFO  19:25:13,119 - #35 .
+INFO  19:25:13,119 - #48 myField
+INFO  19:25:13,119 - #9 =
+INFO  19:25:13,119 - #49 3
+INFO  19:25:13,119 - #8 ;
+INFO  19:25:13,119 - #48 MyClass
+INFO  19:25:13,119 - #35 .
+INFO  19:25:13,119 - #48 g
+INFO  19:25:13,119 - #35 .
+INFO  19:25:13,119 - #48 myFieldArr
+INFO  19:25:13,119 - #10 [
+INFO  19:25:13,119 - #49 2
+INFO  19:25:13,119 - #11 ]
+INFO  19:25:13,119 - #9 =
+INFO  19:25:13,119 - #49 4
+INFO  19:25:13,119 - #8 ;
+INFO  19:25:13,119 - #48 MyClass
+INFO  19:25:13,119 - #35 .
+INFO  19:25:13,119 - #48 f
+INFO  19:25:13,119 - #10 [
+INFO  19:25:13,119 - #49 2
+INFO  19:25:13,119 - #11 ]
+INFO  19:25:13,119 - #35 .
+INFO  19:25:13,119 - #48 myFieldArr
+INFO  19:25:13,119 - #10 [
+INFO  19:25:13,119 - #49 2
+INFO  19:25:13,119 - #11 ]
+INFO  19:25:13,119 - #9 =
+INFO  19:25:13,119 - #49 4
+INFO  19:25:13,119 - #8 ;
+INFO  19:25:13,119 - #48 MyClass
+INFO  19:25:13,119 - #35 .
+INFO  19:25:13,119 - #48 g
+INFO  19:25:13,119 - #35 .
+INFO  19:25:13,119 - #48 myField
+INFO  19:25:13,119 - #20 ++
+INFO  19:25:13,119 - #8 ;
+INFO  19:25:13,119 - #48 MyClass
+INFO  19:25:13,119 - #35 .
+INFO  19:25:13,119 - #48 g
+INFO  19:25:13,119 - #21 --
+INFO  19:25:13,119 - #8 ;
+INFO  19:25:13,120 - #4 }
+INFO  19:25:13,120 - #4 }
+INFO  19:25:13,125 - Programt(
+  ProgNamet(
+   Example
+  ) [ProgNamet]
+  NamespaceListNo(
+  ) [NamespaceListNo]
+  DeclListClass(
+    DeclListConst(
+      DeclListConst(
+        DeclListConst(
+          DeclListConst(
+            DeclListNo(
+            ) [DeclListNo]
+            ConstDeclt(
+              ConstDeclSingle(
+                TypeNo(
+                 int
+                ) [TypeNo]
+                ConstPartNum(
+                 MAX_VALUE
+                 100
+                ) [ConstPartNum]
+              ) [ConstDeclSingle]
+            ) [ConstDeclt]
+          ) [DeclListConst]
+          ConstDeclt(
+            ConstDeclSingle(
+              TypeNo(
+               int
+              ) [TypeNo]
+              ConstPartNum(
+               MAX_INT
+               5
+              ) [ConstPartNum]
+            ) [ConstDeclSingle]
+          ) [ConstDeclt]
+        ) [DeclListConst]
+        ConstDeclt(
+          ConstDeclSingle(
+            TypeNo(
+             char
+            ) [TypeNo]
+            ConstPartChar(
+             MAX_CHAR
+             A
+            ) [ConstPartChar]
+          ) [ConstDeclSingle]
+        ) [ConstDeclt]
+      ) [DeclListConst]
+      ConstDeclt(
+        ConstDeclSingle(
+          TypeNo(
+           bool
+          ) [TypeNo]
+          ConstPartBool(
+           MAX_BOOL
+           true
+          ) [ConstPartBool]
+        ) [ConstDeclSingle]
+      ) [ConstDeclt]
+    ) [DeclListConst]
+    ClassDeclNo(
+      ClassNamet(
+       MyClass
+      ) [ClassNamet]
+      StatVarDeclListYes(
+        StatVarDeclListYes(
+          StatVarDeclListYes(
+            StatVarDeclListNo(
+            ) [StatVarDeclListNo]
+            StatVarDeclInitt(
+            ) [StatVarDeclInitt]
+            VarDeclt(
+              VarDeclListParts(
+                VarDeclListParts(
+                  VarDeclSingle(
+                    TypeNo(
+                     int
+                    ) [TypeNo]
+                    VarPartNo(
+                     a
+                    ) [VarPartNo]
+                  ) [VarDeclSingle]
+                  VarPartNo(
+                   b
+                  ) [VarPartNo]
+                ) [VarDeclListParts]
+                VarPartYes(
+                 c
+                ) [VarPartYes]
+              ) [VarDeclListParts]
+            ) [VarDeclt]
+          ) [StatVarDeclListYes]
+          StatVarDeclInitt(
+          ) [StatVarDeclInitt]
+          VarDeclt(
+            VarDeclListParts(
+              VarDeclSingle(
+                TypeNo(
+                 bool
+                ) [TypeNo]
+                VarPartNo(
+                 d
+                ) [VarPartNo]
+              ) [VarDeclSingle]
+              VarPartYes(
+               e
+              ) [VarPartYes]
+            ) [VarDeclListParts]
+          ) [VarDeclt]
+        ) [StatVarDeclListYes]
+        StatVarDeclInitt(
+        ) [StatVarDeclInitt]
+        VarDeclt(
+          VarDeclListParts(
+            VarDeclSingle(
+              TypeNo(
+               MyClass
+              ) [TypeNo]
+              VarPartNo(
+               g
+              ) [VarPartNo]
+            ) [VarDeclSingle]
+            VarPartYes(
+             f
+            ) [VarPartYes]
+          ) [VarDeclListParts]
+        ) [VarDeclt]
+      ) [StatVarDeclListYes]
+      StatInitListt(
+        StatInitsYes(
+          StaticInitializert(
+            StatementListYes(
+              StatementListYes(
+                StatementListYes(
+                  StatementListYes(
+                    StatementListYes(
+                      StatementListNo(
+                      ) [StatementListNo]
+                      StmtDesignator(
+                        DesignatorStmtFirst(
+                          DesignatorNo(
+                           a
+                            DesignatorPartsNo(
+                            ) [DesignatorPartsNo]
+                          ) [DesignatorNo]
+                          OpChoiceExpr(
+                            AssignopAssignt(
+                            ) [AssignopAssignt]
+                            ExprNo(
+                              Termt(
+                                FactorNum(
+                                 5
+                                ) [FactorNum]
+                                MulopFactorListNo(
+                                ) [MulopFactorListNo]
+                              ) [Termt]
+                              AddopTermListNo(
+                              ) [AddopTermListNo]
+                            ) [ExprNo]
+                          ) [OpChoiceExpr]
+                        ) [DesignatorStmtFirst]
+                      ) [StmtDesignator]
+                    ) [StatementListYes]
+                    StmtDesignator(
+                      DesignatorStmtFirst(
+                        DesignatorNo(
+                         c
+                          DesignatorPartsExpr(
+                            DesignatorPartsNo(
+                            ) [DesignatorPartsNo]
+                            TLBrackett(
+                            ) [TLBrackett]
+                            ExprNo(
+                              Termt(
+                                FactorNum(
+                                 1
+                                ) [FactorNum]
+                                MulopFactorListNo(
+                                ) [MulopFactorListNo]
+                              ) [Termt]
+                              AddopTermListNo(
+                              ) [AddopTermListNo]
+                            ) [ExprNo]
+                            TRBrackett(
+                            ) [TRBrackett]
+                          ) [DesignatorPartsExpr]
+                        ) [DesignatorNo]
+                        OpChoiceExpr(
+                          AssignopAssignt(
+                          ) [AssignopAssignt]
+                          ExprNo(
+                            Termt(
+                              FactorNum(
+                               6
+                              ) [FactorNum]
+                              MulopFactorListNo(
+                              ) [MulopFactorListNo]
+                            ) [Termt]
+                            AddopTermListNo(
+                            ) [AddopTermListNo]
+                          ) [ExprNo]
+                        ) [OpChoiceExpr]
+                      ) [DesignatorStmtFirst]
+                    ) [StmtDesignator]
+                  ) [StatementListYes]
+                  StmtDesignator(
+                    DesignatorStmtFirst(
+                      DesignatorNo(
+                       d
+                        DesignatorPartsNo(
+                        ) [DesignatorPartsNo]
+                      ) [DesignatorNo]
+                      OpChoiceExpr(
+                        AssignopAssignt(
+                        ) [AssignopAssignt]
+                        ExprNo(
+                          Termt(
+                            FactorBool(
+                             false
+                            ) [FactorBool]
+                            MulopFactorListNo(
+                            ) [MulopFactorListNo]
+                          ) [Termt]
+                          AddopTermListNo(
+                          ) [AddopTermListNo]
+                        ) [ExprNo]
+                      ) [OpChoiceExpr]
+                    ) [DesignatorStmtFirst]
+                  ) [StmtDesignator]
+                ) [StatementListYes]
+                StmtDesignator(
+                  DesignatorStmtFirst(
+                    DesignatorNo(
+                     e
+                      DesignatorPartsExpr(
+                        DesignatorPartsNo(
+                        ) [DesignatorPartsNo]
+                        TLBrackett(
+                        ) [TLBrackett]
+                        ExprNo(
+                          Termt(
+                            FactorNum(
+                             2
+                            ) [FactorNum]
+                            MulopFactorListNo(
+                            ) [MulopFactorListNo]
+                          ) [Termt]
+                          AddopTermListNo(
+                          ) [AddopTermListNo]
+                        ) [ExprNo]
+                        TRBrackett(
+                        ) [TRBrackett]
+                      ) [DesignatorPartsExpr]
+                    ) [DesignatorNo]
+                    OpChoiceExpr(
+                      AssignopAssignt(
+                      ) [AssignopAssignt]
+                      ExprNo(
+                        Termt(
+                          FactorBool(
+                           true
+                          ) [FactorBool]
+                          MulopFactorListNo(
+                          ) [MulopFactorListNo]
+                        ) [Termt]
+                        AddopTermListNo(
+                        ) [AddopTermListNo]
+                      ) [ExprNo]
+                    ) [OpChoiceExpr]
+                  ) [DesignatorStmtFirst]
+                ) [StmtDesignator]
+              ) [StatementListYes]
+              StmtDesignator(
+                DesignatorStmtFirst(
+                  DesignatorNo(
+                   MyClass
+                    DesignatorPartsIdent(
+                      DesignatorPartsNo(
+                      ) [DesignatorPartsNo]
+                     a
+                    ) [DesignatorPartsIdent]
+                  ) [DesignatorNo]
+                  OpChoiceExpr(
+                    AssignopAssignt(
+                    ) [AssignopAssignt]
+                    ExprNo(
+                      Termt(
+                        FactorNum(
+                         5
+                        ) [FactorNum]
+                        MulopFactorListNo(
+                        ) [MulopFactorListNo]
+                      ) [Termt]
+                      AddopTermListNo(
+                      ) [AddopTermListNo]
+                    ) [ExprNo]
+                  ) [OpChoiceExpr]
+                ) [DesignatorStmtFirst]
+              ) [StmtDesignator]
+            ) [StatementListYes]
+          ) [StaticInitializert]
+          StatInitsNo(
+          ) [StatInitsNo]
+        ) [StatInitsYes]
+      ) [StatInitListt]
+      VarDeclListYes(
+        VarDeclListYes(
+          VarDeclListYes(
+            VarDeclListYes(
+              VarDeclListYes(
+                VarDeclListNo(
+                ) [VarDeclListNo]
+                VarDeclt(
+                  VarDeclListParts(
+                    VarDeclSingle(
+                      TypeNo(
+                       int
+                      ) [TypeNo]
+                      VarPartNo(
+                       myField
+                      ) [VarPartNo]
+                    ) [VarDeclSingle]
+                    VarPartYes(
+                     myFieldArr
+                    ) [VarPartYes]
+                  ) [VarDeclListParts]
+                ) [VarDeclt]
+              ) [VarDeclListYes]
+              VarDeclt(
+                VarDeclListParts(
+                  VarDeclSingle(
+                    TypeNo(
+                     char
+                    ) [TypeNo]
+                    VarPartNo(
+                     yourField
+                    ) [VarPartNo]
+                  ) [VarDeclSingle]
+                  VarPartYes(
+                   yourFieldArr
+                  ) [VarPartYes]
+                ) [VarDeclListParts]
+              ) [VarDeclt]
+            ) [VarDeclListYes]
+            VarDeclt(
+              VarDeclListParts(
+                VarDeclSingle(
+                  TypeNo(
+                   bool
+                  ) [TypeNo]
+                  VarPartNo(
+                   ourField
+                  ) [VarPartNo]
+                ) [VarDeclSingle]
+                VarPartYes(
+                 ourFieldArr
+                ) [VarPartYes]
+              ) [VarDeclListParts]
+            ) [VarDeclt]
+          ) [VarDeclListYes]
+          VarDeclt(
+            VarDeclListParts(
+              VarDeclSingle(
+                TypeNo(
+                 MyClass
+                ) [TypeNo]
+                VarPartNo(
+                 theirField
+                ) [VarPartNo]
+              ) [VarDeclSingle]
+              VarPartYes(
+               theirFieldArr
+              ) [VarPartYes]
+            ) [VarDeclListParts]
+          ) [VarDeclt]
+        ) [VarDeclListYes]
+        VarDeclt(
+          VarDeclSingle(
+            TypeNo(
+             int
+            ) [TypeNo]
+            VarPartNo(
+             i
+            ) [VarPartNo]
+          ) [VarDeclSingle]
+        ) [VarDeclt]
+      ) [VarDeclListYes]
+      MethListYes(
+        MethodDeclListYes(
+          MethodDeclListNo(
+          ) [MethodDeclListNo]
+          MethodDeclYes(
+            ReturnTypeType(
+              TypeNo(
+               MyClass
+              ) [TypeNo]
+            ) [ReturnTypeType]
+            MethodNamet(
+             myMethod
+            ) [MethodNamet]
+            FormParsSingleNo(
+              TypeNo(
+               int
+              ) [TypeNo]
+             param
+            ) [FormParsSingleNo]
+            VarDeclListYes(
+              VarDeclListYes(
+                VarDeclListNo(
+                ) [VarDeclListNo]
+                VarDeclt(
+                  VarDeclSingle(
+                    TypeNo(
+                     int
+                    ) [TypeNo]
+                    VarPartNo(
+                     i
+                    ) [VarPartNo]
+                  ) [VarDeclSingle]
+                ) [VarDeclt]
+              ) [VarDeclListYes]
+              VarDeclt(
+                VarDeclSingle(
+                  TypeNo(
+                   MyClass
+                  ) [TypeNo]
+                  VarPartNo(
+                   j
+                  ) [VarPartNo]
+                ) [VarDeclSingle]
+              ) [VarDeclt]
+            ) [VarDeclListYes]
+            StatementListYes(
+              StatementListYes(
+                StatementListYes(
+                  StatementListYes(
+                    StatementListYes(
+                      StatementListYes(
+                        StatementListYes(
+                          StatementListYes(
+                            StatementListYes(
+                              StatementListYes(
+                                StatementListNo(
+                                ) [StatementListNo]
+                                StmtForYesYesYes(
+                                  ForSymbolt(
+                                  ) [ForSymbolt]
+                                  DesignatorStmtFirst(
+                                    DesignatorNo(
+                                     i
+                                      DesignatorPartsNo(
+                                      ) [DesignatorPartsNo]
+                                    ) [DesignatorNo]
+                                    OpChoiceExpr(
+                                      AssignopAssignt(
+                                      ) [AssignopAssignt]
+                                      ExprNo(
+                                        Termt(
+                                          FactorNum(
+                                           0
+                                          ) [FactorNum]
+                                          MulopFactorListNo(
+                                          ) [MulopFactorListNo]
+                                        ) [Termt]
+                                        AddopTermListNo(
+                                        ) [AddopTermListNo]
+                                      ) [ExprNo]
+                                    ) [OpChoiceExpr]
+                                  ) [DesignatorStmtFirst]
+                                  DesignatorStmtListNo(
+                                  ) [DesignatorStmtListNo]
+                                  CondFactYes(
+                                    ExprNo(
+                                      Termt(
+                                        FactorDesignatorThird(
+                                          DesignatorNo(
+                                           i
+                                            DesignatorPartsNo(
+                                            ) [DesignatorPartsNo]
+                                          ) [DesignatorNo]
+                                        ) [FactorDesignatorThird]
+                                        MulopFactorListNo(
+                                        ) [MulopFactorListNo]
+                                      ) [Termt]
+                                      AddopTermListNo(
+                                      ) [AddopTermListNo]
+                                    ) [ExprNo]
+                                    RelopLess(
+                                    ) [RelopLess]
+                                    ExprNo(
+                                      Termt(
+                                        FactorDesignatorThird(
+                                          DesignatorNo(
+                                           param
+                                            DesignatorPartsNo(
+                                            ) [DesignatorPartsNo]
+                                          ) [DesignatorNo]
+                                        ) [FactorDesignatorThird]
+                                        MulopFactorListNo(
+                                        ) [MulopFactorListNo]
+                                      ) [Termt]
+                                      AddopTermListNo(
+                                      ) [AddopTermListNo]
+                                    ) [ExprNo]
+                                  ) [CondFactYes]
+                                  DesignatorStmtFirst(
+                                    DesignatorNo(
+                                     i
+                                      DesignatorPartsNo(
+                                      ) [DesignatorPartsNo]
+                                    ) [DesignatorNo]
+                                    OpChoiceInc(
+                                    ) [OpChoiceInc]
+                                  ) [DesignatorStmtFirst]
+                                  DesignatorStmtListNo(
+                                  ) [DesignatorStmtListNo]
+                                  StmtBlock(
+                                    StatementListYes(
+                                      StatementListNo(
+                                      ) [StatementListNo]
+                                      StmtIfElse(
+                                        Conditiont(
+                                          CondTermt(
+                                            CondFactYes(
+                                              ExprNo(
+                                                Termt(
+                                                  FactorDesignatorThird(
+                                                    DesignatorNo(
+                                                     i
+                                                      DesignatorPartsNo(
+                                                      ) [DesignatorPartsNo]
+                                                    ) [DesignatorNo]
+                                                  ) [FactorDesignatorThird]
+                                                  MulopFactorListYes(
+                                                    MulopFactorListNo(
+                                                    ) [MulopFactorListNo]
+                                                    MulopMod(
+                                                    ) [MulopMod]
+                                                    FactorNum(
+                                                     2
+                                                    ) [FactorNum]
+                                                  ) [MulopFactorListYes]
+                                                ) [Termt]
+                                                AddopTermListNo(
+                                                ) [AddopTermListNo]
+                                              ) [ExprNo]
+                                              RelopEqual(
+                                              ) [RelopEqual]
+                                              ExprNo(
+                                                Termt(
+                                                  FactorNum(
+                                                   0
+                                                  ) [FactorNum]
+                                                  MulopFactorListNo(
+                                                  ) [MulopFactorListNo]
+                                                ) [Termt]
+                                                AddopTermListNo(
+                                                ) [AddopTermListNo]
+                                              ) [ExprNo]
+                                            ) [CondFactYes]
+                                            CondFactListNo(
+                                            ) [CondFactListNo]
+                                          ) [CondTermt]
+                                          CondTermListNo(
+                                          ) [CondTermListNo]
+                                        ) [Conditiont]
+                                        StmtBlock(
+                                          StatementListYes(
+                                            StatementListNo(
+                                            ) [StatementListNo]
+                                            StmtPrintYes(
+                                              ExprNo(
+                                                Termt(
+                                                  FactorDesignatorThird(
+                                                    DesignatorNo(
+                                                     i
+                                                      DesignatorPartsNo(
+                                                      ) [DesignatorPartsNo]
+                                                    ) [DesignatorNo]
+                                                  ) [FactorDesignatorThird]
+                                                  MulopFactorListNo(
+                                                  ) [MulopFactorListNo]
+                                                ) [Termt]
+                                                AddopTermListNo(
+                                                ) [AddopTermListNo]
+                                              ) [ExprNo]
+                                             6
+                                            ) [StmtPrintYes]
+                                          ) [StatementListYes]
+                                        ) [StmtBlock]
+                                        ElseOptYes(
+                                          StmtBlock(
+                                            StatementListYes(
+                                              StatementListNo(
+                                              ) [StatementListNo]
+                                              StmtRead(
+                                                DesignatorNo(
+                                                 i
+                                                  DesignatorPartsNo(
+                                                  ) [DesignatorPartsNo]
+                                                ) [DesignatorNo]
+                                              ) [StmtRead]
+                                            ) [StatementListYes]
+                                          ) [StmtBlock]
+                                        ) [ElseOptYes]
+                                      ) [StmtIfElse]
+                                    ) [StatementListYes]
+                                  ) [StmtBlock]
+                                ) [StmtForYesYesYes]
+                              ) [StatementListYes]
+                              StmtDesignator(
+                                DesignatorStmtFirst(
+                                  DesignatorNo(
+                                   MyClass
+                                    DesignatorPartsIdent(
+                                      DesignatorPartsIdent(
+                                        DesignatorPartsNo(
+                                        ) [DesignatorPartsNo]
+                                       g
+                                      ) [DesignatorPartsIdent]
+                                     myField
+                                    ) [DesignatorPartsIdent]
+                                  ) [DesignatorNo]
+                                  OpChoiceExpr(
+                                    AssignopAssignt(
+                                    ) [AssignopAssignt]
+                                    ExprNo(
+                                      Termt(
+                                        FactorNum(
+                                         2
+                                        ) [FactorNum]
+                                        MulopFactorListNo(
+                                        ) [MulopFactorListNo]
+                                      ) [Termt]
+                                      AddopTermListNo(
+                                      ) [AddopTermListNo]
+                                    ) [ExprNo]
+                                  ) [OpChoiceExpr]
+                                ) [DesignatorStmtFirst]
+                              ) [StmtDesignator]
+                            ) [StatementListYes]
+                            StmtDesignator(
+                              DesignatorStmtFirst(
+                                DesignatorNo(
+                                 g
+                                  DesignatorPartsExpr(
+                                    DesignatorPartsIdent(
+                                      DesignatorPartsNo(
+                                      ) [DesignatorPartsNo]
+                                     myFieldArr
+                                    ) [DesignatorPartsIdent]
+                                    TLBrackett(
+                                    ) [TLBrackett]
+                                    ExprNo(
+                                      Termt(
+                                        FactorNum(
+                                         2
+                                        ) [FactorNum]
+                                        MulopFactorListNo(
+                                        ) [MulopFactorListNo]
+                                      ) [Termt]
+                                      AddopTermListNo(
+                                      ) [AddopTermListNo]
+                                    ) [ExprNo]
+                                    TRBrackett(
+                                    ) [TRBrackett]
+                                  ) [DesignatorPartsExpr]
+                                ) [DesignatorNo]
+                                OpChoiceExpr(
+                                  AssignopAssignt(
+                                  ) [AssignopAssignt]
+                                  ExprNo(
+                                    Termt(
+                                      FactorNum(
+                                       5
+                                      ) [FactorNum]
+                                      MulopFactorListNo(
+                                      ) [MulopFactorListNo]
+                                    ) [Termt]
+                                    AddopTermListNo(
+                                    ) [AddopTermListNo]
+                                  ) [ExprNo]
+                                ) [OpChoiceExpr]
+                              ) [DesignatorStmtFirst]
+                            ) [StmtDesignator]
+                          ) [StatementListYes]
+                          StmtDesignator(
+                            DesignatorStmtFirst(
+                              DesignatorNo(
+                               theirField
+                                DesignatorPartsIdent(
+                                  DesignatorPartsNo(
+                                  ) [DesignatorPartsNo]
+                                 myField
+                                ) [DesignatorPartsIdent]
+                              ) [DesignatorNo]
+                              OpChoiceExpr(
+                                AssignopAssignt(
+                                ) [AssignopAssignt]
+                                ExprNo(
+                                  Termt(
+                                    FactorNum(
+                                     2
+                                    ) [FactorNum]
+                                    MulopFactorListNo(
+                                    ) [MulopFactorListNo]
+                                  ) [Termt]
+                                  AddopTermListNo(
+                                  ) [AddopTermListNo]
+                                ) [ExprNo]
+                              ) [OpChoiceExpr]
+                            ) [DesignatorStmtFirst]
+                          ) [StmtDesignator]
+                        ) [StatementListYes]
+                        StmtDesignator(
+                          DesignatorStmtFirst(
+                            DesignatorNo(
+                             this
+                              DesignatorPartsIdent(
+                                DesignatorPartsNo(
+                                ) [DesignatorPartsNo]
+                               myField
+                              ) [DesignatorPartsIdent]
+                            ) [DesignatorNo]
+                            OpChoiceExpr(
+                              AssignopAssignt(
+                              ) [AssignopAssignt]
+                              ExprNo(
+                                Termt(
+                                  FactorNum(
+                                   5
+                                  ) [FactorNum]
+                                  MulopFactorListNo(
+                                  ) [MulopFactorListNo]
+                                ) [Termt]
+                                AddopTermListNo(
+                                ) [AddopTermListNo]
+                              ) [ExprNo]
+                            ) [OpChoiceExpr]
+                          ) [DesignatorStmtFirst]
+                        ) [StmtDesignator]
+                      ) [StatementListYes]
+                      StmtDesignator(
+                        DesignatorStmtFirst(
+                          DesignatorNo(
+                           myField
+                            DesignatorPartsNo(
+                            ) [DesignatorPartsNo]
+                          ) [DesignatorNo]
+                          OpChoiceExpr(
+                            AssignopAssignt(
+                            ) [AssignopAssignt]
+                            ExprNo(
+                              Termt(
+                                FactorNum(
+                                 2
+                                ) [FactorNum]
+                                MulopFactorListNo(
+                                ) [MulopFactorListNo]
+                              ) [Termt]
+                              AddopTermListNo(
+                              ) [AddopTermListNo]
+                            ) [ExprNo]
+                          ) [OpChoiceExpr]
+                        ) [DesignatorStmtFirst]
+                      ) [StmtDesignator]
+                    ) [StatementListYes]
+                    StmtDesignator(
+                      DesignatorStmtFirst(
+                        DesignatorNo(
+                         this
+                          DesignatorPartsIdent(
+                            DesignatorPartsIdent(
+                              DesignatorPartsNo(
+                              ) [DesignatorPartsNo]
+                             theirField
+                            ) [DesignatorPartsIdent]
+                           yourField
+                          ) [DesignatorPartsIdent]
+                        ) [DesignatorNo]
+                        OpChoiceExpr(
+                          AssignopAssignt(
+                          ) [AssignopAssignt]
+                          ExprNo(
+                            Termt(
+                              FactorChar(
+                               a
+                              ) [FactorChar]
+                              MulopFactorListNo(
+                              ) [MulopFactorListNo]
+                            ) [Termt]
+                            AddopTermListNo(
+                            ) [AddopTermListNo]
+                          ) [ExprNo]
+                        ) [OpChoiceExpr]
+                      ) [DesignatorStmtFirst]
+                    ) [StmtDesignator]
+                  ) [StatementListYes]
+                  StmtDesignator(
+                    DesignatorStmtFirst(
+                      DesignatorNo(
+                       i
+                        DesignatorPartsNo(
+                        ) [DesignatorPartsNo]
+                      ) [DesignatorNo]
+                      OpChoiceExpr(
+                        AssignopAssignt(
+                        ) [AssignopAssignt]
+                        ExprNo(
+                          Termt(
+                            FactorNum(
+                             5
+                            ) [FactorNum]
+                            MulopFactorListNo(
+                            ) [MulopFactorListNo]
+                          ) [Termt]
+                          AddopTermListNo(
+                          ) [AddopTermListNo]
+                        ) [ExprNo]
+                      ) [OpChoiceExpr]
+                    ) [DesignatorStmtFirst]
+                  ) [StmtDesignator]
+                ) [StatementListYes]
+                StmtDesignator(
+                  DesignatorStmtFirst(
+                    DesignatorNo(
+                     this
+                      DesignatorPartsIdent(
+                        DesignatorPartsNo(
+                        ) [DesignatorPartsNo]
+                       i
+                      ) [DesignatorPartsIdent]
+                    ) [DesignatorNo]
+                    OpChoiceExpr(
+                      AssignopAssignt(
+                      ) [AssignopAssignt]
+                      ExprNo(
+                        Termt(
+                          FactorNum(
+                           10
+                          ) [FactorNum]
+                          MulopFactorListNo(
+                          ) [MulopFactorListNo]
+                        ) [Termt]
+                        AddopTermListNo(
+                        ) [AddopTermListNo]
+                      ) [ExprNo]
+                    ) [OpChoiceExpr]
+                  ) [DesignatorStmtFirst]
+                ) [StmtDesignator]
+              ) [StatementListYes]
+              StmtReturnYes(
+                ExprNo(
+                  Termt(
+                    FactorDesignatorThird(
+                      DesignatorNo(
+                       j
+                        DesignatorPartsNo(
+                        ) [DesignatorPartsNo]
+                      ) [DesignatorNo]
+                    ) [FactorDesignatorThird]
+                    MulopFactorListNo(
+                    ) [MulopFactorListNo]
+                  ) [Termt]
+                  AddopTermListNo(
+                  ) [AddopTermListNo]
+                ) [ExprNo]
+              ) [StmtReturnYes]
+            ) [StatementListYes]
+          ) [MethodDeclYes]
+        ) [MethodDeclListYes]
+      ) [MethListYes]
+    ) [ClassDeclNo]
+  ) [DeclListClass]
+  MethodDeclListYes(
+    MethodDeclListNo(
+    ) [MethodDeclListNo]
+    MethodDeclNo(
+      ReturnTypeVoid(
+      ) [ReturnTypeVoid]
+      MethodNamet(
+       main
+      ) [MethodNamet]
+      VarDeclListYes(
+        VarDeclListNo(
+        ) [VarDeclListNo]
+        VarDeclt(
+          VarDeclSingle(
+            TypeNo(
+             MyClass
+            ) [TypeNo]
+            VarPartNo(
+             obj
+            ) [VarPartNo]
+          ) [VarDeclSingle]
+        ) [VarDeclt]
+      ) [VarDeclListYes]
+      StatementListYes(
+        StatementListYes(
+          StatementListYes(
+            StatementListYes(
+              StatementListYes(
+                StatementListYes(
+                  StatementListYes(
+                    StatementListYes(
+                      StatementListNo(
+                      ) [StatementListNo]
+                      StmtDesignator(
+                        DesignatorStmtFirst(
+                          DesignatorNo(
+                           obj
+                            DesignatorPartsNo(
+                            ) [DesignatorPartsNo]
+                          ) [DesignatorNo]
+                          OpChoiceExpr(
+                            AssignopAssignt(
+                            ) [AssignopAssignt]
+                            ExprNo(
+                              Termt(
+                                FactorNew(
+                                  TypeNo(
+                                   MyClass
+                                  ) [TypeNo]
+                                  NewChoiceActParsNo(
+                                  ) [NewChoiceActParsNo]
+                                ) [FactorNew]
+                                MulopFactorListNo(
+                                ) [MulopFactorListNo]
+                              ) [Termt]
+                              AddopTermListNo(
+                              ) [AddopTermListNo]
+                            ) [ExprNo]
+                          ) [OpChoiceExpr]
+                        ) [DesignatorStmtFirst]
+                      ) [StmtDesignator]
+                    ) [StatementListYes]
+                    StmtDesignator(
+                      DesignatorStmtFirst(
+                        DesignatorNo(
+                         obj
+                          DesignatorPartsIdent(
+                            DesignatorPartsNo(
+                            ) [DesignatorPartsNo]
+                           myMethod
+                          ) [DesignatorPartsIdent]
+                        ) [DesignatorNo]
+                        OpChoiceActParsYes(
+                          TLParent(
+                          ) [TLParent]
+                          ActParst(
+                            ActParsTempSingle(
+                              ExprNo(
+                                Termt(
+                                  FactorNum(
+                                   10
+                                  ) [FactorNum]
+                                  MulopFactorListNo(
+                                  ) [MulopFactorListNo]
+                                ) [Termt]
+                                AddopTermListNo(
+                                ) [AddopTermListNo]
+                              ) [ExprNo]
+                            ) [ActParsTempSingle]
+                          ) [ActParst]
+                          TRParent(
+                          ) [TRParent]
+                        ) [OpChoiceActParsYes]
+                      ) [DesignatorStmtFirst]
+                    ) [StmtDesignator]
+                  ) [StatementListYes]
+                  StmtDesignator(
+                    DesignatorStmtFirst(
+                      DesignatorNo(
+                       MyClass
+                        DesignatorPartsIdent(
+                          DesignatorPartsIdent(
+                            DesignatorPartsNo(
+                            ) [DesignatorPartsNo]
+                           g
+                          ) [DesignatorPartsIdent]
+                         myField
+                        ) [DesignatorPartsIdent]
+                      ) [DesignatorNo]
+                      OpChoiceExpr(
+                        AssignopAssignt(
+                        ) [AssignopAssignt]
+                        ExprNo(
+                          Termt(
+                            FactorNum(
+                             2
+                            ) [FactorNum]
+                            MulopFactorListNo(
+                            ) [MulopFactorListNo]
+                          ) [Termt]
+                          AddopTermListNo(
+                          ) [AddopTermListNo]
+                        ) [ExprNo]
+                      ) [OpChoiceExpr]
+                    ) [DesignatorStmtFirst]
+                  ) [StmtDesignator]
+                ) [StatementListYes]
+                StmtDesignator(
+                  DesignatorStmtFirst(
+                    DesignatorNo(
+                     MyClass
+                      DesignatorPartsIdent(
+                        DesignatorPartsExpr(
+                          DesignatorPartsIdent(
+                            DesignatorPartsNo(
+                            ) [DesignatorPartsNo]
+                           f
+                          ) [DesignatorPartsIdent]
+                          TLBrackett(
+                          ) [TLBrackett]
+                          ExprNo(
+                            Termt(
+                              FactorNum(
+                               1
+                              ) [FactorNum]
+                              MulopFactorListNo(
+                              ) [MulopFactorListNo]
+                            ) [Termt]
+                            AddopTermListNo(
+                            ) [AddopTermListNo]
+                          ) [ExprNo]
+                          TRBrackett(
+                          ) [TRBrackett]
+                        ) [DesignatorPartsExpr]
+                       myField
+                      ) [DesignatorPartsIdent]
+                    ) [DesignatorNo]
+                    OpChoiceExpr(
+                      AssignopAssignt(
+                      ) [AssignopAssignt]
+                      ExprNo(
+                        Termt(
+                          FactorNum(
+                           3
+                          ) [FactorNum]
+                          MulopFactorListNo(
+                          ) [MulopFactorListNo]
+                        ) [Termt]
+                        AddopTermListNo(
+                        ) [AddopTermListNo]
+                      ) [ExprNo]
+                    ) [OpChoiceExpr]
+                  ) [DesignatorStmtFirst]
+                ) [StmtDesignator]
+              ) [StatementListYes]
+              StmtDesignator(
+                DesignatorStmtFirst(
+                  DesignatorNo(
+                   MyClass
+                    DesignatorPartsExpr(
+                      DesignatorPartsIdent(
+                        DesignatorPartsIdent(
+                          DesignatorPartsNo(
+                          ) [DesignatorPartsNo]
+                         g
+                        ) [DesignatorPartsIdent]
+                       myFieldArr
+                      ) [DesignatorPartsIdent]
+                      TLBrackett(
+                      ) [TLBrackett]
+                      ExprNo(
+                        Termt(
+                          FactorNum(
+                           2
+                          ) [FactorNum]
+                          MulopFactorListNo(
+                          ) [MulopFactorListNo]
+                        ) [Termt]
+                        AddopTermListNo(
+                        ) [AddopTermListNo]
+                      ) [ExprNo]
+                      TRBrackett(
+                      ) [TRBrackett]
+                    ) [DesignatorPartsExpr]
+                  ) [DesignatorNo]
+                  OpChoiceExpr(
+                    AssignopAssignt(
+                    ) [AssignopAssignt]
+                    ExprNo(
+                      Termt(
+                        FactorNum(
+                         4
+                        ) [FactorNum]
+                        MulopFactorListNo(
+                        ) [MulopFactorListNo]
+                      ) [Termt]
+                      AddopTermListNo(
+                      ) [AddopTermListNo]
+                    ) [ExprNo]
+                  ) [OpChoiceExpr]
+                ) [DesignatorStmtFirst]
+              ) [StmtDesignator]
+            ) [StatementListYes]
+            StmtDesignator(
+              DesignatorStmtFirst(
+                DesignatorNo(
+                 MyClass
+                  DesignatorPartsExpr(
+                    DesignatorPartsIdent(
+                      DesignatorPartsExpr(
+                        DesignatorPartsIdent(
+                          DesignatorPartsNo(
+                          ) [DesignatorPartsNo]
+                         f
+                        ) [DesignatorPartsIdent]
+                        TLBrackett(
+                        ) [TLBrackett]
+                        ExprNo(
+                          Termt(
+                            FactorNum(
+                             2
+                            ) [FactorNum]
+                            MulopFactorListNo(
+                            ) [MulopFactorListNo]
+                          ) [Termt]
+                          AddopTermListNo(
+                          ) [AddopTermListNo]
+                        ) [ExprNo]
+                        TRBrackett(
+                        ) [TRBrackett]
+                      ) [DesignatorPartsExpr]
+                     myFieldArr
+                    ) [DesignatorPartsIdent]
+                    TLBrackett(
+                    ) [TLBrackett]
+                    ExprNo(
+                      Termt(
+                        FactorNum(
+                         2
+                        ) [FactorNum]
+                        MulopFactorListNo(
+                        ) [MulopFactorListNo]
+                      ) [Termt]
+                      AddopTermListNo(
+                      ) [AddopTermListNo]
+                    ) [ExprNo]
+                    TRBrackett(
+                    ) [TRBrackett]
+                  ) [DesignatorPartsExpr]
+                ) [DesignatorNo]
+                OpChoiceExpr(
+                  AssignopAssignt(
+                  ) [AssignopAssignt]
+                  ExprNo(
+                    Termt(
+                      FactorNum(
+                       4
+                      ) [FactorNum]
+                      MulopFactorListNo(
+                      ) [MulopFactorListNo]
+                    ) [Termt]
+                    AddopTermListNo(
+                    ) [AddopTermListNo]
+                  ) [ExprNo]
+                ) [OpChoiceExpr]
+              ) [DesignatorStmtFirst]
+            ) [StmtDesignator]
+          ) [StatementListYes]
+          StmtDesignator(
+            DesignatorStmtFirst(
+              DesignatorNo(
+               MyClass
+                DesignatorPartsIdent(
+                  DesignatorPartsIdent(
+                    DesignatorPartsNo(
+                    ) [DesignatorPartsNo]
+                   g
+                  ) [DesignatorPartsIdent]
+                 myField
+                ) [DesignatorPartsIdent]
+              ) [DesignatorNo]
+              OpChoiceInc(
+              ) [OpChoiceInc]
+            ) [DesignatorStmtFirst]
+          ) [StmtDesignator]
+        ) [StatementListYes]
+        StmtDesignator(
+          DesignatorStmtFirst(
+            DesignatorNo(
+             MyClass
+              DesignatorPartsIdent(
+                DesignatorPartsNo(
+                ) [DesignatorPartsNo]
+               g
+              ) [DesignatorPartsIdent]
+            ) [DesignatorNo]
+            OpChoiceDec(
+            ) [OpChoiceDec]
+          ) [DesignatorStmtFirst]
+        ) [StmtDesignator]
+      ) [StatementListYes]
+    ) [MethodDeclNo]
+  ) [MethodDeclListYes]
+) [Programt]
+ERROR 19:25:13,129 - Designator must be type of Integer: MyClass::g ~~~ Line: 70

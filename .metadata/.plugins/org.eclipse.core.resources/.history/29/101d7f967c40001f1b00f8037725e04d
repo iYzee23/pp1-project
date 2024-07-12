@@ -1,0 +1,16 @@
+program Example 
+
+class MyClass 
+{
+    {
+        
+    }
+}
+
+{
+    void main()
+    MyClass mObj[];
+    {
+        mObj[];
+    }
+}

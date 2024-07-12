@@ -28,7 +28,7 @@ public class MJAnalyzerTest {
 		
 		Reader br = null;
 		try {
-			File sourceCode = new File("test/program_analyzer_5.mj");
+			File sourceCode = new File("test/program_analyzer_6.mj");
 			log.info("Compiling source file: " + sourceCode.getAbsolutePath());
 			
 			br = new BufferedReader(new FileReader(sourceCode));
@@ -41,7 +41,12 @@ public class MJAnalyzerTest {
 	        Tabb.init();
 	        
 			// ispis sintaksnog stabla
-			log.info(prog.toString(""));
+			// log.info(prog.toString(""));
+	        
+	        // ispis potencijalne greske u parseru
+	        System.out.println("===============================================================");
+	        if (p.errorDetected) System.out.println("Parser found error!");
+	        
 			System.out.println("===============================================================");
 
 			// ispis prepoznatih programskih konstrukcija

@@ -1,0 +1,514 @@
+INFO  20:18:05,096 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer_6.mj
+INFO  20:18:05,144 - #2 program
+INFO  20:18:05,144 - #48 Example
+INFO  20:18:05,144 - #7 const
+INFO  20:18:05,145 - #48 int
+INFO  20:18:05,145 - #48 MAX_VALUE
+INFO  20:18:05,145 - #9 =
+INFO  20:18:05,145 - #49 100
+INFO  20:18:05,145 - #8 ;
+INFO  20:18:05,145 - #7 const
+INFO  20:18:05,145 - #48 int
+INFO  20:18:05,145 - #48 MAX_INT
+INFO  20:18:05,145 - #9 =
+INFO  20:18:05,145 - #49 5
+INFO  20:18:05,145 - #8 ;
+INFO  20:18:05,145 - #7 const
+INFO  20:18:05,145 - #48 char
+INFO  20:18:05,145 - #48 MAX_CHAR
+INFO  20:18:05,145 - #9 =
+INFO  20:18:05,155 - #51 A
+INFO  20:18:05,155 - #8 ;
+INFO  20:18:05,155 - #7 const
+INFO  20:18:05,155 - #48 bool
+INFO  20:18:05,155 - #48 MAX_BOOL
+INFO  20:18:05,155 - #9 =
+INFO  20:18:05,155 - #50 true
+INFO  20:18:05,155 - #8 ;
+INFO  20:18:05,155 - #12 class
+INFO  20:18:05,155 - #48 MyClass
+INFO  20:18:05,155 - #3 {
+INFO  20:18:05,155 - #14 static
+INFO  20:18:05,155 - #48 int
+INFO  20:18:05,155 - #48 a
+INFO  20:18:05,156 - #6 ,
+INFO  20:18:05,156 - #48 b
+INFO  20:18:05,156 - #6 ,
+INFO  20:18:05,156 - #48 c
+INFO  20:18:05,156 - #10 [
+INFO  20:18:05,156 - #11 ]
+INFO  20:18:05,156 - #8 ;
+INFO  20:18:05,156 - #14 static
+INFO  20:18:05,156 - #48 bool
+INFO  20:18:05,156 - #48 d
+INFO  20:18:05,156 - #6 ,
+INFO  20:18:05,156 - #48 e
+INFO  20:18:05,156 - #10 [
+INFO  20:18:05,156 - #11 ]
+INFO  20:18:05,156 - #8 ;
+INFO  20:18:05,156 - #14 static
+INFO  20:18:05,156 - #48 MyClass
+INFO  20:18:05,156 - #48 g
+INFO  20:18:05,156 - #6 ,
+INFO  20:18:05,156 - #48 f
+INFO  20:18:05,156 - #10 [
+INFO  20:18:05,156 - #11 ]
+INFO  20:18:05,156 - #8 ;
+INFO  20:18:05,156 - #48 int
+INFO  20:18:05,157 - #48 myField
+INFO  20:18:05,157 - #6 ,
+INFO  20:18:05,157 - #48 myFieldArr
+INFO  20:18:05,157 - #10 [
+INFO  20:18:05,157 - #11 ]
+INFO  20:18:05,157 - #8 ;
+INFO  20:18:05,157 - #48 char
+INFO  20:18:05,157 - #48 yourField
+INFO  20:18:05,157 - #6 ,
+INFO  20:18:05,157 - #48 yourFieldArr
+INFO  20:18:05,157 - #10 [
+INFO  20:18:05,157 - #11 ]
+INFO  20:18:05,157 - #8 ;
+INFO  20:18:05,157 - #48 bool
+INFO  20:18:05,157 - #48 ourField
+INFO  20:18:05,157 - #6 ,
+INFO  20:18:05,157 - #48 ourFieldArr
+INFO  20:18:05,157 - #10 [
+INFO  20:18:05,157 - #11 ]
+INFO  20:18:05,157 - #8 ;
+INFO  20:18:05,157 - #48 MyClass
+INFO  20:18:05,157 - #48 theirField
+INFO  20:18:05,157 - #6 ,
+INFO  20:18:05,157 - #48 theirFieldArr
+INFO  20:18:05,157 - #10 [
+INFO  20:18:05,157 - #11 ]
+INFO  20:18:05,157 - #8 ;
+INFO  20:18:05,157 - #48 int
+INFO  20:18:05,157 - #48 i
+INFO  20:18:05,157 - #8 ;
+INFO  20:18:05,157 - #3 {
+INFO  20:18:05,157 - #48 MyClass
+INFO  20:18:05,158 - #48 myMethod
+INFO  20:18:05,158 - #16 (
+INFO  20:18:05,158 - #48 int
+INFO  20:18:05,158 - #48 param
+INFO  20:18:05,158 - #17 )
+INFO  20:18:05,158 - #48 int
+INFO  20:18:05,158 - #48 i
+INFO  20:18:05,158 - #8 ;
+INFO  20:18:05,158 - #48 MyClass
+INFO  20:18:05,158 - #48 j
+INFO  20:18:05,158 - #8 ;
+INFO  20:18:05,158 - #3 {
+INFO  20:18:05,158 - #46 return
+INFO  20:18:05,159 - #48 j
+INFO  20:18:05,159 - #8 ;
+INFO  20:18:05,160 - #4 }
+INFO  20:18:05,160 - #4 }
+INFO  20:18:05,160 - #4 }
+INFO  20:18:05,161 - #3 {
+INFO  20:18:05,161 - #18 void
+INFO  20:18:05,161 - #48 main
+INFO  20:18:05,161 - #16 (
+INFO  20:18:05,161 - #17 )
+INFO  20:18:05,161 - #48 MyClass
+INFO  20:18:05,161 - #48 obj
+INFO  20:18:05,161 - #8 ;
+INFO  20:18:05,161 - #48 int
+INFO  20:18:05,161 - #48 r
+INFO  20:18:05,161 - #10 [
+INFO  20:18:05,161 - #11 ]
+INFO  20:18:05,161 - #6 ,
+INFO  20:18:05,161 - #48 p
+INFO  20:18:05,161 - #10 [
+INFO  20:18:05,161 - #11 ]
+INFO  20:18:05,161 - #8 ;
+INFO  20:18:05,161 - #48 int
+INFO  20:18:05,161 - #48 a
+INFO  20:18:05,161 - #6 ,
+INFO  20:18:05,161 - #48 b
+INFO  20:18:05,161 - #6 ,
+INFO  20:18:05,161 - #48 c
+INFO  20:18:05,161 - #8 ;
+INFO  20:18:05,161 - #48 MyClass
+INFO  20:18:05,161 - #48 mObj
+INFO  20:18:05,163 - #10 [
+INFO  20:18:05,163 - #11 ]
+INFO  20:18:05,163 - #8 ;
+INFO  20:18:05,163 - #3 {
+INFO  20:18:05,163 - #48 mObj
+INFO  20:18:05,163 - #10 [
+INFO  20:18:05,163 - #11 ]
+ERROR 20:18:05,163 - Syntax error on line 98
+INFO  20:18:05,163 - #8 ;
+INFO  20:18:05,163 - #4 }
+INFO  20:18:05,163 - #4 }
+ERROR 20:18:05,163 - Bad designator statement. Performed recovery until ; in line 98
+INFO  20:18:05,167 - Programt(
+  ProgNamet(
+   Example
+  ) [ProgNamet]
+  NamespaceListNo(
+  ) [NamespaceListNo]
+  DeclListClass(
+    DeclListConst(
+      DeclListConst(
+        DeclListConst(
+          DeclListConst(
+            DeclListNo(
+            ) [DeclListNo]
+            ConstDeclt(
+              ConstDeclSingle(
+                TypeNo(
+                 int
+                ) [TypeNo]
+                ConstPartNum(
+                 MAX_VALUE
+                 100
+                ) [ConstPartNum]
+              ) [ConstDeclSingle]
+            ) [ConstDeclt]
+          ) [DeclListConst]
+          ConstDeclt(
+            ConstDeclSingle(
+              TypeNo(
+               int
+              ) [TypeNo]
+              ConstPartNum(
+               MAX_INT
+               5
+              ) [ConstPartNum]
+            ) [ConstDeclSingle]
+          ) [ConstDeclt]
+        ) [DeclListConst]
+        ConstDeclt(
+          ConstDeclSingle(
+            TypeNo(
+             char
+            ) [TypeNo]
+            ConstPartChar(
+             MAX_CHAR
+             A
+            ) [ConstPartChar]
+          ) [ConstDeclSingle]
+        ) [ConstDeclt]
+      ) [DeclListConst]
+      ConstDeclt(
+        ConstDeclSingle(
+          TypeNo(
+           bool
+          ) [TypeNo]
+          ConstPartBool(
+           MAX_BOOL
+           true
+          ) [ConstPartBool]
+        ) [ConstDeclSingle]
+      ) [ConstDeclt]
+    ) [DeclListConst]
+    ClassDeclNo(
+      ClassNamet(
+       MyClass
+      ) [ClassNamet]
+      StatVarDeclListYes(
+        StatVarDeclListYes(
+          StatVarDeclListYes(
+            StatVarDeclListNo(
+            ) [StatVarDeclListNo]
+            StatVarDeclInitt(
+            ) [StatVarDeclInitt]
+            VarDeclt(
+              VarDeclListParts(
+                VarDeclListParts(
+                  VarDeclSingle(
+                    TypeNo(
+                     int
+                    ) [TypeNo]
+                    VarPartNo(
+                     a
+                    ) [VarPartNo]
+                  ) [VarDeclSingle]
+                  VarPartNo(
+                   b
+                  ) [VarPartNo]
+                ) [VarDeclListParts]
+                VarPartYes(
+                 c
+                ) [VarPartYes]
+              ) [VarDeclListParts]
+            ) [VarDeclt]
+          ) [StatVarDeclListYes]
+          StatVarDeclInitt(
+          ) [StatVarDeclInitt]
+          VarDeclt(
+            VarDeclListParts(
+              VarDeclSingle(
+                TypeNo(
+                 bool
+                ) [TypeNo]
+                VarPartNo(
+                 d
+                ) [VarPartNo]
+              ) [VarDeclSingle]
+              VarPartYes(
+               e
+              ) [VarPartYes]
+            ) [VarDeclListParts]
+          ) [VarDeclt]
+        ) [StatVarDeclListYes]
+        StatVarDeclInitt(
+        ) [StatVarDeclInitt]
+        VarDeclt(
+          VarDeclListParts(
+            VarDeclSingle(
+              TypeNo(
+               MyClass
+              ) [TypeNo]
+              VarPartNo(
+               g
+              ) [VarPartNo]
+            ) [VarDeclSingle]
+            VarPartYes(
+             f
+            ) [VarPartYes]
+          ) [VarDeclListParts]
+        ) [VarDeclt]
+      ) [StatVarDeclListYes]
+      StatInitListt(
+        StatInitsNo(
+        ) [StatInitsNo]
+      ) [StatInitListt]
+      VarDeclListYes(
+        VarDeclListYes(
+          VarDeclListYes(
+            VarDeclListYes(
+              VarDeclListYes(
+                VarDeclListNo(
+                ) [VarDeclListNo]
+                VarDeclt(
+                  VarDeclListParts(
+                    VarDeclSingle(
+                      TypeNo(
+                       int
+                      ) [TypeNo]
+                      VarPartNo(
+                       myField
+                      ) [VarPartNo]
+                    ) [VarDeclSingle]
+                    VarPartYes(
+                     myFieldArr
+                    ) [VarPartYes]
+                  ) [VarDeclListParts]
+                ) [VarDeclt]
+              ) [VarDeclListYes]
+              VarDeclt(
+                VarDeclListParts(
+                  VarDeclSingle(
+                    TypeNo(
+                     char
+                    ) [TypeNo]
+                    VarPartNo(
+                     yourField
+                    ) [VarPartNo]
+                  ) [VarDeclSingle]
+                  VarPartYes(
+                   yourFieldArr
+                  ) [VarPartYes]
+                ) [VarDeclListParts]
+              ) [VarDeclt]
+            ) [VarDeclListYes]
+            VarDeclt(
+              VarDeclListParts(
+                VarDeclSingle(
+                  TypeNo(
+                   bool
+                  ) [TypeNo]
+                  VarPartNo(
+                   ourField
+                  ) [VarPartNo]
+                ) [VarDeclSingle]
+                VarPartYes(
+                 ourFieldArr
+                ) [VarPartYes]
+              ) [VarDeclListParts]
+            ) [VarDeclt]
+          ) [VarDeclListYes]
+          VarDeclt(
+            VarDeclListParts(
+              VarDeclSingle(
+                TypeNo(
+                 MyClass
+                ) [TypeNo]
+                VarPartNo(
+                 theirField
+                ) [VarPartNo]
+              ) [VarDeclSingle]
+              VarPartYes(
+               theirFieldArr
+              ) [VarPartYes]
+            ) [VarDeclListParts]
+          ) [VarDeclt]
+        ) [VarDeclListYes]
+        VarDeclt(
+          VarDeclSingle(
+            TypeNo(
+             int
+            ) [TypeNo]
+            VarPartNo(
+             i
+            ) [VarPartNo]
+          ) [VarDeclSingle]
+        ) [VarDeclt]
+      ) [VarDeclListYes]
+      MethListYes(
+        MethodDeclListYes(
+          MethodDeclListNo(
+          ) [MethodDeclListNo]
+          MethodDeclYes(
+            ReturnTypeType(
+              TypeNo(
+               MyClass
+              ) [TypeNo]
+            ) [ReturnTypeType]
+            MethodNamet(
+             myMethod
+            ) [MethodNamet]
+            FormParsSingleNo(
+              TypeNo(
+               int
+              ) [TypeNo]
+             param
+            ) [FormParsSingleNo]
+            VarDeclListYes(
+              VarDeclListYes(
+                VarDeclListNo(
+                ) [VarDeclListNo]
+                VarDeclt(
+                  VarDeclSingle(
+                    TypeNo(
+                     int
+                    ) [TypeNo]
+                    VarPartNo(
+                     i
+                    ) [VarPartNo]
+                  ) [VarDeclSingle]
+                ) [VarDeclt]
+              ) [VarDeclListYes]
+              VarDeclt(
+                VarDeclSingle(
+                  TypeNo(
+                   MyClass
+                  ) [TypeNo]
+                  VarPartNo(
+                   j
+                  ) [VarPartNo]
+                ) [VarDeclSingle]
+              ) [VarDeclt]
+            ) [VarDeclListYes]
+            StatementListYes(
+              StatementListNo(
+              ) [StatementListNo]
+              StmtReturnYes(
+                ExprNo(
+                  Termt(
+                    FactorDesignatorThird(
+                      DesignatorNo(
+                       j
+                        DesignatorPartsNo(
+                        ) [DesignatorPartsNo]
+                      ) [DesignatorNo]
+                    ) [FactorDesignatorThird]
+                    MulopFactorListNo(
+                    ) [MulopFactorListNo]
+                  ) [Termt]
+                  AddopTermListNo(
+                  ) [AddopTermListNo]
+                ) [ExprNo]
+              ) [StmtReturnYes]
+            ) [StatementListYes]
+          ) [MethodDeclYes]
+        ) [MethodDeclListYes]
+      ) [MethListYes]
+    ) [ClassDeclNo]
+  ) [DeclListClass]
+  MethodDeclListYes(
+    MethodDeclListNo(
+    ) [MethodDeclListNo]
+    MethodDeclNo(
+      ReturnTypeVoid(
+      ) [ReturnTypeVoid]
+      MethodNamet(
+       main
+      ) [MethodNamet]
+      VarDeclListYes(
+        VarDeclListYes(
+          VarDeclListYes(
+            VarDeclListYes(
+              VarDeclListNo(
+              ) [VarDeclListNo]
+              VarDeclt(
+                VarDeclSingle(
+                  TypeNo(
+                   MyClass
+                  ) [TypeNo]
+                  VarPartNo(
+                   obj
+                  ) [VarPartNo]
+                ) [VarDeclSingle]
+              ) [VarDeclt]
+            ) [VarDeclListYes]
+            VarDeclt(
+              VarDeclListParts(
+                VarDeclSingle(
+                  TypeNo(
+                   int
+                  ) [TypeNo]
+                  VarPartYes(
+                   r
+                  ) [VarPartYes]
+                ) [VarDeclSingle]
+                VarPartYes(
+                 p
+                ) [VarPartYes]
+              ) [VarDeclListParts]
+            ) [VarDeclt]
+          ) [VarDeclListYes]
+          VarDeclt(
+            VarDeclListParts(
+              VarDeclListParts(
+                VarDeclSingle(
+                  TypeNo(
+                   int
+                  ) [TypeNo]
+                  VarPartNo(
+                   a
+                  ) [VarPartNo]
+                ) [VarDeclSingle]
+                VarPartNo(
+                 b
+                ) [VarPartNo]
+              ) [VarDeclListParts]
+              VarPartNo(
+               c
+              ) [VarPartNo]
+            ) [VarDeclListParts]
+          ) [VarDeclt]
+        ) [VarDeclListYes]
+        VarDeclt(
+          VarDeclSingle(
+            TypeNo(
+             MyClass
+            ) [TypeNo]
+            VarPartYes(
+             mObj
+            ) [VarPartYes]
+          ) [VarDeclSingle]
+        ) [VarDeclt]
+      ) [VarDeclListYes]
+      StatementListYes(
+        StatementListNo(
+        ) [StatementListNo]
+        StmtDesignatorError(
+        ) [StmtDesignatorError]
+      ) [StatementListYes]
+    ) [MethodDeclNo]
+  ) [MethodDeclListYes]
+) [Programt]

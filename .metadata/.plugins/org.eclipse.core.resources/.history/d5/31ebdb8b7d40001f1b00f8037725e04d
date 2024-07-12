@@ -1,0 +1,163 @@
+INFO  20:26:34,401 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer_6.mj
+INFO  20:26:34,453 - #2 program
+INFO  20:26:34,453 - #48 Example
+INFO  20:26:34,453 - #7 const
+INFO  20:26:34,454 - #48 int
+INFO  20:26:34,454 - #48 MAX_VALUE
+INFO  20:26:34,454 - #9 =
+INFO  20:26:34,454 - #49 100
+INFO  20:26:34,454 - #8 ;
+INFO  20:26:34,454 - #7 const
+INFO  20:26:34,454 - #48 int
+INFO  20:26:34,454 - #48 MAX_INT
+INFO  20:26:34,454 - #9 =
+INFO  20:26:34,454 - #49 5
+INFO  20:26:34,454 - #8 ;
+INFO  20:26:34,454 - #7 const
+INFO  20:26:34,454 - #48 char
+INFO  20:26:34,454 - #48 MAX_CHAR
+INFO  20:26:34,454 - #9 =
+INFO  20:26:34,463 - #51 A
+INFO  20:26:34,463 - #8 ;
+INFO  20:26:34,463 - #7 const
+INFO  20:26:34,463 - #48 bool
+INFO  20:26:34,463 - #48 MAX_BOOL
+INFO  20:26:34,463 - #9 =
+INFO  20:26:34,463 - #50 true
+INFO  20:26:34,463 - #8 ;
+INFO  20:26:34,463 - #12 class
+INFO  20:26:34,463 - #48 MyClass
+INFO  20:26:34,463 - #3 {
+INFO  20:26:34,463 - #3 {
+INFO  20:26:34,464 - #4 }
+INFO  20:26:34,465 - #4 }
+INFO  20:26:34,465 - #3 {
+INFO  20:26:34,465 - #18 void
+INFO  20:26:34,465 - #48 main
+INFO  20:26:34,465 - #16 (
+INFO  20:26:34,465 - #17 )
+INFO  20:26:34,465 - #48 MyClass
+INFO  20:26:34,465 - #48 mObj
+INFO  20:26:34,465 - #10 [
+INFO  20:26:34,465 - #11 ]
+INFO  20:26:34,465 - #8 ;
+INFO  20:26:34,466 - #3 {
+INFO  20:26:34,466 - #48 mObj
+INFO  20:26:34,466 - #10 [
+INFO  20:26:34,466 - #11 ]
+ERROR 20:26:34,466 - Syntax error on line 19
+INFO  20:26:34,466 - #8 ;
+INFO  20:26:34,466 - #4 }
+INFO  20:26:34,466 - #4 }
+ERROR 20:26:34,468 - Bad designator statement. Performed recovery until ; in line 19
+INFO  20:26:34,471 - Programt(
+  ProgNamet(
+   Example
+  ) [ProgNamet]
+  NamespaceListNo(
+  ) [NamespaceListNo]
+  DeclListClass(
+    DeclListConst(
+      DeclListConst(
+        DeclListConst(
+          DeclListConst(
+            DeclListNo(
+            ) [DeclListNo]
+            ConstDeclt(
+              ConstDeclSingle(
+                TypeNo(
+                 int
+                ) [TypeNo]
+                ConstPartNum(
+                 MAX_VALUE
+                 100
+                ) [ConstPartNum]
+              ) [ConstDeclSingle]
+            ) [ConstDeclt]
+          ) [DeclListConst]
+          ConstDeclt(
+            ConstDeclSingle(
+              TypeNo(
+               int
+              ) [TypeNo]
+              ConstPartNum(
+               MAX_INT
+               5
+              ) [ConstPartNum]
+            ) [ConstDeclSingle]
+          ) [ConstDeclt]
+        ) [DeclListConst]
+        ConstDeclt(
+          ConstDeclSingle(
+            TypeNo(
+             char
+            ) [TypeNo]
+            ConstPartChar(
+             MAX_CHAR
+             A
+            ) [ConstPartChar]
+          ) [ConstDeclSingle]
+        ) [ConstDeclt]
+      ) [DeclListConst]
+      ConstDeclt(
+        ConstDeclSingle(
+          TypeNo(
+           bool
+          ) [TypeNo]
+          ConstPartBool(
+           MAX_BOOL
+           true
+          ) [ConstPartBool]
+        ) [ConstDeclSingle]
+      ) [ConstDeclt]
+    ) [DeclListConst]
+    ClassDeclNo(
+      ClassNamet(
+       MyClass
+      ) [ClassNamet]
+      StatVarDeclListNo(
+      ) [StatVarDeclListNo]
+      StatInitListt(
+        StatInitsNo(
+        ) [StatInitsNo]
+      ) [StatInitListt]
+      VarDeclListNo(
+      ) [VarDeclListNo]
+      MethListYes(
+        MethodDeclListNo(
+        ) [MethodDeclListNo]
+      ) [MethListYes]
+    ) [ClassDeclNo]
+  ) [DeclListClass]
+  MethodDeclListYes(
+    MethodDeclListNo(
+    ) [MethodDeclListNo]
+    MethodDeclNo(
+      ReturnTypeVoid(
+      ) [ReturnTypeVoid]
+      MethodNamet(
+       main
+      ) [MethodNamet]
+      VarDeclListYes(
+        VarDeclListNo(
+        ) [VarDeclListNo]
+        VarDeclt(
+          VarDeclSingle(
+            TypeNo(
+             MyClass
+            ) [TypeNo]
+            VarPartYes(
+             mObj
+            ) [VarPartYes]
+          ) [VarDeclSingle]
+        ) [VarDeclt]
+      ) [VarDeclListYes]
+      StatementListYes(
+        StatementListNo(
+        ) [StatementListNo]
+        StmtDesignatorError(
+        ) [StmtDesignatorError]
+      ) [StatementListYes]
+    ) [MethodDeclNo]
+  ) [MethodDeclListYes]
+) [Programt]
