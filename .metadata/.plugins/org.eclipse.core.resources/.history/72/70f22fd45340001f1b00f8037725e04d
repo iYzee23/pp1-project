@@ -1,0 +1,63 @@
+program InheritanceExample 
+
+const int MAX_VALUE = 100;
+const int MAX_INT = 5;
+const char MAX_CHAR = 'A';
+const bool MAX_BOOL = true;
+
+class BaseClass 
+{
+	static int statField;
+
+    int baseField;
+
+	{
+	    void display() 
+	    {
+	        print(baseField, 1);
+	        print(statField, 1);
+	        print(this.baseField, 1);
+	        print(BaseClass.statField, 1);
+	        
+	        print(baseField);
+	        print(statField);
+	        print(this.baseField);
+	        print(BaseClass.statField);
+	    }
+	}
+}
+
+class DerivedClass extends BaseClass
+{
+    int derivedField;
+
+    // Redefinisanje metoda display iz BaseClass
+    void display() 
+    {
+        print("DerivedClass display method");
+    }
+
+    void showBothFields()
+    {
+        print("Base field: ", baseField);
+        print("Derived field: ", derivedField);
+    }
+}
+
+{
+    void main()
+    DerivedClass obj;
+    {
+        obj = new DerivedClass();
+        
+        // Postavljanje vrednosti polja
+        obj.baseField = 10;
+        obj.derivedField = 20;
+        
+        // Poziv redefinisanog metoda display
+        obj.display();  // Očekivani ispis: "DerivedClass display method"
+        
+        // Poziv metoda iz DerivedClass koji prikazuje oba polja
+        obj.showBothFields();  // Očekivani ispis: "Base field: 10" i "Derived field: 20"
+    }
+}

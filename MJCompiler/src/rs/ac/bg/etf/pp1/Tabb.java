@@ -70,6 +70,15 @@ public class Tabb extends Tab {
 		return resObj;
 	}
 	
+	public static Obj findExactStatic(String name) {
+		Obj resObj = Tabb.noObj;
+		if (programScope.getLocals() != null) {
+			resObj = programScope.getLocals().searchKey(name);
+			if (resObj == null) resObj = Tabb.noObj;
+		}
+		return resObj;
+	}
+	
 	public static Obj getFormalParam(Obj meth, int index) {
 		Collection<Obj> localList = meth.getLocalSymbols(); 
 		for (Obj elem: localList) {
@@ -91,7 +100,7 @@ public class Tabb extends Tab {
 				
 				Tabb.openScope();
 				for (Obj mElem: methMembers) {
-					Obj mNewElem = Tabb.insert(mElem.getKind(), mElem.getName(), mElem.getName().equals("this") ? currClass : superClass);
+					Obj mNewElem = Tabb.insert(mElem.getKind(), mElem.getName(), mElem.getName().equals("this") ? currClass : mElem.getType());
 					mNewElem.setAdr(mElem.getAdr());
 					mNewElem.setLevel(mElem.getLevel());
 				}
@@ -119,6 +128,14 @@ public class Tabb extends Tab {
 		Tabb.currentScope().getLocals().deleteKey(overrideMeth.getName());
 		Tabb.currentScope().getLocals().insertKey(overrideMeth);
 		overrideMeth.setFpPos(1);
+	}
+	
+	public static boolean firstAssignableToSecond(Struct first, Struct second) {
+		while (first != null) {
+			if (first.assignableTo(second)) return true;
+			first = first.getElemType();
+		}
+		return false;
 	}
 
 }

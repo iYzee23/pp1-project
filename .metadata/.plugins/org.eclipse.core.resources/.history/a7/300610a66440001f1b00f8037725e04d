@@ -1,0 +1,1280 @@
+INFO  16:41:19,396 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer_5.mj
+INFO  16:41:19,438 - #2 program
+INFO  16:41:19,438 - #48 InheritanceExample
+INFO  16:41:19,438 - #7 const
+INFO  16:41:19,439 - #48 int
+INFO  16:41:19,439 - #48 MAX_VALUE
+INFO  16:41:19,439 - #9 =
+INFO  16:41:19,439 - #49 100
+INFO  16:41:19,439 - #8 ;
+INFO  16:41:19,439 - #7 const
+INFO  16:41:19,439 - #48 int
+INFO  16:41:19,439 - #48 MAX_INT
+INFO  16:41:19,439 - #9 =
+INFO  16:41:19,439 - #49 5
+INFO  16:41:19,439 - #8 ;
+INFO  16:41:19,439 - #7 const
+INFO  16:41:19,439 - #48 char
+INFO  16:41:19,439 - #48 MAX_CHAR
+INFO  16:41:19,449 - #9 =
+INFO  16:41:19,449 - #51 A
+INFO  16:41:19,449 - #8 ;
+INFO  16:41:19,449 - #7 const
+INFO  16:41:19,449 - #48 bool
+INFO  16:41:19,449 - #48 MAX_BOOL
+INFO  16:41:19,449 - #9 =
+INFO  16:41:19,449 - #50 true
+INFO  16:41:19,449 - #8 ;
+INFO  16:41:19,449 - #12 class
+INFO  16:41:19,449 - #48 BaseClass
+INFO  16:41:19,449 - #3 {
+INFO  16:41:19,449 - #14 static
+INFO  16:41:19,449 - #48 int
+INFO  16:41:19,450 - #48 statField
+INFO  16:41:19,450 - #8 ;
+INFO  16:41:19,450 - #48 int
+INFO  16:41:19,451 - #48 baseField
+INFO  16:41:19,451 - #8 ;
+INFO  16:41:19,451 - #3 {
+INFO  16:41:19,451 - #18 void
+INFO  16:41:19,451 - #48 display
+INFO  16:41:19,452 - #16 (
+INFO  16:41:19,452 - #17 )
+INFO  16:41:19,452 - #3 {
+INFO  16:41:19,452 - #4 }
+INFO  16:41:19,452 - #18 void
+INFO  16:41:19,452 - #48 displayRead
+INFO  16:41:19,452 - #16 (
+INFO  16:41:19,452 - #17 )
+INFO  16:41:19,452 - #3 {
+INFO  16:41:19,452 - #47 read
+INFO  16:41:19,452 - #16 (
+INFO  16:41:19,452 - #48 baseField
+INFO  16:41:19,452 - #17 )
+INFO  16:41:19,453 - #8 ;
+INFO  16:41:19,453 - #47 read
+INFO  16:41:19,453 - #16 (
+INFO  16:41:19,453 - #48 statField
+INFO  16:41:19,453 - #17 )
+INFO  16:41:19,453 - #8 ;
+INFO  16:41:19,453 - #47 read
+INFO  16:41:19,453 - #16 (
+INFO  16:41:19,453 - #48 this
+INFO  16:41:19,453 - #35 .
+INFO  16:41:19,453 - #48 baseField
+INFO  16:41:19,453 - #17 )
+INFO  16:41:19,453 - #8 ;
+INFO  16:41:19,453 - #47 read
+INFO  16:41:19,453 - #16 (
+INFO  16:41:19,453 - #48 BaseClass
+INFO  16:41:19,453 - #35 .
+INFO  16:41:19,453 - #48 statField
+INFO  16:41:19,455 - #17 )
+INFO  16:41:19,455 - #8 ;
+INFO  16:41:19,455 - #4 }
+INFO  16:41:19,455 - #18 void
+INFO  16:41:19,455 - #48 displayPrint
+INFO  16:41:19,455 - #16 (
+INFO  16:41:19,455 - #17 )
+INFO  16:41:19,455 - #3 {
+INFO  16:41:19,455 - #28 print
+INFO  16:41:19,455 - #16 (
+INFO  16:41:19,455 - #48 baseField
+INFO  16:41:19,455 - #6 ,
+INFO  16:41:19,456 - #49 1
+INFO  16:41:19,456 - #17 )
+INFO  16:41:19,456 - #8 ;
+INFO  16:41:19,456 - #28 print
+INFO  16:41:19,456 - #16 (
+INFO  16:41:19,456 - #48 statField
+INFO  16:41:19,456 - #6 ,
+INFO  16:41:19,456 - #49 1
+INFO  16:41:19,456 - #17 )
+INFO  16:41:19,456 - #8 ;
+INFO  16:41:19,456 - #28 print
+INFO  16:41:19,456 - #16 (
+INFO  16:41:19,456 - #48 this
+INFO  16:41:19,456 - #35 .
+INFO  16:41:19,456 - #48 baseField
+INFO  16:41:19,457 - #6 ,
+INFO  16:41:19,457 - #49 1
+INFO  16:41:19,457 - #17 )
+INFO  16:41:19,457 - #8 ;
+INFO  16:41:19,457 - #28 print
+INFO  16:41:19,457 - #16 (
+INFO  16:41:19,457 - #48 BaseClass
+INFO  16:41:19,457 - #35 .
+INFO  16:41:19,457 - #48 statField
+INFO  16:41:19,457 - #6 ,
+INFO  16:41:19,457 - #49 1
+INFO  16:41:19,457 - #17 )
+INFO  16:41:19,457 - #8 ;
+INFO  16:41:19,457 - #28 print
+INFO  16:41:19,457 - #16 (
+INFO  16:41:19,457 - #48 baseField
+INFO  16:41:19,457 - #17 )
+INFO  16:41:19,457 - #8 ;
+INFO  16:41:19,457 - #28 print
+INFO  16:41:19,457 - #16 (
+INFO  16:41:19,457 - #48 statField
+INFO  16:41:19,457 - #17 )
+INFO  16:41:19,457 - #8 ;
+INFO  16:41:19,457 - #28 print
+INFO  16:41:19,457 - #16 (
+INFO  16:41:19,457 - #48 this
+INFO  16:41:19,457 - #35 .
+INFO  16:41:19,457 - #48 baseField
+INFO  16:41:19,457 - #17 )
+INFO  16:41:19,457 - #8 ;
+INFO  16:41:19,457 - #28 print
+INFO  16:41:19,458 - #16 (
+INFO  16:41:19,458 - #48 BaseClass
+INFO  16:41:19,458 - #35 .
+INFO  16:41:19,458 - #48 statField
+INFO  16:41:19,458 - #17 )
+INFO  16:41:19,458 - #8 ;
+INFO  16:41:19,458 - #4 }
+INFO  16:41:19,458 - #18 void
+INFO  16:41:19,458 - #48 bcMethod
+INFO  16:41:19,458 - #16 (
+INFO  16:41:19,458 - #48 int
+INFO  16:41:19,458 - #48 a1
+INFO  16:41:19,458 - #6 ,
+INFO  16:41:19,458 - #48 int
+INFO  16:41:19,458 - #48 a2
+INFO  16:41:19,458 - #6 ,
+INFO  16:41:19,458 - #48 int
+INFO  16:41:19,458 - #48 a3
+INFO  16:41:19,459 - #17 )
+INFO  16:41:19,459 - #3 {
+INFO  16:41:19,459 - #4 }
+INFO  16:41:19,459 - #4 }
+INFO  16:41:19,459 - #4 }
+INFO  16:41:19,459 - #12 class
+INFO  16:41:19,459 - #48 DerivedClass
+INFO  16:41:19,459 - #13 extends
+INFO  16:41:19,459 - #48 BaseClass
+INFO  16:41:19,459 - #3 {
+INFO  16:41:19,459 - #14 static
+INFO  16:41:19,459 - #48 int
+INFO  16:41:19,459 - #48 statField
+INFO  16:41:19,459 - #8 ;
+INFO  16:41:19,459 - #48 int
+INFO  16:41:19,459 - #48 derivedField
+INFO  16:41:19,459 - #8 ;
+INFO  16:41:19,459 - #3 {
+INFO  16:41:19,459 - #18 void
+INFO  16:41:19,459 - #48 display
+INFO  16:41:19,459 - #16 (
+INFO  16:41:19,459 - #17 )
+INFO  16:41:19,459 - #3 {
+INFO  16:41:19,459 - #4 }
+INFO  16:41:19,459 - #18 void
+INFO  16:41:19,459 - #48 displayPrint
+INFO  16:41:19,459 - #16 (
+INFO  16:41:19,459 - #17 )
+INFO  16:41:19,459 - #3 {
+INFO  16:41:19,459 - #28 print
+INFO  16:41:19,459 - #16 (
+INFO  16:41:19,459 - #48 baseField
+INFO  16:41:19,459 - #6 ,
+INFO  16:41:19,459 - #49 1
+INFO  16:41:19,459 - #17 )
+INFO  16:41:19,459 - #8 ;
+INFO  16:41:19,459 - #28 print
+INFO  16:41:19,459 - #16 (
+INFO  16:41:19,459 - #48 derivedField
+INFO  16:41:19,459 - #6 ,
+INFO  16:41:19,459 - #49 1
+INFO  16:41:19,459 - #17 )
+INFO  16:41:19,459 - #8 ;
+INFO  16:41:19,459 - #28 print
+INFO  16:41:19,459 - #16 (
+INFO  16:41:19,459 - #48 statField
+INFO  16:41:19,459 - #6 ,
+INFO  16:41:19,459 - #49 1
+INFO  16:41:19,459 - #17 )
+INFO  16:41:19,459 - #8 ;
+INFO  16:41:19,459 - #28 print
+INFO  16:41:19,459 - #16 (
+INFO  16:41:19,459 - #48 this
+INFO  16:41:19,459 - #35 .
+INFO  16:41:19,459 - #48 baseField
+INFO  16:41:19,459 - #6 ,
+INFO  16:41:19,459 - #49 1
+INFO  16:41:19,460 - #17 )
+INFO  16:41:19,460 - #8 ;
+INFO  16:41:19,460 - #28 print
+INFO  16:41:19,460 - #16 (
+INFO  16:41:19,460 - #48 this
+INFO  16:41:19,460 - #35 .
+INFO  16:41:19,460 - #48 derivedField
+INFO  16:41:19,460 - #6 ,
+INFO  16:41:19,460 - #49 1
+INFO  16:41:19,460 - #17 )
+INFO  16:41:19,460 - #8 ;
+INFO  16:41:19,460 - #28 print
+INFO  16:41:19,460 - #16 (
+INFO  16:41:19,460 - #48 BaseClass
+INFO  16:41:19,460 - #35 .
+INFO  16:41:19,460 - #48 statField
+INFO  16:41:19,460 - #6 ,
+INFO  16:41:19,460 - #49 1
+INFO  16:41:19,460 - #17 )
+INFO  16:41:19,460 - #8 ;
+INFO  16:41:19,460 - #28 print
+INFO  16:41:19,460 - #16 (
+INFO  16:41:19,460 - #48 DerivedClass
+INFO  16:41:19,460 - #35 .
+INFO  16:41:19,460 - #48 statField
+INFO  16:41:19,460 - #6 ,
+INFO  16:41:19,460 - #49 1
+INFO  16:41:19,460 - #17 )
+INFO  16:41:19,460 - #8 ;
+INFO  16:41:19,460 - #28 print
+INFO  16:41:19,460 - #16 (
+INFO  16:41:19,460 - #48 baseField
+INFO  16:41:19,460 - #17 )
+INFO  16:41:19,460 - #8 ;
+INFO  16:41:19,460 - #28 print
+INFO  16:41:19,460 - #16 (
+INFO  16:41:19,460 - #48 derivedField
+INFO  16:41:19,460 - #17 )
+INFO  16:41:19,460 - #8 ;
+INFO  16:41:19,460 - #28 print
+INFO  16:41:19,460 - #16 (
+INFO  16:41:19,460 - #48 statField
+INFO  16:41:19,460 - #17 )
+INFO  16:41:19,460 - #8 ;
+INFO  16:41:19,460 - #28 print
+INFO  16:41:19,460 - #16 (
+INFO  16:41:19,460 - #48 this
+INFO  16:41:19,460 - #35 .
+INFO  16:41:19,460 - #48 baseField
+INFO  16:41:19,460 - #17 )
+INFO  16:41:19,460 - #8 ;
+INFO  16:41:19,460 - #28 print
+INFO  16:41:19,460 - #16 (
+INFO  16:41:19,460 - #48 this
+INFO  16:41:19,460 - #35 .
+INFO  16:41:19,460 - #48 derivedField
+INFO  16:41:19,460 - #17 )
+INFO  16:41:19,460 - #8 ;
+INFO  16:41:19,460 - #28 print
+INFO  16:41:19,460 - #16 (
+INFO  16:41:19,460 - #48 BaseClass
+INFO  16:41:19,460 - #35 .
+INFO  16:41:19,460 - #48 statField
+INFO  16:41:19,460 - #17 )
+INFO  16:41:19,460 - #8 ;
+INFO  16:41:19,460 - #28 print
+INFO  16:41:19,460 - #16 (
+INFO  16:41:19,460 - #48 DerivedClass
+INFO  16:41:19,460 - #35 .
+INFO  16:41:19,460 - #48 statField
+INFO  16:41:19,460 - #17 )
+INFO  16:41:19,460 - #8 ;
+INFO  16:41:19,460 - #4 }
+INFO  16:41:19,460 - #18 void
+INFO  16:41:19,461 - #48 displayRead
+INFO  16:41:19,461 - #16 (
+INFO  16:41:19,461 - #17 )
+INFO  16:41:19,461 - #3 {
+INFO  16:41:19,461 - #47 read
+INFO  16:41:19,461 - #16 (
+INFO  16:41:19,461 - #48 baseField
+INFO  16:41:19,461 - #17 )
+INFO  16:41:19,461 - #8 ;
+INFO  16:41:19,461 - #47 read
+INFO  16:41:19,461 - #16 (
+INFO  16:41:19,461 - #48 derivedField
+INFO  16:41:19,461 - #17 )
+INFO  16:41:19,461 - #8 ;
+INFO  16:41:19,461 - #47 read
+INFO  16:41:19,461 - #16 (
+INFO  16:41:19,461 - #48 statField
+INFO  16:41:19,461 - #17 )
+INFO  16:41:19,461 - #8 ;
+INFO  16:41:19,461 - #47 read
+INFO  16:41:19,461 - #16 (
+INFO  16:41:19,461 - #48 this
+INFO  16:41:19,461 - #35 .
+INFO  16:41:19,461 - #48 baseField
+INFO  16:41:19,461 - #17 )
+INFO  16:41:19,461 - #8 ;
+INFO  16:41:19,461 - #47 read
+INFO  16:41:19,461 - #16 (
+INFO  16:41:19,461 - #48 this
+INFO  16:41:19,461 - #35 .
+INFO  16:41:19,461 - #48 derivedField
+INFO  16:41:19,461 - #17 )
+INFO  16:41:19,461 - #8 ;
+INFO  16:41:19,461 - #47 read
+INFO  16:41:19,461 - #16 (
+INFO  16:41:19,461 - #48 BaseClass
+INFO  16:41:19,461 - #35 .
+INFO  16:41:19,461 - #48 statField
+INFO  16:41:19,461 - #17 )
+INFO  16:41:19,461 - #8 ;
+INFO  16:41:19,461 - #47 read
+INFO  16:41:19,461 - #16 (
+INFO  16:41:19,461 - #48 DerivedClass
+INFO  16:41:19,461 - #35 .
+INFO  16:41:19,461 - #48 statField
+INFO  16:41:19,461 - #17 )
+INFO  16:41:19,461 - #8 ;
+INFO  16:41:19,461 - #4 }
+INFO  16:41:19,461 - #18 void
+INFO  16:41:19,461 - #48 dcMethod
+INFO  16:41:19,461 - #16 (
+INFO  16:41:19,461 - #48 int
+INFO  16:41:19,461 - #48 b1
+INFO  16:41:19,461 - #6 ,
+INFO  16:41:19,461 - #48 int
+INFO  16:41:19,461 - #48 b2
+INFO  16:41:19,461 - #6 ,
+INFO  16:41:19,461 - #48 int
+INFO  16:41:19,461 - #48 b3
+INFO  16:41:19,461 - #6 ,
+INFO  16:41:19,461 - #48 int
+INFO  16:41:19,461 - #48 b4
+INFO  16:41:19,461 - #17 )
+INFO  16:41:19,461 - #3 {
+INFO  16:41:19,461 - #4 }
+INFO  16:41:19,461 - #4 }
+INFO  16:41:19,461 - #4 }
+INFO  16:41:19,461 - #3 {
+INFO  16:41:19,461 - #18 void
+INFO  16:41:19,461 - #48 main
+INFO  16:41:19,461 - #16 (
+INFO  16:41:19,461 - #17 )
+INFO  16:41:19,461 - #48 DerivedClass
+INFO  16:41:19,461 - #48 obj
+INFO  16:41:19,461 - #8 ;
+INFO  16:41:19,461 - #3 {
+INFO  16:41:19,461 - #4 }
+INFO  16:41:19,461 - #4 }
+INFO  16:41:19,465 - Programt(
+  ProgNamet(
+   InheritanceExample
+  ) [ProgNamet]
+  NamespaceListNo(
+  ) [NamespaceListNo]
+  DeclListClass(
+    DeclListClass(
+      DeclListConst(
+        DeclListConst(
+          DeclListConst(
+            DeclListConst(
+              DeclListNo(
+              ) [DeclListNo]
+              ConstDeclt(
+                ConstDeclSingle(
+                  TypeNo(
+                   int
+                  ) [TypeNo]
+                  ConstPartNum(
+                   MAX_VALUE
+                   100
+                  ) [ConstPartNum]
+                ) [ConstDeclSingle]
+              ) [ConstDeclt]
+            ) [DeclListConst]
+            ConstDeclt(
+              ConstDeclSingle(
+                TypeNo(
+                 int
+                ) [TypeNo]
+                ConstPartNum(
+                 MAX_INT
+                 5
+                ) [ConstPartNum]
+              ) [ConstDeclSingle]
+            ) [ConstDeclt]
+          ) [DeclListConst]
+          ConstDeclt(
+            ConstDeclSingle(
+              TypeNo(
+               char
+              ) [TypeNo]
+              ConstPartChar(
+               MAX_CHAR
+               A
+              ) [ConstPartChar]
+            ) [ConstDeclSingle]
+          ) [ConstDeclt]
+        ) [DeclListConst]
+        ConstDeclt(
+          ConstDeclSingle(
+            TypeNo(
+             bool
+            ) [TypeNo]
+            ConstPartBool(
+             MAX_BOOL
+             true
+            ) [ConstPartBool]
+          ) [ConstDeclSingle]
+        ) [ConstDeclt]
+      ) [DeclListConst]
+      ClassDeclNo(
+        ClassNamet(
+         BaseClass
+        ) [ClassNamet]
+        StatVarDeclListYes(
+          StatVarDeclListNo(
+          ) [StatVarDeclListNo]
+          StatVarDeclInitt(
+          ) [StatVarDeclInitt]
+          VarDeclt(
+            VarDeclSingle(
+              TypeNo(
+               int
+              ) [TypeNo]
+              VarPartNo(
+               statField
+              ) [VarPartNo]
+            ) [VarDeclSingle]
+          ) [VarDeclt]
+        ) [StatVarDeclListYes]
+        StatInitListt(
+          StatInitsNo(
+          ) [StatInitsNo]
+        ) [StatInitListt]
+        VarDeclListYes(
+          VarDeclListNo(
+          ) [VarDeclListNo]
+          VarDeclt(
+            VarDeclSingle(
+              TypeNo(
+               int
+              ) [TypeNo]
+              VarPartNo(
+               baseField
+              ) [VarPartNo]
+            ) [VarDeclSingle]
+          ) [VarDeclt]
+        ) [VarDeclListYes]
+        MethListYes(
+          MethodDeclListYes(
+            MethodDeclListYes(
+              MethodDeclListYes(
+                MethodDeclListYes(
+                  MethodDeclListNo(
+                  ) [MethodDeclListNo]
+                  MethodDeclNo(
+                    ReturnTypeVoid(
+                    ) [ReturnTypeVoid]
+                    MethodNamet(
+                     display
+                    ) [MethodNamet]
+                    VarDeclListNo(
+                    ) [VarDeclListNo]
+                    StatementListNo(
+                    ) [StatementListNo]
+                  ) [MethodDeclNo]
+                ) [MethodDeclListYes]
+                MethodDeclNo(
+                  ReturnTypeVoid(
+                  ) [ReturnTypeVoid]
+                  MethodNamet(
+                   displayRead
+                  ) [MethodNamet]
+                  VarDeclListNo(
+                  ) [VarDeclListNo]
+                  StatementListYes(
+                    StatementListYes(
+                      StatementListYes(
+                        StatementListYes(
+                          StatementListNo(
+                          ) [StatementListNo]
+                          StmtRead(
+                            DesignatorNo(
+                             baseField
+                              DesignatorPartsNo(
+                              ) [DesignatorPartsNo]
+                            ) [DesignatorNo]
+                          ) [StmtRead]
+                        ) [StatementListYes]
+                        StmtRead(
+                          DesignatorNo(
+                           statField
+                            DesignatorPartsNo(
+                            ) [DesignatorPartsNo]
+                          ) [DesignatorNo]
+                        ) [StmtRead]
+                      ) [StatementListYes]
+                      StmtRead(
+                        DesignatorNo(
+                         this
+                          DesignatorPartsIdent(
+                            DesignatorPartsNo(
+                            ) [DesignatorPartsNo]
+                           baseField
+                          ) [DesignatorPartsIdent]
+                        ) [DesignatorNo]
+                      ) [StmtRead]
+                    ) [StatementListYes]
+                    StmtRead(
+                      DesignatorNo(
+                       BaseClass
+                        DesignatorPartsIdent(
+                          DesignatorPartsNo(
+                          ) [DesignatorPartsNo]
+                         statField
+                        ) [DesignatorPartsIdent]
+                      ) [DesignatorNo]
+                    ) [StmtRead]
+                  ) [StatementListYes]
+                ) [MethodDeclNo]
+              ) [MethodDeclListYes]
+              MethodDeclNo(
+                ReturnTypeVoid(
+                ) [ReturnTypeVoid]
+                MethodNamet(
+                 displayPrint
+                ) [MethodNamet]
+                VarDeclListNo(
+                ) [VarDeclListNo]
+                StatementListYes(
+                  StatementListYes(
+                    StatementListYes(
+                      StatementListYes(
+                        StatementListYes(
+                          StatementListYes(
+                            StatementListYes(
+                              StatementListYes(
+                                StatementListNo(
+                                ) [StatementListNo]
+                                StmtPrintYes(
+                                  ExprNo(
+                                    Termt(
+                                      FactorDesignatorThird(
+                                        DesignatorNo(
+                                         baseField
+                                          DesignatorPartsNo(
+                                          ) [DesignatorPartsNo]
+                                        ) [DesignatorNo]
+                                      ) [FactorDesignatorThird]
+                                      MulopFactorListNo(
+                                      ) [MulopFactorListNo]
+                                    ) [Termt]
+                                    AddopTermListNo(
+                                    ) [AddopTermListNo]
+                                  ) [ExprNo]
+                                 1
+                                ) [StmtPrintYes]
+                              ) [StatementListYes]
+                              StmtPrintYes(
+                                ExprNo(
+                                  Termt(
+                                    FactorDesignatorThird(
+                                      DesignatorNo(
+                                       statField
+                                        DesignatorPartsNo(
+                                        ) [DesignatorPartsNo]
+                                      ) [DesignatorNo]
+                                    ) [FactorDesignatorThird]
+                                    MulopFactorListNo(
+                                    ) [MulopFactorListNo]
+                                  ) [Termt]
+                                  AddopTermListNo(
+                                  ) [AddopTermListNo]
+                                ) [ExprNo]
+                               1
+                              ) [StmtPrintYes]
+                            ) [StatementListYes]
+                            StmtPrintYes(
+                              ExprNo(
+                                Termt(
+                                  FactorDesignatorThird(
+                                    DesignatorNo(
+                                     this
+                                      DesignatorPartsIdent(
+                                        DesignatorPartsNo(
+                                        ) [DesignatorPartsNo]
+                                       baseField
+                                      ) [DesignatorPartsIdent]
+                                    ) [DesignatorNo]
+                                  ) [FactorDesignatorThird]
+                                  MulopFactorListNo(
+                                  ) [MulopFactorListNo]
+                                ) [Termt]
+                                AddopTermListNo(
+                                ) [AddopTermListNo]
+                              ) [ExprNo]
+                             1
+                            ) [StmtPrintYes]
+                          ) [StatementListYes]
+                          StmtPrintYes(
+                            ExprNo(
+                              Termt(
+                                FactorDesignatorThird(
+                                  DesignatorNo(
+                                   BaseClass
+                                    DesignatorPartsIdent(
+                                      DesignatorPartsNo(
+                                      ) [DesignatorPartsNo]
+                                     statField
+                                    ) [DesignatorPartsIdent]
+                                  ) [DesignatorNo]
+                                ) [FactorDesignatorThird]
+                                MulopFactorListNo(
+                                ) [MulopFactorListNo]
+                              ) [Termt]
+                              AddopTermListNo(
+                              ) [AddopTermListNo]
+                            ) [ExprNo]
+                           1
+                          ) [StmtPrintYes]
+                        ) [StatementListYes]
+                        StmtPrintNo(
+                          ExprNo(
+                            Termt(
+                              FactorDesignatorThird(
+                                DesignatorNo(
+                                 baseField
+                                  DesignatorPartsNo(
+                                  ) [DesignatorPartsNo]
+                                ) [DesignatorNo]
+                              ) [FactorDesignatorThird]
+                              MulopFactorListNo(
+                              ) [MulopFactorListNo]
+                            ) [Termt]
+                            AddopTermListNo(
+                            ) [AddopTermListNo]
+                          ) [ExprNo]
+                        ) [StmtPrintNo]
+                      ) [StatementListYes]
+                      StmtPrintNo(
+                        ExprNo(
+                          Termt(
+                            FactorDesignatorThird(
+                              DesignatorNo(
+                               statField
+                                DesignatorPartsNo(
+                                ) [DesignatorPartsNo]
+                              ) [DesignatorNo]
+                            ) [FactorDesignatorThird]
+                            MulopFactorListNo(
+                            ) [MulopFactorListNo]
+                          ) [Termt]
+                          AddopTermListNo(
+                          ) [AddopTermListNo]
+                        ) [ExprNo]
+                      ) [StmtPrintNo]
+                    ) [StatementListYes]
+                    StmtPrintNo(
+                      ExprNo(
+                        Termt(
+                          FactorDesignatorThird(
+                            DesignatorNo(
+                             this
+                              DesignatorPartsIdent(
+                                DesignatorPartsNo(
+                                ) [DesignatorPartsNo]
+                               baseField
+                              ) [DesignatorPartsIdent]
+                            ) [DesignatorNo]
+                          ) [FactorDesignatorThird]
+                          MulopFactorListNo(
+                          ) [MulopFactorListNo]
+                        ) [Termt]
+                        AddopTermListNo(
+                        ) [AddopTermListNo]
+                      ) [ExprNo]
+                    ) [StmtPrintNo]
+                  ) [StatementListYes]
+                  StmtPrintNo(
+                    ExprNo(
+                      Termt(
+                        FactorDesignatorThird(
+                          DesignatorNo(
+                           BaseClass
+                            DesignatorPartsIdent(
+                              DesignatorPartsNo(
+                              ) [DesignatorPartsNo]
+                             statField
+                            ) [DesignatorPartsIdent]
+                          ) [DesignatorNo]
+                        ) [FactorDesignatorThird]
+                        MulopFactorListNo(
+                        ) [MulopFactorListNo]
+                      ) [Termt]
+                      AddopTermListNo(
+                      ) [AddopTermListNo]
+                    ) [ExprNo]
+                  ) [StmtPrintNo]
+                ) [StatementListYes]
+              ) [MethodDeclNo]
+            ) [MethodDeclListYes]
+            MethodDeclYes(
+              ReturnTypeVoid(
+              ) [ReturnTypeVoid]
+              MethodNamet(
+               bcMethod
+              ) [MethodNamet]
+              FormParsList(
+                FormParsList(
+                  FormParsSingleNo(
+                    TypeNo(
+                     int
+                    ) [TypeNo]
+                   a1
+                  ) [FormParsSingleNo]
+                  TypeNo(
+                   int
+                  ) [TypeNo]
+                 a2
+                  BracketsOptNo(
+                  ) [BracketsOptNo]
+                ) [FormParsList]
+                TypeNo(
+                 int
+                ) [TypeNo]
+               a3
+                BracketsOptNo(
+                ) [BracketsOptNo]
+              ) [FormParsList]
+              VarDeclListNo(
+              ) [VarDeclListNo]
+              StatementListNo(
+              ) [StatementListNo]
+            ) [MethodDeclYes]
+          ) [MethodDeclListYes]
+        ) [MethListYes]
+      ) [ClassDeclNo]
+    ) [DeclListClass]
+    ClassDeclYes(
+      ClassNamet(
+       DerivedClass
+      ) [ClassNamet]
+      ExtClasst(
+        TypeNo(
+         BaseClass
+        ) [TypeNo]
+      ) [ExtClasst]
+      StatVarDeclListYes(
+        StatVarDeclListNo(
+        ) [StatVarDeclListNo]
+        StatVarDeclInitt(
+        ) [StatVarDeclInitt]
+        VarDeclt(
+          VarDeclSingle(
+            TypeNo(
+             int
+            ) [TypeNo]
+            VarPartNo(
+             statField
+            ) [VarPartNo]
+          ) [VarDeclSingle]
+        ) [VarDeclt]
+      ) [StatVarDeclListYes]
+      StatInitListt(
+        StatInitsNo(
+        ) [StatInitsNo]
+      ) [StatInitListt]
+      VarDeclListYes(
+        VarDeclListNo(
+        ) [VarDeclListNo]
+        VarDeclt(
+          VarDeclSingle(
+            TypeNo(
+             int
+            ) [TypeNo]
+            VarPartNo(
+             derivedField
+            ) [VarPartNo]
+          ) [VarDeclSingle]
+        ) [VarDeclt]
+      ) [VarDeclListYes]
+      MethListYes(
+        MethodDeclListYes(
+          MethodDeclListYes(
+            MethodDeclListYes(
+              MethodDeclListYes(
+                MethodDeclListNo(
+                ) [MethodDeclListNo]
+                MethodDeclNo(
+                  ReturnTypeVoid(
+                  ) [ReturnTypeVoid]
+                  MethodNamet(
+                   display
+                  ) [MethodNamet]
+                  VarDeclListNo(
+                  ) [VarDeclListNo]
+                  StatementListNo(
+                  ) [StatementListNo]
+                ) [MethodDeclNo]
+              ) [MethodDeclListYes]
+              MethodDeclNo(
+                ReturnTypeVoid(
+                ) [ReturnTypeVoid]
+                MethodNamet(
+                 displayPrint
+                ) [MethodNamet]
+                VarDeclListNo(
+                ) [VarDeclListNo]
+                StatementListYes(
+                  StatementListYes(
+                    StatementListYes(
+                      StatementListYes(
+                        StatementListYes(
+                          StatementListYes(
+                            StatementListYes(
+                              StatementListYes(
+                                StatementListYes(
+                                  StatementListYes(
+                                    StatementListYes(
+                                      StatementListYes(
+                                        StatementListYes(
+                                          StatementListYes(
+                                            StatementListNo(
+                                            ) [StatementListNo]
+                                            StmtPrintYes(
+                                              ExprNo(
+                                                Termt(
+                                                  FactorDesignatorThird(
+                                                    DesignatorNo(
+                                                     baseField
+                                                      DesignatorPartsNo(
+                                                      ) [DesignatorPartsNo]
+                                                    ) [DesignatorNo]
+                                                  ) [FactorDesignatorThird]
+                                                  MulopFactorListNo(
+                                                  ) [MulopFactorListNo]
+                                                ) [Termt]
+                                                AddopTermListNo(
+                                                ) [AddopTermListNo]
+                                              ) [ExprNo]
+                                             1
+                                            ) [StmtPrintYes]
+                                          ) [StatementListYes]
+                                          StmtPrintYes(
+                                            ExprNo(
+                                              Termt(
+                                                FactorDesignatorThird(
+                                                  DesignatorNo(
+                                                   derivedField
+                                                    DesignatorPartsNo(
+                                                    ) [DesignatorPartsNo]
+                                                  ) [DesignatorNo]
+                                                ) [FactorDesignatorThird]
+                                                MulopFactorListNo(
+                                                ) [MulopFactorListNo]
+                                              ) [Termt]
+                                              AddopTermListNo(
+                                              ) [AddopTermListNo]
+                                            ) [ExprNo]
+                                           1
+                                          ) [StmtPrintYes]
+                                        ) [StatementListYes]
+                                        StmtPrintYes(
+                                          ExprNo(
+                                            Termt(
+                                              FactorDesignatorThird(
+                                                DesignatorNo(
+                                                 statField
+                                                  DesignatorPartsNo(
+                                                  ) [DesignatorPartsNo]
+                                                ) [DesignatorNo]
+                                              ) [FactorDesignatorThird]
+                                              MulopFactorListNo(
+                                              ) [MulopFactorListNo]
+                                            ) [Termt]
+                                            AddopTermListNo(
+                                            ) [AddopTermListNo]
+                                          ) [ExprNo]
+                                         1
+                                        ) [StmtPrintYes]
+                                      ) [StatementListYes]
+                                      StmtPrintYes(
+                                        ExprNo(
+                                          Termt(
+                                            FactorDesignatorThird(
+                                              DesignatorNo(
+                                               this
+                                                DesignatorPartsIdent(
+                                                  DesignatorPartsNo(
+                                                  ) [DesignatorPartsNo]
+                                                 baseField
+                                                ) [DesignatorPartsIdent]
+                                              ) [DesignatorNo]
+                                            ) [FactorDesignatorThird]
+                                            MulopFactorListNo(
+                                            ) [MulopFactorListNo]
+                                          ) [Termt]
+                                          AddopTermListNo(
+                                          ) [AddopTermListNo]
+                                        ) [ExprNo]
+                                       1
+                                      ) [StmtPrintYes]
+                                    ) [StatementListYes]
+                                    StmtPrintYes(
+                                      ExprNo(
+                                        Termt(
+                                          FactorDesignatorThird(
+                                            DesignatorNo(
+                                             this
+                                              DesignatorPartsIdent(
+                                                DesignatorPartsNo(
+                                                ) [DesignatorPartsNo]
+                                               derivedField
+                                              ) [DesignatorPartsIdent]
+                                            ) [DesignatorNo]
+                                          ) [FactorDesignatorThird]
+                                          MulopFactorListNo(
+                                          ) [MulopFactorListNo]
+                                        ) [Termt]
+                                        AddopTermListNo(
+                                        ) [AddopTermListNo]
+                                      ) [ExprNo]
+                                     1
+                                    ) [StmtPrintYes]
+                                  ) [StatementListYes]
+                                  StmtPrintYes(
+                                    ExprNo(
+                                      Termt(
+                                        FactorDesignatorThird(
+                                          DesignatorNo(
+                                           BaseClass
+                                            DesignatorPartsIdent(
+                                              DesignatorPartsNo(
+                                              ) [DesignatorPartsNo]
+                                             statField
+                                            ) [DesignatorPartsIdent]
+                                          ) [DesignatorNo]
+                                        ) [FactorDesignatorThird]
+                                        MulopFactorListNo(
+                                        ) [MulopFactorListNo]
+                                      ) [Termt]
+                                      AddopTermListNo(
+                                      ) [AddopTermListNo]
+                                    ) [ExprNo]
+                                   1
+                                  ) [StmtPrintYes]
+                                ) [StatementListYes]
+                                StmtPrintYes(
+                                  ExprNo(
+                                    Termt(
+                                      FactorDesignatorThird(
+                                        DesignatorNo(
+                                         DerivedClass
+                                          DesignatorPartsIdent(
+                                            DesignatorPartsNo(
+                                            ) [DesignatorPartsNo]
+                                           statField
+                                          ) [DesignatorPartsIdent]
+                                        ) [DesignatorNo]
+                                      ) [FactorDesignatorThird]
+                                      MulopFactorListNo(
+                                      ) [MulopFactorListNo]
+                                    ) [Termt]
+                                    AddopTermListNo(
+                                    ) [AddopTermListNo]
+                                  ) [ExprNo]
+                                 1
+                                ) [StmtPrintYes]
+                              ) [StatementListYes]
+                              StmtPrintNo(
+                                ExprNo(
+                                  Termt(
+                                    FactorDesignatorThird(
+                                      DesignatorNo(
+                                       baseField
+                                        DesignatorPartsNo(
+                                        ) [DesignatorPartsNo]
+                                      ) [DesignatorNo]
+                                    ) [FactorDesignatorThird]
+                                    MulopFactorListNo(
+                                    ) [MulopFactorListNo]
+                                  ) [Termt]
+                                  AddopTermListNo(
+                                  ) [AddopTermListNo]
+                                ) [ExprNo]
+                              ) [StmtPrintNo]
+                            ) [StatementListYes]
+                            StmtPrintNo(
+                              ExprNo(
+                                Termt(
+                                  FactorDesignatorThird(
+                                    DesignatorNo(
+                                     derivedField
+                                      DesignatorPartsNo(
+                                      ) [DesignatorPartsNo]
+                                    ) [DesignatorNo]
+                                  ) [FactorDesignatorThird]
+                                  MulopFactorListNo(
+                                  ) [MulopFactorListNo]
+                                ) [Termt]
+                                AddopTermListNo(
+                                ) [AddopTermListNo]
+                              ) [ExprNo]
+                            ) [StmtPrintNo]
+                          ) [StatementListYes]
+                          StmtPrintNo(
+                            ExprNo(
+                              Termt(
+                                FactorDesignatorThird(
+                                  DesignatorNo(
+                                   statField
+                                    DesignatorPartsNo(
+                                    ) [DesignatorPartsNo]
+                                  ) [DesignatorNo]
+                                ) [FactorDesignatorThird]
+                                MulopFactorListNo(
+                                ) [MulopFactorListNo]
+                              ) [Termt]
+                              AddopTermListNo(
+                              ) [AddopTermListNo]
+                            ) [ExprNo]
+                          ) [StmtPrintNo]
+                        ) [StatementListYes]
+                        StmtPrintNo(
+                          ExprNo(
+                            Termt(
+                              FactorDesignatorThird(
+                                DesignatorNo(
+                                 this
+                                  DesignatorPartsIdent(
+                                    DesignatorPartsNo(
+                                    ) [DesignatorPartsNo]
+                                   baseField
+                                  ) [DesignatorPartsIdent]
+                                ) [DesignatorNo]
+                              ) [FactorDesignatorThird]
+                              MulopFactorListNo(
+                              ) [MulopFactorListNo]
+                            ) [Termt]
+                            AddopTermListNo(
+                            ) [AddopTermListNo]
+                          ) [ExprNo]
+                        ) [StmtPrintNo]
+                      ) [StatementListYes]
+                      StmtPrintNo(
+                        ExprNo(
+                          Termt(
+                            FactorDesignatorThird(
+                              DesignatorNo(
+                               this
+                                DesignatorPartsIdent(
+                                  DesignatorPartsNo(
+                                  ) [DesignatorPartsNo]
+                                 derivedField
+                                ) [DesignatorPartsIdent]
+                              ) [DesignatorNo]
+                            ) [FactorDesignatorThird]
+                            MulopFactorListNo(
+                            ) [MulopFactorListNo]
+                          ) [Termt]
+                          AddopTermListNo(
+                          ) [AddopTermListNo]
+                        ) [ExprNo]
+                      ) [StmtPrintNo]
+                    ) [StatementListYes]
+                    StmtPrintNo(
+                      ExprNo(
+                        Termt(
+                          FactorDesignatorThird(
+                            DesignatorNo(
+                             BaseClass
+                              DesignatorPartsIdent(
+                                DesignatorPartsNo(
+                                ) [DesignatorPartsNo]
+                               statField
+                              ) [DesignatorPartsIdent]
+                            ) [DesignatorNo]
+                          ) [FactorDesignatorThird]
+                          MulopFactorListNo(
+                          ) [MulopFactorListNo]
+                        ) [Termt]
+                        AddopTermListNo(
+                        ) [AddopTermListNo]
+                      ) [ExprNo]
+                    ) [StmtPrintNo]
+                  ) [StatementListYes]
+                  StmtPrintNo(
+                    ExprNo(
+                      Termt(
+                        FactorDesignatorThird(
+                          DesignatorNo(
+                           DerivedClass
+                            DesignatorPartsIdent(
+                              DesignatorPartsNo(
+                              ) [DesignatorPartsNo]
+                             statField
+                            ) [DesignatorPartsIdent]
+                          ) [DesignatorNo]
+                        ) [FactorDesignatorThird]
+                        MulopFactorListNo(
+                        ) [MulopFactorListNo]
+                      ) [Termt]
+                      AddopTermListNo(
+                      ) [AddopTermListNo]
+                    ) [ExprNo]
+                  ) [StmtPrintNo]
+                ) [StatementListYes]
+              ) [MethodDeclNo]
+            ) [MethodDeclListYes]
+            MethodDeclNo(
+              ReturnTypeVoid(
+              ) [ReturnTypeVoid]
+              MethodNamet(
+               displayRead
+              ) [MethodNamet]
+              VarDeclListNo(
+              ) [VarDeclListNo]
+              StatementListYes(
+                StatementListYes(
+                  StatementListYes(
+                    StatementListYes(
+                      StatementListYes(
+                        StatementListYes(
+                          StatementListYes(
+                            StatementListNo(
+                            ) [StatementListNo]
+                            StmtRead(
+                              DesignatorNo(
+                               baseField
+                                DesignatorPartsNo(
+                                ) [DesignatorPartsNo]
+                              ) [DesignatorNo]
+                            ) [StmtRead]
+                          ) [StatementListYes]
+                          StmtRead(
+                            DesignatorNo(
+                             derivedField
+                              DesignatorPartsNo(
+                              ) [DesignatorPartsNo]
+                            ) [DesignatorNo]
+                          ) [StmtRead]
+                        ) [StatementListYes]
+                        StmtRead(
+                          DesignatorNo(
+                           statField
+                            DesignatorPartsNo(
+                            ) [DesignatorPartsNo]
+                          ) [DesignatorNo]
+                        ) [StmtRead]
+                      ) [StatementListYes]
+                      StmtRead(
+                        DesignatorNo(
+                         this
+                          DesignatorPartsIdent(
+                            DesignatorPartsNo(
+                            ) [DesignatorPartsNo]
+                           baseField
+                          ) [DesignatorPartsIdent]
+                        ) [DesignatorNo]
+                      ) [StmtRead]
+                    ) [StatementListYes]
+                    StmtRead(
+                      DesignatorNo(
+                       this
+                        DesignatorPartsIdent(
+                          DesignatorPartsNo(
+                          ) [DesignatorPartsNo]
+                         derivedField
+                        ) [DesignatorPartsIdent]
+                      ) [DesignatorNo]
+                    ) [StmtRead]
+                  ) [StatementListYes]
+                  StmtRead(
+                    DesignatorNo(
+                     BaseClass
+                      DesignatorPartsIdent(
+                        DesignatorPartsNo(
+                        ) [DesignatorPartsNo]
+                       statField
+                      ) [DesignatorPartsIdent]
+                    ) [DesignatorNo]
+                  ) [StmtRead]
+                ) [StatementListYes]
+                StmtRead(
+                  DesignatorNo(
+                   DerivedClass
+                    DesignatorPartsIdent(
+                      DesignatorPartsNo(
+                      ) [DesignatorPartsNo]
+                     statField
+                    ) [DesignatorPartsIdent]
+                  ) [DesignatorNo]
+                ) [StmtRead]
+              ) [StatementListYes]
+            ) [MethodDeclNo]
+          ) [MethodDeclListYes]
+          MethodDeclYes(
+            ReturnTypeVoid(
+            ) [ReturnTypeVoid]
+            MethodNamet(
+             dcMethod
+            ) [MethodNamet]
+            FormParsList(
+              FormParsList(
+                FormParsList(
+                  FormParsSingleNo(
+                    TypeNo(
+                     int
+                    ) [TypeNo]
+                   b1
+                  ) [FormParsSingleNo]
+                  TypeNo(
+                   int
+                  ) [TypeNo]
+                 b2
+                  BracketsOptNo(
+                  ) [BracketsOptNo]
+                ) [FormParsList]
+                TypeNo(
+                 int
+                ) [TypeNo]
+               b3
+                BracketsOptNo(
+                ) [BracketsOptNo]
+              ) [FormParsList]
+              TypeNo(
+               int
+              ) [TypeNo]
+             b4
+              BracketsOptNo(
+              ) [BracketsOptNo]
+            ) [FormParsList]
+            VarDeclListNo(
+            ) [VarDeclListNo]
+            StatementListNo(
+            ) [StatementListNo]
+          ) [MethodDeclYes]
+        ) [MethodDeclListYes]
+      ) [MethListYes]
+    ) [ClassDeclYes]
+  ) [DeclListClass]
+  MethodDeclListYes(
+    MethodDeclListNo(
+    ) [MethodDeclListNo]
+    MethodDeclNo(
+      ReturnTypeVoid(
+      ) [ReturnTypeVoid]
+      MethodNamet(
+       main
+      ) [MethodNamet]
+      VarDeclListYes(
+        VarDeclListNo(
+        ) [VarDeclListNo]
+        VarDeclt(
+          VarDeclSingle(
+            TypeNo(
+             DerivedClass
+            ) [TypeNo]
+            VarPartNo(
+             obj
+            ) [VarPartNo]
+          ) [VarDeclSingle]
+        ) [VarDeclt]
+      ) [VarDeclListYes]
+      StatementListNo(
+      ) [StatementListNo]
+    ) [MethodDeclNo]
+  ) [MethodDeclListYes]
+) [Programt]
+ERROR 16:41:19,469 - Method is already declared and cannot be hidden, only overriden: display ~~~ Line: 55
+ERROR 16:41:19,469 - Method is already declared and cannot be hidden, only overriden: displayPrint ~~~ Line: 60
+ERROR 16:41:19,469 - Method is already declared and cannot be hidden, only overriden: displayRead ~~~ Line: 79

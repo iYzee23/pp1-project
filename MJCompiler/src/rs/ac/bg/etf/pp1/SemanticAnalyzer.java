@@ -212,7 +212,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			varObj = Tabb.findLocal(localName);
 		}
 		else if (currClass != null) {
-			varObj = Tabb.findStatic(localName, currClass.getType());
+			varObj = Tabb.findExactStatic(currClass.getName() + "::" + localName);
 			if (varObj == Tabb.noObj) varObj = Tabb.findLocal(localName); 
 		}
 		else {
@@ -227,7 +227,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		Struct arrType = new Struct(Struct.Array, currType);
 		if (currMethod != null) Tabb.insert(Obj.Var, localName, arrType);
 		else if (currClass != null && staticClassActive) {
-			String statName = currNamespace + currClass.getName() + "::" + localName;
+			String statName = currClass.getName() + "::" + localName;
 			Tabb.insertStatic(Objj.Stat, statName, arrType);
 		}
 		else if (currClass != null) Tabb.insert(Obj.Fld, localName, arrType);
@@ -243,7 +243,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			varObj = Tabb.findLocal(localName);
 		}
 		else if (currClass != null) {
-			varObj = Tabb.findStatic(localName, currClass.getType());
+			varObj = Tabb.findExactStatic(currClass.getName() + "::" + localName);
 			if (varObj == Tabb.noObj) varObj = Tabb.findLocal(localName);
 		}
 		else {
@@ -257,7 +257,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		if (currMethod != null) Tabb.insert(Obj.Var, localName, currType);
 		else if (currClass != null && staticClassActive) {
-			String statName = currNamespace + currClass.getName() + "::" + localName;
+			String statName = currClass.getName() + "::" + localName;
 			Tabb.insertStatic(Objj.Stat, statName, currType);
 		}
 		else if (currClass != null) Tabb.insert(Obj.Fld, localName, currType);
@@ -361,14 +361,14 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			}
 			
 			if (methodObj.getKind() == Obj.Meth && methodObj.getFpPos() == 0 && compatibility) {
-				pOverrideObj = new Obj(Obj.Meth, localName, currType);
+				pOverrideObj = new Obj(Obj.Meth, localName, currType, 0, 1);
 			}
 		}
 		
 		if (methodObj != Tabb.noObj && pOverrideObj == null) {
 			report_error("Method is already declared: " + fullName, methodName);
-			currType = null;
-			return;
+			// currType = null;
+			// return;
 		}
 		
 		currMethod = methodName.obj = (pOverrideObj == null ? Tabb.insert(Obj.Meth, currClass == null ? fullName : localName, currType) : pOverrideObj);
@@ -391,7 +391,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		Tabb.closeScope();
 		
 		if (pOverrideObj != null) {
-			Obj currMethObj = currClass.getType().getMembersTable().searchKey(pOverrideObj.getName());
+			Obj currMethObj = Tabb.findLocal(pOverrideObj.getName());
 			if (!Tabb.compareTwoMethods(pOverrideObj, currMethObj)) {
 				report_error("Method is already declared and cannot be hidden, only overriden: " + pOverrideObj.getName(), methodDecl.getMethodName());
 			}
@@ -415,7 +415,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		Tabb.closeScope();
 		
 		if (pOverrideObj != null) {
-			Obj currMethObj = currClass.getType().getMembersTable().searchKey(pOverrideObj.getName());
+			Obj currMethObj = Tabb.findLocal(pOverrideObj.getName());
 			if (!Tabb.compareTwoMethods(pOverrideObj, currMethObj)) {
 				report_error("Method is already declared and cannot be hidden, only overriden: " + pOverrideObj.getName(), methodDecl.getMethodName());
 			}
@@ -667,7 +667,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			 if (dsgObj.getKind() != Obj.Var && dsgObj.getKind() != Objj.Stat && dsgObj.getKind() != Obj.Elem && dsgObj.getKind() != Obj.Fld) {
 				 report_error("Designator must be Var, Array's elem or Field: " + dsgObj.getName(), dsgStmt.getDesignator());
 			 }
-			 else if (!currAssignmentExpr.assignableTo(dsgObj.getType())) {
+			 else if (!Tabb.firstAssignableToSecond(currAssignmentExpr, dsgObj.getType())) {
 				 report_error("Expr must be assignable to Designator: " + dsgObj.getName(), dsgStmt.getDesignator());
 			 }
 		 }
