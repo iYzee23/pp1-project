@@ -8,6 +8,7 @@ import java_cup.runtime.Symbol;
 %line
 %column
 %xstate COMMENT
+%xstate COMMENT_ALL
 
 %{
 	private Symbol new_symbol(int type) {
@@ -93,9 +94,16 @@ import java_cup.runtime.Symbol;
 
 
 // Comments
-"//" 				{ yybegin(COMMENT); }
-<COMMENT> . 		{ yybegin(COMMENT); }
-<COMMENT> "\r\n" 	{ yybegin(YYINITIAL); }
+"//" 					{ yybegin(COMMENT); }
+<COMMENT> . 			{ yybegin(COMMENT); }
+<COMMENT> "\r\n" 		{ yybegin(YYINITIAL); }
+
+
+// Multiline comments
+"/*"					{ yybegin(COMMENT_ALL); }
+<COMMENT_ALL> .			{ yybegin(COMMENT_ALL); }
+<COMMENT_ALL> "\r\n"	{ yybegin(COMMENT_ALL); }
+<COMMENT_ALL> "*/"		{ yybegin(YYINITIAL); }
 
 
 // Errors
