@@ -755,17 +755,16 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		}
 		else {
 			int additional = (classDesignator.get(classDesignator.size() - 2) ? 1 : 0);
-			int apCount = actParsCount.get(actParsCount.size() - 1);
 			
 			if (currDesignator.get(currDesignator.size() - 2).getKind() != Obj.Meth) {
 				report_error("Recognized designator must be a method", actPars);
 			}
-			else if (currDesignator.get(currDesignator.size() - 2).getLevel() != (apCount + additional)) {
+			else if (currDesignator.get(currDesignator.size() - 2).getLevel() != (actParsCount.get(actParsCount.size() - 1) + additional)) {
 				report_error("Number of formal and actual parameters must be the same", actPars);
 			}
 			else {
-				for (int i = 0; i < apCount; ++i) {
-					Struct actPar = actParsParts.get(actParsParts.size() - 1).get(i);
+				for (int i = 0; i < actParsCount; ++i) {
+					Struct actPar = actParsParts.get(i);
 					Struct formPar = Tabb.getFormalParam(currDesignator.get(currDesignator.size() - 2), i + additional).getType();
 					if (!actPar.assignableTo(formPar)) {
 						report_error("Actual parameters must be assignable to the formal parameters", actPars);
@@ -775,8 +774,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			}
 		}
 		
-		actParsParts.get(actParsParts.size() - 1).clear();
-		actParsCount.set(actParsCount.size() - 1, 0);
+		actParsParts.clear();
+		actParsCount = 0;
 	}
 	
 	// Condition

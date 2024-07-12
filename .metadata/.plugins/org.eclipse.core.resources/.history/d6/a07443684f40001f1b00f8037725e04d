@@ -765,7 +765,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			}
 			else {
 				for (int i = 0; i < apCount; ++i) {
-					Struct actPar = actParsParts.get(actParsParts.size() - 1).get(i);
+					Struct actPar = actParsParts.get(i);
 					Struct formPar = Tabb.getFormalParam(currDesignator.get(currDesignator.size() - 2), i + additional).getType();
 					if (!actPar.assignableTo(formPar)) {
 						report_error("Actual parameters must be assignable to the formal parameters", actPars);
@@ -775,8 +775,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			}
 		}
 		
-		actParsParts.get(actParsParts.size() - 1).clear();
-		actParsCount.set(actParsCount.size() - 1, 0);
+		actParsParts.clear();
+		actParsCount = 0;
 	}
 	
 	// Condition

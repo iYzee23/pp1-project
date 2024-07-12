@@ -41,6 +41,7 @@ int rows, s, m, n, g, ss, columns, lp;
 	char c; 
 	int arr[];
 	{
+		val.putn(0, val.getp(i));
 		val = new Table();
 		val.setfactor(2);
 		arr = new int[3];

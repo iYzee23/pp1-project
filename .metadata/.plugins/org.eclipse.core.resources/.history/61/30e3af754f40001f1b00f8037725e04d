@@ -775,8 +775,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			}
 		}
 		
-		actParsParts.get(actParsParts.size() - 1).clear();
-		actParsCount.set(actParsCount.size() - 1, 0);
+		actParsParts.clear();
+		actParsCount = 0;
 	}
 	
 	// Condition

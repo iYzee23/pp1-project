@@ -18,7 +18,7 @@ class Table {
 	
 	{
 		void setfactor(int factor) { this.factor = factor; }
-		void putp (int a, int idx) { this.pos[this.pos[idx]] = a; }
+		void putp (int a, int idx) { this.pos[idx] = a; }
 		void putn (int a, int idx) { this.neg[idx] = a; }
 		int getp (int idx) { return pos[idx]; }
 		int getn (int idx) { return neg[idx]; }
@@ -54,8 +54,7 @@ int rows, s, m, n, g, ss, columns, lp;
 
 		for (;i< sizes::tableSize; i++) {
 			val.putp(0, i);
-			val.getp(i);
-			val.putn(0, val.getp(i));
+			val.putn(0, i);
 		}
 
 		f(c, x, i);

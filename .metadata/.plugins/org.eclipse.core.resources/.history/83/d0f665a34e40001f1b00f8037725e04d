@@ -92,8 +92,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		currDesignator.add(null);
 		designatorParts.add(new ArrayList<String>());
 		classDesignator.add(false);
-		actParsCount.add(0);
-		actParsParts.add(new ArrayList<Struct>());
 		
 		Tabb.openScope();
 		Tabb.programScope = Tabb.currentScope();
@@ -108,8 +106,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		currDesignator.remove(currDesignator.size() - 1);
 		designatorParts.remove(designatorParts.size() - 1);
 		classDesignator.remove(classDesignator.size() - 1);
-		actParsCount.remove(actParsCount.size() - 1);
-		actParsParts.remove(actParsParts.size() - 1);
 		
 		Tabb.chainLocalSymbols(program.getProgName().obj);
 		Tabb.closeScope();
@@ -627,16 +623,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		currDesignator.add(null);
 		designatorParts.add(new ArrayList<String>());
 		classDesignator.add(false);
-		actParsCount.add(0);
-		actParsParts.add(new ArrayList<Struct>());
 	}
 	
 	public void visit(TRParent rParen) {
 		currDesignator.remove(currDesignator.size() - 1);
 		designatorParts.remove(designatorParts.size() - 1);
 		classDesignator.remove(classDesignator.size() - 1);
-		actParsCount.remove(actParsCount.size() - 1);
-		actParsParts.remove(actParsParts.size() - 1);
 	}
 	
 	public void visit(OpChoiceExpr opChoice) {
@@ -736,17 +728,13 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	// ActPars
 	
 	public void visit(ActParsTempSingle actPars) {
-		int cInd = actParsCount.size() - 1;
-		int pInd = actParsParts.size() - 1;
-		actParsCount.set(cInd, actParsCount.get(cInd) + 1);
-		actParsParts.get(pInd).add(actPars.getExpr().struct);
+		++actParsCount;
+		actParsParts.add(actPars.getExpr().struct);
 	}
 	
 	public void visit(ActParsTempList actPars) {
-		int cInd = actParsCount.size() - 1;
-		int pInd = actParsParts.size() - 1;
-		actParsCount.set(cInd, actParsCount.get(cInd) + 1);
-		actParsParts.get(pInd).add(actPars.getExpr().struct);
+		++actParsCount;
+		actParsParts.add(actPars.getExpr().struct);
 	}
 	
 	public void visit(ActParst actPars) {
@@ -755,17 +743,16 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		}
 		else {
 			int additional = (classDesignator.get(classDesignator.size() - 2) ? 1 : 0);
-			int apCount = actParsCount.get(actParsCount.size() - 1);
 			
 			if (currDesignator.get(currDesignator.size() - 2).getKind() != Obj.Meth) {
 				report_error("Recognized designator must be a method", actPars);
 			}
-			else if (currDesignator.get(currDesignator.size() - 2).getLevel() != (apCount + additional)) {
+			else if (currDesignator.get(currDesignator.size() - 2).getLevel() != (actParsCount + additional)) {
 				report_error("Number of formal and actual parameters must be the same", actPars);
 			}
 			else {
-				for (int i = 0; i < apCount; ++i) {
-					Struct actPar = actParsParts.get(actParsParts.size() - 1).get(i);
+				for (int i = 0; i < actParsCount; ++i) {
+					Struct actPar = actParsParts.get(i);
 					Struct formPar = Tabb.getFormalParam(currDesignator.get(currDesignator.size() - 2), i + additional).getType();
 					if (!actPar.assignableTo(formPar)) {
 						report_error("Actual parameters must be assignable to the formal parameters", actPars);
@@ -775,8 +762,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			}
 		}
 		
-		actParsParts.get(actParsParts.size() - 1).clear();
-		actParsCount.set(actParsCount.size() - 1, 0);
+		actParsParts.clear();
+		actParsCount = 0;
 	}
 	
 	// Condition
@@ -959,16 +946,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		currDesignator.add(null);
 		designatorParts.add(new ArrayList<String>());
 		classDesignator.add(false);
-		actParsCount.add(0);
-		actParsParts.add(new ArrayList<Struct>());
 	}
 	
 	public void visit(TRBrackett rBracket) {
 		currDesignator.remove(currDesignator.size() - 1);
 		designatorParts.remove(designatorParts.size() - 1);
 		classDesignator.remove(classDesignator.size() - 1);
-		actParsCount.remove(actParsCount.size() - 1);
-		actParsParts.remove(actParsParts.size() - 1);
 	}
 	
 	public void visit(DesignatorPartsIdent designator) {
