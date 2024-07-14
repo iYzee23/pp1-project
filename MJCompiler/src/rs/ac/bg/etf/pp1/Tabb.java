@@ -137,5 +137,36 @@ public class Tabb extends Tab {
 		}
 		return false;
 	}
+	
+	public static int getAndUpdateNumGlobStat() {
+		int nVars = 0;
+		Collection<Obj> symbs = Tabb.programScope.values();
+		
+		for (Obj elem: symbs)
+			if (elem.getKind() == Obj.Var)
+				++nVars;
+		
+		for (Obj elem: symbs)
+			if (elem.getKind() == Objj.Stat)
+				elem.setAdr(nVars++);
+		
+		return nVars;
+	}
 
+	public static Obj findLocsMethod(Obj node, String name) {
+		Collection<Obj> locs = node.getLocalSymbols();
+		for (Obj elem: locs)
+			if (elem.getName().equals(name))
+				return elem;
+		return noObj;
+	}
+	
+	public static Obj findLocsClass(Struct node, String name) {
+		Collection<Obj> locs = node.getMembers();
+		for (Obj elem: locs)
+			if (elem.getName().equals(name))
+				return elem;
+		return noObj;
+	}
+	
 }

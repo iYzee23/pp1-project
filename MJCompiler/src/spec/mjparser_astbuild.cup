@@ -267,7 +267,7 @@ Statement ::= (StmtDesignator) DesignatorStatement:D1 SEMI {: RESULT=new StmtDes
 		   |
 		   (StmtRead) READ LPAREN Designator:D1 RPAREN SEMI {: RESULT=new StmtRead(D1); RESULT.setLine(D1left); :}
 		   |
-		   (StmtPrintYes) PRINT LPAREN Expr:E1 COMMA NUM_CONST:N2 RPAREN SEMI {: RESULT=new StmtPrintYes(E1, N2); RESULT.setLine(E1left); :}
+		   (StmtPrintYes) PRINT LPAREN Expr:E1 COMMA NUM_CONST:value RPAREN SEMI {: RESULT=new StmtPrintYes(E1, value); RESULT.setLine(E1left); :}
 		   |
 		   (StmtPrintNo) PRINT LPAREN Expr:E1 RPAREN SEMI {: RESULT=new StmtPrintNo(E1); RESULT.setLine(E1left); :}
 		   |
@@ -369,11 +369,11 @@ Factor ::= (FactorDesignatorFirst) Designator:D1 TLParen:T2 ActPars:A3 TRParen:T
 		|
 		(FactorDesignatorThird) Designator:D1 {: RESULT=new FactorDesignatorThird(D1); RESULT.setLine(D1left); :}
 		|
-		(FactorNum) NUM_CONST:N1 {: RESULT=new FactorNum(N1); RESULT.setLine(N1left); :}
+		(FactorNum) NUM_CONST:value {: RESULT=new FactorNum(value); RESULT.setLine(valueleft); :}
 		|
-		(FactorChar) CHAR_CONST:C1 {: RESULT=new FactorChar(C1); RESULT.setLine(C1left); :}
+		(FactorChar) CHAR_CONST:value {: RESULT=new FactorChar(value); RESULT.setLine(valueleft); :}
 		|
-		(FactorBool) BOOL_CONST:B1 {: RESULT=new FactorBool(B1); RESULT.setLine(B1left); :}
+		(FactorBool) BOOL_CONST:value {: RESULT=new FactorBool(value); RESULT.setLine(valueleft); :}
 		|
 		(FactorNew) NEW Type:T1 NewChoice:N2 {: RESULT=new FactorNew(T1, N2); RESULT.setLine(T1left); :}
 		|

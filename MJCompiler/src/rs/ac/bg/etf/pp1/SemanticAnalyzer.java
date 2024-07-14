@@ -37,6 +37,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	String currNamespace = "";
 	Struct currType = null;
 	Obj currMethod = null;
+	int nVars = 0;
 	
 	// classes processing
 	Obj currClass = null;
@@ -111,6 +112,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		actParsCount.remove(actParsCount.size() - 1);
 		actParsParts.remove(actParsParts.size() - 1);
 		
+		nVars = Tabb.getAndUpdateNumGlobStat();
 		Tabb.chainLocalSymbols(program.getProgName().obj);
 		Tabb.closeScope();
 		Tabb.programScope = null;
@@ -265,8 +267,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	// ClassDecl
-	
-	// --------------------------
 	
 	public void visit(ClassNamet className) {
 		String name = currNamespace + className.getClassName();
@@ -1082,12 +1082,19 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (dsgObj == Tabb.noObj || (dsgKind != Obj.Var && dsgKind != Obj.Fld && dsgKind != Objj.Stat && dsgKind != Obj.Con && dsgKind != Obj.Meth && dsgObj.getType().getKind() != Struct.Class)) {
 			report_error("Can't resolve designator: " + fullName, designator);
 		}
-		else if (staticClassActive) {
-			if (dsgKind != Obj.Type && dsgKind != Objj.Stat) {
-				report_error("In static initializer, you must refer to current class: " + dsgObj.getName(), designator);
-			}
-			else if (dsgKind == Obj.Type && !dsgObj.getType().equals(currClass.getType())) {
-				report_error("In static initializer, you must refer to current class: " + dsgObj.getName(), designator);
+		else {
+			SyntaxNode dsgParent = designator.getParent();
+			boolean dsgInd = (dsgParent instanceof DesignatorStmtFirst)
+					|| (dsgParent instanceof DesignatorListYesYes)
+					|| (dsgParent instanceof DesignatorStmtSecond && ((DesignatorStmtSecond)dsgParent).getDesignator().equals(designator))
+					|| (dsgParent instanceof StmtRead); 
+			if (staticClassActive && dsgInd) {
+				if (dsgKind != Obj.Type && dsgKind != Objj.Stat) {
+					report_error("In static initializer, you must refer to current class: " + dsgObj.getName(), designator);
+				}
+				else if (dsgKind == Obj.Type && !dsgObj.getType().equals(currClass.getType())) {
+					report_error("In static initializer, you must refer to current class: " + dsgObj.getName(), designator);
+				}
 			}
 		}
 		

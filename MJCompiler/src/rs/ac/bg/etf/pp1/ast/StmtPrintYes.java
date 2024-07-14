@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 12/6/2024 15:25:10
+// 14/6/2024 4:27:56
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,12 +8,12 @@ package rs.ac.bg.etf.pp1.ast;
 public class StmtPrintYes extends Statement {
 
     private Expr Expr;
-    private Integer N2;
+    private Integer value;
 
-    public StmtPrintYes (Expr Expr, Integer N2) {
+    public StmtPrintYes (Expr Expr, Integer value) {
         this.Expr=Expr;
         if(Expr!=null) Expr.setParent(this);
-        this.N2=N2;
+        this.value=value;
     }
 
     public Expr getExpr() {
@@ -24,12 +24,12 @@ public class StmtPrintYes extends Statement {
         this.Expr=Expr;
     }
 
-    public Integer getN2() {
-        return N2;
+    public Integer getValue() {
+        return value;
     }
 
-    public void setN2(Integer N2) {
-        this.N2=N2;
+    public void setValue(Integer value) {
+        this.value=value;
     }
 
     public void accept(Visitor visitor) {
@@ -61,7 +61,7 @@ public class StmtPrintYes extends Statement {
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        buffer.append(" "+tab+N2);
+        buffer.append(" "+tab+value);
         buffer.append("\n");
 
         buffer.append(tab);

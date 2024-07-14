@@ -1,0 +1,51 @@
+package rs.ac.bg.etf.pp1;
+
+import rs.etf.pp1.mj.runtime.Code;
+import rs.etf.pp1.symboltable.concepts.Obj;
+import rs.etf.pp1.symboltable.concepts.Struct;
+
+public class Codee extends Code {
+	
+	public static void load (Obj o) {
+	    switch (o.getKind()) {
+	    
+	      case Obj.Con:
+	    	  if (o.getType() == Tabb.nullType) 
+	    		  put(const_n + 0);
+	    	  else 
+	    		  loadConst(o.getAdr()); 
+	    	  break;
+	        
+	      case Obj.Var:
+	    	  // global variable
+	    	  if (o.getLevel()==0) {  
+	    		  put(getstatic); put2(o.getAdr()); 
+	    		  break; 
+	    	  }
+	    	  // local variable
+	    	  if (0 <= o.getAdr() && o.getAdr() <= 3) 
+	    		  put(load_n + o.getAdr());
+	    	  else { 
+	    		  put(load); put(o.getAdr()); 
+	    	  } 
+	    	  break;
+	    	  
+	      case Objj.Stat:
+	    	  put(getstatic); put2(o.getAdr());
+	    	  break;
+	        
+	      case Obj.Fld:
+	    	  put(getfield); put2(o.getAdr()); 
+	    	  break;
+
+	      case Obj.Elem:
+	    	  if (o.getType().getKind() == Struct.Char) put(baload);
+	    	  else put(aload); 
+	    	  break;
+
+	      default:  
+	    	  error("Greska: nelegalan operand u Code.load");
+	    }
+	  }
+
+}

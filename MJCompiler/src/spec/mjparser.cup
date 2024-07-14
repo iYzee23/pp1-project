@@ -223,7 +223,7 @@ Statement ::= (StmtDesignator) DesignatorStatement SEMI
 		   |
 		   (StmtRead) READ LPAREN Designator RPAREN SEMI
 		   |
-		   (StmtPrintYes) PRINT LPAREN Expr COMMA NUM_CONST RPAREN SEMI
+		   (StmtPrintYes) PRINT LPAREN Expr COMMA NUM_CONST:value RPAREN SEMI
 		   |
 		   (StmtPrintNo) PRINT LPAREN Expr RPAREN SEMI
 		   |
@@ -325,11 +325,11 @@ Factor ::= (FactorDesignatorFirst) Designator TLParen ActPars TRParen
 		|
 		(FactorDesignatorThird) Designator
 		|
-		(FactorNum) NUM_CONST
+		(FactorNum) NUM_CONST:value
 		|
-		(FactorChar) CHAR_CONST
+		(FactorChar) CHAR_CONST:value
 		|
-		(FactorBool) BOOL_CONST
+		(FactorBool) BOOL_CONST:value
 		|
 		(FactorNew) NEW Type NewChoice
 		|

@@ -5,6 +5,9 @@ const int MAX_INT = 5;
 const char MAX_CHAR = 'A';
 const bool MAX_BOOL = true;
 
+int globArr[];
+int globVar;
+
 class MyClass 
 {
     static int a, b, c[];
@@ -18,6 +21,10 @@ class MyClass
         d = false;
         e[2] = true;
         MyClass.a = 5;
+        a = MAX_VALUE;
+        read(a);
+        // read(MAX_VALUE);
+        [a,, b, *c] = globArr;
         // g.myField = 2;
         // MyClass.g.myField = 3;
     }

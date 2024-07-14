@@ -1,0 +1,33 @@
+package rs.ac.bg.etf.pp1;
+
+import rs.ac.bg.etf.pp1.ast.*;
+
+public class CodeGenerator extends VisitorAdaptor {
+
+	int mainPc;
+	
+	public int getMainPc() {
+		return mainPc;
+	}
+	
+	public void visit(MethodNamet methodName) {
+		
+	}
+	
+	public void visit(ReturnTypeType returnType) {
+		
+	}
+	
+	public void visit(ReturnTypeVoid returnType) {
+		
+	}
+	
+	public void visit(MethodDeclYes methodDecl) {
+		
+	}
+	
+	public void visit(MethodDeclNo methodDecl) {
+		
+	}
+	
+}
