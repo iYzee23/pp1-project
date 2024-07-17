@@ -360,7 +360,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 				}
 			}
 			
-			if (methodObj.getKind() == Obj.Meth && methodObj.getFpPos() == 0 && compatibility) {
+			if (methodObj.getKind() == Obj.Meth && methodObj.getFpPos() == 1 && compatibility) {
 				pOverrideObj = new Obj(Obj.Meth, localName, currType, 0, 1);
 			}
 		}
@@ -387,6 +387,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			report_error("Non-void method must have return expression: " + methObj.getName(), methodDecl.getMethodName());
 		}
 		
+		if (currClass != null) methObj.setFpPos(1);
+		
 		Tabb.chainLocalSymbols(methObj);
 		Tabb.closeScope();
 		
@@ -410,6 +412,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (methObj.getType() != Tabb.noType && !returnFound) {
 			report_error("Non-void method must have return expression: " + methObj.getName(), methodDecl.getMethodName());
 		}
+		
+		if (currClass != null) methObj.setFpPos(1);
 		
 		Tabb.chainLocalSymbols(methObj);
 		Tabb.closeScope();

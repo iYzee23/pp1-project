@@ -1,6 +1,7 @@
 package rs.ac.bg.etf.pp1;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.mj.runtime.Code;
@@ -23,20 +24,20 @@ public class CodeGenerator extends VisitorAdaptor {
 	// designator processing
 	ArrayList<Obj> currDesignator = new ArrayList<>();
 	ArrayList<ArrayList<String>> designatorParts = new ArrayList<>();
-	ArrayList<Boolean> currClassMethod = new ArrayList<>();
+	ArrayList<Obj> currCalledMethod = new ArrayList<>();
+	
+	// hard designator statement processing
+	int dsgStmtCounter = 0;
+	HashSet<Integer> dsgStmtSet = new HashSet<>();
 	
 	// Program
 	
 	public void visit(ProgNamet progName) {
-		currDesignator.add(null);
 		designatorParts.add(new ArrayList<String>());
-		currClassMethod.add(false);
 	}
 	
 	public void visit(Programt program) {
-		currDesignator.remove(currDesignator.size() - 1);
 		designatorParts.remove(designatorParts.size() - 1);
-		currClassMethod.remove(currClassMethod.size() - 1);
 	}
 	
 	// Namespace
@@ -99,7 +100,7 @@ public class CodeGenerator extends VisitorAdaptor {
 		else Codee.put(Codee.read);
 		
 		Codee.handleStoreDesignator(currDesignator.get(currDesignator.size() - 1));
-		currDesignator.set(currDesignator.size() - 1, null);
+		currDesignator.remove(currDesignator.size() - 1);
 	}
 	
 	public void visit(StmtPrintYes stmt) {
@@ -117,23 +118,18 @@ public class CodeGenerator extends VisitorAdaptor {
 	// DesignatorStatement
 	
 	public void visit(TLParent lParen) {
-		currDesignator.add(null);
 		designatorParts.add(new ArrayList<String>());
-		currClassMethod.add(false);
 	}
 	
 	public void visit(TRParent rParen) {
-		currDesignator.remove(currDesignator.size() - 1);
 		designatorParts.remove(designatorParts.size() - 1);
-		currClassMethod.remove(currClassMethod.size() - 1);
 	}
 	
 	public void visit(OpChoiceActParsYes opChoice) {
-		if (currClassMethod.get(currClassMethod.size() - 1)) {
+		if (!currCalledMethod.isEmpty() && currCalledMethod.get(currCalledMethod.size() - 1).getFpPos() > 0) {
 			String name = currMethod.getName();
 			int len = name.length();
 			
-			Codee.put(Codee.load_n);
 			Codee.put(Codee.getfield);
 			Codee.put2(0);
 
@@ -147,15 +143,14 @@ public class CodeGenerator extends VisitorAdaptor {
 			
 		}
 		
-		currClassMethod.set(currClassMethod.size() - 1, false);
+		currCalledMethod.remove(currCalledMethod.size() - 1);
 	}
 	
 	public void visit(OpChoiceActParsNo opChoice) {
-		if (currClassMethod.get(currClassMethod.size() - 1)) {
+		if (!currCalledMethod.isEmpty() && currCalledMethod.get(currCalledMethod.size() - 1).getFpPos() > 0) {
 			String name = currMethod.getName();
 			int len = name.length();
 			
-			Codee.put(Codee.load_n);
 			Codee.put(Codee.getfield);
 			Codee.put2(0);
 
@@ -169,26 +164,78 @@ public class CodeGenerator extends VisitorAdaptor {
 			
 		}
 		
-		currClassMethod.set(currClassMethod.size() - 1, false);
+		currCalledMethod.remove(currCalledMethod.size() - 1);
 	}
 	
 	public void visit(OpChoiceExpr opChoice) {
 		Codee.handleStoreDesignator(currDesignator.get(currDesignator.size() - 1));
-		currDesignator.set(currDesignator.size() - 1, null);
+		currDesignator.remove(currDesignator.size() - 1);
 	}
 	
 	public void visit(OpChoiceInc opChoice) {
 		Codee.loadConst(1);
 		Codee.put(Codee.add);
 		Codee.handleStoreDesignator(currDesignator.get(currDesignator.size() - 1));
-		currDesignator.set(currDesignator.size() - 1, null);
+		currDesignator.remove(currDesignator.size() - 1);
 	}
 	
 	public void visit(OpChoiceDec opChoice) {
 		Codee.loadConst(1);
 		Codee.put(Codee.sub);
 		Codee.handleStoreDesignator(currDesignator.get(currDesignator.size() - 1));
-		currDesignator.set(currDesignator.size() - 1, null);
+		currDesignator.remove(currDesignator.size() - 1);
+	}
+	
+	public void visit(DesignatorListYesYes dsgList) {
+		dsgStmtSet.add(dsgStmtCounter++);
+	}
+	
+	public void visit(DesignatorListYesNo dsgList) {
+		++dsgStmtCounter;
+	}
+	
+	public void visit(DesignatorStmtSecond dsgStmt) {
+		// handle errors
+		int lenLeft = dsgStmt.getDesignator().obj.getFpPos();
+		int lenRight = dsgStmt.getDesignator1().obj.getFpPos();
+		Struct dsgLeftType = dsgStmt.getDesignator().obj.getType().getElemType();
+		Struct dsgRightType = dsgStmt.getDesignator1().obj.getType().getElemType();
+		int rightInstr = (!dsgRightType.equals(Tabb.charType) && !dsgRightType.equals(Tabb.boolType)) ? Codee.aload : Codee.baload;
+		int leftInstr = (!dsgLeftType.equals(Tabb.charType) && !dsgLeftType.equals(Tabb.boolType)) ? Codee.astore : Codee.bastore;
+		
+		if ((lenRight - dsgStmtCounter <= 0) || (lenLeft - lenRight + dsgStmtCounter < 0)) {
+			Codee.put(Codee.trap);
+			Codee.put(1);
+			return;
+		}
+		
+		// handle array assignment
+		int cnt = -1;
+		while (lenRight >= dsgStmtCounter + (++cnt) + 1) {
+			if (lenRight > dsgStmtCounter + cnt + 1) Codee.put(Codee.dup2);
+			else Codee.put(Codee.dup_x1);
+			Codee.loadConst(dsgStmtCounter + cnt);
+			Codee.loadConst(cnt);
+			Codee.put(Codee.dup_x2);
+			Codee.put(Codee.pop);
+			Codee.put(rightInstr);
+			Codee.put(leftInstr);
+		}
+		currDesignator.remove(currDesignator.size() - 1);
+		
+		// handle variables assignment
+		while (--dsgStmtCounter >= 0) {
+			if (dsgStmtSet.contains(dsgStmtCounter)) {
+				if (dsgStmtSet.size() > 1) Codee.put(Codee.dup_x1);
+				Codee.loadConst(dsgStmtCounter);
+				Codee.put(rightInstr);
+				Codee.handleStoreDesignator(currDesignator.get(currDesignator.size() - 1));
+				dsgStmtSet.remove(dsgStmtCounter);
+				currDesignator.remove(currDesignator.size() - 1);
+			}
+		}
+		
+		dsgStmtCounter = 0;
 	}
 	
 	// Condition
@@ -200,14 +247,18 @@ public class CodeGenerator extends VisitorAdaptor {
 	// Expr
 	
 	public void visit(ExprYes expr) {
-		if (currClass != null && currClassMethod.get(currClassMethod.size() - 1)) {
+		boolean cond1 = !currCalledMethod.isEmpty() && currCalledMethod.get(currCalledMethod.size() - 1).getFpPos() > 0;
+		boolean cond2 = (expr.getParent() instanceof ActParsTempList) || (expr.getParent() instanceof ActParsTempSingle);
+		if (cond1 && cond2) {
 			Codee.put(Codee.dup_x1);
 			Codee.put(Codee.pop);
 		}
 	}
 	
 	public void visit(ExprNo expr) {
-		if (currClass != null && currClassMethod.get(currClassMethod.size() - 1)) {
+		boolean cond1 = !currCalledMethod.isEmpty() && currCalledMethod.get(currCalledMethod.size() - 1).getFpPos() > 0;
+		boolean cond2 = (expr.getParent() instanceof ActParsTempList) || (expr.getParent() instanceof ActParsTempSingle);
+		if (cond1 && cond2) {
 			Codee.put(Codee.dup_x1);
 			Codee.put(Codee.pop);
 		}
@@ -239,11 +290,10 @@ public class CodeGenerator extends VisitorAdaptor {
 	// Factor
 	
 	public void visit(FactorDesignatorFirst factor) {
-		if (currClassMethod.get(currClassMethod.size() - 1)) {
+		if (!currCalledMethod.isEmpty() && currCalledMethod.get(currCalledMethod.size() - 1).getFpPos() > 0) {
 			String name = currMethod.getName();
 			int len = name.length();
 			
-			Codee.put(Codee.load_n);
 			Codee.put(Codee.getfield);
 			Codee.put2(0);
 
@@ -257,15 +307,14 @@ public class CodeGenerator extends VisitorAdaptor {
 			
 		}
 		
-		currClassMethod.set(currClassMethod.size() - 1, false);
+		currCalledMethod.remove(currCalledMethod.size() - 1);
 	}
 	
 	public void visit(FactorDesignatorSecond factor) {
-		if (currClassMethod.get(currClassMethod.size() - 1)) {
+		if (!currCalledMethod.isEmpty() && currCalledMethod.get(currCalledMethod.size() - 1).getFpPos() > 0) {
 			String name = currMethod.getName();
 			int len = name.length();
 			
-			Codee.put(Codee.load_n);
 			Codee.put(Codee.getfield);
 			Codee.put2(0);
 
@@ -279,11 +328,7 @@ public class CodeGenerator extends VisitorAdaptor {
 			
 		}
 		
-		currClassMethod.set(currClassMethod.size() - 1, false);
-	}
-	
-	public void visit(FactorDesignatorThird factor) {
-		
+		currCalledMethod.remove(currCalledMethod.size() - 1);
 	}
 	
 	public void visit(FactorNum factor) {
@@ -298,38 +343,29 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.loadConst(factor.getValue() ? 1 : 0);
 	}
 	
-	public void visit(NewChoiceExpr choice) {
-		
-	}
-	
-	public void visit(NewChoiceActParsYes choice) {
-		
-	}
-	
-	public void visit(NewChoiceActParsNo choice) {
-		
-	}
-	
 	public void visit(FactorNew factor) {
+		Struct type = factor.getType().struct;
+		SyntaxNode newChoiceNode = factor.getNewChoice();
 		
-	}
-	
-	public void visit(FactorExpr factor) {
-		
+		if (newChoiceNode instanceof NewChoiceExpr) {
+			Codee.put(Codee.newarray);
+			if (!type.equals(Tabb.charType) && !type.equals(Tabb.boolType)) Codee.put(1);
+			else Codee.put(0);
+		}
+		else {
+			Codee.put(Codee.new_);
+			Codee.put2(4 * (type.getNumberOfFields() + 1));
+		}
 	}
 	
 	// Designator
 	
 	public void visit(TLBrackett lBracket) {
-		currDesignator.add(null);
 		designatorParts.add(new ArrayList<String>());
-		currClassMethod.add(false);
 	}
 	
 	public void visit(TRBrackett rBracket) {
-		currDesignator.remove(currDesignator.size() - 1);
 		designatorParts.remove(designatorParts.size() - 1);
-		currClassMethod.remove(currClassMethod.size() - 1);
 	}
 	
 	public void visit(DesignatorPartsIdent designator) {
@@ -347,7 +383,6 @@ public class CodeGenerator extends VisitorAdaptor {
 		Obj initObj = Tabb.findLocsMethod(currMethod, localName);
 		if (currClass != null) {
 			if (initObj == Tabb.noObj) initObj = Tabb.findLocsClass(currClass.getType(), localName);
-			if (initObj.getKind() == Obj.Meth) currClassMethod.set(currClassMethod.size() - 1, true);
 			if (initObj == Tabb.noObj) initObj = Tabb.findStatic(localName, currClass.getType());
 		}
 		if (initObj == Tabb.noObj) initObj = Tabb.find(fullName);
@@ -368,12 +403,13 @@ public class CodeGenerator extends VisitorAdaptor {
 		if (storeDsg || bothDsg) {
 			Obj dsgObj = initObj;
 			Struct elemType = initType;
+			currDesignator.add(null);
 			if (designatorParts.get(designatorParts.size() - 1).isEmpty()) {
 				if (dsgObj.getKind() == Obj.Fld) Codee.put(Codee.load_n);
 				currDesignator.set(currDesignator.size() - 1, dsgObj);
 			}
 			else {
-				Codee.handleLoadDesignator(dsgObj, currClassMethod.get(currClassMethod.size() - 1), true);
+				Codee.handleLoadDesignator(dsgObj, currCalledMethod, true);
 				for (int i = 0; i < len; ++i) {
 					String elem = elems.get(i);
 					if (elem.equals("[]")) {
@@ -386,7 +422,6 @@ public class CodeGenerator extends VisitorAdaptor {
 					}
 					else {
 						dsgObj = Tabb.findLocsClass(elemType, localName);
-						if (dsgObj.getKind() == Obj.Meth) currClassMethod.set(currClassMethod.size() - 1, true);
 						elemType = dsgObj.getType();
 					}
 				
@@ -395,7 +430,7 @@ public class CodeGenerator extends VisitorAdaptor {
 						currDesignator.set(currDesignator.size() - 1, dsgObj);
 					}
 					else {
-						Codee.handleLoadDesignator(dsgObj, currClassMethod.get(currClassMethod.size() - 1), false);
+						Codee.handleLoadDesignator(dsgObj, currCalledMethod, false);
 					}
 				}
 			}
@@ -403,7 +438,7 @@ public class CodeGenerator extends VisitorAdaptor {
 		if (!storeDsg || bothDsg) {
 			Obj dsgObj = initObj;
 			Struct elemType = initType;
-			Codee.handleLoadDesignator(dsgObj, currClassMethod.get(currClassMethod.size() - 1), true);
+			Codee.handleLoadDesignator(dsgObj, currCalledMethod, true);
 			for (String elem: elems) {
 				if (elem.equals("[]")) {
 					elemType = elemType.getElemType();
@@ -415,10 +450,9 @@ public class CodeGenerator extends VisitorAdaptor {
 				}
 				else {
 					dsgObj = Tabb.findLocsClass(elemType, localName);
-					if (dsgObj.getKind() == Obj.Meth) currClassMethod.set(currClassMethod.size() - 1, true);
 					elemType = dsgObj.getType();
 				}
-				Codee.handleLoadDesignator(dsgObj, currClassMethod.get(currClassMethod.size() - 1), false);
+				Codee.handleLoadDesignator(dsgObj, currCalledMethod, false);
 			}
 		}
 		

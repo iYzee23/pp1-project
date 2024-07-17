@@ -1,5 +1,7 @@
 package rs.ac.bg.etf.pp1;
 
+import java.util.ArrayList;
+
 import rs.etf.pp1.mj.runtime.Code;
 import rs.etf.pp1.symboltable.concepts.Obj;
 import rs.etf.pp1.symboltable.concepts.Struct;
@@ -32,7 +34,8 @@ public class Codee extends Code {
 	    		break;
 	    	  
 	    	case Obj.Fld:
-	    		put(getfield); put2(o.getAdr()); 
+	    		// 0th position is reserved for TVF
+	    		put(getfield); put2(o.getAdr() + 1); 
 	    		break;
 	    	  
 	    	case Obj.Elem:
@@ -65,7 +68,8 @@ public class Codee extends Code {
 	  			break;
 
 		  	case Obj.Fld:
-		  		put(putfield); put2(o.getAdr()); 
+		  		// 0th position is reserved for TVF
+		  		put(putfield); put2(o.getAdr() + 1); 
 		  		break;
 		        
 		  	case Obj.Elem:
@@ -79,7 +83,7 @@ public class Codee extends Code {
 		}
 	}
 
-	public static void handleLoadDesignator(Obj dsgObj, boolean classMeth, boolean first) {
+	public static void handleLoadDesignator(Obj dsgObj, ArrayList<Obj> currCalledMethod, boolean first) {
 		switch(dsgObj.getKind()) {
 			case Obj.Var:
 				if (dsgObj.getLevel() == 0) {
@@ -102,23 +106,15 @@ public class Codee extends Code {
 				break;
 				
 			case Obj.Meth:
-				if (classMeth) {
-					if (first) {
-						put(load_n);
-						// args
-						// load_0
-						// getfield 0
-						// invokevirtual name -1
-					}
-					else {
-						put(dup);
-						// arg
-						// dup_x1
-						// pop
-						// ...
-						// getfield 0
-						// invokevirtual name -1
-					}
+				currCalledMethod.add(dsgObj);
+				if (dsgObj.getFpPos() > 0) {
+					put(dup);
+					// arg
+					// dup_x1
+					// pop
+					// ...
+					// getfield 0
+					// invokevirtual name -1
 				}
 				else {
 					// args

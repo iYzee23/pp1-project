@@ -127,7 +127,7 @@ public class Tabb extends Tab {
 	public static void overrideMethod(Obj overrideMeth) {
 		Tabb.currentScope().getLocals().deleteKey(overrideMeth.getName());
 		Tabb.currentScope().getLocals().insertKey(overrideMeth);
-		overrideMeth.setFpPos(1);
+		overrideMeth.setFpPos(2);
 	}
 	
 	public static boolean firstAssignableToSecond(Struct first, Struct second) {
