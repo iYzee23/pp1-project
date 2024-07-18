@@ -76,12 +76,16 @@ nonterminal VarPart VarPart;
 nonterminal StatVarDeclList StatVarDeclList;
 nonterminal ForSymbol ForSymbol;
 nonterminal ExtClass ExtClass;
+nonterminal ElseSymbol ElseSymbol;
+nonterminal IfSymbol IfSymbol;
 nonterminal StatInitList StatInitList;
 nonterminal VarDeclList VarDeclList;
 nonterminal StaticInitializer StaticInitializer;
 nonterminal StatementList StatementList;
 nonterminal Statement Statement;
 nonterminal ReturnType ReturnType;
+nonterminal FirstSemi FirstSemi;
+nonterminal SecondSemi SecondSemi;
 nonterminal FormPars FormPars;
 nonterminal DesignatorStatement DesignatorStatement;
 nonterminal OpChoice OpChoice;
@@ -98,6 +102,7 @@ nonterminal Addop Addop;
 nonterminal Mulop Mulop;
 nonterminal DesignatorParts DesignatorParts;
 nonterminal BracketsOpt BracketsOpt;
+nonterminal RParenFor RParenFor;
 nonterminal Condition Condition;
 nonterminal CondTerm CondTerm;
 nonterminal CondFact CondFact;
@@ -253,9 +258,9 @@ Statement ::= (StmtDesignator) DesignatorStatement:D1 SEMI {: RESULT=new StmtDes
 		   |
 		   (StmtDesignatorError) error SEMI:l {: parser.report_error("Bad designator statement. Performed recovery until ; in line " + lleft, null); :} {: RESULT=new StmtDesignatorError(); :}
 		   |
-		   (StmtIfElse) IF LPAREN Condition:C1 RPAREN Statement:S2 ElseOpt:E3 {: RESULT=new StmtIfElse(C1, S2, E3); RESULT.setLine(C1left); :}
+		   (StmtIfElse) IfSymbol:I1 LPAREN Condition:C2 RPAREN Statement:S3 ElseOpt:E4 {: RESULT=new StmtIfElse(I1, C2, S3, E4); RESULT.setLine(I1left); :}
 		   |
-		   (StmtIfElseError) IF LPAREN error RPAREN:l {: parser.report_error("Bad IF condition. Performed recovery until ) in line " + lleft, null); :} Statement:S1 ElseOpt:E2 {: RESULT=new StmtIfElseError(S1, E2); RESULT.setLine(S1left); :}
+		   (StmtIfElseError) IfSymbol:I1 LPAREN error RPAREN:l {: parser.report_error("Bad IF condition. Performed recovery until ) in line " + lleft, null); :} Statement:S2 ElseOpt:E3 {: RESULT=new StmtIfElseError(I1, S2, E3); RESULT.setLine(I1left); :}
 		   |
 		   (StmtBreak) BREAK SEMI {: RESULT=new StmtBreak(); :}
 		   |
@@ -271,29 +276,39 @@ Statement ::= (StmtDesignator) DesignatorStatement:D1 SEMI {: RESULT=new StmtDes
 		   |
 		   (StmtPrintNo) PRINT LPAREN Expr:E1 RPAREN SEMI {: RESULT=new StmtPrintNo(E1); RESULT.setLine(E1left); :}
 		   |
-		   (StmtForYesYesYes) ForSymbol:F1 LPAREN DesignatorStatement:D2 DesignatorStmtList:D3 SEMI CondFact:C4 SEMI DesignatorStatement:D5 DesignatorStmtList:D6 RPAREN Statement:S7 {: RESULT=new StmtForYesYesYes(F1, D2, D3, C4, D5, D6, S7); RESULT.setLine(F1left); :}
+		   (StmtForYesYesYes) ForSymbol:F1 LPAREN DesignatorStatement:D2 DesignatorStmtList:D3 FirstSemi:F4 CondFact:C5 SecondSemi:S6 DesignatorStatement:D7 DesignatorStmtList:D8 RParenFor:R9 Statement:S10 {: RESULT=new StmtForYesYesYes(F1, D2, D3, F4, C5, S6, D7, D8, R9, S10); RESULT.setLine(F1left); :}
 		   |
-		   (StmtForYesYesNo) ForSymbol:F1 LPAREN DesignatorStatement:D2 DesignatorStmtList:D3 SEMI CondFact:C4 SEMI RPAREN Statement:S5 {: RESULT=new StmtForYesYesNo(F1, D2, D3, C4, S5); RESULT.setLine(F1left); :}
+		   (StmtForYesYesNo) ForSymbol:F1 LPAREN DesignatorStatement:D2 DesignatorStmtList:D3 FirstSemi:F4 CondFact:C5 SecondSemi:S6 RParenFor:R7 Statement:S8 {: RESULT=new StmtForYesYesNo(F1, D2, D3, F4, C5, S6, R7, S8); RESULT.setLine(F1left); :}
 		   |
-		   (StmtForYesNoYes) ForSymbol:F1 LPAREN SEMI CondFact:C2 SEMI DesignatorStatement:D3 DesignatorStmtList:D4 RPAREN Statement:S5 {: RESULT=new StmtForYesNoYes(F1, C2, D3, D4, S5); RESULT.setLine(F1left); :}
+		   (StmtForYesNoYes) ForSymbol:F1 LPAREN FirstSemi:F2 CondFact:C3 SecondSemi:S4 DesignatorStatement:D5 DesignatorStmtList:D6 RParenFor:R7 Statement:S8 {: RESULT=new StmtForYesNoYes(F1, F2, C3, S4, D5, D6, R7, S8); RESULT.setLine(F1left); :}
 		   |
-		   (StmtForYesNoNo) ForSymbol:F1 LPAREN SEMI CondFact:C2 SEMI RPAREN Statement:S3 {: RESULT=new StmtForYesNoNo(F1, C2, S3); RESULT.setLine(F1left); :}
+		   (StmtForYesNoNo) ForSymbol:F1 LPAREN FirstSemi:F2 CondFact:C3 SecondSemi:S4 RParenFor:R5 Statement:S6 {: RESULT=new StmtForYesNoNo(F1, F2, C3, S4, R5, S6); RESULT.setLine(F1left); :}
 		   |
-		   (StmtForNoYesYes) ForSymbol:F1 LPAREN DesignatorStatement:D2 DesignatorStmtList:D3 SEMI SEMI DesignatorStatement:D4 DesignatorStmtList:D5 RPAREN Statement:S6 {: RESULT=new StmtForNoYesYes(F1, D2, D3, D4, D5, S6); RESULT.setLine(F1left); :}
+		   (StmtForNoYesYes) ForSymbol:F1 LPAREN DesignatorStatement:D2 DesignatorStmtList:D3 FirstSemi:F4 SecondSemi:S5 DesignatorStatement:D6 DesignatorStmtList:D7 RParenFor:R8 Statement:S9 {: RESULT=new StmtForNoYesYes(F1, D2, D3, F4, S5, D6, D7, R8, S9); RESULT.setLine(F1left); :}
 		   |
-		   (StmtForNoYesNo) ForSymbol:F1 LPAREN DesignatorStatement:D2 DesignatorStmtList:D3 SEMI SEMI RPAREN Statement:S4 {: RESULT=new StmtForNoYesNo(F1, D2, D3, S4); RESULT.setLine(F1left); :}
+		   (StmtForNoYesNo) ForSymbol:F1 LPAREN DesignatorStatement:D2 DesignatorStmtList:D3 FirstSemi:F4 SecondSemi:S5 RParenFor:R6 Statement:S7 {: RESULT=new StmtForNoYesNo(F1, D2, D3, F4, S5, R6, S7); RESULT.setLine(F1left); :}
 		   |
-		   (StmtForNoNoYes) ForSymbol:F1 LPAREN SEMI SEMI DesignatorStatement:D2 DesignatorStmtList:D3 RPAREN Statement:S4 {: RESULT=new StmtForNoNoYes(F1, D2, D3, S4); RESULT.setLine(F1left); :}
+		   (StmtForNoNoYes) ForSymbol:F1 LPAREN FirstSemi:F2 SecondSemi:S3 DesignatorStatement:D4 DesignatorStmtList:D5 RParenFor:R6 Statement:S7 {: RESULT=new StmtForNoNoYes(F1, F2, S3, D4, D5, R6, S7); RESULT.setLine(F1left); :}
 		   |
-		   (StmtForNoNoNo) ForSymbol:F1 LPAREN SEMI SEMI RPAREN Statement:S2 {: RESULT=new StmtForNoNoNo(F1, S2); RESULT.setLine(F1left); :}
+		   (StmtForNoNoNo) ForSymbol:F1 LPAREN FirstSemi:F2 SecondSemi:S3 RParenFor:R4 Statement:S5 {: RESULT=new StmtForNoNoNo(F1, F2, S3, R4, S5); RESULT.setLine(F1left); :}
 		   |
 		   (StmtBlock) LBRACE StatementList:S1 RBRACE {: RESULT=new StmtBlock(S1); RESULT.setLine(S1left); :};
 		   
+FirstSemi ::= (FirstSemit) SEMI {: RESULT=new FirstSemit(); :};
+
+SecondSemi ::= (SecondSemit) SEMI {: RESULT=new SecondSemit(); :};
+
+RParenFor ::= (RParenFort) RPAREN {: RESULT=new RParenFort(); :};
+
 ForSymbol ::= (ForSymbolt) FOR {: RESULT=new ForSymbolt(); :};
 
-ElseOpt ::= (ElseOptYes) ELSE Statement:S1 {: RESULT=new ElseOptYes(S1); RESULT.setLine(S1left); :}
+ElseOpt ::= (ElseOptYes) ElseSymbol:E1 Statement:S2 {: RESULT=new ElseOptYes(E1, S2); RESULT.setLine(E1left); :}
 		 |
 		 (ElseOptNo) {: RESULT=new ElseOptNo(); :} /* epsilon */;
+		 
+IfSymbol ::= (IfSymbolt) IF {: RESULT=new IfSymbolt(); :};
+		 
+ElseSymbol ::= (ElseSymbolt) ELSE {: RESULT=new ElseSymbolt(); :};
 				   
 DesignatorStmtList ::= (DesignatorStmtListYes) DesignatorStmtList:D1 COMMA DesignatorStatement:D2 {: RESULT=new DesignatorStmtListYes(D1, D2); RESULT.setLine(D1left); :}
 					|

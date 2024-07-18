@@ -144,7 +144,6 @@ public class Codee extends Code {
 		}
 	}
 	
-	
 	public static void handleStoreDesignator(Obj dsgObj) {
 		switch(dsgObj.getKind()) {
 			case Obj.Var:
@@ -186,5 +185,10 @@ public class Codee extends Code {
 			default:
 				break;
 		}
+	}
+
+	//za uslovni skok unapred ostaviti adresu nula
+	public static void putTrueJump (int op, int adr) {
+		put(jcc + op); put2(adr-pc+1);
 	}
 }

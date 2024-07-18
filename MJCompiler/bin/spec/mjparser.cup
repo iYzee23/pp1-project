@@ -61,10 +61,10 @@ terminal Character CHAR_CONST;
 /* Non-terminals */
 
 nonterminal Program, NamespaceList, DeclList, MethodDeclList, Namespace, ConstDecl, VarDecl, ClassDecl, MethodDecl;
-nonterminal ConstParts, ConstPart, VarParts, VarPart, StatVarDeclList, ForSymbol, ExtClass;
-nonterminal StatInitList, VarDeclList, StaticInitializer, StatementList, Statement, ReturnType;
+nonterminal ConstParts, ConstPart, VarParts, VarPart, StatVarDeclList, ForSymbol, ExtClass, ElseSymbol, IfSymbol;
+nonterminal StatInitList, VarDeclList, StaticInitializer, StatementList, Statement, ReturnType, FirstSemi, SecondSemi;
 nonterminal FormPars, DesignatorStatement, OpChoice, DesignatorList, ElseOpt, StatInits, TLBracket, TRBracket;
-nonterminal ActPars, ActParsTemp, Assignop, Relop, Addop, Mulop, DesignatorParts, BracketsOpt;
+nonterminal ActPars, ActParsTemp, Assignop, Relop, Addop, Mulop, DesignatorParts, BracketsOpt, RParenFor;
 nonterminal Condition, CondTerm, CondFact, CondTermList, CondFactList, StatVarDeclInit, TLParen, TRParen; 
 nonterminal AddopTermList, MulopFactorList, NewChoice, DesignatorStmtList, MethodDeclListOpt;
 
@@ -209,9 +209,9 @@ Statement ::= (StmtDesignator) DesignatorStatement SEMI
 		   |
 		   (StmtDesignatorError) error SEMI:l {: parser.report_error("Bad designator statement. Performed recovery until ; in line " + lleft, null); :}
 		   |
-		   (StmtIfElse) IF LPAREN Condition RPAREN Statement ElseOpt
+		   (StmtIfElse) IfSymbol LPAREN Condition RPAREN Statement ElseOpt
 		   |
-		   (StmtIfElseError) IF LPAREN error RPAREN:l {: parser.report_error("Bad IF condition. Performed recovery until ) in line " + lleft, null); :} Statement ElseOpt
+		   (StmtIfElseError) IfSymbol LPAREN error RPAREN:l {: parser.report_error("Bad IF condition. Performed recovery until ) in line " + lleft, null); :} Statement ElseOpt
 		   |
 		   (StmtBreak) BREAK SEMI
 		   |
@@ -227,29 +227,39 @@ Statement ::= (StmtDesignator) DesignatorStatement SEMI
 		   |
 		   (StmtPrintNo) PRINT LPAREN Expr RPAREN SEMI
 		   |
-		   (StmtForYesYesYes) ForSymbol LPAREN DesignatorStatement DesignatorStmtList SEMI CondFact SEMI DesignatorStatement DesignatorStmtList RPAREN Statement
+		   (StmtForYesYesYes) ForSymbol LPAREN DesignatorStatement DesignatorStmtList FirstSemi CondFact SecondSemi DesignatorStatement DesignatorStmtList RParenFor Statement
 		   |
-		   (StmtForYesYesNo) ForSymbol LPAREN DesignatorStatement DesignatorStmtList SEMI CondFact SEMI RPAREN Statement
+		   (StmtForYesYesNo) ForSymbol LPAREN DesignatorStatement DesignatorStmtList FirstSemi CondFact SecondSemi RParenFor Statement
 		   |
-		   (StmtForYesNoYes) ForSymbol LPAREN SEMI CondFact SEMI DesignatorStatement DesignatorStmtList RPAREN Statement
+		   (StmtForYesNoYes) ForSymbol LPAREN FirstSemi CondFact SecondSemi DesignatorStatement DesignatorStmtList RParenFor Statement
 		   |
-		   (StmtForYesNoNo) ForSymbol LPAREN SEMI CondFact SEMI RPAREN Statement
+		   (StmtForYesNoNo) ForSymbol LPAREN FirstSemi CondFact SecondSemi RParenFor Statement
 		   |
-		   (StmtForNoYesYes) ForSymbol LPAREN DesignatorStatement DesignatorStmtList SEMI SEMI DesignatorStatement DesignatorStmtList RPAREN Statement
+		   (StmtForNoYesYes) ForSymbol LPAREN DesignatorStatement DesignatorStmtList FirstSemi SecondSemi DesignatorStatement DesignatorStmtList RParenFor Statement
 		   |
-		   (StmtForNoYesNo) ForSymbol LPAREN DesignatorStatement DesignatorStmtList SEMI SEMI RPAREN Statement
+		   (StmtForNoYesNo) ForSymbol LPAREN DesignatorStatement DesignatorStmtList FirstSemi SecondSemi RParenFor Statement
 		   |
-		   (StmtForNoNoYes) ForSymbol LPAREN SEMI SEMI DesignatorStatement DesignatorStmtList RPAREN Statement
+		   (StmtForNoNoYes) ForSymbol LPAREN FirstSemi SecondSemi DesignatorStatement DesignatorStmtList RParenFor Statement
 		   |
-		   (StmtForNoNoNo) ForSymbol LPAREN SEMI SEMI RPAREN Statement
+		   (StmtForNoNoNo) ForSymbol LPAREN FirstSemi SecondSemi RParenFor Statement
 		   |
 		   (StmtBlock) LBRACE StatementList RBRACE;
 		   
+FirstSemi ::= (FirstSemit) SEMI;
+
+SecondSemi ::= (SecondSemit) SEMI;
+
+RParenFor ::= (RParenFort) RPAREN;
+
 ForSymbol ::= (ForSymbolt) FOR;
 
-ElseOpt ::= (ElseOptYes) ELSE Statement
+ElseOpt ::= (ElseOptYes) ElseSymbol Statement
 		 |
 		 (ElseOptNo) /* epsilon */;
+		 
+IfSymbol ::= (IfSymbolt) IF;
+		 
+ElseSymbol ::= (ElseSymbolt) ELSE;
 				   
 DesignatorStmtList ::= (DesignatorStmtListYes) DesignatorStmtList COMMA DesignatorStatement
 					|

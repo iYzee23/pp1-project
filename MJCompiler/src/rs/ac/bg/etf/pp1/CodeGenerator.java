@@ -2,6 +2,7 @@ package rs.ac.bg.etf.pp1;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Stack;
 
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.mj.runtime.Code;
@@ -29,6 +30,159 @@ public class CodeGenerator extends VisitorAdaptor {
 	// hard designator statement processing
 	int dsgStmtCounter = 0;
 	HashSet<Integer> dsgStmtSet = new HashSet<>();
+	
+	// condition processing
+	public static class IfElseFixups {
+		public static final int RPAREN = 1;
+		public static final int AND = 2;
+		public static final int OR = 3;
+		public static final int IF = 4;
+		
+		ArrayList<Integer> fixupsRParen = new ArrayList<>();
+		ArrayList<Integer> fixupsAndNotReady = new ArrayList<>();
+		ArrayList<Integer> fixupsAnd = new ArrayList<>();
+		ArrayList<Integer> fixupsOr = new ArrayList<>();
+		ArrayList<Integer> fixupsIf = new ArrayList<>();
+		
+		public void processAndClear(int kind) {
+			if (kind == RPAREN) {
+				fixupsRParen.forEach(Codee::fixup);
+				fixupsRParen.clear();
+			}
+			else if (kind == AND) {
+				fixupsAnd.forEach(Codee::fixup);
+				fixupsAnd.clear();
+			}
+			else if (kind == OR) {
+				fixupsOr.forEach(Codee::fixup);
+				fixupsOr.clear();
+			}
+			else {
+				fixupsIf.forEach(Codee::fixup);
+				fixupsIf.clear();
+			}
+		}
+		
+		public void transferToAnd() {
+			fixupsAndNotReady.forEach(fixupsAnd::add);
+			fixupsAndNotReady.clear();
+		}
+	}
+	
+	Stack<IfElseFixups> ifElseStack = new Stack<>(); 
+	
+	public void handleCondTermIf(SyntaxNode condTerm, int relopKind) {
+		// before ")"	-->		false: jump on else/after
+		// before "&&"	-->		false: jump on next (else/after or condition)
+		// before "||"	-->		true: jump on then
+		SyntaxNode parent = ((CondTermt)condTerm).getParent();
+		
+		if (parent instanceof Conditiont) {
+			SyntaxNode child = ((Conditiont)parent).getCondTermList();
+			
+			if (child instanceof CondTermListYes) {
+				// condition for "||"
+				Codee.putTrueJump(relopKind, 0);
+				ifElseStack.peek().fixupsOr.add(Codee.pc - 2);
+			}
+			else {
+				// condition for ")"
+				Codee.putFalseJump(relopKind, 0);
+				ifElseStack.peek().fixupsRParen.add(Codee.pc - 2);
+			}
+		}
+		else {
+			SyntaxNode gParent = ((CondTermListYes)parent).getParent();
+			
+			if (gParent instanceof CondTermListYes) {
+				// condition for "||"
+				Codee.putTrueJump(relopKind, 0);
+				ifElseStack.peek().fixupsOr.add(Codee.pc - 2);
+			}
+			else {
+				// condition for ")"
+				Codee.putFalseJump(relopKind, 0);
+				ifElseStack.peek().fixupsRParen.add(Codee.pc - 2);
+			}
+		}
+	}
+
+	public void handleCondFactIf(SyntaxNode condFact, int relopKind) {
+		// before ")"	-->		false: jump on else/after
+		// before "&&"	-->		false: jump on next (else/after or condition)
+		// before "||"	-->		true: jump on then
+		SyntaxNode parent = condFact.getParent();
+		
+		if (parent instanceof CondTermt) {
+			SyntaxNode child = ((CondTermt)parent).getCondFactList();
+			
+			if (child instanceof CondFactListYes) {
+				// condition for "&&"
+				Codee.putFalseJump(relopKind, 0);
+				ifElseStack.peek().fixupsAndNotReady.add(Codee.pc - 2);
+			}
+			else {
+				// condition for ")" or "||"
+				// parent is CondTerm
+				handleCondTermIf(parent, relopKind);
+			}
+		}
+		else {
+			SyntaxNode gParent = ((CondFactListYes)parent).getParent();
+			
+			if (gParent instanceof CondFactListYes) {
+				// condition for "&&"
+				Codee.putFalseJump(relopKind, 0);
+				ifElseStack.peek().fixupsAndNotReady.add(Codee.pc - 2);
+			}
+			else {
+				// condition for ")" or "||"
+				// gParent is CondTerm
+				handleCondTermIf(gParent, relopKind);
+			}
+		}
+	}
+
+	// for loop processing
+
+	public static class ForFixups {
+		boolean existsCond = false;
+		int pcPost = -1;
+		int pcCond = -1;
+		
+		public static final int CTRUE = 1;
+		public static final int CFALSE = 2;
+		public static final int BREAK = 3;
+
+		ArrayList<Integer> fixupsCondTrue = new ArrayList<>();
+		ArrayList<Integer> fixupsCondFalse = new ArrayList<>();
+		ArrayList<Integer> fixupsBreak = new ArrayList<>();
+
+		public void processAndClear(int kind) {
+			if (kind == CTRUE) {
+				fixupsCondTrue.forEach(Codee::fixup);
+				fixupsCondTrue.clear();
+			}
+			else if (kind == CFALSE) {
+				fixupsCondFalse.forEach(Codee::fixup);
+				fixupsCondFalse.clear();
+			}
+			else {
+				fixupsBreak.forEach(Codee::fixup);
+				fixupsBreak.clear();
+			}
+		}
+	}
+
+	Stack<ForFixups> forStack = new Stack<>();
+	
+	public void handleCondFactFor(SyntaxNode condFact, int relopKind) {
+		forStack.peek().existsCond = true;
+		Codee.putFalseJump(relopKind, 0);
+		forStack.peek().fixupsCondFalse.add(Codee.pc - 2);
+		Codee.putTrueJump(relopKind, 0);
+		forStack.peek().fixupsCondTrue.add(Codee.pc - 2);
+	}
 	
 	// Program
 	
@@ -93,7 +247,120 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	// Statement
+
+	public void visit(StmtBreak stmt) {
+		Codee.putJump(0);
+		forStack.peek().fixupsBreak.add(Codee.pc - 2);
+	}
 	
+	public void visit(StmtContinue stmt) {
+		Codee.putJump(forStack.peek().pcPost);
+	}
+	
+	public void visit(ForSymbolt forSymbol) {
+		forStack.push(new ForFixups());
+	}
+	
+	public void visit(FirstSemit semi) {
+		forStack.peek().pcCond = Codee.pc;
+	}
+	
+	public void visit(SecondSemit semi) {
+		if (!forStack.peek().existsCond) {
+			Codee.putJump(0);
+			forStack.peek().fixupsCondTrue.add(Codee.pc - 2);
+		}
+		
+		forStack.peek().pcPost = Codee.pc;
+	}
+
+	public void visit(RParenFort rParen) {
+		Codee.putJump(forStack.peek().pcCond);
+		
+		// start of body branch
+		forStack.peek().processAndClear(ForFixups.CTRUE);
+	}
+	
+	public void visit(StmtForYesYesYes stmt) {
+		Codee.putJump(forStack.peek().pcPost);
+		
+		// start of after branch
+		forStack.peek().processAndClear(ForFixups.CFALSE);
+		forStack.peek().processAndClear(ForFixups.BREAK);
+		
+		forStack.pop();
+	}
+	
+	public void visit(StmtForYesYesNo stmt) {
+		Codee.putJump(forStack.peek().pcPost);
+		
+		// start of after branch
+		forStack.peek().processAndClear(ForFixups.CFALSE);
+		forStack.peek().processAndClear(ForFixups.BREAK);
+		
+		forStack.pop();
+	}
+	
+	public void visit(StmtForYesNoYes stmt) {
+		Codee.putJump(forStack.peek().pcPost);
+		
+		// start of after branch
+		forStack.peek().processAndClear(ForFixups.CFALSE);
+		forStack.peek().processAndClear(ForFixups.BREAK);
+		
+		forStack.pop();
+	}
+	
+	public void visit(StmtForYesNoNo stmt) {
+		Codee.putJump(forStack.peek().pcPost);
+		
+		// start of after branch
+		forStack.peek().processAndClear(ForFixups.CFALSE);
+		forStack.peek().processAndClear(ForFixups.BREAK);
+		
+		forStack.pop();
+	}
+	
+	public void visit(StmtForNoYesYes stmt) {
+		Codee.putJump(forStack.peek().pcPost);
+		
+		// start of after branch
+		forStack.peek().processAndClear(ForFixups.CFALSE);
+		forStack.peek().processAndClear(ForFixups.BREAK);
+		
+		forStack.pop();
+	}
+	
+	public void visit(StmtForNoYesNo stmt) {
+		Codee.putJump(forStack.peek().pcPost);
+		
+		// start of after branch
+		forStack.peek().processAndClear(ForFixups.CFALSE);
+		forStack.peek().processAndClear(ForFixups.BREAK);
+		
+		forStack.pop();
+	}
+	
+	public void visit(StmtForNoNoYes stmt) {
+		Codee.putJump(forStack.peek().pcPost);
+		
+		// start of after branch
+		forStack.peek().processAndClear(ForFixups.CFALSE);
+		forStack.peek().processAndClear(ForFixups.BREAK);
+		
+		forStack.pop();
+	}
+	
+	public void visit(StmtForNoNoNo stmt) {
+		Codee.putJump(forStack.peek().pcPost);
+		
+		// start of after branch
+		forStack.peek().processAndClear(ForFixups.CFALSE);
+		forStack.peek().processAndClear(ForFixups.BREAK);
+		
+		forStack.pop();
+	}
+
 	public void visit(StmtRead stmt) {
 		if (stmt.getDesignator().obj.getType().equals(Tabb.charType)) Codee.put(Codee.bread);
 		else if (stmt.getDesignator().obj.getType().equals(Tabb.boolType)) Codee.put(Codee.bread);
@@ -240,10 +507,77 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	// Condition
 	
+	public void visit(IfSymbolt ifSymbol) {
+		ifElseStack.push(new IfElseFixups());
+	}
+	
+	public void visit(Conditiont condition) {
+		// start of then branch
+		ifElseStack.peek().transferToAnd();
+		ifElseStack.peek().processAndClear(IfElseFixups.OR);
+	}
+	
+	public void visit(ElseSymbolt elseSymbol) {
+		Codee.putJump(0);
+		ifElseStack.peek().fixupsIf.add(Codee.pc - 2);
+		
+		// start of else branch
+		ifElseStack.peek().processAndClear(IfElseFixups.RPAREN);
+		ifElseStack.peek().processAndClear(IfElseFixups.AND);
+	}
+	
+	public void visit(StmtIfElse stmt) {
+		// start of after branch
+		ifElseStack.peek().processAndClear(IfElseFixups.RPAREN);
+		ifElseStack.peek().processAndClear(IfElseFixups.AND);
+		ifElseStack.peek().processAndClear(IfElseFixups.IF);
+		ifElseStack.pop();
+	}
+	
 	// CondTerm
 	
-	// CondFact
+	public void visit(CondTermt condTerm) {
+		ifElseStack.peek().processAndClear(IfElseFixups.AND);
+		ifElseStack.peek().transferToAnd();
+	}
 	
+	// CondFact
+
+	public void visit(CondFactYes condFact) {
+		SyntaxNode relopNode = condFact.getRelop();
+		int relopKind = -1;
+		
+		if (relopNode instanceof RelopEqual) relopKind = Codee.eq;
+		else if (relopNode instanceof RelopNotEqual) relopKind = Codee.ne;
+		else if (relopNode instanceof RelopGrt) relopKind = Codee.gt;
+		else if (relopNode instanceof RelopGrtEqual) relopKind = Codee.ge;
+		else if (relopNode instanceof RelopLess) relopKind = Codee.lt;
+		else relopKind = Codee.le;
+		
+		SyntaxNode parent = condFact.getParent();
+		boolean ind = (parent instanceof StmtForYesYesYes) 
+				|| (parent instanceof StmtForYesYesNo) 
+				|| (parent instanceof StmtForYesNoYes) 
+				|| (parent instanceof StmtForYesNoNo);
+		
+		if (ind) handleCondFactFor(condFact, relopKind);
+		else handleCondFactIf(condFact, relopKind);
+	}
+	
+	public void visit(CondFactNo condFact) {
+		Codee.loadConst(1);
+		int relopKind = Codee.eq;
+		
+		SyntaxNode parent = condFact.getParent();
+		boolean ind = (parent instanceof StmtForYesYesYes) 
+				|| (parent instanceof StmtForYesYesNo) 
+				|| (parent instanceof StmtForYesNoYes) 
+				|| (parent instanceof StmtForYesNoNo);
+		
+		if (ind) handleCondFactFor(condFact, relopKind);
+		else handleCondFactIf(condFact, relopKind);
+	}
+
 	// Expr
 	
 	public void visit(ExprYes expr) {
@@ -376,6 +710,82 @@ public class CodeGenerator extends VisitorAdaptor {
 		designatorParts.get(designatorParts.size() - 1).add("[]");
 	}
 	
+	public void visit(DesignatorYes designator) {
+		Obj nspObj = Tabb.find(designator.getNspName());
+		String fullName = nspObj.getName() + "::" + designator.getDsgName();
+		Obj initObj = Tabb.find(fullName);
+		
+		SyntaxNode dsgParent = designator.getParent();
+		boolean storeDsg = (dsgParent instanceof StmtRead)
+				|| (dsgParent instanceof DesignatorStmtFirst && ((DesignatorStmtFirst)dsgParent).getOpChoice() instanceof OpChoiceExpr)
+				|| (dsgParent instanceof DesignatorListYesYes)
+				|| (dsgParent instanceof DesignatorStmtSecond && ((DesignatorStmtSecond)dsgParent).getDesignator().equals(designator));
+		boolean bothDsg = (dsgParent instanceof DesignatorStmtFirst && ((DesignatorStmtFirst)dsgParent).getOpChoice() instanceof OpChoiceInc)
+				|| (dsgParent instanceof DesignatorStmtFirst && ((DesignatorStmtFirst)dsgParent).getOpChoice() instanceof OpChoiceDec); 
+		
+		ArrayList<String> elems = designatorParts.get(designatorParts.size() - 1);
+		Struct initType = initObj.getType();
+		int len = elems.size();
+		
+		if (storeDsg || bothDsg) {
+			Obj dsgObj = initObj;
+			Struct elemType = initType;
+			currDesignator.add(null);
+			if (designatorParts.get(designatorParts.size() - 1).isEmpty()) {
+				if (dsgObj.getKind() == Obj.Fld) Codee.put(Codee.load_n);
+				currDesignator.set(currDesignator.size() - 1, dsgObj);
+			}
+			else {
+				Codee.handleLoadDesignator(dsgObj, currCalledMethod, true);
+				for (int i = 0; i < len; ++i) {
+					String elem = elems.get(i);
+					if (elem.equals("[]")) {
+						elemType = elemType.getElemType();
+						dsgObj = new Obj(Obj.Elem, "", elemType);
+					}
+					else if (dsgObj.getKind() == Obj.Type) {
+						dsgObj = Tabb.findExactStatic(dsgObj.getName() + elem);
+						elemType = dsgObj.getType();
+					}
+					else {
+						dsgObj = Tabb.findLocsClass(elemType, elem);
+						elemType = dsgObj.getType();
+					}
+				
+					if (i == len - 1) {
+						if (dsgObj.getKind() == Obj.Fld) Codee.put(Codee.load_n);
+						currDesignator.set(currDesignator.size() - 1, dsgObj);
+					}
+					else {
+						Codee.handleLoadDesignator(dsgObj, currCalledMethod, false);
+					}
+				}
+			}
+		}
+		if (!storeDsg || bothDsg) {
+			Obj dsgObj = initObj;
+			Struct elemType = initType;
+			Codee.handleLoadDesignator(dsgObj, currCalledMethod, true);
+			for (String elem: elems) {
+				if (elem.equals("[]")) {
+					elemType = elemType.getElemType();
+					dsgObj = new Obj(Obj.Elem, "", elemType);
+				}
+				else if (dsgObj.getKind() == Obj.Type) {
+					dsgObj = Tabb.findExactStatic(dsgObj.getName() + elem);
+					elemType = dsgObj.getType();
+				}
+				else {
+					dsgObj = Tabb.findLocsClass(elemType, elem);
+					elemType = dsgObj.getType();
+				}
+				Codee.handleLoadDesignator(dsgObj, currCalledMethod, false);
+			}
+		}
+		
+		designatorParts.get(designatorParts.size() - 1).clear();
+	}
+	
 	public void visit(DesignatorNo designator) {
 		String localName = designator.getDsgName();
 		String fullName = currNamespace + localName;
@@ -421,7 +831,7 @@ public class CodeGenerator extends VisitorAdaptor {
 						elemType = dsgObj.getType();
 					}
 					else {
-						dsgObj = Tabb.findLocsClass(elemType, localName);
+						dsgObj = Tabb.findLocsClass(elemType, elem);
 						elemType = dsgObj.getType();
 					}
 				
@@ -449,7 +859,7 @@ public class CodeGenerator extends VisitorAdaptor {
 					elemType = dsgObj.getType();
 				}
 				else {
-					dsgObj = Tabb.findLocsClass(elemType, localName);
+					dsgObj = Tabb.findLocsClass(elemType, elem);
 					elemType = dsgObj.getType();
 				}
 				Codee.handleLoadDesignator(dsgObj, currCalledMethod, false);
@@ -458,5 +868,5 @@ public class CodeGenerator extends VisitorAdaptor {
 		
 		designatorParts.get(designatorParts.size() - 1).clear();
 	}
-	
+
 }

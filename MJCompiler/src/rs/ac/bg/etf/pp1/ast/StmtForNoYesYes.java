@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 14/6/2024 4:27:56
+// 18/6/2024 20:37:50
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -10,21 +10,30 @@ public class StmtForNoYesYes extends Statement {
     private ForSymbol ForSymbol;
     private DesignatorStatement DesignatorStatement;
     private DesignatorStmtList DesignatorStmtList;
+    private FirstSemi FirstSemi;
+    private SecondSemi SecondSemi;
     private DesignatorStatement DesignatorStatement1;
     private DesignatorStmtList DesignatorStmtList2;
+    private RParenFor RParenFor;
     private Statement Statement;
 
-    public StmtForNoYesYes (ForSymbol ForSymbol, DesignatorStatement DesignatorStatement, DesignatorStmtList DesignatorStmtList, DesignatorStatement DesignatorStatement1, DesignatorStmtList DesignatorStmtList2, Statement Statement) {
+    public StmtForNoYesYes (ForSymbol ForSymbol, DesignatorStatement DesignatorStatement, DesignatorStmtList DesignatorStmtList, FirstSemi FirstSemi, SecondSemi SecondSemi, DesignatorStatement DesignatorStatement1, DesignatorStmtList DesignatorStmtList2, RParenFor RParenFor, Statement Statement) {
         this.ForSymbol=ForSymbol;
         if(ForSymbol!=null) ForSymbol.setParent(this);
         this.DesignatorStatement=DesignatorStatement;
         if(DesignatorStatement!=null) DesignatorStatement.setParent(this);
         this.DesignatorStmtList=DesignatorStmtList;
         if(DesignatorStmtList!=null) DesignatorStmtList.setParent(this);
+        this.FirstSemi=FirstSemi;
+        if(FirstSemi!=null) FirstSemi.setParent(this);
+        this.SecondSemi=SecondSemi;
+        if(SecondSemi!=null) SecondSemi.setParent(this);
         this.DesignatorStatement1=DesignatorStatement1;
         if(DesignatorStatement1!=null) DesignatorStatement1.setParent(this);
         this.DesignatorStmtList2=DesignatorStmtList2;
         if(DesignatorStmtList2!=null) DesignatorStmtList2.setParent(this);
+        this.RParenFor=RParenFor;
+        if(RParenFor!=null) RParenFor.setParent(this);
         this.Statement=Statement;
         if(Statement!=null) Statement.setParent(this);
     }
@@ -53,6 +62,22 @@ public class StmtForNoYesYes extends Statement {
         this.DesignatorStmtList=DesignatorStmtList;
     }
 
+    public FirstSemi getFirstSemi() {
+        return FirstSemi;
+    }
+
+    public void setFirstSemi(FirstSemi FirstSemi) {
+        this.FirstSemi=FirstSemi;
+    }
+
+    public SecondSemi getSecondSemi() {
+        return SecondSemi;
+    }
+
+    public void setSecondSemi(SecondSemi SecondSemi) {
+        this.SecondSemi=SecondSemi;
+    }
+
     public DesignatorStatement getDesignatorStatement1() {
         return DesignatorStatement1;
     }
@@ -67,6 +92,14 @@ public class StmtForNoYesYes extends Statement {
 
     public void setDesignatorStmtList2(DesignatorStmtList DesignatorStmtList2) {
         this.DesignatorStmtList2=DesignatorStmtList2;
+    }
+
+    public RParenFor getRParenFor() {
+        return RParenFor;
+    }
+
+    public void setRParenFor(RParenFor RParenFor) {
+        this.RParenFor=RParenFor;
     }
 
     public Statement getStatement() {
@@ -85,8 +118,11 @@ public class StmtForNoYesYes extends Statement {
         if(ForSymbol!=null) ForSymbol.accept(visitor);
         if(DesignatorStatement!=null) DesignatorStatement.accept(visitor);
         if(DesignatorStmtList!=null) DesignatorStmtList.accept(visitor);
+        if(FirstSemi!=null) FirstSemi.accept(visitor);
+        if(SecondSemi!=null) SecondSemi.accept(visitor);
         if(DesignatorStatement1!=null) DesignatorStatement1.accept(visitor);
         if(DesignatorStmtList2!=null) DesignatorStmtList2.accept(visitor);
+        if(RParenFor!=null) RParenFor.accept(visitor);
         if(Statement!=null) Statement.accept(visitor);
     }
 
@@ -95,8 +131,11 @@ public class StmtForNoYesYes extends Statement {
         if(ForSymbol!=null) ForSymbol.traverseTopDown(visitor);
         if(DesignatorStatement!=null) DesignatorStatement.traverseTopDown(visitor);
         if(DesignatorStmtList!=null) DesignatorStmtList.traverseTopDown(visitor);
+        if(FirstSemi!=null) FirstSemi.traverseTopDown(visitor);
+        if(SecondSemi!=null) SecondSemi.traverseTopDown(visitor);
         if(DesignatorStatement1!=null) DesignatorStatement1.traverseTopDown(visitor);
         if(DesignatorStmtList2!=null) DesignatorStmtList2.traverseTopDown(visitor);
+        if(RParenFor!=null) RParenFor.traverseTopDown(visitor);
         if(Statement!=null) Statement.traverseTopDown(visitor);
     }
 
@@ -104,8 +143,11 @@ public class StmtForNoYesYes extends Statement {
         if(ForSymbol!=null) ForSymbol.traverseBottomUp(visitor);
         if(DesignatorStatement!=null) DesignatorStatement.traverseBottomUp(visitor);
         if(DesignatorStmtList!=null) DesignatorStmtList.traverseBottomUp(visitor);
+        if(FirstSemi!=null) FirstSemi.traverseBottomUp(visitor);
+        if(SecondSemi!=null) SecondSemi.traverseBottomUp(visitor);
         if(DesignatorStatement1!=null) DesignatorStatement1.traverseBottomUp(visitor);
         if(DesignatorStmtList2!=null) DesignatorStmtList2.traverseBottomUp(visitor);
+        if(RParenFor!=null) RParenFor.traverseBottomUp(visitor);
         if(Statement!=null) Statement.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -133,6 +175,18 @@ public class StmtForNoYesYes extends Statement {
             buffer.append(tab+"  null");
         buffer.append("\n");
 
+        if(FirstSemi!=null)
+            buffer.append(FirstSemi.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
+
+        if(SecondSemi!=null)
+            buffer.append(SecondSemi.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
+
         if(DesignatorStatement1!=null)
             buffer.append(DesignatorStatement1.toString("  "+tab));
         else
@@ -141,6 +195,12 @@ public class StmtForNoYesYes extends Statement {
 
         if(DesignatorStmtList2!=null)
             buffer.append(DesignatorStmtList2.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
+
+        if(RParenFor!=null)
+            buffer.append(RParenFor.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");
