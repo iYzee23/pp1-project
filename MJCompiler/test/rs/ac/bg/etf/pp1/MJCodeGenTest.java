@@ -62,6 +62,7 @@ public class MJCodeGenTest {
 				if (objFile.exists()) objFile.delete();
 				
 				CodeGenerator codeGenerator = new CodeGenerator();
+				codeGenerator.globData = v.nVars;
 				prog.traverseBottomUp(codeGenerator);
 				
 				Code.dataSize = v.nVars;

@@ -1,7 +1,10 @@
 package rs.ac.bg.etf.pp1;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map.Entry;
 import java.util.Stack;
 
 import rs.ac.bg.etf.pp1.ast.*;
@@ -12,6 +15,7 @@ import rs.etf.pp1.symboltable.concepts.Struct;
 public class CodeGenerator extends VisitorAdaptor {
 
 	int mainPc;
+	int globData;
 	
 	public int getMainPc() {
 		return mainPc;
@@ -31,7 +35,59 @@ public class CodeGenerator extends VisitorAdaptor {
 	int dsgStmtCounter = 0;
 	HashSet<Integer> dsgStmtSet = new HashSet<>();
 	
-	// condition processing
+	// NewType() processing
+	Obj latestNew = null;
+	HashMap<Obj, HashMap<Integer, Obj>> methodNews = new HashMap<>();
+	
+	public void handleNewExpr(SyntaxNode expr) {
+		SyntaxNode parent = expr.getParent();
+		
+		if (parent instanceof CondFactYes || parent instanceof StmtPrintYes || parent instanceof StmtPrintNo) {
+			latestNew = null;
+		}
+		else if (parent instanceof ActParsTempSingle) {
+			Obj methObj = currCalledMethod.get(currCalledMethod.size() - 1);
+			HashMap<Integer, Obj> currHM = methodNews.get(methObj);
+			if (currHM == null) methodNews.put(methObj, currHM = new HashMap<>());
+			currHM.put(0, latestNew);
+			latestNew = null;
+		}
+		else if (parent instanceof ActParsTempList) {
+			int cnt = 0;
+			while (parent instanceof ActParsTempList) {
+				++cnt;
+				parent = parent.getParent();
+			}
+			
+			Obj methObj = currCalledMethod.get(currCalledMethod.size() - 1);
+			HashMap<Integer, Obj> currHM = methodNews.get(methObj);
+			if (currHM == null) methodNews.put(methObj, currHM = new HashMap<>());
+			currHM.put(methObj.getLevel() - cnt, latestNew);
+			latestNew = null;
+		}
+		else if (parent instanceof OpChoiceExpr) {
+			Obj currDsg = currDesignator.get(currDesignator.size() - 1); 
+			if (currDsg != null && currDsg.getKind() == Obj.Fld) {
+				/*
+				Codee.put(Codee.dup2);
+				Codee.put(Codee.pop);
+				Codee.load(currDsg);
+				Codee.put(Codee.dup_x2);
+				Codee.put(Codee.pop);
+				*/
+				Codee.put(Codee.dup);
+				Codee.load(currDsg);
+				Codee.put(Codee.dup_x1);
+				Codee.put(Codee.pop);
+			}
+			else if (currDsg != null && currDsg.getKind() == Obj.Elem) {
+				Codee.put(Codee.dup2);
+			}
+		}
+	}
+	
+	// Condition processing
+	
 	public static class IfElseFixups {
 		public static final int RPAREN = 1;
 		public static final int AND = 2;
@@ -143,8 +199,8 @@ public class CodeGenerator extends VisitorAdaptor {
 		}
 	}
 
-	// for loop processing
-
+	// ForLoop processing
+	
 	public static class ForFixups {
 		boolean existsCond = false;
 		int pcPost = -1;
@@ -182,6 +238,44 @@ public class CodeGenerator extends VisitorAdaptor {
 		forStack.peek().fixupsCondFalse.add(Codee.pc - 2);
 		Codee.putTrueJump(relopKind, 0);
 		forStack.peek().fixupsCondTrue.add(Codee.pc - 2);
+	}
+	
+	// TVFS initialization
+	
+	public void initTvfs() {
+		Collection<Obj> symbs = Tabb.programScope.values();
+		for (Obj uType: symbs) {
+			if (uType.getKind() != Obj.Type) continue;
+			
+			uType.setAdr(globData);
+			Collection<Obj> locals = uType.getLocalSymbols(); 
+			for (Obj local: locals) {
+				if (local.getKind() != Obj.Meth) continue;
+				
+				// load name
+				String name = local.getName();
+				for (char ch: name.toCharArray()) {
+					Codee.loadConst(ch);
+					Codee.put(Codee.putstatic);
+					Codee.put2(globData++);
+				}
+				
+				// load -1 for name end
+				Codee.loadConst(-1);
+				Codee.put(Codee.putstatic);
+				Codee.put2(globData++);
+				
+				// load method address
+				Codee.loadConst(local.getAdr());
+				Codee.put(Codee.putstatic);
+				Codee.put2(globData++);
+			}
+			
+			// load -2 for TVF end
+			Codee.loadConst(-2);
+			Codee.put(Codee.putstatic);
+			Codee.put2(globData++);
+		}
 	}
 	
 	// Program
@@ -223,14 +317,38 @@ public class CodeGenerator extends VisitorAdaptor {
 	public void visit(MethodNamet methodName) {
 		Obj methObj = methodName.obj;
 		
-		methObj.setAdr(Codee.pc);
+		
 		if (methObj.getName().equals("main")) {
+			initTvfs();
 			Codee.mainPc = Codee.pc;
 		}
+		methObj.setAdr(Codee.pc);
 		
 		Codee.put(Codee.enter);
 		Codee.put(methObj.getLevel());
 		Codee.put(methObj.getLocalSymbols().size());
+		
+		HashMap<Integer, Obj> currHM = methodNews.get(methObj);
+		if (currHM != null) {
+			for (Entry<Integer, Obj> entry: currHM.entrySet()) {
+				Integer param = entry.getKey();
+				Obj mObj = entry.getValue();
+				
+				if (0 <= param && param <= 3) {
+					Codee.put(Codee.load_n + param);
+				}
+				else {
+					Codee.put(Codee.load); 
+					Codee.put(param);
+				}
+				Codee.loadConst(mObj.getAdr());
+				Codee.put(Codee.putfield);
+				Codee.put2(0);
+			}
+			
+			methodNews.remove(methObj);
+		}
+		
 		currMethod = methObj;
 	}
 	
@@ -393,42 +511,54 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(OpChoiceActParsYes opChoice) {
-		if (!currCalledMethod.isEmpty() && currCalledMethod.get(currCalledMethod.size() - 1).getFpPos() > 0) {
-			String name = currMethod.getName();
-			int len = name.length();
-			
+		Obj methObj = currCalledMethod.get(currCalledMethod.size() - 1);
+		
+		if (methObj.getFpPos() > 0) {
 			Codee.put(Codee.getfield);
 			Codee.put2(0);
 
+			String name = methObj.getName();
 			Codee.put(Codee.invokevirtual);
-			for(int i = 0; i < len; ++i) {
-				Codee.put4(name.charAt(i));
+			for(char ch: name.toCharArray()) {
+				Codee.put4(ch);
 			}
 			Codee.put4(-1);
+			
+			Obj dsgObj = ((DesignatorStmtFirst)opChoice.getParent()).getDesignator().obj;
+			if (!dsgObj.getType().equals(Tabb.noType)) {
+				Codee.put(Codee.pop);
+			}
 		}
 		else {
-			
+			Codee.put(Codee.call);
+			Codee.put2(methObj.getAdr() - Codee.pc);
 		}
 		
 		currCalledMethod.remove(currCalledMethod.size() - 1);
 	}
 	
 	public void visit(OpChoiceActParsNo opChoice) {
-		if (!currCalledMethod.isEmpty() && currCalledMethod.get(currCalledMethod.size() - 1).getFpPos() > 0) {
-			String name = currMethod.getName();
-			int len = name.length();
-			
+		Obj methObj = currCalledMethod.get(currCalledMethod.size() - 1);
+		
+		if (methObj.getFpPos() > 0) {
 			Codee.put(Codee.getfield);
 			Codee.put2(0);
 
+			String name = methObj.getName();
 			Codee.put(Codee.invokevirtual);
-			for(int i = 0; i < len; ++i) {
-				Codee.put4(name.charAt(i));
+			for(char ch: name.toCharArray()) {
+				Codee.put4(ch);
 			}
 			Codee.put4(-1);
+			
+			Obj dsgObj = ((DesignatorStmtFirst)opChoice.getParent()).getDesignator().obj;
+			if (!dsgObj.getType().equals(Tabb.noType)) {
+				Codee.put(Codee.pop);
+			}
 		}
 		else {
-			
+			Codee.put(Codee.call);
+			Codee.put2(methObj.getAdr() - Codee.pc);
 		}
 		
 		currCalledMethod.remove(currCalledMethod.size() - 1);
@@ -436,6 +566,12 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public void visit(OpChoiceExpr opChoice) {
 		Codee.handleStoreDesignator(currDesignator.get(currDesignator.size() - 1));
+		
+		if (latestNew != null) {
+			Codee.handleNewDesignator(currDesignator.get(currDesignator.size() - 1), latestNew);
+			latestNew = null;
+		}
+		
 		currDesignator.remove(currDesignator.size() - 1);
 	}
 	
@@ -590,8 +726,9 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(ExprNo expr) {
+		SyntaxNode parent = expr.getParent();
 		boolean cond1 = !currCalledMethod.isEmpty() && currCalledMethod.get(currCalledMethod.size() - 1).getFpPos() > 0;
-		boolean cond2 = (expr.getParent() instanceof ActParsTempList) || (expr.getParent() instanceof ActParsTempSingle);
+		boolean cond2 = (parent instanceof ActParsTempList) || (parent instanceof ActParsTempSingle);
 		if (cond1 && cond2) {
 			Codee.put(Codee.dup_x1);
 			Codee.put(Codee.pop);
@@ -624,42 +761,44 @@ public class CodeGenerator extends VisitorAdaptor {
 	// Factor
 	
 	public void visit(FactorDesignatorFirst factor) {
-		if (!currCalledMethod.isEmpty() && currCalledMethod.get(currCalledMethod.size() - 1).getFpPos() > 0) {
-			String name = currMethod.getName();
-			int len = name.length();
-			
+		Obj methObj = currCalledMethod.get(currCalledMethod.size() - 1); 
+		
+		if (methObj.getFpPos() > 0) {
 			Codee.put(Codee.getfield);
 			Codee.put2(0);
 
+			String name = methObj.getName();
 			Codee.put(Codee.invokevirtual);
-			for(int i = 0; i < len; ++i) {
-				Codee.put4(name.charAt(i));
+			for(char ch: name.toCharArray()) {
+				Codee.put4(ch);
 			}
 			Codee.put4(-1);
 		}
 		else {
-			
+			Codee.put(Codee.call);
+			Codee.put2(methObj.getAdr() - Codee.pc);
 		}
 		
 		currCalledMethod.remove(currCalledMethod.size() - 1);
 	}
 	
 	public void visit(FactorDesignatorSecond factor) {
-		if (!currCalledMethod.isEmpty() && currCalledMethod.get(currCalledMethod.size() - 1).getFpPos() > 0) {
-			String name = currMethod.getName();
-			int len = name.length();
-			
+		Obj methObj = currCalledMethod.get(currCalledMethod.size() - 1); 
+		
+		if (methObj.getFpPos() > 0) {
 			Codee.put(Codee.getfield);
 			Codee.put2(0);
 
+			String name = methObj.getName();
 			Codee.put(Codee.invokevirtual);
-			for(int i = 0; i < len; ++i) {
-				Codee.put4(name.charAt(i));
+			for(char ch: name.toCharArray()) {
+				Codee.put4(ch);
 			}
 			Codee.put4(-1);
 		}
 		else {
-			
+			Codee.put(Codee.call);
+			Codee.put2(methObj.getAdr() - Codee.pc);
 		}
 		
 		currCalledMethod.remove(currCalledMethod.size() - 1);
@@ -687,6 +826,8 @@ public class CodeGenerator extends VisitorAdaptor {
 			else Codee.put(0);
 		}
 		else {
+			latestNew = Tabb.findObjForType(type);
+			handleNewExpr(factor.getParent().getParent());
 			Codee.put(Codee.new_);
 			Codee.put2(4 * (type.getNumberOfFields() + 1));
 		}

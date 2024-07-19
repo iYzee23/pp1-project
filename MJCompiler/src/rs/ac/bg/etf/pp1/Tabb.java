@@ -169,4 +169,13 @@ public class Tabb extends Tab {
 		return noObj;
 	}
 	
+	public static Obj findObjForType(Struct type) {
+		Collection<Obj> symbs = programScope.values();
+		for (Obj elem: symbs) {
+			if (elem.getKind() == Obj.Type && elem.getType().equals(type))
+				return elem;
+		}
+		return noObj;
+	}
+	
 }

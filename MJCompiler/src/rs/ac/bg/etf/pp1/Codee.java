@@ -100,9 +100,10 @@ public class Codee extends Code {
 				break;
 			
 			case Obj.Fld:
+				// 0th position is reserved for TVF
 				if (first) put(load_n);
 				put(getfield);
-				put2(dsgObj.getAdr());
+				put2(dsgObj.getAdr() + 1);
 				break;
 				
 			case Obj.Meth:
@@ -161,10 +162,11 @@ public class Codee extends Code {
 				break;
 				
 			case Obj.Fld:
+				// 0th position is reserved for TVF
 				// if (first) put(load_n);
 				// val
 				put(putfield);
-				put2(dsgObj.getAdr());
+				put2(dsgObj.getAdr() + 1);
 				break;
 				
 			case Objj.Stat:
@@ -187,6 +189,34 @@ public class Codee extends Code {
 		}
 	}
 
+	public static void handleNewDesignator(Obj dsgObj, Obj latestNew) {
+		switch(dsgObj.getKind()) {
+			case Obj.Var:
+				if (dsgObj.getLevel() == 0) {
+					put(getstatic); 
+					put2(dsgObj.getAdr()); 
+		  		}
+				else if (0 <= dsgObj.getAdr() && dsgObj.getAdr() <= 3) 
+		  			put(load_n + dsgObj.getAdr());
+		  		else { 
+		  			put(load); 
+		  			put(dsgObj.getAdr()); 
+		  		} 
+				break;
+				
+			case Objj.Stat:
+				put(getstatic);
+				put2(dsgObj.getAdr());
+				break;
+				
+			default:
+				break;
+		}
+		loadConst(latestNew.getAdr());
+		put(putfield);
+		put2(0);
+	}
+	
 	//za uslovni skok unapred ostaviti adresu nula
 	public static void putTrueJump (int op, int adr) {
 		put(jcc + op); put2(adr-pc+1);
