@@ -55,7 +55,9 @@ public class MJCodeGenTest {
 	      
 			// log.info(" Print count calls = " + v.printCallCount);
 			NewVisitor nv = new NewVisitor();
-			Tabb.dump(nv);		
+			Tabb.dump(nv);
+			
+			System.out.println("===============================================================");
 			
 			if (!p.errorDetected && !v.errorDetected) {
 				File objFile = new File("test/program.obj");
@@ -66,11 +68,15 @@ public class MJCodeGenTest {
 				prog.traverseBottomUp(codeGenerator);
 				
 				Code.dataSize = v.nVars;
-				Code.mainPc = codeGenerator.getMainPc();
+				Code.mainPc = codeGenerator.mainPc;
 				
 				Code.write(new FileOutputStream(objFile));
 				log.info("Prevodjenje uspesno zavrseno!");
 			}
+			else {
+				log.info("Prevodjenje nije uspesno zavrseno!");
+			}
+			System.out.println("===============================================================");
 		} 
 		finally {
 			if (br != null) try { br.close(); } catch (IOException e1) { log.error(e1.getMessage(), e1); }

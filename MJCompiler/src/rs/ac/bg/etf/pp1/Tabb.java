@@ -94,6 +94,7 @@ public class Tabb extends Tab {
 			Obj newElem = Tabb.insert(elem.getKind(), elem.getName(), elem.getType());
 			newElem.setAdr(elem.getAdr());
 			newElem.setLevel(elem.getLevel());
+			newElem.setFpPos(elem.getFpPos());
 			
 			if (elem.getKind() == Obj.Meth) {
 				Collection<Obj> methMembers = elem.getLocalSymbols();
@@ -103,6 +104,7 @@ public class Tabb extends Tab {
 					Obj mNewElem = Tabb.insert(mElem.getKind(), mElem.getName(), mElem.getName().equals("this") ? currClass : mElem.getType());
 					mNewElem.setAdr(mElem.getAdr());
 					mNewElem.setLevel(mElem.getLevel());
+					mNewElem.setFpPos(mElem.getFpPos());
 				}
 				Tabb.chainLocalSymbols(newElem);
 				Tabb.closeScope();
@@ -176,6 +178,15 @@ public class Tabb extends Tab {
 				return elem;
 		}
 		return noObj;
+	}
+	
+	public static Obj findProgramSymbol(String name) {
+		Obj res = programScope.getLocals().searchKey(name);
+		if (res == null) {
+			res = programScope.getOuter().getLocals().searchKey(name);
+			if (res == null) res = noObj;
+		}
+		return res;
 	}
 	
 }

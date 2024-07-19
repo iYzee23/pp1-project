@@ -86,11 +86,12 @@ import java_cup.runtime.Symbol;
 
 
 // Tokens
-'.'								{ return new_symbol (sym.CHAR_CONST, yytext().charAt(1)); }
-"true"							{ return new_symbol (sym.BOOL_CONST, true); }
-"false"							{ return new_symbol (sym.BOOL_CONST, false); }
-[0-9]+  						{ return new_symbol (sym.NUM_CONST, Integer.valueOf(yytext())); }
-([a-z]|[A-Z])[a-z|A-Z|0-9|_]* 	{ return new_symbol (sym.IDENT, yytext()); }
+// "'"[\040-\176]"'"			{ return new_symbol(sym.CHAR_CONST, yytext().charAt(1)); }
+'.'								{ return new_symbol(sym.CHAR_CONST, yytext().charAt(1)); }
+"true"							{ return new_symbol(sym.BOOL_CONST, true); }
+"false"							{ return new_symbol(sym.BOOL_CONST, false); }
+[0-9]+  						{ return new_symbol(sym.NUM_CONST, Integer.valueOf(yytext())); }
+([a-z]|[A-Z])[a-z|A-Z|0-9|_]* 	{ return new_symbol(sym.IDENT, yytext()); }
 
 
 // Comments

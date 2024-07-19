@@ -2,6 +2,7 @@ package rs.ac.bg.etf.pp1;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
@@ -16,10 +17,6 @@ public class CodeGenerator extends VisitorAdaptor {
 
 	int mainPc;
 	int globData;
-	
-	public int getMainPc() {
-		return mainPc;
-	}
 	
 	// general
 	Obj currClass = null;
@@ -320,7 +317,7 @@ public class CodeGenerator extends VisitorAdaptor {
 		
 		if (methObj.getName().equals("main")) {
 			initTvfs();
-			Codee.mainPc = Codee.pc;
+			mainPc = Codee.pc;
 		}
 		methObj.setAdr(Codee.pc);
 		
@@ -523,15 +520,15 @@ public class CodeGenerator extends VisitorAdaptor {
 				Codee.put4(ch);
 			}
 			Codee.put4(-1);
-			
-			Obj dsgObj = ((DesignatorStmtFirst)opChoice.getParent()).getDesignator().obj;
-			if (!dsgObj.getType().equals(Tabb.noType)) {
-				Codee.put(Codee.pop);
-			}
 		}
 		else {
 			Codee.put(Codee.call);
-			Codee.put2(methObj.getAdr() - Codee.pc);
+			Codee.put2(methObj.getAdr() - Codee.pc + 1);
+		}
+		
+		Obj dsgObj = ((DesignatorStmtFirst)opChoice.getParent()).getDesignator().obj;
+		if (!dsgObj.getType().equals(Tabb.noType)) {
+			Codee.put(Codee.pop);
 		}
 		
 		currCalledMethod.remove(currCalledMethod.size() - 1);
@@ -550,15 +547,15 @@ public class CodeGenerator extends VisitorAdaptor {
 				Codee.put4(ch);
 			}
 			Codee.put4(-1);
-			
-			Obj dsgObj = ((DesignatorStmtFirst)opChoice.getParent()).getDesignator().obj;
-			if (!dsgObj.getType().equals(Tabb.noType)) {
-				Codee.put(Codee.pop);
-			}
 		}
 		else {
 			Codee.put(Codee.call);
-			Codee.put2(methObj.getAdr() - Codee.pc);
+			Codee.put2(methObj.getAdr() - Codee.pc + 1);
+		}
+		
+		Obj dsgObj = ((DesignatorStmtFirst)opChoice.getParent()).getDesignator().obj;
+		if (!dsgObj.getType().equals(Tabb.noType)) {
+			Codee.put(Codee.pop);
 		}
 		
 		currCalledMethod.remove(currCalledMethod.size() - 1);
@@ -776,7 +773,7 @@ public class CodeGenerator extends VisitorAdaptor {
 		}
 		else {
 			Codee.put(Codee.call);
-			Codee.put2(methObj.getAdr() - Codee.pc);
+			Codee.put2(methObj.getAdr() - Codee.pc + 1);
 		}
 		
 		currCalledMethod.remove(currCalledMethod.size() - 1);
@@ -798,7 +795,7 @@ public class CodeGenerator extends VisitorAdaptor {
 		}
 		else {
 			Codee.put(Codee.call);
-			Codee.put2(methObj.getAdr() - Codee.pc);
+			Codee.put2(methObj.getAdr() - Codee.pc + 1);
 		}
 		
 		currCalledMethod.remove(currCalledMethod.size() - 1);
@@ -852,9 +849,9 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(DesignatorYes designator) {
-		Obj nspObj = Tabb.find(designator.getNspName());
+		Obj nspObj = Tabb.findProgramSymbol(designator.getNspName());
 		String fullName = nspObj.getName() + "::" + designator.getDsgName();
-		Obj initObj = Tabb.find(fullName);
+		Obj initObj = Tabb.findProgramSymbol(fullName);
 		
 		SyntaxNode dsgParent = designator.getParent();
 		boolean storeDsg = (dsgParent instanceof StmtRead)
@@ -865,6 +862,7 @@ public class CodeGenerator extends VisitorAdaptor {
 				|| (dsgParent instanceof DesignatorStmtFirst && ((DesignatorStmtFirst)dsgParent).getOpChoice() instanceof OpChoiceDec); 
 		
 		ArrayList<String> elems = designatorParts.get(designatorParts.size() - 1);
+		Collections.reverse(elems);
 		Struct initType = initObj.getType();
 		int len = elems.size();
 		
@@ -936,8 +934,8 @@ public class CodeGenerator extends VisitorAdaptor {
 			if (initObj == Tabb.noObj) initObj = Tabb.findLocsClass(currClass.getType(), localName);
 			if (initObj == Tabb.noObj) initObj = Tabb.findStatic(localName, currClass.getType());
 		}
-		if (initObj == Tabb.noObj) initObj = Tabb.find(fullName);
-		if (initObj == Tabb.noObj) initObj = Tabb.find(localName);
+		if (initObj == Tabb.noObj) initObj = Tabb.findProgramSymbol(fullName);
+		if (initObj == Tabb.noObj) initObj = Tabb.findProgramSymbol(localName);
 		
 		SyntaxNode dsgParent = designator.getParent();
 		boolean storeDsg = (dsgParent instanceof StmtRead)
@@ -948,6 +946,7 @@ public class CodeGenerator extends VisitorAdaptor {
 				|| (dsgParent instanceof DesignatorStmtFirst && ((DesignatorStmtFirst)dsgParent).getOpChoice() instanceof OpChoiceDec); 
 		
 		ArrayList<String> elems = designatorParts.get(designatorParts.size() - 1);
+		Collections.reverse(elems);
 		Struct initType = initObj.getType();
 		int len = elems.size();
 		

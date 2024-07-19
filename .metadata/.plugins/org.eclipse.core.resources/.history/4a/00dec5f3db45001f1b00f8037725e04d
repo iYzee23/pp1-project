@@ -1,0 +1,90 @@
+program P
+
+namespace NP {
+	int p, P;
+	
+	{
+	
+	}
+}
+
+namespace NP {
+	int m;
+	
+	{
+	
+	}
+}
+
+namespace NM {
+	int p, P, m;
+	
+	{
+	
+	}
+}
+
+namespace NN {
+	const int X = 15;
+	const char Y = 'a';
+	const bool Z = true, W = false;
+	
+	{
+	
+	}
+}
+
+int p;
+char mmm;
+const int X = 5;
+const char Y = 'a';
+const bool Z = true, W = false;
+
+{
+	
+	int pr(int s, char p, char P, char Z[], bool W[]) {
+		print(s);
+		print(p);
+		print(P);
+		print(eol);
+		return 5;
+	}
+	
+	int mi() int s; char p, P, Z[]; bool W[]; {
+		print(s);
+		print(p);
+		print(P);
+		print(eol);
+		return 10;
+	}
+	
+	int sl(int s1, char p1, char P1, char Z1[], bool W1[])
+	int s; 
+	char p, P, Z[]; 
+	bool W[];
+	{
+		return NN::X;
+	}
+	
+	void main() int x, y, z; {
+		p = 2;
+		NP::p = 10;
+		x = -5;
+		y = NP::p;
+		z = X + NN::X;
+		mmm = eol;
+		
+		print(1);
+		print(p);
+		print(NP::p);
+		print(x);
+		print(y);
+		print(z);
+		print(mmm);
+		print(X);
+		print(NN::X);
+		print(eol);
+		
+	}
+
+}

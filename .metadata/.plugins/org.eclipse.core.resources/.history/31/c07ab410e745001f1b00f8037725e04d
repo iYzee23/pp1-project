@@ -1,0 +1,130 @@
+program P
+
+namespace NP {
+	int p, P;
+	
+	{
+	
+	}
+}
+
+namespace NP {
+	int m;
+	
+	{
+	
+	}
+}
+
+namespace NM {
+	int p, P, m;
+	
+	{
+	
+	}
+}
+
+namespace NN {
+	const int X = 15;
+	const char Y = 'Q';
+	const bool Z = true, W = false;
+	
+	{
+	
+	}
+}
+
+int p;
+char mmm;
+const int X = 5;
+const char Y = 'a';
+const bool Z = true, W = false;
+
+{
+	
+	int pr(int s, char p, char P, char Z[], bool W[]) {
+		print(s);
+		print(p);
+		print(P);
+		print(eol);
+		
+		return 5;
+	}
+	
+	int mi() int s; char p, P, Z[]; bool W[]; {
+		s = 5;
+		p = '/';
+		P = 'W';
+		
+		print(s);
+		print(p);
+		print(P);
+		print(eol);
+		
+		Z[0] = 'N';
+		Z[1] = 'E';
+		Z[2] = 'V';
+		Z[3] = 'A';
+		Z[4] = 'J';
+		Z[5] = 'D';
+		Z[6] = 'A';
+		
+		print(Z[0]);
+		print(Z[1]);
+		print(Z[2]);
+		print(Z[3]);
+		print(Z[4]);
+		print(Z[5]);
+		print(Z[6]);
+		
+		return 10;
+	}
+	
+	int sl(int s1, char p1, char P1, char Z1[], bool W1[])
+	int s; 
+	char p, P, Z[]; 
+	bool W[];
+	{
+		Z = new char[5];
+		Z[0] = 'P';
+		Z[1] = 'E';
+		Z[2] = 'D';
+		Z[3] = 'J';
+		Z[4] = 'A';
+		
+		print(Z[0]);
+		print(Z[1]);
+		print(Z[2]);
+		print(Z[3]);
+		print(Z[4]);
+		print(eol);
+			
+		return NN::X;
+	}
+	
+	void main() int x, y, z; {
+		p = 2;
+		NP::p = 10;
+		x = -5;
+		y = NP::p;
+		z = X + NN::X;
+		mmm = eol;
+		
+		print(1);
+		print(p);
+		print(NP::p);
+		print(x);
+		print(y);
+		print(z);
+		print(mmm);
+		print(X);
+		print(NN::X);
+		print('a');
+		print(eol);
+		
+		p = mi();
+		NM::m = pr(p, 'a', NN::Y, null, null);
+		sl(10, 'a', 'A', null, null);
+	}
+
+}

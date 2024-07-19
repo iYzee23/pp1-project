@@ -357,9 +357,9 @@ Designator ::= (DesignatorYes) IDENT:nspName RESOLUTION IDENT:dsgName Designator
 			|
 			(DesignatorNo) IDENT:dsgName DesignatorParts;
 
-DesignatorParts ::= (DesignatorPartsIdent) DesignatorParts DOT IDENT:dsgName
+DesignatorParts ::= (DesignatorPartsIdent) DOT IDENT:dsgName DesignatorParts
 				 |
-				 (DesignatorPartsExpr) DesignatorParts TLBracket Expr TRBracket
+				 (DesignatorPartsExpr) TLBracket Expr TRBracket DesignatorParts
 				 |
 				 (DesignatorPartsNo) /* epsilon */;
 				 

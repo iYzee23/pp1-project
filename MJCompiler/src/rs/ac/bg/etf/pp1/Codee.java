@@ -135,6 +135,8 @@ public class Codee extends Code {
 			case Objj.Elem:
 				// expr should put himself on the stack
 				// that is the array's index for this elem
+				Codee.put(Codee.dup_x1);
+				Codee.put(Codee.pop);
 				if (dsgObj.getType().equals(Tabb.charType)) put(baload);
 				else if (dsgObj.getType().equals(Tabb.boolType)) put(baload);
 				else put(aload);
@@ -179,6 +181,10 @@ public class Codee extends Code {
 				// expr should put himself on the stack
 				// that is the array's index for this elem
 				// val
+				Codee.put(Codee.dup_x1);
+				Codee.put(Codee.pop);
+				Codee.put(Codee.dup_x2);
+				Codee.put(Codee.pop);
 				if (dsgObj.getType().equals(Tabb.charType)) put(bastore);
 				else if (dsgObj.getType().equals(Tabb.boolType)) put(bastore);
 				else put(astore);
