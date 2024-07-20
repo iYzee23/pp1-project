@@ -35,18 +35,6 @@ int rows, s, m, n, g, ss, columns, lp;
 		x = arg;
 		x = 5 + 7 * 5;
 	}
-	
-	// line comment
-	// everything should
-	// be working
-	
-	/*
-		multiline comment
-		also, everything should
-		be working
-		but		now, I'm	not sure
-		everyting	is	working	as	well	
-	*/
 
 	void main() 
 	int x, i; 

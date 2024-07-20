@@ -1,0 +1,125 @@
+program p
+
+namespace sizes{
+	const int tableSize = 10;
+	{
+	}
+}
+
+class Table {
+	static int id;
+	
+	static{
+		id = 0;
+	}
+	
+	int pos[], neg[], factor, lele;
+	int mozda, radi;
+	
+	{
+		void setfactor(int factor) { this.factor = factor; }
+		
+		int getfactor() { return factor; }
+		
+		void putp (int a, int idx) int tmp; {
+			if (idx < 0) idx = 0;
+			else if (idx >= sizes::tableSize) idx = sizes::tableSize - 1;
+			
+			tmp = this.pos[idx];
+			if (tmp < 0) this.pos[idx] = 0;
+			else if (tmp >= sizes::tableSize) this.pos[idx] = sizes::tableSize - 1;
+			
+			this.pos[this.pos[idx]] = a; 
+		}
+		void putn (int a, int idx) {
+			if (idx < 0) idx = 0;
+			else if (idx >= sizes::tableSize) idx = sizes::tableSize - 1;
+			 
+			this.neg[idx] = a; 
+		}
+		int getp (int idx) {
+			if (idx < 0) idx = 0;
+			else if (idx >= sizes::tableSize) idx = sizes::tableSize - 1;
+			 
+			return pos[idx]; 
+		}
+		int getn (int idx) {
+			if (idx < 0) idx = 0;
+			else if (idx >= sizes::tableSize) idx = sizes::tableSize - 1;
+			 
+			return neg[idx]; 
+		}
+	}
+}
+
+Table val;
+int rows, s, m, n, g, ss, columns, lp;
+
+{
+	void f(char ch, int yn, int arg)
+	int x;
+	{
+		x = arg;
+		x = 5 + 7 * 5;
+		print(x);
+		print(eol);
+	}
+
+	void main() 
+	int x, i; 
+	char c; 
+	int arr[];
+	{
+		val = new Table();
+		val.setfactor(2);
+		print(val.getfactor());
+		print(eol);
+		
+		arr = new int[3];
+		for (i=0; i<3; i++) {
+			arr[i] = i;
+		}
+		
+		for (i=0; i<3; i++) print(arr[i]);
+		print(eol);
+		
+		val.pos = new int [sizes::tableSize];
+		val.neg = new int [sizes::tableSize];
+		
+		// read(x);
+		x = 0;
+		
+		for (;i< sizes::tableSize; i++) {
+			val.putp(0, i);
+			print(val.getp(i));
+			val.putn(0, val.getp(i));
+			print();
+			print(eol);
+		}
+
+		f(c, x, i);
+		// read(rows);
+		rows = 0;
+		x = rows;
+		
+		for (;;){
+			if(x <= -10 || x >= 10) break;
+			if (0 <= x && x < sizes::tableSize)
+			{
+				val.putp(val.getp(x) + 1, 1);
+				print();
+				x++;
+			}
+			else if (-sizes::tableSize < x && x < 0)
+			{
+				val.putn(val.getn(x) + 1, 1);
+				print();
+				x--;
+			}
+			
+			// read(x);
+			x = x * (-1);
+			print(eol);
+		}
+	}
+}

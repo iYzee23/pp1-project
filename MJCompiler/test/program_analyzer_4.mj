@@ -71,19 +71,25 @@ int rows, s, m, n, g, ss, columns, lp;
 		}
 
 		f(c, x, i);
-		read(rows);
-		x = rows;
+		// read(rows);
+		//x = rows;
+		
+		x = 0;
 		for (;;){
-			if(x <= 0) break;
+			if(x <= -10 || x >= 10) break;
 			if (0 <= x && x < sizes::tableSize)
 			{
 				val.putp(val.getp(x) + 1, 1);
+				x++;
 			}
 			else if (-sizes::tableSize < x && x < 0)
 			{
 				val.putn(val.getn(x) + 1, 1);
+				x--;
 			}
-			read(x);
+			
+			// read(x);
+			x = x * -1;
 		}
 	}
 }

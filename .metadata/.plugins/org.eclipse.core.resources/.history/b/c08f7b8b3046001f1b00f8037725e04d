@@ -28,7 +28,7 @@ public class MJCodeGenTest {
 		
 		Reader br = null;
 		try {
-			File sourceCode = new File("test/program_codegen_4.mj");
+			File sourceCode = new File("test/program_codegen_3.mj");
 			log.info("Compiling source file: " + sourceCode.getAbsolutePath());
 			
 			br = new BufferedReader(new FileReader(sourceCode));

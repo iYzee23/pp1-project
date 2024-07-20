@@ -35,18 +35,6 @@ int rows, s, m, n, g, ss, columns, lp;
 		x = arg;
 		x = 5 + 7 * 5;
 	}
-	
-	// line comment
-	// everything should
-	// be working
-	
-	/*
-		multiline comment
-		also, everything should
-		be working
-		but		now, I'm	not sure
-		everyting	is	working	as	well	
-	*/
 
 	void main() 
 	int x, i; 
@@ -62,8 +50,10 @@ int rows, s, m, n, g, ss, columns, lp;
 		for (i=0; i<3; i++) print(arr[i]);
 		val.pos = new int [sizes::tableSize];
 		val.neg = new int [sizes::tableSize];
-		read(x);
-
+		
+		// read(x);
+		x = 0;
+		
 		for (;i< sizes::tableSize; i++) {
 			val.putp(0, i);
 			val.getp(i);
@@ -72,9 +62,9 @@ int rows, s, m, n, g, ss, columns, lp;
 
 		f(c, x, i);
 		// read(rows);
-		//x = rows;
+		rows = 0;
+		x = rows;
 		
-		x = 0;
 		for (;;){
 			if(x <= -10 || x >= 10) break;
 			if (0 <= x && x < sizes::tableSize)
@@ -89,7 +79,7 @@ int rows, s, m, n, g, ss, columns, lp;
 			}
 			
 			// read(x);
-			x = x * -1;
+			x = x * (-1);
 		}
 	}
 }
