@@ -189,4 +189,20 @@ public class Tabb extends Tab {
 		return res;
 	}
 	
+	public static boolean checkIfClassDesignator(Obj dsgObj, boolean currClass, boolean currMethod) {
+		Collection<Obj> symbs = programScope.values();
+		
+		for (Obj elem: symbs) {
+			if (elem.getKind() == Obj.Type && elem.getType().getMembers().contains(dsgObj)) {
+				return true;
+			}
+		}
+		
+		if (currClass && currMethod && currentScope.getOuter().values().contains(dsgObj)) {
+			return true;
+		}
+		
+		return false;
+	}
+	
 }

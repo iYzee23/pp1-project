@@ -1016,6 +1016,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		ArrayList<String> elems = designatorParts.get(designatorParts.size() - 1); 
 		Collections.reverse(elems);
 		
+		if (elems.isEmpty() && dsgObj.getKind() == Obj.Meth) {
+			if (Tabb.checkIfClassDesignator(dsgObj, currClass != null, currMethod != null))
+				classDesignator.set(classDesignator.size() - 1, true);
+		}
+		
 		for (String elem: elems) {
 			if (elem.equals("[]")) {
 				dsgName += "[]";
@@ -1110,6 +1115,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		Struct elemType = dsgObj.getType();
 		ArrayList<String> elems = designatorParts.get(designatorParts.size() - 1);
 		Collections.reverse(elems);
+		
+		if (elems.isEmpty() && dsgObj.getKind() == Obj.Meth) {
+			if (Tabb.checkIfClassDesignator(dsgObj, currClass != null, currMethod != null))
+				classDesignator.set(classDesignator.size() - 1, true);
+		}
 		
 		for (String elem: elems) {
 			if (elem.equals("[]")) {

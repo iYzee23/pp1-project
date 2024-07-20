@@ -109,6 +109,7 @@ public class Codee extends Code {
 			case Obj.Meth:
 				currCalledMethod.add(dsgObj);
 				if (dsgObj.getFpPos() > 0) {
+					if (first) put(load_n);
 					put(dup);
 					// arg
 					// dup_x1
