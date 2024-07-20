@@ -65,17 +65,7 @@ public class CodeGenerator extends VisitorAdaptor {
 		else if (parent instanceof OpChoiceExpr) {
 			Obj currDsg = currDesignator.get(currDesignator.size() - 1); 
 			if (currDsg != null && currDsg.getKind() == Obj.Fld) {
-				/*
-				Codee.put(Codee.dup2);
-				Codee.put(Codee.pop);
-				Codee.load(currDsg);
-				Codee.put(Codee.dup_x2);
-				Codee.put(Codee.pop);
-				*/
 				Codee.put(Codee.dup);
-				Codee.load(currDsg);
-				Codee.put(Codee.dup_x1);
-				Codee.put(Codee.pop);
 			}
 			else if (currDsg != null && currDsg.getKind() == Obj.Elem) {
 				Codee.put(Codee.dup2);
@@ -231,6 +221,8 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public void handleCondFactFor(SyntaxNode condFact, int relopKind) {
 		forStack.peek().existsCond = true;
+		Codee.put(Codee.dup2);
+		
 		Codee.putFalseJump(relopKind, 0);
 		forStack.peek().fixupsCondFalse.add(Codee.pc - 2);
 		Codee.putTrueJump(relopKind, 0);
@@ -238,6 +230,26 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	// TVFS initialization
+	public static boolean tvfInitDone = false;
+	public static HashMap<Integer, Obj> fixupsTvf = new HashMap<>();
+	public static HashSet<Obj> visitedMethods = new HashSet<>();
+
+	boolean newStatInit = true;
+	int firstStatInit = -1;
+	int lastStatFixup = -1;
+	
+	public void addressMethod(Obj methObj, Struct type) {
+		type = type.getElemType();
+		while (type != null) {
+			Obj superMethObj = type.getMembersTable().searchKey(methObj.getName());
+			if (visitedMethods.contains(superMethObj)) {
+				methObj.setAdr(superMethObj.getAdr());
+				visitedMethods.add(methObj);
+				return;
+			}
+			type = type.getElemType();
+		}
+	}
 	
 	public void initTvfs() {
 		Collection<Obj> symbs = Tabb.programScope.values();
@@ -245,7 +257,7 @@ public class CodeGenerator extends VisitorAdaptor {
 			if (uType.getKind() != Obj.Type) continue;
 			
 			uType.setAdr(globData);
-			Collection<Obj> locals = uType.getLocalSymbols(); 
+			Collection<Obj> locals = uType.getType().getMembers(); 
 			for (Obj local: locals) {
 				if (local.getKind() != Obj.Meth) continue;
 				
@@ -262,6 +274,11 @@ public class CodeGenerator extends VisitorAdaptor {
 				Codee.put(Codee.putstatic);
 				Codee.put2(globData++);
 				
+				// process method if it's not visited
+				if (!visitedMethods.contains(local)) {
+					addressMethod(local, uType.getType());
+				}
+				
 				// load method address
 				Codee.loadConst(local.getAdr());
 				Codee.put(Codee.putstatic);
@@ -273,6 +290,20 @@ public class CodeGenerator extends VisitorAdaptor {
 			Codee.put(Codee.putstatic);
 			Codee.put2(globData++);
 		}
+		
+		for (Entry<Integer, Obj> entry: fixupsTvf.entrySet()) {
+	 		Integer addr = entry.getKey();
+	 		Obj tvf = entry.getValue();
+	 		Codee.fixupTvf(addr, tvf);
+	 	}
+		
+		if (firstStatInit != -1) {
+			Codee.putJump(firstStatInit);
+		}
+		
+		fixupsTvf.clear();
+		visitedMethods.clear();
+		tvfInitDone = true;
 	}
 	
 	// Program
@@ -309,15 +340,36 @@ public class CodeGenerator extends VisitorAdaptor {
 		currClass = null;
 	}
 	
-	// MethodDecl
+	public void visit(StaticSymbolt statSymbol) {
+		if (newStatInit) {
+			if (firstStatInit == -1) firstStatInit = Codee.pc;
+			if (lastStatFixup != -1) Codee.fixup(lastStatFixup);
+			newStatInit = false;
+		}
+	}
 	
+	public void visit(StatInitListt statInitList) {
+		if (statInitList.getStatInits() instanceof StatInitsYes) {
+			Codee.putJump(0);
+			lastStatFixup = Codee.pc - 2;
+			newStatInit = true;
+		}
+	}
+	
+	// MethodDecl
+
 	public void visit(MethodNamet methodName) {
 		Obj methObj = methodName.obj;
-		
+		visitedMethods.add(methObj);
 		
 		if (methObj.getName().equals("main")) {
-			initTvfs();
 			mainPc = Codee.pc;
+			initTvfs();
+			
+			if (lastStatFixup != -1) {
+				Codee.fixup(lastStatFixup);
+				lastStatFixup = -1;
+			}
 		}
 		methObj.setAdr(Codee.pc);
 		
@@ -883,7 +935,7 @@ public class CodeGenerator extends VisitorAdaptor {
 						dsgObj = new Obj(Obj.Elem, "", elemType);
 					}
 					else if (dsgObj.getKind() == Obj.Type) {
-						dsgObj = Tabb.findExactStatic(dsgObj.getName() + elem);
+						dsgObj = Tabb.findExactStatic(dsgObj.getName() + "::" + elem);
 						elemType = dsgObj.getType();
 					}
 					else {
@@ -892,7 +944,7 @@ public class CodeGenerator extends VisitorAdaptor {
 					}
 				
 					if (i == len - 1) {
-						if (dsgObj.getKind() == Obj.Fld) Codee.put(Codee.load_n);
+						// if (dsgObj.getKind() == Obj.Fld) Codee.put(Codee.load_n);
 						currDesignator.set(currDesignator.size() - 1, dsgObj);
 					}
 					else {
@@ -911,7 +963,7 @@ public class CodeGenerator extends VisitorAdaptor {
 					dsgObj = new Obj(Obj.Elem, "", elemType);
 				}
 				else if (dsgObj.getKind() == Obj.Type) {
-					dsgObj = Tabb.findExactStatic(dsgObj.getName() + elem);
+					dsgObj = Tabb.findExactStatic(dsgObj.getName() + "::" + elem);
 					elemType = dsgObj.getType();
 				}
 				else {
@@ -929,7 +981,8 @@ public class CodeGenerator extends VisitorAdaptor {
 		String localName = designator.getDsgName();
 		String fullName = currNamespace + localName;
 		
-		Obj initObj = Tabb.findLocsMethod(currMethod, localName);
+		Obj initObj = Tabb.noObj;
+		if (currMethod != null) initObj = Tabb.findLocsMethod(currMethod, localName);
 		if (currClass != null) {
 			if (initObj == Tabb.noObj) initObj = Tabb.findLocsClass(currClass.getType(), localName);
 			if (initObj == Tabb.noObj) initObj = Tabb.findStatic(localName, currClass.getType());
@@ -967,7 +1020,7 @@ public class CodeGenerator extends VisitorAdaptor {
 						dsgObj = new Obj(Obj.Elem, "", elemType);
 					}
 					else if (dsgObj.getKind() == Obj.Type) {
-						dsgObj = Tabb.findExactStatic(dsgObj.getName() + elem);
+						dsgObj = Tabb.findExactStatic(dsgObj.getName() + "::" + elem);
 						elemType = dsgObj.getType();
 					}
 					else {
@@ -976,7 +1029,7 @@ public class CodeGenerator extends VisitorAdaptor {
 					}
 				
 					if (i == len - 1) {
-						if (dsgObj.getKind() == Obj.Fld) Codee.put(Codee.load_n);
+						// if (dsgObj.getKind() == Obj.Fld) Codee.put(Codee.load_n);
 						currDesignator.set(currDesignator.size() - 1, dsgObj);
 					}
 					else {
@@ -995,7 +1048,7 @@ public class CodeGenerator extends VisitorAdaptor {
 					dsgObj = new Obj(Obj.Elem, "", elemType);
 				}
 				else if (dsgObj.getKind() == Obj.Type) {
-					dsgObj = Tabb.findExactStatic(dsgObj.getName() + elem);
+					dsgObj = Tabb.findExactStatic(dsgObj.getName() + "::" + elem);
 					elemType = dsgObj.getType();
 				}
 				else {

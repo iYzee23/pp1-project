@@ -209,16 +209,34 @@ public class Codee extends Code {
 		  			put(dsgObj.getAdr()); 
 		  		} 
 				break;
+			
+			case Obj.Fld:
+				put(getfield);
+				put2(dsgObj.getAdr() + 1);
+				break;
 				
 			case Objj.Stat:
 				put(getstatic);
 				put2(dsgObj.getAdr());
 				break;
 				
+			case Obj.Elem:
+				Codee.put(Codee.dup_x1);
+				Codee.put(Codee.pop);
+				Codee.put(Codee.aload);
+				break;
+				
 			default:
 				break;
 		}
-		loadConst(latestNew.getAdr());
+		put(const_); 
+		put4(latestNew.getAdr());
+		// loadConst(latestNew.getAdr());
+		
+		if (!CodeGenerator.tvfInitDone) {
+			CodeGenerator.fixupsTvf.put(Codee.pc - 4, latestNew);
+		}
+		
 		put(putfield);
 		put2(0);
 	}
@@ -226,5 +244,12 @@ public class Codee extends Code {
 	//za uslovni skok unapred ostaviti adresu nula
 	public static void putTrueJump (int op, int adr) {
 		put(jcc + op); put2(adr-pc+1);
+	}
+	
+	public static void fixupTvf(int addr, Obj tvf) {
+	    int old = pc;
+	    pc = addr;
+	    put4(tvf.getAdr());
+	    pc = old;
 	}
 }

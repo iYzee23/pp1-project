@@ -116,6 +116,7 @@ nonterminal MulopFactorList MulopFactorList;
 nonterminal NewChoice NewChoice;
 nonterminal DesignatorStmtList DesignatorStmtList;
 nonterminal MethodDeclListOpt MethodDeclListOpt;
+nonterminal StaticSymbol StaticSymbol;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassName;
@@ -220,7 +221,9 @@ VarDeclList ::= (VarDeclListYes) VarDeclList:V1 VarDecl:V2 {: RESULT=new VarDecl
 			 |
 			 (VarDeclListNo) {: RESULT=new VarDeclListNo(); :} /* epsilon */;
 
-StaticInitializer ::= (StaticInitializert) STATIC LBRACE StatementList:S1 RBRACE {: RESULT=new StaticInitializert(S1); RESULT.setLine(S1left); :};
+StaticInitializer ::= (StaticInitializert) StaticSymbol:S1 LBRACE StatementList:S2 RBRACE {: RESULT=new StaticInitializert(S1, S2); RESULT.setLine(S1left); :};
+
+StaticSymbol ::= (StaticSymbolt) STATIC {: RESULT=new StaticSymbolt(); :};
 
 StatementList ::= (StatementListYes) StatementList:S1 Statement:S2 {: RESULT=new StatementListYes(S1, S2); RESULT.setLine(S1left); :}
 			   |

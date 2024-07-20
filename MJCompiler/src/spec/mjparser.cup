@@ -66,7 +66,7 @@ nonterminal StatInitList, VarDeclList, StaticInitializer, StatementList, Stateme
 nonterminal FormPars, DesignatorStatement, OpChoice, DesignatorList, ElseOpt, StatInits, TLBracket, TRBracket;
 nonterminal ActPars, ActParsTemp, Assignop, Relop, Addop, Mulop, DesignatorParts, BracketsOpt, RParenFor;
 nonterminal Condition, CondTerm, CondFact, CondTermList, CondFactList, StatVarDeclInit, TLParen, TRParen; 
-nonterminal AddopTermList, MulopFactorList, NewChoice, DesignatorStmtList, MethodDeclListOpt;
+nonterminal AddopTermList, MulopFactorList, NewChoice, DesignatorStmtList, MethodDeclListOpt, StaticSymbol;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassName;
@@ -171,7 +171,9 @@ VarDeclList ::= (VarDeclListYes) VarDeclList VarDecl
 			 |
 			 (VarDeclListNo) /* epsilon */;
 
-StaticInitializer ::= (StaticInitializert) STATIC LBRACE StatementList RBRACE;
+StaticInitializer ::= (StaticInitializert) StaticSymbol LBRACE StatementList RBRACE;
+
+StaticSymbol ::= (StaticSymbolt) STATIC;
 
 StatementList ::= (StatementListYes) StatementList Statement
 			   |
