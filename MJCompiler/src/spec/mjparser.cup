@@ -64,8 +64,8 @@ nonterminal Program, NamespaceList, DeclList, MethodDeclList, Namespace, ConstDe
 nonterminal ConstParts, ConstPart, VarParts, VarPart, StatVarDeclList, ForSymbol, ExtClass, ElseSymbol, IfSymbol;
 nonterminal StatInitList, VarDeclList, StaticInitializer, StatementList, Statement, ReturnType, FirstSemi, SecondSemi;
 nonterminal FormPars, DesignatorStatement, OpChoice, DesignatorList, ElseOpt, StatInits, TLBracket, TRBracket;
-nonterminal ActPars, ActParsTemp, Assignop, Relop, Addop, Mulop, DesignatorParts, BracketsOpt, RParenFor;
-nonterminal Condition, CondTerm, CondFact, CondTermList, CondFactList, StatVarDeclInit, TLParen, TRParen; 
+nonterminal ActPars, ActParsTemp, Assignop, Relop, Addop, Mulop, DesignatorParts, BracketsOpt, RParenFor, NewLBracket;
+nonterminal Condition, CondTerm, CondFact, CondTermList, CondFactList, StatVarDeclInit, TLParen, TRParen, FirstDesignator; 
 nonterminal AddopTermList, MulopFactorList, NewChoice, DesignatorStmtList, MethodDeclListOpt, StaticSymbol;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName;
@@ -349,19 +349,23 @@ Factor ::= (FactorDesignatorFirst) Designator TLParen ActPars TRParen
 		|
 		(FactorRange) RANGE LPAREN Expr RPAREN;
 
-NewChoice ::= (NewChoiceExpr) LBRACKET Expr RBRACKET
+NewChoice ::= (NewChoiceExpr) NewLBracket Expr RBRACKET
 		   |
 		   (NewChoiceActParsYes) LPAREN ActPars RPAREN
 		   |
 		   (NewChoiceActParsNo) LPAREN RPAREN;
 
-Designator ::= (DesignatorYes) IDENT:nspName RESOLUTION IDENT:dsgName DesignatorParts
-			|
-			(DesignatorNo) IDENT:dsgName DesignatorParts;
+NewLBracket ::= (NewLBrackett) LBRACKET;
 
-DesignatorParts ::= (DesignatorPartsIdent) DOT IDENT:dsgName DesignatorParts
+Designator ::= (Designatort) FirstDesignator DesignatorParts;
+
+FirstDesignator ::= (FDesignatorYes) IDENT:nspName RESOLUTION IDENT:dsgName
 				 |
-				 (DesignatorPartsExpr) TLBracket Expr TRBracket DesignatorParts
+				 (FDesignatorNo) IDENT:dsgName;
+
+DesignatorParts ::= (DesignatorPartsIdent) DesignatorParts DOT IDENT:dsgName
+				 |
+				 (DesignatorPartsExpr) DesignatorParts TLBracket Expr TRBracket 
 				 |
 				 (DesignatorPartsNo) /* epsilon */;
 				 

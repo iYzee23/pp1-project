@@ -1,26 +1,18 @@
 // generated with ast extension for cup
 // version 0.8
-// 20/6/2024 2:25:22
+// 20/6/2024 21:1:26
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class DesignatorPartsIdent extends DesignatorParts {
 
-    private String dsgName;
     private DesignatorParts DesignatorParts;
+    private String dsgName;
 
-    public DesignatorPartsIdent (String dsgName, DesignatorParts DesignatorParts) {
-        this.dsgName=dsgName;
+    public DesignatorPartsIdent (DesignatorParts DesignatorParts, String dsgName) {
         this.DesignatorParts=DesignatorParts;
         if(DesignatorParts!=null) DesignatorParts.setParent(this);
-    }
-
-    public String getDsgName() {
-        return dsgName;
-    }
-
-    public void setDsgName(String dsgName) {
         this.dsgName=dsgName;
     }
 
@@ -30,6 +22,14 @@ public class DesignatorPartsIdent extends DesignatorParts {
 
     public void setDesignatorParts(DesignatorParts DesignatorParts) {
         this.DesignatorParts=DesignatorParts;
+    }
+
+    public String getDsgName() {
+        return dsgName;
+    }
+
+    public void setDsgName(String dsgName) {
+        this.dsgName=dsgName;
     }
 
     public void accept(Visitor visitor) {
@@ -55,13 +55,13 @@ public class DesignatorPartsIdent extends DesignatorParts {
         buffer.append(tab);
         buffer.append("DesignatorPartsIdent(\n");
 
-        buffer.append(" "+tab+dsgName);
-        buffer.append("\n");
-
         if(DesignatorParts!=null)
             buffer.append(DesignatorParts.toString("  "+tab));
         else
             buffer.append(tab+"  null");
+        buffer.append("\n");
+
+        buffer.append(" "+tab+dsgName);
         buffer.append("\n");
 
         buffer.append(tab);

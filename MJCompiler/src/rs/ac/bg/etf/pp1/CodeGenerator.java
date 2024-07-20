@@ -2,7 +2,6 @@ package rs.ac.bg.etf.pp1;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
@@ -24,8 +23,12 @@ public class CodeGenerator extends VisitorAdaptor {
 	String currNamespace = "";
 	
 	// designator processing
-	ArrayList<Obj> currDesignator = new ArrayList<>();
-	ArrayList<ArrayList<String>> designatorParts = new ArrayList<>();
+	public static final int LOAD_DSG = 1;
+	public static final int STORE_DSG = 2;
+	public static final int BOTH_DSG = 3;
+	ArrayList<Obj> currStoreDesignator = new ArrayList<>();
+	ArrayList<Obj> currDsgObj = new ArrayList<>();
+	ArrayList<Integer> currDsgType = new ArrayList<>();
 	ArrayList<Obj> currCalledMethod = new ArrayList<>();
 	
 	// hard designator statement processing
@@ -33,21 +36,21 @@ public class CodeGenerator extends VisitorAdaptor {
 	HashSet<Integer> dsgStmtSet = new HashSet<>();
 	
 	// NewType() processing
-	Obj latestNew = null;
-	HashMap<Obj, HashMap<Integer, Obj>> methodNews = new HashMap<>();
+	Obj latestNewType = null;
+	HashMap<Obj, HashMap<Integer, Obj>> methodNewTypes = new HashMap<>();
 	
-	public void handleNewExpr(SyntaxNode expr) {
+	public void handleNewTypeExpr(SyntaxNode expr) {
 		SyntaxNode parent = expr.getParent();
 		
 		if (parent instanceof CondFactYes || parent instanceof StmtPrintYes || parent instanceof StmtPrintNo) {
-			latestNew = null;
+			latestNewType = null;
 		}
 		else if (parent instanceof ActParsTempSingle) {
 			Obj methObj = currCalledMethod.get(currCalledMethod.size() - 1);
-			HashMap<Integer, Obj> currHM = methodNews.get(methObj);
-			if (currHM == null) methodNews.put(methObj, currHM = new HashMap<>());
-			currHM.put(0, latestNew);
-			latestNew = null;
+			HashMap<Integer, Obj> currHM = methodNewTypes.get(methObj);
+			if (currHM == null) methodNewTypes.put(methObj, currHM = new HashMap<>());
+			currHM.put(0, latestNewType);
+			latestNewType = null;
 		}
 		else if (parent instanceof ActParsTempList) {
 			int cnt = 0;
@@ -57,18 +60,35 @@ public class CodeGenerator extends VisitorAdaptor {
 			}
 			
 			Obj methObj = currCalledMethod.get(currCalledMethod.size() - 1);
-			HashMap<Integer, Obj> currHM = methodNews.get(methObj);
-			if (currHM == null) methodNews.put(methObj, currHM = new HashMap<>());
-			currHM.put(methObj.getLevel() - cnt, latestNew);
-			latestNew = null;
+			HashMap<Integer, Obj> currHM = methodNewTypes.get(methObj);
+			if (currHM == null) methodNewTypes.put(methObj, currHM = new HashMap<>());
+			currHM.put(methObj.getLevel() - cnt, latestNewType);
+			latestNewType = null;
 		}
 		else if (parent instanceof OpChoiceExpr) {
-			Obj currDsg = currDesignator.get(currDesignator.size() - 1); 
+			Obj currDsg = currStoreDesignator.get(currStoreDesignator.size() - 1); 
 			if (currDsg != null && currDsg.getKind() == Obj.Fld) {
-				Codee.put(Codee.dup);
+				// Codee.put(Codee.dup);
+				Codee.put(Codee.dup_x1);
+				Codee.put(Codee.pop);
+				Codee.put(Codee.dup_x1);
+				Codee.put(Codee.dup_x1);
+				Codee.put(Codee.pop);
 			}
 			else if (currDsg != null && currDsg.getKind() == Obj.Elem) {
-				Codee.put(Codee.dup2);
+				// Codee.put(Codee.dup2);
+				Codee.put(Codee.dup_x2);
+				Codee.put(Codee.pop);
+				Codee.put(Codee.dup_x2);
+				Codee.put(Codee.pop);
+				Codee.put(Codee.dup_x2);
+				Codee.put(Codee.dup_x2);
+				Codee.put(Codee.pop);
+				Codee.put(Codee.dup_x1);
+				Codee.put(Codee.pop);
+				Codee.put(Codee.dup_x2);
+				Codee.put(Codee.dup_x1);
+				Codee.put(Codee.pop);
 			}
 		}
 	}
@@ -309,11 +329,13 @@ public class CodeGenerator extends VisitorAdaptor {
 	// Program
 	
 	public void visit(ProgNamet progName) {
-		designatorParts.add(new ArrayList<String>());
+		currDsgObj.add(null);
+		currDsgType.add(LOAD_DSG);
 	}
 	
 	public void visit(Programt program) {
-		designatorParts.remove(designatorParts.size() - 1);
+		currDsgObj.remove(currDsgObj.size() - 1);
+		currDsgType.remove(currDsgType.size() - 1);
 	}
 	
 	// Namespace
@@ -377,10 +399,10 @@ public class CodeGenerator extends VisitorAdaptor {
 		Codee.put(methObj.getLevel());
 		Codee.put(methObj.getLocalSymbols().size());
 		
-		HashMap<Integer, Obj> currHM = methodNews.get(methObj);
+		HashMap<Integer, Obj> currHM = methodNewTypes.get(methObj);
 		if (currHM != null) {
 			for (Entry<Integer, Obj> entry: currHM.entrySet()) {
-				Integer param = entry.getKey();
+				Integer param = entry.getKey() + (methObj.getFpPos() > 0 ? 1 : 0);
 				Obj mObj = entry.getValue();
 				
 				if (0 <= param && param <= 3) {
@@ -395,7 +417,7 @@ public class CodeGenerator extends VisitorAdaptor {
 				Codee.put2(0);
 			}
 			
-			methodNews.remove(methObj);
+			methodNewTypes.remove(methObj);
 		}
 		
 		currMethod = methObj;
@@ -533,8 +555,8 @@ public class CodeGenerator extends VisitorAdaptor {
 		else if (stmt.getDesignator().obj.getType().equals(Tabb.boolType)) Codee.put(Codee.bread);
 		else Codee.put(Codee.read);
 		
-		Codee.handleStoreDesignator(currDesignator.get(currDesignator.size() - 1));
-		currDesignator.remove(currDesignator.size() - 1);
+		Codee.handleStoreDesignator(currStoreDesignator.get(currStoreDesignator.size() - 1));
+		currStoreDesignator.remove(currStoreDesignator.size() - 1);
 	}
 	
 	public void visit(StmtPrintYes stmt) {
@@ -552,11 +574,13 @@ public class CodeGenerator extends VisitorAdaptor {
 	// DesignatorStatement
 	
 	public void visit(TLParent lParen) {
-		designatorParts.add(new ArrayList<String>());
+		currDsgObj.add(null);
+		currDsgType.add(LOAD_DSG);
 	}
 	
 	public void visit(TRParent rParen) {
-		designatorParts.remove(designatorParts.size() - 1);
+		currDsgObj.remove(currDsgObj.size() - 1);
+		currDsgType.remove(currDsgType.size() - 1);
 	}
 	
 	public void visit(OpChoiceActParsYes opChoice) {
@@ -614,28 +638,28 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(OpChoiceExpr opChoice) {
-		Codee.handleStoreDesignator(currDesignator.get(currDesignator.size() - 1));
+		Codee.handleStoreDesignator(currStoreDesignator.get(currStoreDesignator.size() - 1));
 		
-		if (latestNew != null) {
-			Codee.handleNewDesignator(currDesignator.get(currDesignator.size() - 1), latestNew);
-			latestNew = null;
+		if (latestNewType != null) {
+			Codee.handleNewDesignator(currStoreDesignator.get(currStoreDesignator.size() - 1), latestNewType);
+			latestNewType = null;
 		}
 		
-		currDesignator.remove(currDesignator.size() - 1);
+		currStoreDesignator.remove(currStoreDesignator.size() - 1);
 	}
 	
 	public void visit(OpChoiceInc opChoice) {
 		Codee.loadConst(1);
 		Codee.put(Codee.add);
-		Codee.handleStoreDesignator(currDesignator.get(currDesignator.size() - 1));
-		currDesignator.remove(currDesignator.size() - 1);
+		Codee.handleStoreDesignator(currStoreDesignator.get(currStoreDesignator.size() - 1));
+		currStoreDesignator.remove(currStoreDesignator.size() - 1);
 	}
 	
 	public void visit(OpChoiceDec opChoice) {
 		Codee.loadConst(1);
 		Codee.put(Codee.sub);
-		Codee.handleStoreDesignator(currDesignator.get(currDesignator.size() - 1));
-		currDesignator.remove(currDesignator.size() - 1);
+		Codee.handleStoreDesignator(currStoreDesignator.get(currStoreDesignator.size() - 1));
+		currStoreDesignator.remove(currStoreDesignator.size() - 1);
 	}
 	
 	public void visit(DesignatorListYesYes dsgList) {
@@ -647,43 +671,30 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(DesignatorStmtSecond dsgStmt) {
-		// handle errors
-		int lenLeft = dsgStmt.getDesignator().obj.getFpPos();
-		int lenRight = dsgStmt.getDesignator1().obj.getFpPos();
 		Struct dsgLeftType = dsgStmt.getDesignator().obj.getType().getElemType();
 		Struct dsgRightType = dsgStmt.getDesignator1().obj.getType().getElemType();
 		int rightInstr = (!dsgRightType.equals(Tabb.charType) && !dsgRightType.equals(Tabb.boolType)) ? Codee.aload : Codee.baload;
 		int leftInstr = (!dsgLeftType.equals(Tabb.charType) && !dsgLeftType.equals(Tabb.boolType)) ? Codee.astore : Codee.bastore;
 		
-		if ((lenRight - dsgStmtCounter <= 0) || (lenLeft - lenRight + dsgStmtCounter < 0)) {
-			Codee.put(Codee.trap);
-			Codee.put(1);
-			return;
-		}
-		
+		// handle errors
 		// handle array assignment
-		int cnt = -1;
-		while (lenRight >= dsgStmtCounter + (++cnt) + 1) {
-			if (lenRight > dsgStmtCounter + cnt + 1) Codee.put(Codee.dup2);
-			else Codee.put(Codee.dup_x1);
-			Codee.loadConst(dsgStmtCounter + cnt);
-			Codee.loadConst(cnt);
-			Codee.put(Codee.dup_x2);
-			Codee.put(Codee.pop);
-			Codee.put(rightInstr);
-			Codee.put(leftInstr);
-		}
-		currDesignator.remove(currDesignator.size() - 1);
+		Codee.writeDsgStmtToCode(dsgStmtCounter, rightInstr, leftInstr);
+		currStoreDesignator.remove(currStoreDesignator.size() - 1);
 		
-		// handle variables assignment
 		while (--dsgStmtCounter >= 0) {
 			if (dsgStmtSet.contains(dsgStmtCounter)) {
-				if (dsgStmtSet.size() > 1) Codee.put(Codee.dup_x1);
+				if (dsgStmtSet.size() > 1) {
+					boolean eInd = currStoreDesignator.get(currStoreDesignator.size() - 1).getKind() == Obj.Elem;
+					boolean fInd = currStoreDesignator.get(currStoreDesignator.size() - 1).getKind() == Obj.Fld;
+					if (eInd) Codee.put(Codee.dup_x2);
+					else if (fInd) Codee.put(Codee.dup_x1);
+					else Codee.put(Codee.dup);
+				}
 				Codee.loadConst(dsgStmtCounter);
 				Codee.put(rightInstr);
-				Codee.handleStoreDesignator(currDesignator.get(currDesignator.size() - 1));
+				Codee.handleStoreDesignator(currStoreDesignator.get(currStoreDesignator.size() - 1));
 				dsgStmtSet.remove(dsgStmtCounter);
-				currDesignator.remove(currDesignator.size() - 1);
+				currStoreDesignator.remove(currStoreDesignator.size() - 1);
 			}
 		}
 		
@@ -782,6 +793,10 @@ public class CodeGenerator extends VisitorAdaptor {
 			Codee.put(Codee.dup_x1);
 			Codee.put(Codee.pop);
 		}
+		
+		if (latestNewType != null) { 
+			handleNewTypeExpr(expr);
+		}
 	}
 	
 	public void visit(AddopTermListYes addopTerm) {
@@ -875,8 +890,8 @@ public class CodeGenerator extends VisitorAdaptor {
 			else Codee.put(0);
 		}
 		else {
-			latestNew = Tabb.findObjForType(type);
-			handleNewExpr(factor.getParent().getParent());
+			latestNewType = Tabb.findObjForType(type);
+			// handleNewExpr(factor.getParent().getParent());
 			Codee.put(Codee.new_);
 			Codee.put2(4 * (type.getNumberOfFields() + 1));
 		}
@@ -885,100 +900,26 @@ public class CodeGenerator extends VisitorAdaptor {
 	// Designator
 	
 	public void visit(TLBrackett lBracket) {
-		designatorParts.add(new ArrayList<String>());
+		currDsgObj.add(null);
+		currDsgType.add(LOAD_DSG);
 	}
 	
 	public void visit(TRBrackett rBracket) {
-		designatorParts.remove(designatorParts.size() - 1);
+		currDsgObj.remove(currDsgObj.size() - 1);
+		currDsgType.remove(currDsgType.size() - 1);
 	}
 	
-	public void visit(DesignatorPartsIdent designator) {
-		designatorParts.get(designatorParts.size() - 1).add(designator.getDsgName());
-	}
-	
-	public void visit(DesignatorPartsExpr designator) {
-		designatorParts.get(designatorParts.size() - 1).add("[]");
-	}
-	
-	public void visit(DesignatorYes designator) {
-		Obj nspObj = Tabb.findProgramSymbol(designator.getNspName());
-		String fullName = nspObj.getName() + "::" + designator.getDsgName();
+	public void visit(FDesignatorYes fDesignator) {
+		Obj nspObj = Tabb.findProgramSymbol(fDesignator.getNspName());
+		String fullName = nspObj.getName() + "::" + fDesignator.getDsgName();
 		Obj initObj = Tabb.findProgramSymbol(fullName);
 		
-		SyntaxNode dsgParent = designator.getParent();
-		boolean storeDsg = (dsgParent instanceof StmtRead)
-				|| (dsgParent instanceof DesignatorStmtFirst && ((DesignatorStmtFirst)dsgParent).getOpChoice() instanceof OpChoiceExpr)
-				|| (dsgParent instanceof DesignatorListYesYes)
-				|| (dsgParent instanceof DesignatorStmtSecond && ((DesignatorStmtSecond)dsgParent).getDesignator().equals(designator));
-		boolean bothDsg = (dsgParent instanceof DesignatorStmtFirst && ((DesignatorStmtFirst)dsgParent).getOpChoice() instanceof OpChoiceInc)
-				|| (dsgParent instanceof DesignatorStmtFirst && ((DesignatorStmtFirst)dsgParent).getOpChoice() instanceof OpChoiceDec); 
-		
-		ArrayList<String> elems = designatorParts.get(designatorParts.size() - 1);
-		Collections.reverse(elems);
-		Struct initType = initObj.getType();
-		int len = elems.size();
-		
-		if (storeDsg || bothDsg) {
-			Obj dsgObj = initObj;
-			Struct elemType = initType;
-			currDesignator.add(null);
-			if (designatorParts.get(designatorParts.size() - 1).isEmpty()) {
-				if (dsgObj.getKind() == Obj.Fld) Codee.put(Codee.load_n);
-				currDesignator.set(currDesignator.size() - 1, dsgObj);
-			}
-			else {
-				Codee.handleLoadDesignator(dsgObj, currCalledMethod, true);
-				for (int i = 0; i < len; ++i) {
-					String elem = elems.get(i);
-					if (elem.equals("[]")) {
-						elemType = elemType.getElemType();
-						dsgObj = new Obj(Obj.Elem, "", elemType);
-					}
-					else if (dsgObj.getKind() == Obj.Type) {
-						dsgObj = Tabb.findExactStatic(dsgObj.getName() + "::" + elem);
-						elemType = dsgObj.getType();
-					}
-					else {
-						dsgObj = Tabb.findLocsClass(elemType, elem);
-						elemType = dsgObj.getType();
-					}
-				
-					if (i == len - 1) {
-						// if (dsgObj.getKind() == Obj.Fld) Codee.put(Codee.load_n);
-						currDesignator.set(currDesignator.size() - 1, dsgObj);
-					}
-					else {
-						Codee.handleLoadDesignator(dsgObj, currCalledMethod, false);
-					}
-				}
-			}
-		}
-		if (!storeDsg || bothDsg) {
-			Obj dsgObj = initObj;
-			Struct elemType = initType;
-			Codee.handleLoadDesignator(dsgObj, currCalledMethod, true);
-			for (String elem: elems) {
-				if (elem.equals("[]")) {
-					elemType = elemType.getElemType();
-					dsgObj = new Obj(Obj.Elem, "", elemType);
-				}
-				else if (dsgObj.getKind() == Obj.Type) {
-					dsgObj = Tabb.findExactStatic(dsgObj.getName() + "::" + elem);
-					elemType = dsgObj.getType();
-				}
-				else {
-					dsgObj = Tabb.findLocsClass(elemType, elem);
-					elemType = dsgObj.getType();
-				}
-				Codee.handleLoadDesignator(dsgObj, currCalledMethod, false);
-			}
-		}
-		
-		designatorParts.get(designatorParts.size() - 1).clear();
+		currDsgObj.set(currDsgObj.size() - 1, initObj);
+		processFDesignator((Designatort)fDesignator.getParent());
 	}
 	
-	public void visit(DesignatorNo designator) {
-		String localName = designator.getDsgName();
+	public void visit(FDesignatorNo fDesignator) {
+		String localName = fDesignator.getDsgName();
 		String fullName = currNamespace + localName;
 		
 		Obj initObj = Tabb.noObj;
@@ -990,76 +931,120 @@ public class CodeGenerator extends VisitorAdaptor {
 		if (initObj == Tabb.noObj) initObj = Tabb.findProgramSymbol(fullName);
 		if (initObj == Tabb.noObj) initObj = Tabb.findProgramSymbol(localName);
 		
+		currDsgObj.set(currDsgObj.size() - 1, initObj);
+		processFDesignator((Designatort)fDesignator.getParent());
+	}
+	
+	public void processFDesignator(Designatort designator) {
 		SyntaxNode dsgParent = designator.getParent();
+		
+		boolean bothDsg = (dsgParent instanceof DesignatorStmtFirst && ((DesignatorStmtFirst)dsgParent).getOpChoice() instanceof OpChoiceInc)
+				|| (dsgParent instanceof DesignatorStmtFirst && ((DesignatorStmtFirst)dsgParent).getOpChoice() instanceof OpChoiceDec);
 		boolean storeDsg = (dsgParent instanceof StmtRead)
 				|| (dsgParent instanceof DesignatorStmtFirst && ((DesignatorStmtFirst)dsgParent).getOpChoice() instanceof OpChoiceExpr)
 				|| (dsgParent instanceof DesignatorListYesYes)
 				|| (dsgParent instanceof DesignatorStmtSecond && ((DesignatorStmtSecond)dsgParent).getDesignator().equals(designator));
-		boolean bothDsg = (dsgParent instanceof DesignatorStmtFirst && ((DesignatorStmtFirst)dsgParent).getOpChoice() instanceof OpChoiceInc)
-				|| (dsgParent instanceof DesignatorStmtFirst && ((DesignatorStmtFirst)dsgParent).getOpChoice() instanceof OpChoiceDec); 
 		
-		ArrayList<String> elems = designatorParts.get(designatorParts.size() - 1);
-		Collections.reverse(elems);
-		Struct initType = initObj.getType();
-		int len = elems.size();
+		int dsgType = (bothDsg ? BOTH_DSG : (storeDsg ? STORE_DSG : LOAD_DSG));
+		currDsgType.set(currDsgType.size() - 1, dsgType);
 		
-		if (storeDsg || bothDsg) {
-			Obj dsgObj = initObj;
-			Struct elemType = initType;
-			currDesignator.add(null);
-			if (designatorParts.get(designatorParts.size() - 1).isEmpty()) {
+		Obj dsgObj = currDsgObj.get(currDsgObj.size() - 1);
+		boolean lastDsg = (designator.getDesignatorParts() instanceof DesignatorPartsNo);
+		
+		if (dsgType == BOTH_DSG || dsgType == STORE_DSG) {
+			currStoreDesignator.add(null);
+			if (lastDsg) {
 				if (dsgObj.getKind() == Obj.Fld) Codee.put(Codee.load_n);
-				currDesignator.set(currDesignator.size() - 1, dsgObj);
+				currStoreDesignator.set(currStoreDesignator.size() - 1, dsgObj);
+				if (dsgType == BOTH_DSG) Codee.handleBothDesignator(dsgObj);
+				else if (dsgParent instanceof DesignatorStmtSecond && ((DesignatorStmtSecond)dsgParent).getDesignator().equals(designator)) {
+					Codee.getArrLenStoreDesignator(dsgObj);
+				}
+				currDsgObj.set(currDsgObj.size() - 1, null);
 			}
 			else {
 				Codee.handleLoadDesignator(dsgObj, currCalledMethod, true);
-				for (int i = 0; i < len; ++i) {
-					String elem = elems.get(i);
-					if (elem.equals("[]")) {
-						elemType = elemType.getElemType();
-						dsgObj = new Obj(Obj.Elem, "", elemType);
-					}
-					else if (dsgObj.getKind() == Obj.Type) {
-						dsgObj = Tabb.findExactStatic(dsgObj.getName() + "::" + elem);
-						elemType = dsgObj.getType();
-					}
-					else {
-						dsgObj = Tabb.findLocsClass(elemType, elem);
-						elemType = dsgObj.getType();
-					}
-				
-					if (i == len - 1) {
-						// if (dsgObj.getKind() == Obj.Fld) Codee.put(Codee.load_n);
-						currDesignator.set(currDesignator.size() - 1, dsgObj);
-					}
-					else {
-						Codee.handleLoadDesignator(dsgObj, currCalledMethod, false);
-					}
-				}
 			}
 		}
-		if (!storeDsg || bothDsg) {
-			Obj dsgObj = initObj;
-			Struct elemType = initType;
+		else {
 			Codee.handleLoadDesignator(dsgObj, currCalledMethod, true);
-			for (String elem: elems) {
-				if (elem.equals("[]")) {
-					elemType = elemType.getElemType();
-					dsgObj = new Obj(Obj.Elem, "", elemType);
+			if (lastDsg) {
+				if (dsgParent instanceof DesignatorStmtSecond && ((DesignatorStmtSecond)dsgParent).getDesignator1().equals(designator)) {
+					Codee.getArrLenLoadDesignator(dsgObj);
 				}
-				else if (dsgObj.getKind() == Obj.Type) {
-					dsgObj = Tabb.findExactStatic(dsgObj.getName() + "::" + elem);
-					elemType = dsgObj.getType();
+				currDsgObj.set(currDsgObj.size() - 1, null);
+			}
+		}
+	}
+	
+	public void visit(DesignatorPartsIdent designator) {
+		Obj dsgObj = currDsgObj.get(currDsgObj.size() - 1);
+		Struct elemType = dsgObj.getType();
+		boolean lastDsg = (designator.getParent() instanceof Designatort);
+		int dsgType = currDsgType.get(currDsgType.size() - 1);
+		String elem = designator.getDsgName();
+		
+		if (dsgObj.getKind() == Obj.Type) {
+			dsgObj = Tabb.findExactStatic(dsgObj.getName() + "::" + elem);
+			elemType = dsgObj.getType();
+		}
+		else {
+			dsgObj = Tabb.findLocsClass(elemType, elem);
+			elemType = dsgObj.getType();
+		}
+		
+		if (dsgType == STORE_DSG || dsgType == BOTH_DSG) {
+			if (lastDsg) {
+				SyntaxNode dsgParent = designator.getParent().getParent();
+				currStoreDesignator.set(currStoreDesignator.size() - 1, dsgObj);
+				if (dsgType == BOTH_DSG) Codee.handleBothDesignator(dsgObj);
+				else if (dsgParent instanceof DesignatorStmtSecond && ((DesignatorStmtSecond)dsgParent).getDesignator().equals(designator.getParent())) {
+					Codee.getArrLenStoreDesignator(dsgObj);
 				}
-				else {
-					dsgObj = Tabb.findLocsClass(elemType, elem);
-					elemType = dsgObj.getType();
-				}
+				currDsgObj.set(currDsgObj.size() - 1, null);
+			}
+			else {
+				currDsgObj.set(currDsgObj.size() - 1, dsgObj);
 				Codee.handleLoadDesignator(dsgObj, currCalledMethod, false);
 			}
 		}
-		
-		designatorParts.get(designatorParts.size() - 1).clear();
+		else {
+			Codee.handleLoadDesignator(dsgObj, currCalledMethod, false);
+			if (lastDsg) {
+				SyntaxNode dsgParent = designator.getParent().getParent();
+				if (dsgParent instanceof DesignatorStmtSecond && ((DesignatorStmtSecond)dsgParent).getDesignator1().equals(designator.getParent())) {
+					Codee.getArrLenLoadDesignator(dsgObj);
+				}
+				currDsgObj.set(currDsgObj.size() - 1, null);
+			}
+			else currDsgObj.set(currDsgObj.size() - 1, dsgObj);
+		}
 	}
-
+	
+	public void visit(DesignatorPartsExpr designator) {
+		Obj dsgObj = currDsgObj.get(currDsgObj.size() - 1);
+		Struct elemType = dsgObj.getType();
+		boolean lastDsg = (designator.getParent() instanceof Designatort);
+		int dsgType = currDsgType.get(currDsgType.size() - 1);
+		
+		elemType = elemType.getElemType();
+		dsgObj = new Obj(Obj.Elem, "", elemType);
+		
+		if (dsgType == BOTH_DSG || dsgType == STORE_DSG) {
+			if (lastDsg) {
+				currStoreDesignator.set(currStoreDesignator.size() - 1, dsgObj);
+				if (dsgType == BOTH_DSG) Codee.handleBothDesignator(dsgObj);
+				currDsgObj.set(currDsgObj.size() - 1, null);
+			}
+			else {
+				currDsgObj.set(currDsgObj.size() - 1, dsgObj);
+				Codee.handleLoadDesignator(dsgObj, currCalledMethod, false);
+			}
+		}
+		else {
+			Codee.handleLoadDesignator(dsgObj, currCalledMethod, false);
+			if (lastDsg) currDsgObj.set(currDsgObj.size() - 1, null);
+			else currDsgObj.set(currDsgObj.size() - 1, dsgObj);
+		}
+	}
 }

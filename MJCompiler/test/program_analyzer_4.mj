@@ -89,7 +89,7 @@ int rows, s, m, n, g, ss, columns, lp;
 			}
 			
 			// read(x);
-			x = x * -1;
+			x = x * (-1);
 		}
 	}
 }

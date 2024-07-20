@@ -19,7 +19,7 @@ public class Codee extends Code {
 	    	  
 	    	case Obj.Var:
 	    		if (o.getLevel()==0) {  
-	    			put(getstatic); put2(o.getAdr()); 
+	    			put(getstatic); put2(o.getAdr() + 4); 
 	    			break; 
 	    		}
 	    		if (0 <= o.getAdr() && o.getAdr() <= 3) 
@@ -30,7 +30,7 @@ public class Codee extends Code {
 	    		break;
 	    	  
 	    	case Objj.Stat:
-	    		put(getstatic); put2(o.getAdr());
+	    		put(getstatic); put2(o.getAdr() + 4);
 	    		break;
 	    	  
 	    	case Obj.Fld:
@@ -53,7 +53,7 @@ public class Codee extends Code {
 		switch (o.getKind()) {
 			case Obj.Var:
 				if (o.getLevel()==0) {
-					put(putstatic); put2(o.getAdr()); 
+					put(putstatic); put2(o.getAdr() + 4); 
 					break;
 		  		}
 		  		if (0 <= o.getAdr() && o.getAdr() <= 3) 
@@ -64,7 +64,7 @@ public class Codee extends Code {
 		  		break;
 		  		
 		  	case Objj.Stat:
-		  		put(putstatic); put2(o.getAdr()); 
+		  		put(putstatic); put2(o.getAdr() + 4); 
 	  			break;
 
 		  	case Obj.Fld:
@@ -88,7 +88,7 @@ public class Codee extends Code {
 			case Obj.Var:
 				if (dsgObj.getLevel() == 0) {
 					put(getstatic);
-					put2(dsgObj.getAdr());
+					put2(dsgObj.getAdr() + 4);
 				}
 				else if (0 <= dsgObj.getAdr() && dsgObj.getAdr() <= 3) {
 					put(load_n + dsgObj.getAdr());
@@ -126,7 +126,7 @@ public class Codee extends Code {
 				
 			case Objj.Stat:
 				put(getstatic);
-				put2(dsgObj.getAdr());
+				put2(dsgObj.getAdr() + 4);
 				break;
 				
 			case Obj.Con:
@@ -136,8 +136,8 @@ public class Codee extends Code {
 			case Objj.Elem:
 				// expr should put himself on the stack
 				// that is the array's index for this elem
-				Codee.put(Codee.dup_x1);
-				Codee.put(Codee.pop);
+				// put(dup_x1);
+				// put(pop);
 				if (dsgObj.getType().equals(Tabb.charType)) put(baload);
 				else if (dsgObj.getType().equals(Tabb.boolType)) put(baload);
 				else put(aload);
@@ -148,13 +148,21 @@ public class Codee extends Code {
 		}
 	}
 	
+	public static void getArrLenLoadDesignator(Obj dsgObj) {
+		// adr
+		put(dup);
+		put(arraylength);
+		put(putstatic);
+		put2(1);
+	}
+	
 	public static void handleStoreDesignator(Obj dsgObj) {
 		switch(dsgObj.getKind()) {
 			case Obj.Var:
 				// val
 				if (dsgObj.getLevel() == 0) {
 					put(putstatic); 
-					put2(dsgObj.getAdr()); 
+					put2(dsgObj.getAdr() + 4); 
 		  		}
 				else if (0 <= dsgObj.getAdr() && dsgObj.getAdr() <= 3) 
 		  			put(store_n + dsgObj.getAdr());
@@ -175,17 +183,17 @@ public class Codee extends Code {
 			case Objj.Stat:
 				// val
 				put(putstatic);
-				put2(dsgObj.getAdr());
+				put2(dsgObj.getAdr() + 4);
 				break;
 				
 			case Objj.Elem:
 				// expr should put himself on the stack
 				// that is the array's index for this elem
 				// val
-				Codee.put(Codee.dup_x1);
-				Codee.put(Codee.pop);
-				Codee.put(Codee.dup_x2);
-				Codee.put(Codee.pop);
+				// put(dup_x1);
+				// put(pop);
+				// put(dup_x2);
+				// put(pop);
 				if (dsgObj.getType().equals(Tabb.charType)) put(bastore);
 				else if (dsgObj.getType().equals(Tabb.boolType)) put(bastore);
 				else put(astore);
@@ -195,13 +203,88 @@ public class Codee extends Code {
 				break;
 		}
 	}
+	
+	public static void getArrLenStoreDesignator(Obj dsgObj) {
+		switch(dsgObj.getKind()) {
+			case Obj.Var:
+				// nothing
+				if (dsgObj.getLevel() == 0) {
+					put(getstatic); 
+					put2(dsgObj.getAdr() + 4); 
+		  		}
+				else if (0 <= dsgObj.getAdr() && dsgObj.getAdr() <= 3) 
+		  			put(load_n + dsgObj.getAdr());
+		  		else { 
+		  			put(load); 
+		  			put(dsgObj.getAdr()); 
+		  		} 
+				break;
+				
+			case Objj.Stat:
+				// nothing
+				put(getstatic);
+				put2(dsgObj.getAdr() + 4);
+				break;
+				
+			default:
+				break;
+		}
+		put(dup);
+		put(arraylength);
+		put(putstatic);
+		put2(0);
+	}
 
+	public static void handleBothDesignator(Obj dsgObj) {
+		switch(dsgObj.getKind()) {
+			case Obj.Var:
+				// nothing
+				if (dsgObj.getLevel() == 0) {
+					put(getstatic); 
+					put2(dsgObj.getAdr() + 4); 
+		  		}
+				else if (0 <= dsgObj.getAdr() && dsgObj.getAdr() <= 3) 
+		  			put(load_n + dsgObj.getAdr());
+		  		else { 
+		  			put(load); 
+		  			put(dsgObj.getAdr()); 
+		  		} 
+				break;
+				
+			case Obj.Fld:
+				// 0th position is reserved for TVF
+				// adr
+				put(dup);
+				put(getfield);
+				put2(dsgObj.getAdr() + 1);
+				break;
+				
+			case Objj.Stat:
+				// nothing
+				put(getstatic);
+				put2(dsgObj.getAdr() + 4);
+				break;
+				
+			case Objj.Elem:
+				// adr
+				// index
+				put(dup2);
+				if (dsgObj.getType().equals(Tabb.charType)) put(baload);
+				else if (dsgObj.getType().equals(Tabb.boolType)) put(baload);
+				else put(aload);
+				break;
+				
+			default:
+				break;
+		}
+	}
+	
 	public static void handleNewDesignator(Obj dsgObj, Obj latestNew) {
 		switch(dsgObj.getKind()) {
 			case Obj.Var:
 				if (dsgObj.getLevel() == 0) {
 					put(getstatic); 
-					put2(dsgObj.getAdr()); 
+					put2(dsgObj.getAdr() + 4); 
 		  		}
 				else if (0 <= dsgObj.getAdr() && dsgObj.getAdr() <= 3) 
 		  			put(load_n + dsgObj.getAdr());
@@ -218,13 +301,13 @@ public class Codee extends Code {
 				
 			case Objj.Stat:
 				put(getstatic);
-				put2(dsgObj.getAdr());
+				put2(dsgObj.getAdr() + 4);
 				break;
 				
 			case Obj.Elem:
-				Codee.put(Codee.dup_x1);
-				Codee.put(Codee.pop);
-				Codee.put(Codee.aload);
+				// put(dup_x1);
+				// put(pop);
+				put(aload);
 				break;
 				
 			default:
@@ -235,11 +318,61 @@ public class Codee extends Code {
 		// loadConst(latestNew.getAdr());
 		
 		if (!CodeGenerator.tvfInitDone) {
-			CodeGenerator.fixupsTvf.put(Codee.pc - 4, latestNew);
+			CodeGenerator.fixupsTvf.put(pc - 4, latestNew);
 		}
 		
 		put(putfield);
 		put2(0);
+	}
+
+	public static void writeDsgStmtToCode(int dsgStmtCounter, int rightInstr, int leftInstr) {
+		Codee.loadConst(dsgStmtCounter);
+		Codee.put(Codee.putstatic); Codee.put2(2);
+		Codee.put(Codee.const_n);
+		Codee.put(Codee.putstatic); Codee.put2(3);
+		Codee.put(Codee.getstatic); Codee.put2(1);
+		Codee.put(Codee.getstatic); Codee.put2(2);
+		Codee.put(Codee.sub);
+		Codee.put(Codee.const_n);
+		Codee.put(Codee.jcc + Codee.le); Codee.put2(18);
+		Codee.put(Codee.getstatic); Codee.put2(0);
+		Codee.put(Codee.getstatic); Codee.put2(1);
+		Codee.put(Codee.sub);
+		Codee.put(Codee.getstatic); Codee.put2(2);
+		Codee.put(Codee.add);
+		Codee.put(Codee.const_n);
+		Codee.put(Codee.jcc + Codee.ge); Codee.put2(5);
+		Codee.put(Codee.trap); Codee.put(1);
+		Codee.put(Codee.getstatic); Codee.put2(1);
+		Codee.put(Codee.getstatic); Codee.put2(2);
+		Codee.put(Codee.getstatic); Codee.put2(3);
+		Codee.put(Codee.add);
+		Codee.put(Codee.const_1);
+		Codee.put(Codee.add);
+		Codee.put(Codee.jcc + Codee.lt); Codee.put2(48);
+		Codee.put(Codee.getstatic); Codee.put2(1);
+		Codee.put(Codee.getstatic); Codee.put2(2);
+		Codee.put(Codee.getstatic); Codee.put2(3);
+		Codee.put(Codee.add);
+		Codee.put(Codee.const_1);
+		Codee.put(Codee.add);
+		Codee.put(Codee.jcc + Code.le); Codee.put2(7);
+		Codee.put(Codee.dup2);
+		Codee.put(Codee.jmp); Codee.put2(4);
+		Codee.put(Codee.dup_x1);
+		Codee.put(Codee.getstatic); Codee.put2(2);
+		Codee.put(Codee.getstatic); Codee.put2(3);
+		Codee.put(Codee.add);
+		Codee.put(Codee.getstatic); Codee.put2(3);
+		Codee.put(Codee.dup_x2);
+		Codee.put(Codee.pop);
+		Codee.put(rightInstr);
+		Codee.put(leftInstr);
+		Codee.put(Codee.getstatic); Codee.put2(3);
+		Codee.put(Codee.const_1);
+		Codee.put(Codee.add);
+		Codee.put(Codee.putstatic); Codee.put2(3);
+		Codee.put(Codee.jmp); Codee.put2(-57);
 	}
 	
 	//za uslovni skok unapred ostaviti adresu nula

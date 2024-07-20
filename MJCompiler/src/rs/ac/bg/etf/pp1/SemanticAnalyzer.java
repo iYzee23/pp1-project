@@ -1,8 +1,6 @@
 package rs.ac.bg.etf.pp1;
 
 import java.util.ArrayList;
-import java.util.Collections;
-
 import org.apache.log4j.Logger;
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.symboltable.concepts.*;
@@ -989,15 +987,16 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		designatorParts.get(designatorParts.size() - 1).add("[]");
 	}
 	
-	public void visit(DesignatorYes designator) {
-		Obj nspObj = Tabb.find(designator.getNspName());
+	public void visitDsgYes(Designatort designator, String nspName, String dsgName) {
+		Obj nspObj = Tabb.find(nspName);
 		
 		if (nspObj == Tabb.noObj || nspObj.getKind() != Objj.Namesp) {
-			report_error("Can't resolve namespace: " + designator.getNspName(), designator);
+			report_error("Can't resolve namespace: " + nspName, designator);
 		}
 		
-		String dsgName = nspObj.getName() + "::" + designator.getDsgName();
+		dsgName = nspObj.getName() + "::" + dsgName;
 		Obj dsgObj = Tabb.find(dsgName);
+		
 		
 		int dsgKind = dsgObj.getKind();
 		if (dsgObj == Tabb.noObj || (dsgKind != Obj.Var && dsgKind != Obj.Fld && dsgKind != Objj.Stat && dsgKind != Obj.Con && dsgKind != Obj.Meth && dsgObj.getType().getKind() != Struct.Class)) {
@@ -1014,7 +1013,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		Struct elemType = dsgObj.getType();
 		ArrayList<String> elems = designatorParts.get(designatorParts.size() - 1); 
-		Collections.reverse(elems);
 		
 		if (elems.isEmpty() && dsgObj.getKind() == Obj.Meth) {
 			if (Tabb.checkIfClassDesignator(dsgObj, currClass != null, currMethod != null))
@@ -1077,8 +1075,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		currDesignator.set(currDesignator.size() - 1, designator.obj = dsgObj);
 	}
 	
-	public void visit(DesignatorNo designator) {
-		String localName = designator.getDsgName();
+	public void visitDsgNo(Designatort designator, String dsgName) {
+		String localName = dsgName;
 		String fullName = currNamespace + localName;
 		
 		Obj dsgObj = Tabb.find(localName);
@@ -1111,10 +1109,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			}
 		}
 		
-		String dsgName = fullName;
+		dsgName = fullName;
 		Struct elemType = dsgObj.getType();
 		ArrayList<String> elems = designatorParts.get(designatorParts.size() - 1);
-		Collections.reverse(elems);
 		
 		if (elems.isEmpty() && dsgObj.getKind() == Obj.Meth) {
 			if (Tabb.checkIfClassDesignator(dsgObj, currClass != null, currMethod != null))
@@ -1178,6 +1175,22 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		designatorParts.get(designatorParts.size() - 1).clear();
 		currDesignator.set(currDesignator.size() - 1, designator.obj = dsgObj);
+	}
+
+	public void visit(Designatort designator) {
+		String nspName = "";
+		String dsgName = "";
+		SyntaxNode fDesignator = designator.getFirstDesignator();
+		
+		if (fDesignator instanceof FDesignatorYes) {
+			nspName = ((FDesignatorYes)fDesignator).getNspName();
+			dsgName = ((FDesignatorYes)fDesignator).getDsgName();
+			visitDsgYes(designator, nspName, dsgName);
+		}
+		else {
+			dsgName = ((FDesignatorNo)fDesignator).getDsgName();
+			visitDsgNo(designator, dsgName);
+		}
 	}
 	
 	// Label

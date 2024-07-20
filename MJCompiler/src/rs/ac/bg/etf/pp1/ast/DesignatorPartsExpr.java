@@ -1,26 +1,34 @@
 // generated with ast extension for cup
 // version 0.8
-// 20/6/2024 2:25:22
+// 20/6/2024 21:1:26
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class DesignatorPartsExpr extends DesignatorParts {
 
+    private DesignatorParts DesignatorParts;
     private TLBracket TLBracket;
     private Expr Expr;
     private TRBracket TRBracket;
-    private DesignatorParts DesignatorParts;
 
-    public DesignatorPartsExpr (TLBracket TLBracket, Expr Expr, TRBracket TRBracket, DesignatorParts DesignatorParts) {
+    public DesignatorPartsExpr (DesignatorParts DesignatorParts, TLBracket TLBracket, Expr Expr, TRBracket TRBracket) {
+        this.DesignatorParts=DesignatorParts;
+        if(DesignatorParts!=null) DesignatorParts.setParent(this);
         this.TLBracket=TLBracket;
         if(TLBracket!=null) TLBracket.setParent(this);
         this.Expr=Expr;
         if(Expr!=null) Expr.setParent(this);
         this.TRBracket=TRBracket;
         if(TRBracket!=null) TRBracket.setParent(this);
+    }
+
+    public DesignatorParts getDesignatorParts() {
+        return DesignatorParts;
+    }
+
+    public void setDesignatorParts(DesignatorParts DesignatorParts) {
         this.DesignatorParts=DesignatorParts;
-        if(DesignatorParts!=null) DesignatorParts.setParent(this);
     }
 
     public TLBracket getTLBracket() {
@@ -47,38 +55,30 @@ public class DesignatorPartsExpr extends DesignatorParts {
         this.TRBracket=TRBracket;
     }
 
-    public DesignatorParts getDesignatorParts() {
-        return DesignatorParts;
-    }
-
-    public void setDesignatorParts(DesignatorParts DesignatorParts) {
-        this.DesignatorParts=DesignatorParts;
-    }
-
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(DesignatorParts!=null) DesignatorParts.accept(visitor);
         if(TLBracket!=null) TLBracket.accept(visitor);
         if(Expr!=null) Expr.accept(visitor);
         if(TRBracket!=null) TRBracket.accept(visitor);
-        if(DesignatorParts!=null) DesignatorParts.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(DesignatorParts!=null) DesignatorParts.traverseTopDown(visitor);
         if(TLBracket!=null) TLBracket.traverseTopDown(visitor);
         if(Expr!=null) Expr.traverseTopDown(visitor);
         if(TRBracket!=null) TRBracket.traverseTopDown(visitor);
-        if(DesignatorParts!=null) DesignatorParts.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(DesignatorParts!=null) DesignatorParts.traverseBottomUp(visitor);
         if(TLBracket!=null) TLBracket.traverseBottomUp(visitor);
         if(Expr!=null) Expr.traverseBottomUp(visitor);
         if(TRBracket!=null) TRBracket.traverseBottomUp(visitor);
-        if(DesignatorParts!=null) DesignatorParts.traverseBottomUp(visitor);
         accept(visitor);
     }
 
@@ -86,6 +86,12 @@ public class DesignatorPartsExpr extends DesignatorParts {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
         buffer.append("DesignatorPartsExpr(\n");
+
+        if(DesignatorParts!=null)
+            buffer.append(DesignatorParts.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
 
         if(TLBracket!=null)
             buffer.append(TLBracket.toString("  "+tab));
@@ -101,12 +107,6 @@ public class DesignatorPartsExpr extends DesignatorParts {
 
         if(TRBracket!=null)
             buffer.append(TRBracket.toString("  "+tab));
-        else
-            buffer.append(tab+"  null");
-        buffer.append("\n");
-
-        if(DesignatorParts!=null)
-            buffer.append(DesignatorParts.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

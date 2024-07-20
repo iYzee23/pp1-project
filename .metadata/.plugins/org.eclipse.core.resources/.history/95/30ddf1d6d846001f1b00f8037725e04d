@@ -1,0 +1,5 @@
+package rs.etf.pp1.mj.runtime;
+
+public class Runn extends Run {
+
+}
