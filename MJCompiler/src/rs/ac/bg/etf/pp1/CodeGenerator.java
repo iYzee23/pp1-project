@@ -561,13 +561,19 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public void visit(StmtPrintYes stmt) {
 		Codee.loadConst(stmt.getValue());
-		if (stmt.getExpr().struct.equals(Tabb.charType)) Codee.put(Codee.bprint);
+		if (stmt.getExpr().struct.getKind() == Struct.Array) {
+			Codee.printArray(stmt.getExpr().struct.getElemType());
+		}
+		else if (stmt.getExpr().struct.equals(Tabb.charType)) Codee.put(Codee.bprint);
 		else Codee.put(Codee.print);
 	}
 	
 	public void visit(StmtPrintNo stmt) {
 		Codee.loadConst(4);
-		if (stmt.getExpr().struct.equals(Tabb.charType)) Codee.put(Codee.bprint);
+		if (stmt.getExpr().struct.getKind() == Struct.Array) {
+			Codee.printArray(stmt.getExpr().struct.getElemType());
+		}
+		else if (stmt.getExpr().struct.equals(Tabb.charType)) Codee.put(Codee.bprint);
 		else Codee.put(Codee.print);
 	}
 	
@@ -895,6 +901,10 @@ public class CodeGenerator extends VisitorAdaptor {
 			Codee.put(Codee.new_);
 			Codee.put2(4 * (type.getNumberOfFields() + 1));
 		}
+	}
+	
+	public void visit(FactorRange factor) {
+		Codee.processRange();
 	}
 	
 	// Designator

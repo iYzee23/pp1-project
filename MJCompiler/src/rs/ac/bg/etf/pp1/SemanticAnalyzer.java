@@ -576,16 +576,16 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	public void visit(StmtPrintYes stmt) {
 		Struct exprType = stmt.getExpr().struct;
 		
-		if (!exprType.equals(Tabb.intType) && !exprType.equals(Tabb.charType) && !exprType.equals(Tabb.boolType) ) {
-			report_error("Type of Expr inside parens must be int, char or bool", stmt.getExpr());
+		if (!exprType.equals(Tabb.intType) && !exprType.equals(Tabb.charType) && !exprType.equals(Tabb.boolType) && exprType.getKind() != Struct.Array) {
+			report_error("Type of Expr inside parens must be int, char or bool, or Array", stmt.getExpr());
 		}
 	}
 	
 	public void visit(StmtPrintNo stmt) {
 		Struct exprType = stmt.getExpr().struct;
 		
-		if (!exprType.equals(Tabb.intType) && !exprType.equals(Tabb.charType) && !exprType.equals(Tabb.boolType) ) {
-			report_error("Type of Expr inside parens must be int, char or bool", stmt.getExpr());
+		if (!exprType.equals(Tabb.intType) && !exprType.equals(Tabb.charType) && !exprType.equals(Tabb.boolType)  && exprType.getKind() != Struct.Array) {
+			report_error("Type of Expr inside parens must be int, char or bool, or Array", stmt.getExpr());
 		}
 	}
 	
@@ -954,6 +954,17 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(FactorExpr factor) {
 		Struct factorType = factor.getExpr().struct;
+		factor.struct = factorType;
+	}
+	
+	public void visit(FactorRange factor) {
+		Struct exprType = factor.getExpr().struct; 
+		
+		if (!exprType.equals(Tabb.intType)) {
+			report_error("Expr between parens must be int type", factor.getExpr());
+		}
+		
+		Struct factorType = new Struct(Struct.Array, exprType);
 		factor.struct = factorType;
 	}
 	

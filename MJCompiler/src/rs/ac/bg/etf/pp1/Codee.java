@@ -204,7 +204,7 @@ public class Codee extends Code {
 		}
 	}
 	
-	public static void getArrLenStoreDesignator(Obj dsgObj) {
+	public static void getArrAdr(Obj dsgObj) {
 		switch(dsgObj.getKind()) {
 			case Obj.Var:
 				// nothing
@@ -229,6 +229,10 @@ public class Codee extends Code {
 			default:
 				break;
 		}
+	}
+	
+	public static void getArrLenStoreDesignator(Obj dsgObj) {
+		getArrAdr(dsgObj);
 		put(dup);
 		put(arraylength);
 		put(putstatic);
@@ -373,6 +377,70 @@ public class Codee extends Code {
 		Codee.put(Codee.add);
 		Codee.put(Codee.putstatic); Codee.put2(3);
 		Codee.put(Codee.jmp); Codee.put2(-57);
+	}
+
+	public static void printArray(Struct type) {
+		boolean isChar = type.equals(Tabb.charType);
+		boolean isBool = type.equals(Tabb.boolType);
+		
+		int loadInstr = (isChar || isBool) ? Codee.baload : Codee.aload;
+		int printInstr = isChar ? Codee.bprint : Codee.print;
+		
+		/*
+			0 --> i
+			1 --> arr.len
+			2 --> adr_arr
+			3 --> numConst
+		*/
+		
+		Codee.put(Codee.putstatic); Codee.put2(3);
+		Codee.put(Codee.dup);
+		Codee.put(Codee.arraylength);
+		Codee.put(Codee.putstatic); Codee.put2(1);
+		Codee.put(Codee.putstatic); Codee.put2(2);
+		Codee.put(Codee.const_n);
+		Codee.put(Codee.putstatic); Codee.put2(0);
+		Codee.put(Codee.getstatic); Codee.put2(0);
+		Codee.put(Codee.getstatic); Codee.put2(1);
+		Codee.put(Codee.jcc + Codee.ge); Codee.put2(25);
+		Codee.put(Codee.getstatic); Codee.put2(2);
+		Codee.put(Codee.getstatic); Codee.put2(0);
+		Codee.put(loadInstr);
+		Codee.put(Codee.getstatic); Codee.put2(3);
+		Codee.put(printInstr);
+		Codee.put(Codee.getstatic); Codee.put2(0);
+		Codee.put(Codee.const_1);
+		Codee.put(Codee.add);
+		Codee.put(Codee.putstatic); Codee.put2(0);
+		Codee.put(Codee.jmp); Codee.put2(-28);
+	}
+
+	public static void processRange() {
+		/*
+			0 --> i
+			1 --> 6
+			2 --> adr_arr
+		*/
+		
+		Codee.put(Codee.dup);
+		Codee.put(Codee.putstatic); Codee.put2(1);
+		Codee.put(Codee.newarray); Codee.put(1);
+		Codee.put(Codee.putstatic); Codee.put2(2);
+		Codee.put(Codee.const_n);
+		Codee.put(Codee.putstatic); Codee.put2(0);
+		Codee.put(Codee.getstatic); Codee.put2(0);
+		Codee.put(Codee.getstatic); Codee.put2(1);
+		Codee.put(Codee.jcc + Codee.ge); Codee.put2(24);
+		Codee.put(Codee.getstatic); Codee.put2(2);
+		Codee.put(Codee.getstatic); Codee.put2(0);
+		Codee.put(Codee.getstatic); Codee.put2(0);
+		Codee.put(Codee.astore);
+		Codee.put(Codee.getstatic); Codee.put2(0);
+		Codee.put(Codee.const_1);
+		Codee.put(Codee.add);
+		Codee.put(Codee.putstatic); Codee.put2(0);
+		Codee.put(Codee.jmp); Codee.put2(-27);
+		Codee.put(Codee.getstatic); Codee.put2(2);
 	}
 	
 	//za uslovni skok unapred ostaviti adresu nula

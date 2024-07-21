@@ -52,6 +52,8 @@ import java_cup.runtime.Symbol;
 "for"			{ return new_symbol(sym.FOR, yytext()); }
 "static"		{ return new_symbol(sym.STATIC, yytext()); }
 "namespace"		{ return new_symbol(sym.NAMESP, yytext()); }
+"range"			{ return new_symbol(sym.RANGE, yytext()); }
+"in"			{ return new_symbol(sym.IN, yytext()); }
 
 
 // Operators
