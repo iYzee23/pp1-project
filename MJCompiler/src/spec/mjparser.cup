@@ -63,10 +63,10 @@ terminal Character CHAR_CONST;
 nonterminal Program, NamespaceList, DeclList, MethodDeclList, Namespace, ConstDecl, VarDecl, ClassDecl, MethodDecl;
 nonterminal ConstParts, ConstPart, VarParts, VarPart, StatVarDeclList, ForSymbol, ExtClass, ElseSymbol, IfSymbol;
 nonterminal StatInitList, VarDeclList, StaticInitializer, StatementList, Statement, ReturnType, FirstSemi, SecondSemi;
-nonterminal FormPars, DesignatorStatement, OpChoice, DesignatorList, ElseOpt, StatInits, TLBracket, TRBracket;
+nonterminal FormPars, DesignatorStatement, OpChoice, DesignatorList, ElseOpt, StatInits, TLBracket, TRBracket, LCIf;
 nonterminal ActPars, ActParsTemp, Assignop, Relop, Addop, Mulop, DesignatorParts, BracketsOpt, RParenFor, NewLBracket;
 nonterminal Condition, CondTerm, CondFact, CondTermList, CondFactList, StatVarDeclInit, TLParen, TRParen, FirstDesignator; 
-nonterminal AddopTermList, MulopFactorList, NewChoice, DesignatorStmtList, MethodDeclListOpt, StaticSymbol;
+nonterminal AddopTermList, MulopFactorList, NewChoice, DesignatorStmtList, MethodDeclListOpt, StaticSymbol, LCFor, LCIn;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassName;
@@ -271,9 +271,15 @@ DesignatorStatement ::= (DesignatorStmtFirst) Designator OpChoice
 					 |
 					 (DesignatorStmtSecond) LBRACKET DesignatorList MUL Designator RBRACKET ASSIGN Designator
 					 |
-					 (DesignatorStmtThirdYes) Designator ASSIGN LBRACKET FOR Expr IN Designator IF Condition RBRACKET
+					 (DesignatorStmtThirdYes) Designator ASSIGN LBRACKET LCFor Expr LCIn Designator LCIf Condition RBRACKET
 					 |
-					 (DesignatorStmtThirdNo) Designator ASSIGN LBRACKET FOR Expr IN Designator RBRACKET;
+					 (DesignatorStmtThirdNo) Designator ASSIGN LBRACKET LCFor Expr LCIn Designator RBRACKET;
+					 
+LCFor ::= (LCFort) FOR;
+
+LCIn ::= (LCInt) IN;
+
+LCIf ::= (LCIft) IF;			 
 					 
 OpChoice ::= (OpChoiceExpr) Assignop Expr
 		  |

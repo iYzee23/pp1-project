@@ -1,10 +1,14 @@
 program CodeGen1
 {
 	void main()
+	int arr0[];
 	int arr1[];
 	bool arr2[];
 	char arr3[];
+	int x, z;
+	char y;
 	{
+		arr0 = new int[5];
 		arr1 = new int[4];
 		arr1[0] = 0;
 		arr1[1] = 1;
@@ -47,5 +51,17 @@ program CodeGen1
 		arr1 = range(-6);
 		// arr1 = range('a');
 		arr1 = range(6);
+		
+		// arr0 = [for x in x];
+		// x = [for x in arr1];
+		// arr0 = [for x in arr2];
+		// arr2 = [for x in arr1];
+		// arr0 = [for y in arr1];
+		arr0 = [for x in arr1];
+		arr0 = [for x+x in arr1 if x > 1 || 2 > 1];
+		// arr0 = [for x+z in arr1 if 2 > 1];
+		// arr0 = [for x in arr1 if z == 2 && 2 > 1];
+		// arr0 = [for pr in arr1];
+		// arr0 = [for x in arr1 if 2 > 1 && z == 2];
 	}
 }

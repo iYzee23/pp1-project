@@ -85,6 +85,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	int relopKind = NOT_USED;
 	int forCnt = 0;
 	
+	// list comprehension processing
+	Obj listComprObj = null;
+	boolean listComprActive = false;
+	
 	// Program
 	
 	public void visit(ProgNamet progName) {
@@ -737,6 +741,66 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		dsgStmtParts.clear();
 	}
 	
+	public void visit(LCFort forSymbol) {
+		currDesignator.set(currDesignator.size() - 1, null);
+		classDesignator.set(classDesignator.size() - 1, false);
+		listComprActive = true;
+	}
+	
+	public void visit(LCInt inSymbol) {
+		listComprActive = false;
+	}
+	
+	public void visit(LCIft ifSymbol) {
+		currDesignator.set(currDesignator.size() - 1, null);
+		classDesignator.set(classDesignator.size() - 1, false);
+		listComprActive = true;
+	}
+	
+	public void visit(DesignatorStmtThirdYes dsgStmt) {
+		Obj firstDsg = dsgStmt.getDesignator().obj;
+		Obj secondDsg = dsgStmt.getDesignator1().obj;
+		
+		if (firstDsg.getType().getKind() != Struct.Array || secondDsg.getType().getKind() != Struct.Array ) {
+			report_error("Both designators in list comprehensions must be Arrays with same element type", dsgStmt);
+		}
+		else if (!firstDsg.getType().getElemType().equals(secondDsg.getType().getElemType())) {
+			report_error("Both designators in list comprehensions must be Arrays with same element type", dsgStmt);
+		}
+		
+		Struct exprType = dsgStmt.getExpr().struct;
+		Struct arrType = dsgStmt.getDesignator1().obj.getType().getElemType();
+		
+		if (!exprType.compatibleWith(arrType)) {
+			report_error("Expr type must be compatible with second Array's element type", dsgStmt);
+		}
+		
+		listComprActive = false;
+		listComprObj = null;
+	}
+	
+	public void visit(DesignatorStmtThirdNo dsgStmt) {
+		Obj firstDsg = dsgStmt.getDesignator().obj;
+		Obj secondDsg = dsgStmt.getDesignator1().obj;
+		
+		if (firstDsg.getType().getKind() != Struct.Array || secondDsg.getType().getKind() != Struct.Array ) {
+			report_error("Both designators in list comprehensions must be Arrays with same element type", dsgStmt);
+		}
+		else if (!firstDsg.getType().getElemType().equals(secondDsg.getType().getElemType())) {
+			report_error("Both designators in list comprehensions must be Arrays with same element type", dsgStmt);
+		}
+		
+		Struct exprType = dsgStmt.getExpr().struct;
+		Struct arrType = dsgStmt.getDesignator1().obj.getType().getElemType();
+		
+		if (!exprType.compatibleWith(arrType)) {
+			report_error("Expr type must be compatible with second Array's element type", dsgStmt);
+		}
+		
+		listComprActive = false;
+		listComprObj = null;
+	}
+	
 	// ActPars
 	
 	public void visit(ActParsTempSingle actPars) {
@@ -904,6 +968,20 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		Obj dsgObj = factor.getDesignator().obj;
 		if (dsgObj.getKind() == Obj.Type || dsgObj.getKind() == Obj.Meth) {
 			report_error("Designator must be Constant or Variable", factor.getDesignator());
+		}
+		
+		if (listComprActive && dsgObj.getKind() != Obj.Con) {
+			if (listComprObj != null && !listComprObj.equals(dsgObj)) {
+				report_error("You must have max one different Var in list comprehension", factor.getDesignator());
+			}
+			else if (listComprObj == null) {
+				if (dsgObj.getKind() != Obj.Var) {
+					report_error("You must have max one different Var in list comprehension", factor.getDesignator());
+				}
+				else {
+					listComprObj = dsgObj;
+				}
+			}
 		}
 		
 		factor.struct = dsgObj.getType();

@@ -19,7 +19,7 @@ public class Codee extends Code {
 	    	  
 	    	case Obj.Var:
 	    		if (o.getLevel()==0) {  
-	    			put(getstatic); put2(o.getAdr() + 4); 
+	    			put(getstatic); put2(o.getAdr() + CodeGenerator.numTemp); 
 	    			break; 
 	    		}
 	    		if (0 <= o.getAdr() && o.getAdr() <= 3) 
@@ -30,7 +30,7 @@ public class Codee extends Code {
 	    		break;
 	    	  
 	    	case Objj.Stat:
-	    		put(getstatic); put2(o.getAdr() + 4);
+	    		put(getstatic); put2(o.getAdr() + CodeGenerator.numTemp);
 	    		break;
 	    	  
 	    	case Obj.Fld:
@@ -53,7 +53,7 @@ public class Codee extends Code {
 		switch (o.getKind()) {
 			case Obj.Var:
 				if (o.getLevel()==0) {
-					put(putstatic); put2(o.getAdr() + 4); 
+					put(putstatic); put2(o.getAdr() + CodeGenerator.numTemp); 
 					break;
 		  		}
 		  		if (0 <= o.getAdr() && o.getAdr() <= 3) 
@@ -64,7 +64,7 @@ public class Codee extends Code {
 		  		break;
 		  		
 		  	case Objj.Stat:
-		  		put(putstatic); put2(o.getAdr() + 4); 
+		  		put(putstatic); put2(o.getAdr() + CodeGenerator.numTemp); 
 	  			break;
 
 		  	case Obj.Fld:
@@ -88,7 +88,7 @@ public class Codee extends Code {
 			case Obj.Var:
 				if (dsgObj.getLevel() == 0) {
 					put(getstatic);
-					put2(dsgObj.getAdr() + 4);
+					put2(dsgObj.getAdr() + CodeGenerator.numTemp);
 				}
 				else if (0 <= dsgObj.getAdr() && dsgObj.getAdr() <= 3) {
 					put(load_n + dsgObj.getAdr());
@@ -126,7 +126,7 @@ public class Codee extends Code {
 				
 			case Objj.Stat:
 				put(getstatic);
-				put2(dsgObj.getAdr() + 4);
+				put2(dsgObj.getAdr() + CodeGenerator.numTemp);
 				break;
 				
 			case Obj.Con:
@@ -162,7 +162,7 @@ public class Codee extends Code {
 				// val
 				if (dsgObj.getLevel() == 0) {
 					put(putstatic); 
-					put2(dsgObj.getAdr() + 4); 
+					put2(dsgObj.getAdr() + CodeGenerator.numTemp); 
 		  		}
 				else if (0 <= dsgObj.getAdr() && dsgObj.getAdr() <= 3) 
 		  			put(store_n + dsgObj.getAdr());
@@ -183,7 +183,7 @@ public class Codee extends Code {
 			case Objj.Stat:
 				// val
 				put(putstatic);
-				put2(dsgObj.getAdr() + 4);
+				put2(dsgObj.getAdr() + CodeGenerator.numTemp);
 				break;
 				
 			case Objj.Elem:
@@ -210,7 +210,7 @@ public class Codee extends Code {
 				// nothing
 				if (dsgObj.getLevel() == 0) {
 					put(getstatic); 
-					put2(dsgObj.getAdr() + 4); 
+					put2(dsgObj.getAdr() + CodeGenerator.numTemp); 
 		  		}
 				else if (0 <= dsgObj.getAdr() && dsgObj.getAdr() <= 3) 
 		  			put(load_n + dsgObj.getAdr());
@@ -223,7 +223,7 @@ public class Codee extends Code {
 			case Objj.Stat:
 				// nothing
 				put(getstatic);
-				put2(dsgObj.getAdr() + 4);
+				put2(dsgObj.getAdr() + CodeGenerator.numTemp);
 				break;
 				
 			default:
@@ -245,7 +245,7 @@ public class Codee extends Code {
 				// nothing
 				if (dsgObj.getLevel() == 0) {
 					put(getstatic); 
-					put2(dsgObj.getAdr() + 4); 
+					put2(dsgObj.getAdr() + CodeGenerator.numTemp); 
 		  		}
 				else if (0 <= dsgObj.getAdr() && dsgObj.getAdr() <= 3) 
 		  			put(load_n + dsgObj.getAdr());
@@ -266,7 +266,7 @@ public class Codee extends Code {
 			case Objj.Stat:
 				// nothing
 				put(getstatic);
-				put2(dsgObj.getAdr() + 4);
+				put2(dsgObj.getAdr() + CodeGenerator.numTemp);
 				break;
 				
 			case Objj.Elem:
@@ -288,7 +288,7 @@ public class Codee extends Code {
 			case Obj.Var:
 				if (dsgObj.getLevel() == 0) {
 					put(getstatic); 
-					put2(dsgObj.getAdr() + 4); 
+					put2(dsgObj.getAdr() + CodeGenerator.numTemp); 
 		  		}
 				else if (0 <= dsgObj.getAdr() && dsgObj.getAdr() <= 3) 
 		  			put(load_n + dsgObj.getAdr());
@@ -305,7 +305,7 @@ public class Codee extends Code {
 				
 			case Objj.Stat:
 				put(getstatic);
-				put2(dsgObj.getAdr() + 4);
+				put2(dsgObj.getAdr() + CodeGenerator.numTemp);
 				break;
 				
 			case Obj.Elem:
@@ -330,6 +330,13 @@ public class Codee extends Code {
 	}
 
 	public static void writeDsgStmtToCode(int dsgStmtCounter, int rightInstr, int leftInstr) {
+		/*
+		 	0 --> leftLen
+		 	1 --> rightLen
+		 	2 --> dsgStmtCounter
+		 	3 --> cnt
+		*/
+		
 		Codee.loadConst(dsgStmtCounter);
 		Codee.put(Codee.putstatic); Codee.put2(2);
 		Codee.put(Codee.const_n);
@@ -443,7 +450,120 @@ public class Codee extends Code {
 		Codee.put(Codee.getstatic); Codee.put2(2);
 	}
 	
-	//za uslovni skok unapred ostaviti adresu nula
+	public static void processLCFor() {
+		/*
+			0 --> adr_arr
+			1 --> adr_tArr
+			2 --> tArrLen
+			3 --> i
+			4 --> j
+		*/
+	
+		Codee.put(Codee.putstatic); Codee.put2(0);
+	}
+	
+	public static void processLCSecondArray(Obj listComprObj) {
+		/*
+			0 --> adr_arr
+			1 --> adr_tArr
+			2 --> tArrLen
+			3 --> i
+			4 --> j
+		*/		
+		
+		Codee.put(Codee.dup);
+		Codee.put(Codee.putstatic); Codee.put2(1);
+		Codee.put(Codee.arraylength);
+		Codee.put(Codee.putstatic); Codee.put2(2);
+		Codee.put(Codee.pop);
+		Codee.put(Codee.const_n);
+		Codee.put(Codee.putstatic); Codee.put2(4);
+		Codee.put(Codee.const_n);
+		Codee.put(Codee.putstatic); Codee.put2(3);
+		
+		CodeGenerator.pcLCCond = Codee.pc;
+		Codee.put(Codee.getstatic); Codee.put2(3);
+		Codee.put(Codee.getstatic); Codee.put2(2);
+		Codee.put(Codee.jcc + Codee.ge); Codee.put2(0);
+		CodeGenerator.fixupLCNoVar = Codee.pc - 2;
+		
+		if (listComprObj != null) {
+			boolean isChar = listComprObj.getType().equals(Tabb.charType);
+			boolean isBool = listComprObj.getType().equals(Tabb.boolType);
+			int instr = (isBool || isChar) ? Codee.baload : Codee.aload; 
+			
+			Codee.put(Codee.getstatic); Codee.put2(1);
+			Codee.put(Codee.getstatic); Codee.put2(3);
+			Codee.put(instr);
+			Codee.handleStoreDesignator(listComprObj);
+		}
+	}
+	
+	public static void processLCBody(ArrayList<Object> instrList, boolean isCharBool, boolean haveElse) {
+		/*
+			0 --> adr_arr
+			1 --> adr_tArr
+			2 --> tArrLen
+			3 --> i
+			4 --> j
+		*/
+		
+		Codee.put(Codee.getstatic); Codee.put2(0);
+		Codee.put(Codee.getstatic); Codee.put2(4);
+		
+		for (Object elem: instrList) {
+			if (elem instanceof Obj) handleLoadDesignator((Obj)elem, null, false);
+			else {
+				CodeGenerator.LCElem lcElem = (CodeGenerator.LCElem)elem;
+				if (lcElem.isOperator) Codee.put(lcElem.value);
+				else loadConst(lcElem.value);
+			}
+		}
+		instrList.clear();
+		
+		int instr = isCharBool ? Codee.bastore : Codee.astore;
+		Codee.put(instr);
+		
+		if (haveElse) {
+			Codee.put(Codee.jmp); Codee.put2(10);
+		}
+	}
+	
+	public static void processLCElse() {
+		/*
+			0 --> adr_arr
+			1 --> adr_tArr
+			2 --> tArrLen
+			3 --> i
+			4 --> j
+		*/
+		
+		Codee.put(Codee.getstatic); Codee.put2(4);
+		Codee.put(Codee.const_1);
+		Codee.put(Codee.sub);
+		Codee.put(Codee.putstatic); Codee.put2(4);
+	}
+	
+	public static void processLCPost() {
+		/*
+			0 --> adr_arr
+			1 --> adr_tArr
+			2 --> tArrLen
+			3 --> i
+			4 --> j
+		*/
+		
+		Codee.put(Codee.getstatic); Codee.put2(3);
+		Codee.put(Codee.const_1);
+		Codee.put(Codee.add);
+		Codee.put(Codee.putstatic); Codee.put2(3);
+		Codee.put(Codee.getstatic); Codee.put2(4);
+		Codee.put(Codee.const_1);
+		Codee.put(Codee.add);
+		Codee.put(Codee.putstatic); Codee.put2(4);
+		Codee.putJump(CodeGenerator.pcLCCond);
+	}
+	
 	public static void putTrueJump (int op, int adr) {
 		put(jcc + op); put2(adr-pc+1);
 	}

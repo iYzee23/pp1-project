@@ -1,0 +1,728 @@
+INFO  02:56:41,860 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\testovi_jul\test303.mj
+INFO  02:56:41,889 - #2 program
+INFO  02:56:41,889 - #48 test_303
+INFO  02:56:41,889 - #12 class
+INFO  02:56:41,890 - #48 ProstiBrojevi
+INFO  02:56:41,890 - #3 {
+INFO  02:56:41,890 - #14 static
+INFO  02:56:41,890 - #48 int
+INFO  02:56:41,890 - #48 prosti
+INFO  02:56:41,890 - #10 [
+INFO  02:56:41,890 - #11 ]
+INFO  02:56:41,890 - #8 ;
+INFO  02:56:41,890 - #14 static
+INFO  02:56:41,891 - #48 int
+INFO  02:56:41,891 - #48 X
+INFO  02:56:41,891 - #6 ,
+INFO  02:56:41,891 - #48 i
+INFO  02:56:41,891 - #6 ,
+INFO  02:56:41,891 - #48 j
+INFO  02:56:41,901 - #8 ;
+INFO  02:56:41,901 - #14 static
+INFO  02:56:41,901 - #48 bool
+INFO  02:56:41,901 - #48 flag
+INFO  02:56:41,901 - #8 ;
+INFO  02:56:41,901 - #14 static
+INFO  02:56:41,901 - #3 {
+INFO  02:56:41,901 - #28 print
+INFO  02:56:41,901 - #16 (
+INFO  02:56:41,901 - #51 s
+INFO  02:56:41,901 - #17 )
+INFO  02:56:41,901 - #8 ;
+INFO  02:56:41,901 - #28 print
+INFO  02:56:41,902 - #16 (
+INFO  02:56:41,902 - #51 t
+INFO  02:56:41,902 - #17 )
+INFO  02:56:41,902 - #8 ;
+INFO  02:56:41,902 - #28 print
+INFO  02:56:41,902 - #16 (
+INFO  02:56:41,902 - #51 a
+INFO  02:56:41,902 - #17 )
+INFO  02:56:41,902 - #8 ;
+INFO  02:56:41,902 - #28 print
+INFO  02:56:41,902 - #16 (
+INFO  02:56:41,902 - #51 t
+INFO  02:56:41,902 - #17 )
+INFO  02:56:41,902 - #8 ;
+INFO  02:56:41,902 - #28 print
+INFO  02:56:41,902 - #16 (
+INFO  02:56:41,902 - #51 i
+INFO  02:56:41,902 - #17 )
+INFO  02:56:41,902 - #8 ;
+INFO  02:56:41,902 - #28 print
+INFO  02:56:41,902 - #16 (
+INFO  02:56:41,902 - #51 c
+INFO  02:56:41,902 - #17 )
+INFO  02:56:41,902 - #8 ;
+INFO  02:56:41,902 - #28 print
+INFO  02:56:41,902 - #16 (
+INFO  02:56:41,902 - #48 eol
+INFO  02:56:41,902 - #17 )
+INFO  02:56:41,903 - #8 ;
+INFO  02:56:41,903 - #48 prosti
+INFO  02:56:41,903 - #9 =
+INFO  02:56:41,903 - #38 new
+INFO  02:56:41,903 - #48 int
+INFO  02:56:41,903 - #10 [
+INFO  02:56:41,903 - #49 10
+INFO  02:56:41,903 - #11 ]
+INFO  02:56:41,903 - #8 ;
+INFO  02:56:41,903 - #40 for
+INFO  02:56:41,905 - #16 (
+INFO  02:56:41,906 - #48 X
+INFO  02:56:41,906 - #9 =
+INFO  02:56:41,906 - #49 0
+INFO  02:56:41,906 - #8 ;
+INFO  02:56:41,906 - #48 X
+INFO  02:56:41,906 - #26 <
+INFO  02:56:41,906 - #49 10
+INFO  02:56:41,907 - #8 ;
+INFO  02:56:41,907 - #48 i
+INFO  02:56:41,907 - #20 ++
+INFO  02:56:41,907 - #17 )
+INFO  02:56:41,907 - #3 {
+INFO  02:56:41,908 - #48 flag
+INFO  02:56:41,908 - #9 =
+INFO  02:56:41,908 - #50 true
+INFO  02:56:41,908 - #8 ;
+INFO  02:56:41,908 - #40 for
+INFO  02:56:41,908 - #16 (
+INFO  02:56:41,908 - #48 j
+INFO  02:56:41,908 - #9 =
+INFO  02:56:41,908 - #49 2
+INFO  02:56:41,908 - #8 ;
+INFO  02:56:41,908 - #48 j
+INFO  02:56:41,908 - #26 <
+INFO  02:56:41,908 - #48 i
+INFO  02:56:41,908 - #8 ;
+INFO  02:56:41,908 - #48 j
+INFO  02:56:41,908 - #20 ++
+INFO  02:56:41,908 - #17 )
+INFO  02:56:41,908 - #3 {
+INFO  02:56:41,908 - #42 if
+INFO  02:56:41,908 - #16 (
+INFO  02:56:41,909 - #48 i
+INFO  02:56:41,909 - #34 %
+INFO  02:56:41,909 - #48 j
+INFO  02:56:41,909 - #22 ==
+INFO  02:56:41,909 - #49 0
+INFO  02:56:41,909 - #17 )
+INFO  02:56:41,910 - #3 {
+INFO  02:56:41,910 - #48 flag
+INFO  02:56:41,910 - #9 =
+INFO  02:56:41,910 - #50 false
+INFO  02:56:41,910 - #8 ;
+INFO  02:56:41,910 - #44 break
+INFO  02:56:41,910 - #8 ;
+INFO  02:56:41,910 - #4 }
+INFO  02:56:41,910 - #4 }
+INFO  02:56:41,910 - #42 if
+INFO  02:56:41,910 - #16 (
+INFO  02:56:41,910 - #48 flag
+INFO  02:56:41,910 - #17 )
+INFO  02:56:41,911 - #3 {
+INFO  02:56:41,911 - #48 prosti
+INFO  02:56:41,911 - #10 [
+INFO  02:56:41,911 - #48 X
+INFO  02:56:41,911 - #11 ]
+INFO  02:56:41,911 - #9 =
+INFO  02:56:41,911 - #48 i
+INFO  02:56:41,911 - #8 ;
+INFO  02:56:41,911 - #48 X
+INFO  02:56:41,911 - #20 ++
+INFO  02:56:41,912 - #8 ;
+INFO  02:56:41,912 - #4 }
+INFO  02:56:41,912 - #4 }
+INFO  02:56:41,912 - #4 }
+INFO  02:56:41,912 - #4 }
+INFO  02:56:41,912 - #48 int
+INFO  02:56:41,912 - #48 zapreminaK
+INFO  02:56:41,912 - #6 ,
+INFO  02:56:41,912 - #48 zapreminaS
+INFO  02:56:41,912 - #8 ;
+INFO  02:56:41,912 - #48 int
+INFO  02:56:41,912 - #48 tezinaK
+INFO  02:56:41,912 - #6 ,
+INFO  02:56:41,912 - #48 tezinaS
+INFO  02:56:41,912 - #8 ;
+INFO  02:56:41,912 - #3 {
+INFO  02:56:41,912 - #18 void
+INFO  02:56:41,913 - #48 ispis
+INFO  02:56:41,913 - #16 (
+INFO  02:56:41,913 - #48 Predmet
+INFO  02:56:41,913 - #48 p
+INFO  02:56:41,913 - #17 )
+INFO  02:56:41,913 - #3 {
+INFO  02:56:41,913 - #48 p
+INFO  02:56:41,913 - #35 .
+INFO  02:56:41,913 - #48 ispisi
+INFO  02:56:41,913 - #16 (
+INFO  02:56:41,913 - #17 )
+INFO  02:56:41,913 - #8 ;
+INFO  02:56:41,913 - #28 print
+INFO  02:56:41,913 - #16 (
+INFO  02:56:41,913 - #48 eol
+INFO  02:56:41,913 - #17 )
+INFO  02:56:41,913 - #8 ;
+INFO  02:56:41,913 - #28 print
+INFO  02:56:41,913 - #16 (
+INFO  02:56:41,913 - #48 p
+INFO  02:56:41,913 - #35 .
+INFO  02:56:41,913 - #48 dohvTezinu
+INFO  02:56:41,913 - #16 (
+INFO  02:56:41,913 - #17 )
+INFO  02:56:41,913 - #17 )
+INFO  02:56:41,913 - #8 ;
+INFO  02:56:41,913 - #4 }
+INFO  02:56:41,913 - #18 void
+INFO  02:56:41,914 - #48 main
+INFO  02:56:41,914 - #16 (
+INFO  02:56:41,914 - #17 )
+INFO  02:56:41,914 - #48 Predmet
+INFO  02:56:41,914 - #48 predmeti
+INFO  02:56:41,914 - #10 [
+INFO  02:56:41,914 - #11 ]
+INFO  02:56:41,914 - #8 ;
+INFO  02:56:41,914 - #48 int
+INFO  02:56:41,914 - #48 i
+INFO  02:56:41,914 - #8 ;
+INFO  02:56:41,914 - #48 Sfera
+INFO  02:56:41,914 - #48 s1
+INFO  02:56:41,914 - #6 ,
+INFO  02:56:41,914 - #48 s2
+INFO  02:56:41,914 - #6 ,
+INFO  02:56:41,914 - #48 s3
+INFO  02:56:41,914 - #8 ;
+INFO  02:56:41,914 - #48 Kvadar
+INFO  02:56:41,914 - #48 k1
+INFO  02:56:41,914 - #6 ,
+INFO  02:56:41,914 - #48 k2
+INFO  02:56:41,914 - #6 ,
+INFO  02:56:41,914 - #48 k3
+INFO  02:56:41,914 - #8 ;
+INFO  02:56:41,914 - #48 int
+INFO  02:56:41,914 - #48 t
+INFO  02:56:41,914 - #8 ;
+INFO  02:56:41,914 - #3 {
+INFO  02:56:41,914 - #42 if
+INFO  02:56:41,914 - #16 (
+INFO  02:56:41,914 - #48 ProstiBrojevi
+INFO  02:56:41,914 - #35 .
+INFO  02:56:41,914 - #48 prosti
+INFO  02:56:41,914 - #10 [
+INFO  02:56:41,914 - #49 9
+INFO  02:56:41,914 - #11 ]
+INFO  02:56:41,914 - #22 ==
+INFO  02:56:41,914 - #49 29
+INFO  02:56:41,914 - #17 )
+INFO  02:56:41,914 - #28 print
+INFO  02:56:41,914 - #16 (
+INFO  02:56:41,914 - #49 1
+INFO  02:56:41,914 - #17 )
+INFO  02:56:41,914 - #8 ;
+INFO  02:56:41,914 - #43 else
+INFO  02:56:41,914 - #28 print
+INFO  02:56:41,915 - #16 (
+INFO  02:56:41,915 - #49 0
+INFO  02:56:41,915 - #17 )
+INFO  02:56:41,915 - #8 ;
+INFO  02:56:41,915 - #48 predmeti
+INFO  02:56:41,915 - #9 =
+INFO  02:56:41,915 - #38 new
+INFO  02:56:41,915 - #48 Predmet
+INFO  02:56:41,915 - #10 [
+INFO  02:56:41,915 - #49 6
+INFO  02:56:41,915 - #11 ]
+INFO  02:56:41,915 - #8 ;
+INFO  02:56:41,915 - #48 s1
+INFO  02:56:41,915 - #9 =
+INFO  02:56:41,915 - #38 new
+INFO  02:56:41,915 - #48 Sfera
+INFO  02:56:41,915 - #16 (
+INFO  02:56:41,915 - #17 )
+INFO  02:56:41,915 - #8 ;
+INFO  02:56:41,915 - #48 s1
+INFO  02:56:41,915 - #35 .
+INFO  02:56:41,915 - #48 postaviPoluprecnik
+INFO  02:56:41,915 - #16 (
+INFO  02:56:41,915 - #49 1
+INFO  02:56:41,915 - #17 )
+INFO  02:56:41,915 - #8 ;
+INFO  02:56:41,916 - #48 s1
+INFO  02:56:41,916 - #35 .
+INFO  02:56:41,916 - #48 postaviVrstu
+INFO  02:56:41,916 - #16 (
+INFO  02:56:41,916 - #51 s
+INFO  02:56:41,916 - #17 )
+INFO  02:56:41,916 - #8 ;
+INFO  02:56:41,916 - #48 s2
+INFO  02:56:41,916 - #9 =
+INFO  02:56:41,916 - #38 new
+INFO  02:56:41,916 - #48 Sfera
+INFO  02:56:41,916 - #16 (
+INFO  02:56:41,916 - #17 )
+INFO  02:56:41,916 - #8 ;
+INFO  02:56:41,916 - #48 s2
+INFO  02:56:41,916 - #35 .
+INFO  02:56:41,916 - #48 postaviPoluprecnik
+INFO  02:56:41,916 - #16 (
+INFO  02:56:41,916 - #49 2
+INFO  02:56:41,916 - #17 )
+INFO  02:56:41,916 - #8 ;
+INFO  02:56:41,916 - #48 s2
+INFO  02:56:41,916 - #35 .
+INFO  02:56:41,916 - #48 postaviVrstu
+INFO  02:56:41,916 - #16 (
+INFO  02:56:41,916 - #51 s
+INFO  02:56:41,916 - #17 )
+INFO  02:56:41,916 - #8 ;
+INFO  02:56:41,916 - #48 s3
+INFO  02:56:41,916 - #9 =
+INFO  02:56:41,916 - #38 new
+INFO  02:56:41,916 - #48 Sfera
+INFO  02:56:41,916 - #16 (
+INFO  02:56:41,916 - #17 )
+INFO  02:56:41,916 - #8 ;
+INFO  02:56:41,916 - #48 s3
+INFO  02:56:41,916 - #35 .
+INFO  02:56:41,916 - #48 postaviPoluprecnik
+INFO  02:56:41,916 - #16 (
+INFO  02:56:41,916 - #49 3
+INFO  02:56:41,916 - #17 )
+INFO  02:56:41,916 - #8 ;
+INFO  02:56:41,916 - #48 s3
+INFO  02:56:41,916 - #35 .
+INFO  02:56:41,916 - #48 postaviVrstu
+INFO  02:56:41,916 - #16 (
+INFO  02:56:41,916 - #51 s
+INFO  02:56:41,916 - #17 )
+INFO  02:56:41,916 - #8 ;
+INFO  02:56:41,916 - #48 k3
+INFO  02:56:41,916 - #9 =
+INFO  02:56:41,916 - #38 new
+INFO  02:56:41,916 - #48 Kvadar
+INFO  02:56:41,917 - #16 (
+INFO  02:56:41,917 - #17 )
+INFO  02:56:41,917 - #8 ;
+INFO  02:56:41,917 - #48 k3
+INFO  02:56:41,917 - #35 .
+INFO  02:56:41,917 - #48 postaviStranice
+INFO  02:56:41,917 - #16 (
+INFO  02:56:41,917 - #49 1
+INFO  02:56:41,917 - #6 ,
+INFO  02:56:41,917 - #49 2
+INFO  02:56:41,917 - #6 ,
+INFO  02:56:41,917 - #49 3
+INFO  02:56:41,917 - #17 )
+INFO  02:56:41,917 - #8 ;
+INFO  02:56:41,917 - #48 k3
+INFO  02:56:41,917 - #35 .
+INFO  02:56:41,917 - #48 postaviVrstu
+INFO  02:56:41,917 - #16 (
+INFO  02:56:41,917 - #51 k
+INFO  02:56:41,917 - #17 )
+INFO  02:56:41,917 - #8 ;
+INFO  02:56:41,917 - #48 k1
+INFO  02:56:41,917 - #9 =
+INFO  02:56:41,917 - #38 new
+INFO  02:56:41,917 - #48 Kvadar
+INFO  02:56:41,917 - #16 (
+INFO  02:56:41,917 - #17 )
+INFO  02:56:41,917 - #8 ;
+INFO  02:56:41,917 - #48 k1
+INFO  02:56:41,917 - #35 .
+INFO  02:56:41,917 - #48 postaviStranice
+INFO  02:56:41,917 - #16 (
+INFO  02:56:41,917 - #49 2
+INFO  02:56:41,917 - #6 ,
+INFO  02:56:41,917 - #49 3
+INFO  02:56:41,917 - #6 ,
+INFO  02:56:41,917 - #49 4
+INFO  02:56:41,917 - #17 )
+INFO  02:56:41,917 - #8 ;
+INFO  02:56:41,917 - #48 k1
+INFO  02:56:41,917 - #35 .
+INFO  02:56:41,917 - #48 postaviVrstu
+INFO  02:56:41,917 - #16 (
+INFO  02:56:41,917 - #51 k
+INFO  02:56:41,917 - #17 )
+INFO  02:56:41,917 - #8 ;
+INFO  02:56:41,917 - #48 k2
+INFO  02:56:41,917 - #9 =
+INFO  02:56:41,917 - #38 new
+INFO  02:56:41,917 - #48 Kvadar
+INFO  02:56:41,917 - #16 (
+INFO  02:56:41,917 - #17 )
+INFO  02:56:41,917 - #8 ;
+INFO  02:56:41,917 - #48 k2
+INFO  02:56:41,917 - #35 .
+INFO  02:56:41,917 - #48 postaviStranice
+INFO  02:56:41,917 - #16 (
+INFO  02:56:41,917 - #49 3
+INFO  02:56:41,917 - #6 ,
+INFO  02:56:41,917 - #49 4
+INFO  02:56:41,917 - #6 ,
+INFO  02:56:41,917 - #49 5
+INFO  02:56:41,917 - #17 )
+INFO  02:56:41,917 - #8 ;
+INFO  02:56:41,917 - #48 k2
+INFO  02:56:41,917 - #35 .
+INFO  02:56:41,917 - #48 postaviVrstu
+INFO  02:56:41,917 - #16 (
+INFO  02:56:41,917 - #51 k
+INFO  02:56:41,917 - #17 )
+INFO  02:56:41,917 - #8 ;
+INFO  02:56:41,917 - #48 predmeti
+INFO  02:56:41,917 - #10 [
+INFO  02:56:41,917 - #49 0
+INFO  02:56:41,917 - #11 ]
+INFO  02:56:41,917 - #9 =
+INFO  02:56:41,917 - #48 s1
+INFO  02:56:41,917 - #8 ;
+INFO  02:56:41,917 - #48 predmeti
+INFO  02:56:41,917 - #10 [
+INFO  02:56:41,917 - #49 2
+INFO  02:56:41,917 - #11 ]
+INFO  02:56:41,917 - #9 =
+INFO  02:56:41,917 - #48 s2
+INFO  02:56:41,917 - #8 ;
+INFO  02:56:41,917 - #48 predmeti
+INFO  02:56:41,917 - #10 [
+INFO  02:56:41,917 - #49 4
+INFO  02:56:41,917 - #11 ]
+INFO  02:56:41,917 - #9 =
+INFO  02:56:41,917 - #48 s3
+INFO  02:56:41,917 - #8 ;
+INFO  02:56:41,917 - #48 predmeti
+INFO  02:56:41,917 - #10 [
+INFO  02:56:41,917 - #49 1
+INFO  02:56:41,917 - #11 ]
+INFO  02:56:41,918 - #9 =
+INFO  02:56:41,918 - #48 k1
+INFO  02:56:41,918 - #8 ;
+INFO  02:56:41,918 - #48 predmeti
+INFO  02:56:41,918 - #10 [
+INFO  02:56:41,918 - #49 3
+INFO  02:56:41,918 - #11 ]
+INFO  02:56:41,918 - #9 =
+INFO  02:56:41,918 - #48 k2
+INFO  02:56:41,918 - #8 ;
+INFO  02:56:41,918 - #48 predmeti
+INFO  02:56:41,918 - #10 [
+INFO  02:56:41,918 - #49 5
+INFO  02:56:41,918 - #11 ]
+INFO  02:56:41,918 - #9 =
+INFO  02:56:41,918 - #48 k3
+INFO  02:56:41,918 - #8 ;
+INFO  02:56:41,918 - #47 read
+INFO  02:56:41,918 - #16 (
+INFO  02:56:41,918 - #48 t
+INFO  02:56:41,918 - #17 )
+INFO  02:56:41,918 - #8 ;
+INFO  02:56:41,918 - #40 for
+INFO  02:56:41,918 - #16 (
+INFO  02:56:41,918 - #48 i
+INFO  02:56:41,918 - #9 =
+INFO  02:56:41,918 - #49 0
+INFO  02:56:41,918 - #8 ;
+INFO  02:56:41,918 - #48 i
+INFO  02:56:41,918 - #26 <
+INFO  02:56:41,918 - #49 6
+INFO  02:56:41,918 - #8 ;
+INFO  02:56:41,918 - #48 i
+INFO  02:56:41,918 - #20 ++
+INFO  02:56:41,918 - #17 )
+INFO  02:56:41,918 - #3 {
+INFO  02:56:41,918 - #48 predmeti
+INFO  02:56:41,918 - #10 [
+INFO  02:56:41,918 - #48 i
+INFO  02:56:41,918 - #11 ]
+INFO  02:56:41,918 - #35 .
+INFO  02:56:41,918 - #48 postaviTezinu
+INFO  02:56:41,918 - #16 (
+INFO  02:56:41,918 - #48 t
+INFO  02:56:41,918 - #17 )
+INFO  02:56:41,918 - #8 ;
+INFO  02:56:41,918 - #4 }
+INFO  02:56:41,918 - #48 zapreminaS
+INFO  02:56:41,918 - #9 =
+INFO  02:56:41,918 - #49 0
+INFO  02:56:41,918 - #8 ;
+INFO  02:56:41,918 - #48 tezinaS
+INFO  02:56:41,918 - #9 =
+INFO  02:56:41,918 - #49 0
+INFO  02:56:41,918 - #8 ;
+INFO  02:56:41,918 - #40 for
+INFO  02:56:41,918 - #16 (
+INFO  02:56:41,918 - #48 i
+INFO  02:56:41,918 - #9 =
+INFO  02:56:41,918 - #49 1
+INFO  02:56:41,918 - #8 ;
+INFO  02:56:41,918 - #48 i
+INFO  02:56:41,918 - #26 <
+INFO  02:56:41,918 - #49 6
+INFO  02:56:41,918 - #8 ;
+INFO  02:56:41,918 - #17 )
+INFO  02:56:41,918 - #3 {
+INFO  02:56:41,918 - #42 if
+INFO  02:56:41,918 - #16 (
+INFO  02:56:41,918 - #48 i
+INFO  02:56:41,918 - #34 %
+INFO  02:56:41,918 - #49 2
+INFO  02:56:41,918 - #22 ==
+INFO  02:56:41,918 - #49 0
+INFO  02:56:41,918 - #17 )
+INFO  02:56:41,918 - #3 {
+INFO  02:56:41,918 - #48 i
+INFO  02:56:41,918 - #20 ++
+INFO  02:56:41,918 - #8 ;
+INFO  02:56:41,918 - #45 continue
+INFO  02:56:41,918 - #8 ;
+INFO  02:56:41,918 - #4 }
+INFO  02:56:41,919 - #48 zapreminaS
+INFO  02:56:41,919 - #9 =
+INFO  02:56:41,919 - #48 zapreminaS
+INFO  02:56:41,919 - #30 +
+INFO  02:56:41,919 - #48 predmeti
+INFO  02:56:41,919 - #10 [
+INFO  02:56:41,919 - #48 i
+INFO  02:56:41,919 - #31 -
+INFO  02:56:41,919 - #49 1
+INFO  02:56:41,919 - #11 ]
+INFO  02:56:41,919 - #35 .
+INFO  02:56:41,919 - #48 zapremina
+INFO  02:56:41,919 - #16 (
+INFO  02:56:41,919 - #17 )
+INFO  02:56:41,919 - #8 ;
+INFO  02:56:41,919 - #48 tezinaS
+INFO  02:56:41,919 - #9 =
+INFO  02:56:41,919 - #48 tezinaS
+INFO  02:56:41,919 - #30 +
+INFO  02:56:41,919 - #48 predmeti
+INFO  02:56:41,919 - #10 [
+INFO  02:56:41,919 - #48 i
+INFO  02:56:41,919 - #31 -
+INFO  02:56:41,919 - #49 1
+INFO  02:56:41,919 - #11 ]
+INFO  02:56:41,919 - #35 .
+INFO  02:56:41,919 - #48 Q
+INFO  02:56:41,919 - #16 (
+INFO  02:56:41,919 - #17 )
+INFO  02:56:41,919 - #8 ;
+INFO  02:56:41,919 - #48 ispis
+INFO  02:56:41,919 - #16 (
+INFO  02:56:41,919 - #48 predmeti
+INFO  02:56:41,919 - #10 [
+INFO  02:56:41,919 - #48 i
+INFO  02:56:41,919 - #31 -
+INFO  02:56:41,919 - #49 1
+INFO  02:56:41,919 - #11 ]
+INFO  02:56:41,919 - #17 )
+INFO  02:56:41,919 - #8 ;
+INFO  02:56:41,919 - #48 i
+INFO  02:56:41,919 - #20 ++
+INFO  02:56:41,919 - #8 ;
+INFO  02:56:41,919 - #4 }
+INFO  02:56:41,919 - #48 zapreminaK
+INFO  02:56:41,920 - #9 =
+INFO  02:56:41,920 - #49 0
+INFO  02:56:41,920 - #8 ;
+INFO  02:56:41,920 - #48 tezinaK
+INFO  02:56:41,920 - #9 =
+INFO  02:56:41,920 - #49 0
+INFO  02:56:41,920 - #8 ;
+INFO  02:56:41,920 - #48 i
+INFO  02:56:41,920 - #9 =
+INFO  02:56:41,920 - #49 1
+INFO  02:56:41,920 - #8 ;
+INFO  02:56:41,920 - #40 for
+INFO  02:56:41,920 - #16 (
+INFO  02:56:41,920 - #48 i
+INFO  02:56:41,920 - #9 =
+INFO  02:56:41,920 - #49 1
+INFO  02:56:41,920 - #8 ;
+INFO  02:56:41,920 - #48 i
+INFO  02:56:41,920 - #26 <
+INFO  02:56:41,920 - #49 6
+INFO  02:56:41,920 - #8 ;
+INFO  02:56:41,920 - #17 )
+INFO  02:56:41,920 - #3 {
+INFO  02:56:41,920 - #42 if
+INFO  02:56:41,920 - #16 (
+INFO  02:56:41,920 - #48 i
+INFO  02:56:41,920 - #34 %
+INFO  02:56:41,920 - #49 2
+INFO  02:56:41,920 - #22 ==
+INFO  02:56:41,920 - #49 1
+INFO  02:56:41,920 - #17 )
+INFO  02:56:41,920 - #3 {
+INFO  02:56:41,920 - #48 i
+INFO  02:56:41,920 - #20 ++
+INFO  02:56:41,920 - #8 ;
+INFO  02:56:41,920 - #45 continue
+INFO  02:56:41,920 - #8 ;
+INFO  02:56:41,920 - #4 }
+INFO  02:56:41,920 - #48 zapreminaS
+INFO  02:56:41,920 - #9 =
+INFO  02:56:41,920 - #48 zapreminaS
+INFO  02:56:41,920 - #30 +
+INFO  02:56:41,920 - #48 predmeti
+INFO  02:56:41,920 - #10 [
+INFO  02:56:41,920 - #48 i
+INFO  02:56:41,920 - #31 -
+INFO  02:56:41,920 - #49 1
+INFO  02:56:41,920 - #11 ]
+INFO  02:56:41,920 - #35 .
+INFO  02:56:41,920 - #48 zapremina
+INFO  02:56:41,920 - #16 (
+INFO  02:56:41,920 - #17 )
+INFO  02:56:41,920 - #8 ;
+INFO  02:56:41,920 - #48 tezinaS
+INFO  02:56:41,920 - #9 =
+INFO  02:56:41,920 - #48 tezinaS
+INFO  02:56:41,920 - #30 +
+INFO  02:56:41,920 - #48 predmeti
+INFO  02:56:41,920 - #10 [
+INFO  02:56:41,920 - #48 i
+INFO  02:56:41,920 - #31 -
+INFO  02:56:41,920 - #49 1
+INFO  02:56:41,920 - #11 ]
+INFO  02:56:41,920 - #35 .
+INFO  02:56:41,920 - #48 Q
+INFO  02:56:41,920 - #16 (
+INFO  02:56:41,920 - #17 )
+INFO  02:56:41,920 - #8 ;
+INFO  02:56:41,920 - #48 ispis
+INFO  02:56:41,920 - #16 (
+INFO  02:56:41,920 - #48 predmeti
+INFO  02:56:41,920 - #10 [
+INFO  02:56:41,920 - #48 i
+INFO  02:56:41,920 - #31 -
+INFO  02:56:41,920 - #49 1
+INFO  02:56:41,920 - #11 ]
+INFO  02:56:41,920 - #17 )
+INFO  02:56:41,920 - #8 ;
+INFO  02:56:41,920 - #48 i
+INFO  02:56:41,920 - #20 ++
+INFO  02:56:41,920 - #8 ;
+INFO  02:56:41,920 - #4 }
+INFO  02:56:41,920 - #28 print
+INFO  02:56:41,920 - #16 (
+INFO  02:56:41,920 - #48 zapreminaS
+INFO  02:56:41,920 - #17 )
+INFO  02:56:41,920 - #8 ;
+INFO  02:56:41,920 - #28 print
+INFO  02:56:41,920 - #16 (
+INFO  02:56:41,920 - #48 eol
+INFO  02:56:41,920 - #17 )
+INFO  02:56:41,920 - #8 ;
+INFO  02:56:41,920 - #28 print
+INFO  02:56:41,920 - #16 (
+INFO  02:56:41,920 - #48 zapreminaK
+INFO  02:56:41,920 - #17 )
+INFO  02:56:41,920 - #8 ;
+INFO  02:56:41,920 - #28 print
+INFO  02:56:41,920 - #16 (
+INFO  02:56:41,920 - #48 eol
+INFO  02:56:41,920 - #17 )
+INFO  02:56:41,920 - #8 ;
+INFO  02:56:41,920 - #28 print
+INFO  02:56:41,920 - #16 (
+INFO  02:56:41,920 - #48 tezinaS
+INFO  02:56:41,920 - #17 )
+INFO  02:56:41,920 - #8 ;
+INFO  02:56:41,920 - #28 print
+INFO  02:56:41,920 - #16 (
+INFO  02:56:41,920 - #48 eol
+INFO  02:56:41,920 - #17 )
+INFO  02:56:41,921 - #8 ;
+INFO  02:56:41,921 - #28 print
+INFO  02:56:41,921 - #16 (
+INFO  02:56:41,921 - #48 tezinaK
+INFO  02:56:41,921 - #17 )
+INFO  02:56:41,921 - #8 ;
+INFO  02:56:41,921 - #28 print
+INFO  02:56:41,921 - #16 (
+INFO  02:56:41,921 - #48 eol
+INFO  02:56:41,921 - #17 )
+INFO  02:56:41,921 - #8 ;
+INFO  02:56:41,921 - #4 }
+INFO  02:56:41,921 - #4 }
+ERROR 02:56:41,928 - Designator must be type of Integer: ProstiBrojevi::prosti ~~~ Line: 67
+ERROR 02:56:41,928 - Types of expressions must be compatibile ~~~ Line: 69
+ERROR 02:56:41,928 - All factors in Mulop Term must be integers ~~~ Line: 70
+ERROR 02:56:41,928 - Types of expressions must be compatibile ~~~ Line: 70
+ERROR 02:56:41,928 - Can't resolve type: Predmet ~~~ Line: 88
+ERROR 02:56:41,928 - Designator before dot must be a Class type: p.ispisi ~~~ Line: 90
+ERROR 02:56:41,928 - Designator must be non-static class method or global function: p ~~~ Line: 90
+ERROR 02:56:41,928 - Designator before dot must be a Class type: p.dohvTezinu ~~~ Line: 92
+ERROR 02:56:41,928 - Designator must be Nonstatic Class or Global method ~~~ Line: 92
+ERROR 02:56:41,928 - Type of Expr inside parens must be int, char or bool, or Array ~~~ Line: 92
+ERROR 02:56:41,928 - Can't resolve type: Predmet ~~~ Line: 95
+ERROR 02:56:41,928 - Can't resolve type: Sfera ~~~ Line: 95
+ERROR 02:56:41,928 - Can't resolve type: Kvadar ~~~ Line: 95
+ERROR 02:56:41,928 - Can't resolve type: Predmet ~~~ Line: 99
+ERROR 02:56:41,928 - Can't resolve type: Sfera ~~~ Line: 101
+ERROR 02:56:41,928 - Type must be user defined type (class) ~~~ Line: 101
+ERROR 02:56:41,928 - Designator before dot must be a Class type: s1.postaviPoluprecnik ~~~ Line: 102
+ERROR 02:56:41,928 - Recognized designator must be a method ~~~ Line: 102
+ERROR 02:56:41,928 - Designator must be non-static class method or global function: s1 ~~~ Line: 102
+ERROR 02:56:41,928 - Designator before dot must be a Class type: s1.postaviVrstu ~~~ Line: 103
+ERROR 02:56:41,928 - Recognized designator must be a method ~~~ Line: 103
+ERROR 02:56:41,928 - Designator must be non-static class method or global function: s1 ~~~ Line: 103
+ERROR 02:56:41,928 - Can't resolve type: Sfera ~~~ Line: 104
+ERROR 02:56:41,928 - Type must be user defined type (class) ~~~ Line: 104
+ERROR 02:56:41,928 - Designator before dot must be a Class type: s2.postaviPoluprecnik ~~~ Line: 105
+ERROR 02:56:41,928 - Recognized designator must be a method ~~~ Line: 105
+ERROR 02:56:41,928 - Designator must be non-static class method or global function: s2 ~~~ Line: 105
+ERROR 02:56:41,928 - Designator before dot must be a Class type: s2.postaviVrstu ~~~ Line: 106
+ERROR 02:56:41,928 - Recognized designator must be a method ~~~ Line: 106
+ERROR 02:56:41,928 - Designator must be non-static class method or global function: s2 ~~~ Line: 106
+ERROR 02:56:41,928 - Can't resolve type: Sfera ~~~ Line: 107
+ERROR 02:56:41,928 - Type must be user defined type (class) ~~~ Line: 107
+ERROR 02:56:41,928 - Designator before dot must be a Class type: s3.postaviPoluprecnik ~~~ Line: 108
+ERROR 02:56:41,928 - Recognized designator must be a method ~~~ Line: 108
+ERROR 02:56:41,928 - Designator must be non-static class method or global function: s3 ~~~ Line: 108
+ERROR 02:56:41,928 - Designator before dot must be a Class type: s3.postaviVrstu ~~~ Line: 109
+ERROR 02:56:41,928 - Recognized designator must be a method ~~~ Line: 109
+ERROR 02:56:41,928 - Designator must be non-static class method or global function: s3 ~~~ Line: 109
+ERROR 02:56:41,928 - Can't resolve type: Kvadar ~~~ Line: 111
+ERROR 02:56:41,928 - Type must be user defined type (class) ~~~ Line: 111
+ERROR 02:56:41,928 - Designator before dot must be a Class type: k3.postaviStranice ~~~ Line: 112
+ERROR 02:56:41,928 - Recognized designator must be a method ~~~ Line: 112
+ERROR 02:56:41,928 - Designator must be non-static class method or global function: k3 ~~~ Line: 112
+ERROR 02:56:41,928 - Designator before dot must be a Class type: k3.postaviVrstu ~~~ Line: 113
+ERROR 02:56:41,928 - Recognized designator must be a method ~~~ Line: 113
+ERROR 02:56:41,928 - Designator must be non-static class method or global function: k3 ~~~ Line: 113
+ERROR 02:56:41,928 - Can't resolve type: Kvadar ~~~ Line: 114
+ERROR 02:56:41,928 - Type must be user defined type (class) ~~~ Line: 114
+ERROR 02:56:41,928 - Designator before dot must be a Class type: k1.postaviStranice ~~~ Line: 115
+ERROR 02:56:41,928 - Recognized designator must be a method ~~~ Line: 115
+ERROR 02:56:41,928 - Designator must be non-static class method or global function: k1 ~~~ Line: 115
+ERROR 02:56:41,928 - Designator before dot must be a Class type: k1.postaviVrstu ~~~ Line: 116
+ERROR 02:56:41,928 - Recognized designator must be a method ~~~ Line: 116
+ERROR 02:56:41,928 - Designator must be non-static class method or global function: k1 ~~~ Line: 116
+ERROR 02:56:41,928 - Can't resolve type: Kvadar ~~~ Line: 117
+ERROR 02:56:41,928 - Type must be user defined type (class) ~~~ Line: 117
+ERROR 02:56:41,928 - Designator before dot must be a Class type: k2.postaviStranice ~~~ Line: 118
+ERROR 02:56:41,928 - Recognized designator must be a method ~~~ Line: 118
+ERROR 02:56:41,928 - Designator must be non-static class method or global function: k2 ~~~ Line: 118
+ERROR 02:56:41,928 - Designator before dot must be a Class type: k2.postaviVrstu ~~~ Line: 119
+ERROR 02:56:41,928 - Recognized designator must be a method ~~~ Line: 119
+ERROR 02:56:41,928 - Designator must be non-static class method or global function: k2 ~~~ Line: 119
+ERROR 02:56:41,929 - Designator before dot must be a Class type: predmeti[].postaviTezinu ~~~ Line: 130
+ERROR 02:56:41,929 - Recognized designator must be a method ~~~ Line: 130
+ERROR 02:56:41,929 - Designator must be non-static class method or global function:  ~~~ Line: 130
+ERROR 02:56:41,929 - Designator before dot must be a Class type: predmeti[].zapremina ~~~ Line: 140
+ERROR 02:56:41,929 - Designator must be Nonstatic Class or Global method ~~~ Line: 140
+ERROR 02:56:41,929 - All terms in Addop Expr must be integers ~~~ Line: 140
+ERROR 02:56:41,929 - Designator before dot must be a Class type: predmeti[].Q ~~~ Line: 141
+ERROR 02:56:41,929 - Designator must be Nonstatic Class or Global method ~~~ Line: 141
+ERROR 02:56:41,929 - All terms in Addop Expr must be integers ~~~ Line: 141
+ERROR 02:56:41,929 - Designator before dot must be a Class type: predmeti[].zapremina ~~~ Line: 155
+ERROR 02:56:41,929 - Designator must be Nonstatic Class or Global method ~~~ Line: 155
+ERROR 02:56:41,929 - All terms in Addop Expr must be integers ~~~ Line: 155
+ERROR 02:56:41,929 - Designator before dot must be a Class type: predmeti[].Q ~~~ Line: 156
+ERROR 02:56:41,929 - Designator must be Nonstatic Class or Global method ~~~ Line: 156
+ERROR 02:56:41,929 - All terms in Addop Expr must be integers ~~~ Line: 156
+INFO  02:56:41,929 - Prevodjenje nije uspesno zavrseno!

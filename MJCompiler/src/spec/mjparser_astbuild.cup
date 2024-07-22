@@ -94,6 +94,7 @@ nonterminal ElseOpt ElseOpt;
 nonterminal StatInits StatInits;
 nonterminal TLBracket TLBracket;
 nonterminal TRBracket TRBracket;
+nonterminal LCIf LCIf;
 nonterminal ActPars ActPars;
 nonterminal ActParsTemp ActParsTemp;
 nonterminal Assignop Assignop;
@@ -119,6 +120,8 @@ nonterminal NewChoice NewChoice;
 nonterminal DesignatorStmtList DesignatorStmtList;
 nonterminal MethodDeclListOpt MethodDeclListOpt;
 nonterminal StaticSymbol StaticSymbol;
+nonterminal LCFor LCFor;
+nonterminal LCIn LCIn;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassName;
@@ -323,9 +326,15 @@ DesignatorStatement ::= (DesignatorStmtFirst) Designator:D1 OpChoice:O2 {: RESUL
 					 |
 					 (DesignatorStmtSecond) LBRACKET DesignatorList:D1 MUL Designator:D2 RBRACKET ASSIGN Designator:D3 {: RESULT=new DesignatorStmtSecond(D1, D2, D3); RESULT.setLine(D1left); :}
 					 |
-					 (DesignatorStmtThirdYes) Designator:D1 ASSIGN LBRACKET FOR Expr:E2 IN Designator:D3 IF Condition:C4 RBRACKET {: RESULT=new DesignatorStmtThirdYes(D1, E2, D3, C4); RESULT.setLine(D1left); :}
+					 (DesignatorStmtThirdYes) Designator:D1 ASSIGN LBRACKET LCFor:L2 Expr:E3 LCIn:L4 Designator:D5 LCIf:L6 Condition:C7 RBRACKET {: RESULT=new DesignatorStmtThirdYes(D1, L2, E3, L4, D5, L6, C7); RESULT.setLine(D1left); :}
 					 |
-					 (DesignatorStmtThirdNo) Designator:D1 ASSIGN LBRACKET FOR Expr:E2 IN Designator:D3 RBRACKET {: RESULT=new DesignatorStmtThirdNo(D1, E2, D3); RESULT.setLine(D1left); :};
+					 (DesignatorStmtThirdNo) Designator:D1 ASSIGN LBRACKET LCFor:L2 Expr:E3 LCIn:L4 Designator:D5 RBRACKET {: RESULT=new DesignatorStmtThirdNo(D1, L2, E3, L4, D5); RESULT.setLine(D1left); :};
+					 
+LCFor ::= (LCFort) FOR {: RESULT=new LCFort(); :};
+
+LCIn ::= (LCInt) IN {: RESULT=new LCInt(); :};
+
+LCIf ::= (LCIft) IF {: RESULT=new LCIft(); :};			 
 					 
 OpChoice ::= (OpChoiceExpr) Assignop:A1 Expr:E2 {: RESULT=new OpChoiceExpr(A1, E2); RESULT.setLine(A1left); :}
 		  |

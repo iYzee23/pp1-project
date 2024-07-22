@@ -1,0 +1,48 @@
+program CodeGen1
+{
+	void main()
+	char c;
+	int o;
+	int l;
+	int iArr[];
+	char cArr[];
+	bool bArr[];
+	{
+		print(1);
+		print(1*6/2);
+		print(-6/2*3%5);
+		print(-6+4);
+		print(6*0);
+		// print(6/0);
+		// print(6%0);
+		print('a');
+		print(true);
+		print(false);
+		
+		print(1, 2);
+		print(1*6/2, 2);
+		print(-6/2*3%5, 3);
+		print(-6+4, 3);
+		print(6*0, 2);
+		// print(6/0, 2);
+		// print(6%0, 2);
+		print('a', 3);
+		print(true, 2);
+		print(false, 2);
+		print(eol);
+		
+		c = 'a';
+		// o = ord(5);
+		o = ord(c);
+		// c = chr('a');
+		c = chr(o);
+		print(c);
+		print(o);
+		print(eol);
+		
+		iAarr = new int[5];
+		l = len(iArr);
+		print(l);
+		print(eol);
+	}
+}

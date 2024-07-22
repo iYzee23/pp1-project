@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 21/6/2024 18:3:57
+// 21/6/2024 22:47:49
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -9,8 +9,8 @@ public interface Visitor {
 
     public void visit(FormPars FormPars);
     public void visit(StaticSymbol StaticSymbol);
-    public void visit(ElseSymbol ElseSymbol);
     public void visit(Factor Factor);
+    public void visit(ElseSymbol ElseSymbol);
     public void visit(VarParts VarParts);
     public void visit(Statement Statement);
     public void visit(MethodDecl MethodDecl);
@@ -35,7 +35,9 @@ public interface Visitor {
     public void visit(DesignatorParts DesignatorParts);
     public void visit(Program Program);
     public void visit(NewLBracket NewLBracket);
+    public void visit(LCIn LCIn);
     public void visit(FirstDesignator FirstDesignator);
+    public void visit(LCIf LCIf);
     public void visit(DesignatorList DesignatorList);
     public void visit(Condition Condition);
     public void visit(Mulop Mulop);
@@ -47,6 +49,7 @@ public interface Visitor {
     public void visit(ForSymbol ForSymbol);
     public void visit(TRBracket TRBracket);
     public void visit(ConstPart ConstPart);
+    public void visit(LCFor LCFor);
     public void visit(Addop Addop);
     public void visit(StatementList StatementList);
     public void visit(Assignop Assignop);
@@ -138,6 +141,9 @@ public interface Visitor {
     public void visit(OpChoiceActParsNo OpChoiceActParsNo);
     public void visit(OpChoiceActParsYes OpChoiceActParsYes);
     public void visit(OpChoiceExpr OpChoiceExpr);
+    public void visit(LCIft LCIft);
+    public void visit(LCInt LCInt);
+    public void visit(LCFort LCFort);
     public void visit(DesignatorStmtThirdNo DesignatorStmtThirdNo);
     public void visit(DesignatorStmtThirdYes DesignatorStmtThirdYes);
     public void visit(DesignatorStmtSecond DesignatorStmtSecond);

@@ -1,10 +1,12 @@
 program CodeGen1
 {
 	void main()
+	int arr0[];
 	int arr1[];
 	bool arr2[];
 	char arr3[];
-	int x;
+	int x, z;
+	char y;
 	{
 		arr1 = new int[4];
 		arr1[0] = 0;
@@ -60,6 +62,21 @@ program CodeGen1
 		print(eol);
 		
 		print(range(8));
+		print(eol);
+		
+		arr0 = new int[5];
+		arr1 = new int[4];
+		arr1[0] = 0;
+		arr1[1] = 1;
+		arr1[2] = 2;
+		arr1[3] = 3;
+		
+		arr0 = [for x in arr1];
+		print(arr0);
+		print(eol);
+		
+		arr0 = [for x+x in arr1 if x > 1 && 2 > 1];
+		print(arr0);
 		print(eol);
 	}
 }

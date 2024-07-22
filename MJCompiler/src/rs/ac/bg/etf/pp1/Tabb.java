@@ -48,6 +48,9 @@ public class Tabb extends Tab {
 				if (elem.getKind() == Objj.Stat && elem.getName().endsWith(name)) {
 					int lastIndexOf = elem.getName().lastIndexOf("::");
 					if (lastIndexOf != -1) {
+						String goalName = elem.getName().substring(lastIndexOf + 2);
+						if (!goalName.equals(name)) continue;
+						
 						String goalPart = elem.getName().substring(0, lastIndexOf);
 						Struct goalType = Tabb.programScope.findSymbol(goalPart).getType();
 						Struct currentType = searchType;

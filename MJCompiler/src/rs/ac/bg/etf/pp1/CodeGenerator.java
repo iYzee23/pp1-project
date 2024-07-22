@@ -16,6 +16,7 @@ public class CodeGenerator extends VisitorAdaptor {
 
 	int mainPc;
 	int globData;
+	static int numTemp = 5;
 	
 	// general
 	Obj currClass = null;
@@ -241,15 +242,17 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public void handleCondFactFor(SyntaxNode condFact, int relopKind) {
 		forStack.peek().existsCond = true;
-		Codee.put(Codee.dup2);
 		
+		Codee.put(Codee.dup2);
 		Codee.putFalseJump(relopKind, 0);
 		forStack.peek().fixupsCondFalse.add(Codee.pc - 2);
+		
+		Codee.put(Codee.dup2);
 		Codee.putTrueJump(relopKind, 0);
 		forStack.peek().fixupsCondTrue.add(Codee.pc - 2);
 	}
 	
-	// TVFS initialization
+	// TVFS and std methods initialization
 	public static boolean tvfInitDone = false;
 	public static HashMap<Integer, Obj> fixupsTvf = new HashMap<>();
 	public static HashSet<Obj> visitedMethods = new HashSet<>();
@@ -326,11 +329,54 @@ public class CodeGenerator extends VisitorAdaptor {
 		tvfInitDone = true;
 	}
 	
+	public void initStdMethods() {
+		Obj ordObj = Tabb.programScope.getOuter().getLocals().searchKey("ord");
+		ordObj.setAdr(Codee.pc);
+		
+		Codee.put(Codee.enter); Code.put(1); Codee.put(1);
+		Codee.put(Codee.load_n);
+		Codee.put(Codee.exit);
+		Codee.put(Codee.return_);
+		
+		Obj chrObj = Tabb.programScope.getOuter().getLocals().searchKey("chr");
+		chrObj.setAdr(Codee.pc);
+		
+		Codee.put(Codee.enter); Code.put(1); Codee.put(1);
+		Codee.put(Codee.load_n);
+		Codee.put(Codee.exit);
+		Codee.put(Codee.return_);
+		
+		Obj lenObj = Tabb.programScope.getOuter().getLocals().searchKey("len");
+		lenObj.setAdr(Codee.pc);
+		
+		Codee.put(Codee.enter); Code.put(1); Codee.put(1);
+		Codee.put(Codee.load_n);
+		Codee.put(Codee.arraylength);
+		Codee.put(Codee.exit);
+		Codee.put(Codee.return_);
+	}
+	
+	// list comprehension processing
+	public static class LCElem {
+		boolean isOperator = false;
+		int value = -1;
+	}
+	
+	ArrayList<Object> instrList = new ArrayList<>();
+	boolean listComprExprActive = false;
+	boolean listComprIfActive = false;
+	Obj listComprObj = null;
+	
+	public static int pcLCCond = -1;
+	public static int fixupLCNoVar = -1;
+	
 	// Program
 	
 	public void visit(ProgNamet progName) {
 		currDsgObj.add(null);
 		currDsgType.add(LOAD_DSG);
+		
+		initStdMethods();
 	}
 	
 	public void visit(Programt program) {
@@ -440,6 +486,9 @@ public class CodeGenerator extends VisitorAdaptor {
 	public void visit(StmtBreak stmt) {
 		Codee.putJump(0);
 		forStack.peek().fixupsBreak.add(Codee.pc - 2);
+		
+		// dummy
+		Codee.put(Codee.const_n);
 	}
 	
 	public void visit(StmtContinue stmt) {
@@ -471,82 +520,146 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(StmtForYesYesYes stmt) {
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		Codee.putJump(forStack.peek().pcPost);
 		
 		// start of after branch
 		forStack.peek().processAndClear(ForFixups.CFALSE);
 		forStack.peek().processAndClear(ForFixups.BREAK);
 		
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		forStack.pop();
 	}
 	
 	public void visit(StmtForYesYesNo stmt) {
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		Codee.putJump(forStack.peek().pcPost);
 		
 		// start of after branch
 		forStack.peek().processAndClear(ForFixups.CFALSE);
 		forStack.peek().processAndClear(ForFixups.BREAK);
 		
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		forStack.pop();
 	}
 	
 	public void visit(StmtForYesNoYes stmt) {
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		Codee.putJump(forStack.peek().pcPost);
 		
 		// start of after branch
 		forStack.peek().processAndClear(ForFixups.CFALSE);
 		forStack.peek().processAndClear(ForFixups.BREAK);
 		
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		forStack.pop();
 	}
 	
 	public void visit(StmtForYesNoNo stmt) {
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		Codee.putJump(forStack.peek().pcPost);
 		
 		// start of after branch
 		forStack.peek().processAndClear(ForFixups.CFALSE);
 		forStack.peek().processAndClear(ForFixups.BREAK);
 		
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		forStack.pop();
 	}
 	
 	public void visit(StmtForNoYesYes stmt) {
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		Codee.putJump(forStack.peek().pcPost);
 		
 		// start of after branch
 		forStack.peek().processAndClear(ForFixups.CFALSE);
 		forStack.peek().processAndClear(ForFixups.BREAK);
 		
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		forStack.pop();
 	}
 	
 	public void visit(StmtForNoYesNo stmt) {
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		Codee.putJump(forStack.peek().pcPost);
 		
 		// start of after branch
 		forStack.peek().processAndClear(ForFixups.CFALSE);
 		forStack.peek().processAndClear(ForFixups.BREAK);
 		
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		forStack.pop();
 	}
 	
 	public void visit(StmtForNoNoYes stmt) {
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		Codee.putJump(forStack.peek().pcPost);
 		
 		// start of after branch
 		forStack.peek().processAndClear(ForFixups.CFALSE);
 		forStack.peek().processAndClear(ForFixups.BREAK);
 		
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		forStack.pop();
 	}
 	
 	public void visit(StmtForNoNoNo stmt) {
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		Codee.putJump(forStack.peek().pcPost);
 		
 		// start of after branch
 		forStack.peek().processAndClear(ForFixups.CFALSE);
 		forStack.peek().processAndClear(ForFixups.BREAK);
 		
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		forStack.pop();
 	}
 
@@ -707,8 +820,69 @@ public class CodeGenerator extends VisitorAdaptor {
 		dsgStmtCounter = 0;
 	}
 	
-	// Condition
+	public void visit(LCFort forSymb) {
+		listComprExprActive = true;
+		Codee.processLCFor();
+	}
 	
+	public void visit(LCInt inSymb) {
+		listComprExprActive = false;
+	}
+	
+	public void visit(LCIft ifSymb) {
+		ifElseStack.push(new IfElseFixups());
+		listComprIfActive = true;
+		Codee.processLCSecondArray(listComprObj);
+	}
+	
+	public void visit(DesignatorStmtThirdYes dsgStmt) {
+		Obj dsgObj = dsgStmt.getDesignator().obj;
+		boolean isChar = dsgObj.getType().getElemType().equals(Tabb.charType);
+		boolean isBool = dsgObj.getType().getElemType().equals(Tabb.boolType);
+		
+		// start of then branch
+		// already fixed up in Condition
+		Codee.processLCBody(instrList, isChar || isBool, true);
+		
+		// start of else branch
+		ifElseStack.peek().processAndClear(IfElseFixups.RPAREN);
+		ifElseStack.peek().processAndClear(IfElseFixups.AND);
+		Codee.processLCElse();
+		
+		// start of after [if] branch
+		ifElseStack.peek().processAndClear(IfElseFixups.RPAREN);
+		ifElseStack.peek().processAndClear(IfElseFixups.AND);
+		ifElseStack.peek().processAndClear(IfElseFixups.IF);
+		ifElseStack.pop();
+		Codee.processLCPost();
+		
+		// start of after [for] branch
+		Codee.fixup(fixupLCNoVar);
+		listComprIfActive = false;
+		listComprObj = null;
+		pcLCCond = -1;
+		fixupLCNoVar = -1;
+	}
+	
+	public void visit(DesignatorStmtThirdNo dsgStmt) {
+		Obj dsgObj = dsgStmt.getDesignator().obj;
+		boolean isChar = dsgObj.getType().getElemType().equals(Tabb.charType);
+		boolean isBool = dsgObj.getType().getElemType().equals(Tabb.boolType);
+		
+		// there was no if
+		Codee.processLCSecondArray(listComprObj);
+		
+		Codee.processLCBody(instrList, isChar || isBool, false);
+		Codee.processLCPost();
+		
+		// start of after [for] branch
+		Codee.fixup(fixupLCNoVar);
+		listComprIfActive = false;
+		listComprObj = null;
+	}
+	
+	// Condition
+
 	public void visit(IfSymbolt ifSymbol) {
 		ifElseStack.push(new IfElseFixups());
 	}
@@ -807,19 +981,39 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public void visit(AddopTermListYes addopTerm) {
 		SyntaxNode addopNode = addopTerm.getAddop();
+		int instr = -1;
 		
-		if (addopNode instanceof AddopPlus) Codee.put(Codee.add);
-		else Codee.put(Codee.sub);
+		if (addopNode instanceof AddopPlus) instr = Codee.add;
+		else instr = Codee.sub;
+		
+		Codee.put(instr);
+		
+		if (listComprExprActive) {
+			LCElem elem = new LCElem();
+			elem.isOperator = true;
+			elem.value = instr;
+			instrList.add(elem);
+		}
 	}
 	
 	// Term
 	
 	public void visit(MulopFactorListYes mulopFactor) {
 		SyntaxNode mulopNode = mulopFactor.getMulop();
+		int instr = -1;
 		
-		if (mulopNode instanceof MulopMul) Codee.put(Codee.mul);
-		else if (mulopNode instanceof MulopDiv) Codee.put(Codee.div);
-		else Codee.put(Codee.rem);
+		if (mulopNode instanceof MulopMul) instr = Codee.mul;
+		else if (mulopNode instanceof MulopDiv) instr = Codee.div;
+		else instr = Codee.rem;
+		
+		Codee.put(instr);
+		
+		if (listComprExprActive) {
+			LCElem elem = new LCElem();
+			elem.isOperator = true;
+			elem.value = instr;
+			instrList.add(elem);
+		}
 	}
 	
 	public void visit(Termt term) {
@@ -874,16 +1068,49 @@ public class CodeGenerator extends VisitorAdaptor {
 		currCalledMethod.remove(currCalledMethod.size() - 1);
 	}
 	
+	public void visit(FactorDesignatorThird factor) {
+		Obj dsgObj = factor.getDesignator().obj;
+		boolean ind = listComprExprActive || listComprIfActive; 
+		
+		if (ind && dsgObj.getKind() != Obj.Con && listComprObj == null) {
+			listComprObj = dsgObj;
+		}
+		if (listComprExprActive) {
+			instrList.add(dsgObj);
+		}
+	}
+	
 	public void visit(FactorNum factor) {
 		Code.loadConst(factor.getValue());
+		
+		if (listComprExprActive) {
+			LCElem elem = new LCElem();
+			elem.isOperator = false;
+			elem.value = factor.getValue();
+			instrList.add(elem);
+		}
 	}
 	
 	public void visit(FactorChar factor) {
 		Code.loadConst(factor.getValue());
+		
+		if (listComprExprActive) {
+			LCElem elem = new LCElem();
+			elem.isOperator = false;
+			elem.value = factor.getValue();
+			instrList.add(elem);
+		}
 	}
 	
 	public void visit(FactorBool factor) {
 		Code.loadConst(factor.getValue() ? 1 : 0);
+		
+		if (listComprExprActive) {
+			LCElem elem = new LCElem();
+			elem.isOperator = false;
+			elem.value = factor.getValue() ? 1 : 0;
+			instrList.add(elem);
+		}
 	}
 	
 	public void visit(FactorNew factor) {
