@@ -5,12 +5,17 @@ import org.apache.log4j.Logger;
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.symboltable.concepts.*;
 
-// TODO: videti na koji nacin treba da se obradi svaki error
-// TODO: proci kroz svaku smenu i videti jesam li zaboravio nesto
+// potential problem with built-in equals method
+// there can be infinite recursion
+// fix this on defense of the project, if needed
+
+// report_info is commented out because it's ugly
+// if needed, uncomment it
 
 public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	Logger log = Logger.getLogger(getClass());
+	NewVisitor nv = null;
 	
 	public void report_error(String message, SyntaxNode info) {
 		errorDetected = true;
@@ -22,11 +27,13 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 
 	public void report_info(String message, SyntaxNode info) {
+		/*
 		StringBuilder msg = new StringBuilder(message); 
 		int line = (info == null) ? 0: info.getLine();
 		if (line != 0)
 			msg.append (" ~~~ Line: ").append(line);
 		log.info(msg.toString());
+		*/
 	}
 	
 	public boolean getErrorDetected() {
@@ -509,6 +516,13 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (typeObj == Tabb.noObj || typeObj.getKind() != Obj.Type) {
 			report_error("Can't resolve type: " + typeYes.getTypeName(), typeYes);
 		}
+		else {
+			SyntaxNode parent = typeYes.getParent();
+			if (parent instanceof FactorNew && ((FactorNew)parent).getNewChoice() instanceof NewChoiceActParsNo) {
+				nv = new NewVisitor(); nv.visitObjNode(typeObj);
+				report_info("Usage found: " + nv.getOutput(), typeYes);
+			}
+		}
 	}
 	
 	public void visit(TypeNo typeNo) {
@@ -522,6 +536,13 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		if (typeObj == Tabb.noObj || typeObj.getKind() != Obj.Type) {
 			report_error("Can't resolve type: " + typeNo.getTypeName(), typeNo);
+		}
+		else {
+			SyntaxNode parent = typeNo.getParent();
+			if (parent instanceof FactorNew && ((FactorNew)parent).getNewChoice() instanceof NewChoiceActParsNo) {
+				nv = new NewVisitor(); nv.visitObjNode(typeObj);
+				report_info("Usage found: " + nv.getOutput(), typeNo);
+			}
 		}
 	}
 	
@@ -544,7 +565,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			report_error("Return must be called inside method or global function", stmt);
 			return;
 		}
-		else if (!currMethod.getType().equals(stmt.getExpr().struct)) {
+		/*else if (!currMethod.getType().equals(stmt.getExpr().struct)) {
+			report_error("Type of Expr in Return must be equal to method's type", stmt.getExpr());
+		}*/
+		else if (!Tabb.firstAssignableToSecond(stmt.getExpr().struct, currMethod.getType())) {
 			report_error("Type of Expr in Return must be equal to method's type", stmt.getExpr());
 		}
 		
@@ -720,8 +744,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		else if (lDsgObj.getType().getKind() != Struct.Array) {
 			report_error("Designator after the * must be kind of Array: " + lDsgObj.getName(), dsgStmt.getDesignator());
 		}
-		else if (!lDsgObj.getType().getElemType().assignableTo(rDsgObj.getType().getElemType())) {
+		/*else if (!lDsgObj.getType().getElemType().assignableTo(rDsgObj.getType().getElemType())) {
 			report_error("Designator after the * must be assignable to the Designator on the right: " + lDsgObj.getName(), dsgStmt.getDesignator());
+		}*/
+		else if (!Tabb.firstAssignableToSecond(rDsgObj.getType().getElemType(), lDsgObj.getType().getElemType())) {
+			report_error("Designator on the right must be assignable to the Designator after the *: " + rDsgObj.getName(), dsgStmt.getDesignator1());
 		}
 		else {
 			for (Obj elem: dsgStmtParts) {
@@ -729,7 +756,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 					if (elem.getKind() != Obj.Var && elem.getKind() != Objj.Stat && elem.getKind() != Obj.Elem && elem.getKind() != Obj.Fld) {
 						report_error("Designator before * must be either Var, Array's elem or Field in class: " + elem.getName(), dsgStmt);
 					}
-					if (!rDsgObj.getType().getElemType().assignableTo(elem.getType())) {
+					/*if (!rDsgObj.getType().getElemType().assignableTo(elem.getType())) {
+						report_error("Designator on the right must be assignable to each Designator before *: " + elem.getName(), dsgStmt);
+					}*/
+					if (!Tabb.firstAssignableToSecond(rDsgObj.getType().getElemType(), elem.getType())) {
 						report_error("Designator on the right must be assignable to each Designator before *: " + elem.getName(), dsgStmt);
 					}
 				}
@@ -835,7 +865,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 				for (int i = 0; i < apCount; ++i) {
 					Struct actPar = actParsParts.get(actParsParts.size() - 1).get(i);
 					Struct formPar = Tabb.getFormalParam(currDesignator.get(currDesignator.size() - 2), i + additional).getType();
-					if (!actPar.assignableTo(formPar)) {
+					/*if (!actPar.assignableTo(formPar)) {
+						report_error("Actual parameters must be assignable to the formal parameters", actPars);
+						break;
+					}*/
+					if (!Tabb.firstAssignableToSecond(actPar, formPar)) {
 						report_error("Actual parameters must be assignable to the formal parameters", actPars);
 						break;
 					}
@@ -1118,7 +1152,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 				}
 				
 				elemType = elemType.getElemType();
-				dsgObj = new Obj(Obj.Elem, "", elemType);
+				dsgObj = new Obj(Obj.Elem, dsgName, elemType);
 			}
 			else {
 				dsgName += "." + elem;
@@ -1162,6 +1196,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		designatorParts.get(designatorParts.size() - 1).clear();
 		currDesignator.set(currDesignator.size() - 1, designator.obj = dsgObj);
+		
+		nv = new NewVisitor(); nv.visitObjNode(dsgObj);
+		report_info("Usage found: " + nv.getOutput(), designator);
 	}
 	
 	public void visitDsgNo(Designatort designator, String dsgName) {
@@ -1217,7 +1254,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 				}
 				
 				elemType = elemType.getElemType();
-				dsgObj = new Obj(Obj.Elem, "", elemType);
+				dsgObj = new Obj(Obj.Elem, dsgName, elemType);
 			}
 			else {
 				dsgName += "." + elem;
@@ -1264,6 +1301,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		designatorParts.get(designatorParts.size() - 1).clear();
 		currDesignator.set(currDesignator.size() - 1, designator.obj = dsgObj);
+		
+		nv = new NewVisitor(); nv.visitObjNode(dsgObj);
+		report_info("Usage found: " + nv.getOutput(), designator);
 	}
 
 	public void visit(Designatort designator) {

@@ -2,6 +2,6 @@ program MJProgram
 	int x, y;
 {
 	void main() {
-		
+		if (x||y) print(5);
 	}
 }

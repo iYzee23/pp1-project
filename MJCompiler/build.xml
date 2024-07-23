@@ -16,7 +16,7 @@
 		</delete>
 		<delete>
 			<fileset dir="src/spec">
-				<exclude name="mjlexer.lex"/>
+				<exclude name="mjlexer.flex"/>
 				<exclude name="mjparser.cup"/>
 			</fileset>
 		</delete>
@@ -44,7 +44,7 @@
 		<java jar="lib/JFlex.jar" fork="true">
 	    	<arg value="-d"/>
 	    	<arg value="./src/rs/ac/bg/etf/pp1"/>
-	    	<arg value="./src/spec/mjlexer.lex"/>
+	    	<arg value="./src/spec/mjlexer.flex"/>
 		</java>
 	</target>
 	
@@ -61,7 +61,7 @@
 	</target>
 	
 	<target name="disasm">
-		<java classname="rs.etf.pp1.mj.runtime.disasm">
+		<java classname="rs.etf.pp1.mj.runtime.disasm" fork="true">
 			<arg value="test/program.obj"/>
 			<classpath>
 				<pathelement location="lib/mj-runtime-1.1.jar"/>
@@ -70,8 +70,9 @@
 	</target>
 
 	<target name="runObj" depends="disasm">
-		<java classname="rs.etf.pp1.mj.runtime.Run">
+		<java classname="rs.etf.pp1.mj.runtime.Run" fork="true">
 			<arg value="test/program.obj"/>
+			<!-- <redirector input="input.txt" output="output.txt" error="error.txt"/> -->
 			<redirector input="input.txt"/>
 			<classpath>
 				<pathelement location="lib/mj-runtime-1.1.jar"/>
@@ -80,9 +81,10 @@
 	</target>
 	
 	<target name="debug" depends="disasm">
-		<java classname="rs.etf.pp1.mj.runtime.Run">
+		<java classname="rs.etf.pp1.mj.runtime.Run" fork="true">
 			<arg value="test/program.obj"/>
 			<arg value="-debug"/>
+			<!-- <redirector input="input.txt" output="output.txt" error="error.txt"/> -->
 			<redirector input="input.txt"/>
 			<classpath>
 				<pathelement location="lib/mj-runtime-1.1.jar"/>

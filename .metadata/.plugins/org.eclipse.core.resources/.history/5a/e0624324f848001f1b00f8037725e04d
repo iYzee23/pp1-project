@@ -1,0 +1,25 @@
+INFO  15:28:57,913 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_lexer.mj
+INFO  15:28:57,915 - #2 program
+INFO  15:28:57,915 - #48 MJProgram
+INFO  15:28:57,916 - #48 int
+INFO  15:28:57,916 - #48 x
+INFO  15:28:57,916 - #6 ,
+INFO  15:28:57,916 - #48 y
+INFO  15:28:57,916 - #8 ;
+INFO  15:28:57,916 - #3 {
+INFO  15:28:57,916 - #18 void
+INFO  15:28:57,916 - #48 main
+INFO  15:28:57,916 - #16 (
+INFO  15:28:57,916 - #17 )
+INFO  15:28:57,916 - #3 {
+INFO  15:28:57,916 - #42 if
+INFO  15:28:57,916 - #16 (
+INFO  15:28:57,916 - #48 x||y
+INFO  15:28:57,916 - #17 )
+INFO  15:28:57,916 - #28 print
+INFO  15:28:57,916 - #16 (
+INFO  15:28:57,917 - #49 5
+INFO  15:28:57,917 - #17 )
+INFO  15:28:57,917 - #8 ;
+INFO  15:28:57,917 - #4 }
+INFO  15:28:57,917 - #4 }

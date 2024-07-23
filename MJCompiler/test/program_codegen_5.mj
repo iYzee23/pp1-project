@@ -207,6 +207,13 @@ int y;
 char w;
 
 {
+	BaseClass meth()
+	DerivedClass obj;
+	{
+		obj = new DerivedClass();
+		return obj;
+	}
+
     void main()
     DerivedClass dObj;
     BaseClass bObj;
@@ -229,5 +236,8 @@ char w;
         bObj.displayRead(bObj.baseField, bObj.baseField);
         bObj.bcMethod(1, 2, 3);
         // bObj.dcMethod(1, 2, 3, 4);
+        
+        bObj = meth();
+        bObj.display();
     }
 }

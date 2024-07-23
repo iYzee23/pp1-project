@@ -1,7 +1,9 @@
 program MJProgram
 	int x; int y;
 {
-	int main() {
+	int main()
+	int a,b,c,d;
+	{
 		print(1);
 		x = y + 5;
 		w = z + z;

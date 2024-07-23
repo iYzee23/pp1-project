@@ -1,0 +1,168 @@
+program MJProgram 
+
+namespace A{
+	const int a = 5, b = 10;
+	char be[], d;
+
+  	{ 
+
+  	}
+}
+namespace B{
+	class C{
+		//static C c;
+		static int a[];
+		//static
+		//{
+			//a=new int[5];
+			//C.a=new int[5];
+			//B::C.a=new int[5];
+			//A::be=new char[5];
+			//a[1]=1;
+		//}
+		//static
+		//{
+			//c=new B::C;
+			//c=new C;
+			//C.c.a=7;
+		///}
+		int a;
+		{
+			void fun(int a)
+			{
+				this.fun(a);
+				//return a;
+			}
+			int fun1(bool b[])
+			{
+				//A::be++;
+				//A::a++;
+				//a++;
+				//this.fun.a++;
+				//b++;
+				//b[3]++;
+				//B::C++;
+				//B::C.a++;
+				//B::C.a[A::be[A::a*3]]++;
+				//B::C.a[A::a*3]++;
+				//B::C.a[new C()]++;
+				//B::C.a[new D()]++;
+				//read(B::C.a);
+				//read(a);
+				//read(this.fun);
+				//read(C);
+				//read(D);
+				//read(B::C.a[A::a*3]);
+				//print(5,5);
+				//print(b);
+				//print(true);
+				//print(B::C.a[A::be[A::a*3]],12);
+				//return q;
+				return 1;
+				
+			}
+		}
+	}
+	const int a = 15;
+	const C c = 5;
+	{
+		int fun1()
+		//int a, b, c, d[], e[];
+		{
+			//[a,,b,c,*d]=e;
+		}
+	}
+}
+
+const int A = 10;
+
+class C extends B::C{
+	static int a[];
+	char a;
+	char c;
+	int b;
+	{
+		void bla(int a)
+		{
+			//C.a++;
+			//C.a[3]++;
+			//a=new int[A];
+			//return 1;
+			//this.fun(fun1(A::be));
+		}
+		char fun2(int a[])
+		{
+			//b=fun;
+			//if(C.a==a || b<2 && a==true)
+			//{
+			//	break;
+			//}
+			//continue;
+			//for(b=0;b<2;b++)
+			//{
+				//if(b==1)
+				//{
+				//	continue;
+				//}
+				//else
+				//{
+				//	break;
+				//}
+			//}
+			//return ;
+			//return true;
+			return 'a';
+		}
+	}
+}
+//int g;
+class D{
+	//static D d;
+	//static C c;
+	//static int a,b,x[],y[];
+	//static
+	//{
+		//D.c.b=7;
+		//[a,,b,g,*x]=y;
+	//}
+	C c;
+	D d;
+	{
+		void meth()
+		{	
+			//this.c.c++;
+			//B::C.a++;
+			//d=new B::C();
+		}
+	}
+}
+
+C f;
+
+{
+	int m(int a[], int b, C f)
+	char c, d;
+	//B::C x[];
+	//C y[];
+	//B::C p, q, r;
+	{
+		//A::a[3].b.c[4].d++;
+		//f.fun(b);
+		//D.c.b=7;
+		//[p,q,r,,*x]=y;
+		
+	}
+	void m()
+	{
+	
+	}
+	void main()
+	{
+	
+	}
+	void a()
+	{
+		//m();
+		//m(1,2,3);
+	}
+}

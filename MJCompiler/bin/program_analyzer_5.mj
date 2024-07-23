@@ -82,6 +82,8 @@ class DerivedClass extends BaseClass
 	static int statField;
 	
     int derivedField;
+    DerivedClass dpolje;
+    DerivedClass bpolje;
 
 	{
 		void display()
@@ -141,6 +143,13 @@ int y;
 char w;
 
 {
+	BaseClass meth()
+	DerivedClass obj;
+	{
+		obj = new DerivedClass();
+		return obj;
+	}
+
     void main()
     DerivedClass dObj;
     BaseClass bObj;

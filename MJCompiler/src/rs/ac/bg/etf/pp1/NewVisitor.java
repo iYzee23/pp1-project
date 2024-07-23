@@ -1,5 +1,7 @@
 package rs.ac.bg.etf.pp1;
 
+import java.util.Stack;
+
 import rs.etf.pp1.symboltable.concepts.Obj;
 import rs.etf.pp1.symboltable.concepts.Scope;
 import rs.etf.pp1.symboltable.concepts.Struct;
@@ -11,7 +13,7 @@ public class NewVisitor extends SymbolTableVisitor {
 	protected StringBuilder output = new StringBuilder();
 	protected final String indent = "   ";
 	protected StringBuilder currentIndent = new StringBuilder();
-	private Struct currClassType = null;
+	private Stack<Struct> currClassType = new Stack<>();;
 	
 	protected void nextIndentationLevel() {
 		currentIndent.append(indent);
@@ -46,11 +48,11 @@ public class NewVisitor extends SymbolTableVisitor {
 		
 		if ((Obj.Var == objToVisit.getKind()) && "this".equalsIgnoreCase(objToVisit.getName()))
 			output.append("");
-		else if ((objToVisit.getKind() == Obj.Fld) && currClassType != null && objToVisit.getType().equals(currClassType))
+		else if ((objToVisit.getKind() == Obj.Fld) && !currClassType.isEmpty() && objToVisit.getType().equals(currClassType.peek()))
 			output.append("");
-		else if ((objToVisit.getKind() == Obj.Var) && currClassType != null && objToVisit.getType().equals(currClassType))
+		else if ((objToVisit.getKind() == Obj.Var) && !currClassType.isEmpty() && objToVisit.getType().equals(currClassType.peek()))
 			output.append("");
-		else if ((objToVisit.getKind() == Obj.Meth) && currClassType != null && objToVisit.getType().equals(currClassType))
+		else if ((objToVisit.getKind() == Obj.Meth) && !currClassType.isEmpty() && objToVisit.getType().equals(currClassType.peek()))
 			output.append("");
 		else
 			objToVisit.getType().accept(this);
@@ -130,13 +132,13 @@ public class NewVisitor extends SymbolTableVisitor {
 			}
 			break;
 		case Struct.Class:
-			currClassType = structToVisit;
+			currClassType.push(structToVisit);
 			output.append("Class [");
 			for (Obj obj : structToVisit.getMembers()) {
 				obj.accept(this);
 			}
 			output.append("]");
-			currClassType = null;
+			currClassType.pop();
 			break;
 		}
 

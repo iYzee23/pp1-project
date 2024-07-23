@@ -492,6 +492,10 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(StmtContinue stmt) {
+		if (forStack.peek().existsCond) {
+			Codee.put(Codee.pop);
+			Codee.put(Codee.pop);
+		}
 		Codee.putJump(forStack.peek().pcPost);
 	}
 	
@@ -800,6 +804,7 @@ public class CodeGenerator extends VisitorAdaptor {
 		Codee.writeDsgStmtToCode(dsgStmtCounter, rightInstr, leftInstr);
 		currStoreDesignator.remove(currStoreDesignator.size() - 1);
 		
+		if (dsgStmtCounter == 0) Codee.put(Codee.pop);
 		while (--dsgStmtCounter >= 0) {
 			if (dsgStmtSet.contains(dsgStmtCounter)) {
 				if (dsgStmtSet.size() > 1) {

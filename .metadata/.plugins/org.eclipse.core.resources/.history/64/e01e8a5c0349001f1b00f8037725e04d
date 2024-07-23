@@ -1,0 +1,400 @@
+INFO  16:42:42,156 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer_7.mj
+INFO  16:42:42,198 - #2 program
+INFO  16:42:42,198 - #48 CodeGen1
+INFO  16:42:42,198 - #3 {
+INFO  16:42:42,199 - #18 void
+INFO  16:42:42,199 - #48 main
+INFO  16:42:42,199 - #16 (
+INFO  16:42:42,200 - #17 )
+INFO  16:42:42,200 - #48 int
+INFO  16:42:42,200 - #48 arr0
+INFO  16:42:42,200 - #10 [
+INFO  16:42:42,200 - #11 ]
+INFO  16:42:42,200 - #8 ;
+INFO  16:42:42,200 - #48 int
+INFO  16:42:42,200 - #48 arr1
+INFO  16:42:42,200 - #10 [
+INFO  16:42:42,200 - #11 ]
+INFO  16:42:42,200 - #8 ;
+INFO  16:42:42,200 - #48 bool
+INFO  16:42:42,201 - #48 arr2
+INFO  16:42:42,201 - #10 [
+INFO  16:42:42,201 - #11 ]
+INFO  16:42:42,201 - #8 ;
+INFO  16:42:42,201 - #48 char
+INFO  16:42:42,201 - #48 arr3
+INFO  16:42:42,201 - #10 [
+INFO  16:42:42,201 - #11 ]
+INFO  16:42:42,201 - #8 ;
+INFO  16:42:42,201 - #48 int
+INFO  16:42:42,201 - #48 x
+INFO  16:42:42,201 - #6 ,
+INFO  16:42:42,201 - #48 z
+INFO  16:42:42,201 - #8 ;
+INFO  16:42:42,201 - #48 char
+INFO  16:42:42,201 - #48 y
+INFO  16:42:42,201 - #8 ;
+INFO  16:42:42,201 - #3 {
+INFO  16:42:42,201 - #48 arr0
+INFO  16:42:42,201 - #9 =
+INFO  16:42:42,202 - #38 new
+INFO  16:42:42,202 - #48 int
+INFO  16:42:42,202 - #10 [
+INFO  16:42:42,202 - #49 5
+INFO  16:42:42,203 - #11 ]
+INFO  16:42:42,204 - #8 ;
+INFO  16:42:42,204 - #48 arr1
+INFO  16:42:42,204 - #9 =
+INFO  16:42:42,204 - #38 new
+INFO  16:42:42,204 - #48 int
+INFO  16:42:42,204 - #10 [
+INFO  16:42:42,204 - #49 4
+INFO  16:42:42,204 - #11 ]
+INFO  16:42:42,204 - #8 ;
+INFO  16:42:42,204 - #48 arr1
+INFO  16:42:42,204 - #10 [
+INFO  16:42:42,204 - #49 0
+INFO  16:42:42,205 - #11 ]
+INFO  16:42:42,205 - #9 =
+INFO  16:42:42,205 - #49 0
+INFO  16:42:42,205 - #8 ;
+INFO  16:42:42,205 - #48 arr1
+INFO  16:42:42,206 - #10 [
+INFO  16:42:42,206 - #49 1
+INFO  16:42:42,206 - #11 ]
+INFO  16:42:42,206 - #9 =
+INFO  16:42:42,206 - #49 1
+INFO  16:42:42,206 - #8 ;
+INFO  16:42:42,206 - #48 arr1
+INFO  16:42:42,206 - #10 [
+INFO  16:42:42,206 - #49 2
+INFO  16:42:42,207 - #11 ]
+INFO  16:42:42,207 - #9 =
+INFO  16:42:42,207 - #49 2
+INFO  16:42:42,207 - #8 ;
+INFO  16:42:42,207 - #48 arr1
+INFO  16:42:42,207 - #10 [
+INFO  16:42:42,207 - #49 3
+INFO  16:42:42,207 - #11 ]
+INFO  16:42:42,207 - #9 =
+INFO  16:42:42,208 - #49 3
+INFO  16:42:42,208 - #8 ;
+INFO  16:42:42,208 - #28 print
+INFO  16:42:42,208 - #16 (
+INFO  16:42:42,208 - #48 arr1
+INFO  16:42:42,208 - #17 )
+INFO  16:42:42,208 - #8 ;
+INFO  16:42:42,208 - #28 print
+INFO  16:42:42,208 - #16 (
+INFO  16:42:42,208 - #48 eol
+INFO  16:42:42,208 - #17 )
+INFO  16:42:42,208 - #8 ;
+INFO  16:42:42,208 - #28 print
+INFO  16:42:42,208 - #16 (
+INFO  16:42:42,208 - #48 arr1
+INFO  16:42:42,208 - #6 ,
+INFO  16:42:42,208 - #49 1
+INFO  16:42:42,208 - #17 )
+INFO  16:42:42,208 - #8 ;
+INFO  16:42:42,208 - #28 print
+INFO  16:42:42,208 - #16 (
+INFO  16:42:42,208 - #48 eol
+INFO  16:42:42,208 - #17 )
+INFO  16:42:42,208 - #8 ;
+INFO  16:42:42,208 - #28 print
+INFO  16:42:42,208 - #16 (
+INFO  16:42:42,208 - #48 eol
+INFO  16:42:42,208 - #17 )
+INFO  16:42:42,208 - #8 ;
+INFO  16:42:42,208 - #48 arr2
+INFO  16:42:42,208 - #9 =
+INFO  16:42:42,208 - #38 new
+INFO  16:42:42,208 - #48 bool
+INFO  16:42:42,208 - #10 [
+INFO  16:42:42,208 - #49 7
+INFO  16:42:42,208 - #11 ]
+INFO  16:42:42,208 - #8 ;
+INFO  16:42:42,208 - #48 arr2
+INFO  16:42:42,208 - #10 [
+INFO  16:42:42,208 - #49 0
+INFO  16:42:42,208 - #11 ]
+INFO  16:42:42,208 - #9 =
+INFO  16:42:42,208 - #50 true
+INFO  16:42:42,208 - #8 ;
+INFO  16:42:42,208 - #48 arr2
+INFO  16:42:42,208 - #10 [
+INFO  16:42:42,208 - #49 1
+INFO  16:42:42,208 - #11 ]
+INFO  16:42:42,208 - #9 =
+INFO  16:42:42,208 - #50 false
+INFO  16:42:42,208 - #8 ;
+INFO  16:42:42,209 - #48 arr2
+INFO  16:42:42,209 - #10 [
+INFO  16:42:42,209 - #49 2
+INFO  16:42:42,209 - #11 ]
+INFO  16:42:42,209 - #9 =
+INFO  16:42:42,209 - #50 true
+INFO  16:42:42,209 - #8 ;
+INFO  16:42:42,209 - #48 arr2
+INFO  16:42:42,209 - #10 [
+INFO  16:42:42,209 - #49 3
+INFO  16:42:42,209 - #11 ]
+INFO  16:42:42,209 - #9 =
+INFO  16:42:42,209 - #50 false
+INFO  16:42:42,209 - #8 ;
+INFO  16:42:42,209 - #48 arr2
+INFO  16:42:42,209 - #10 [
+INFO  16:42:42,209 - #49 4
+INFO  16:42:42,209 - #11 ]
+INFO  16:42:42,209 - #9 =
+INFO  16:42:42,209 - #50 true
+INFO  16:42:42,209 - #8 ;
+INFO  16:42:42,209 - #48 arr2
+INFO  16:42:42,209 - #10 [
+INFO  16:42:42,209 - #49 5
+INFO  16:42:42,209 - #11 ]
+INFO  16:42:42,209 - #9 =
+INFO  16:42:42,209 - #50 false
+INFO  16:42:42,209 - #8 ;
+INFO  16:42:42,209 - #48 arr2
+INFO  16:42:42,209 - #10 [
+INFO  16:42:42,209 - #49 6
+INFO  16:42:42,209 - #11 ]
+INFO  16:42:42,209 - #9 =
+INFO  16:42:42,209 - #50 true
+INFO  16:42:42,209 - #8 ;
+INFO  16:42:42,209 - #28 print
+INFO  16:42:42,209 - #16 (
+INFO  16:42:42,209 - #48 arr2
+INFO  16:42:42,209 - #17 )
+INFO  16:42:42,209 - #8 ;
+INFO  16:42:42,209 - #28 print
+INFO  16:42:42,209 - #16 (
+INFO  16:42:42,209 - #48 eol
+INFO  16:42:42,209 - #17 )
+INFO  16:42:42,209 - #8 ;
+INFO  16:42:42,209 - #28 print
+INFO  16:42:42,209 - #16 (
+INFO  16:42:42,209 - #48 arr2
+INFO  16:42:42,209 - #6 ,
+INFO  16:42:42,209 - #49 1
+INFO  16:42:42,209 - #17 )
+INFO  16:42:42,209 - #8 ;
+INFO  16:42:42,209 - #28 print
+INFO  16:42:42,209 - #16 (
+INFO  16:42:42,209 - #48 eol
+INFO  16:42:42,209 - #17 )
+INFO  16:42:42,209 - #8 ;
+INFO  16:42:42,209 - #28 print
+INFO  16:42:42,209 - #16 (
+INFO  16:42:42,209 - #48 eol
+INFO  16:42:42,209 - #17 )
+INFO  16:42:42,209 - #8 ;
+INFO  16:42:42,209 - #48 arr3
+INFO  16:42:42,209 - #9 =
+INFO  16:42:42,209 - #38 new
+INFO  16:42:42,209 - #48 char
+INFO  16:42:42,209 - #10 [
+INFO  16:42:42,209 - #49 11
+INFO  16:42:42,209 - #11 ]
+INFO  16:42:42,209 - #8 ;
+INFO  16:42:42,209 - #48 arr3
+INFO  16:42:42,209 - #10 [
+INFO  16:42:42,209 - #49 0
+INFO  16:42:42,209 - #11 ]
+INFO  16:42:42,209 - #9 =
+INFO  16:42:42,210 - #51 P
+INFO  16:42:42,210 - #8 ;
+INFO  16:42:42,210 - #48 arr3
+INFO  16:42:42,210 - #10 [
+INFO  16:42:42,210 - #49 1
+INFO  16:42:42,210 - #11 ]
+INFO  16:42:42,210 - #9 =
+INFO  16:42:42,210 - #51 E
+INFO  16:42:42,210 - #8 ;
+INFO  16:42:42,210 - #48 arr3
+INFO  16:42:42,210 - #10 [
+INFO  16:42:42,210 - #49 2
+INFO  16:42:42,210 - #11 ]
+INFO  16:42:42,210 - #9 =
+INFO  16:42:42,210 - #51 D
+INFO  16:42:42,210 - #8 ;
+INFO  16:42:42,211 - #48 arr3
+INFO  16:42:42,211 - #10 [
+INFO  16:42:42,211 - #49 3
+INFO  16:42:42,211 - #11 ]
+INFO  16:42:42,211 - #9 =
+INFO  16:42:42,211 - #51 J
+INFO  16:42:42,211 - #8 ;
+INFO  16:42:42,211 - #48 arr3
+INFO  16:42:42,211 - #10 [
+INFO  16:42:42,211 - #49 4
+INFO  16:42:42,211 - #11 ]
+INFO  16:42:42,211 - #9 =
+INFO  16:42:42,211 - #51 A
+INFO  16:42:42,211 - #8 ;
+INFO  16:42:42,211 - #48 arr3
+INFO  16:42:42,211 - #10 [
+INFO  16:42:42,211 - #49 5
+INFO  16:42:42,211 - #11 ]
+INFO  16:42:42,211 - #9 =
+INFO  16:42:42,211 - #51  
+INFO  16:42:42,211 - #8 ;
+INFO  16:42:42,211 - #48 arr3
+INFO  16:42:42,211 - #10 [
+INFO  16:42:42,211 - #49 6
+INFO  16:42:42,211 - #11 ]
+INFO  16:42:42,211 - #9 =
+INFO  16:42:42,211 - #51 P
+INFO  16:42:42,211 - #8 ;
+INFO  16:42:42,211 - #48 arr3
+INFO  16:42:42,211 - #10 [
+INFO  16:42:42,211 - #49 7
+INFO  16:42:42,211 - #11 ]
+INFO  16:42:42,211 - #9 =
+INFO  16:42:42,211 - #51 E
+INFO  16:42:42,211 - #8 ;
+INFO  16:42:42,212 - #48 arr3
+INFO  16:42:42,212 - #10 [
+INFO  16:42:42,212 - #49 8
+INFO  16:42:42,212 - #11 ]
+INFO  16:42:42,212 - #9 =
+INFO  16:42:42,212 - #51 S
+INFO  16:42:42,212 - #8 ;
+INFO  16:42:42,212 - #48 arr3
+INFO  16:42:42,212 - #10 [
+INFO  16:42:42,212 - #49 9
+INFO  16:42:42,212 - #11 ]
+INFO  16:42:42,212 - #9 =
+INFO  16:42:42,212 - #51 I
+INFO  16:42:42,212 - #8 ;
+INFO  16:42:42,212 - #48 arr3
+INFO  16:42:42,212 - #10 [
+INFO  16:42:42,212 - #49 10
+INFO  16:42:42,212 - #11 ]
+INFO  16:42:42,212 - #9 =
+INFO  16:42:42,212 - #51 C
+INFO  16:42:42,212 - #8 ;
+INFO  16:42:42,212 - #28 print
+INFO  16:42:42,212 - #16 (
+INFO  16:42:42,212 - #48 arr3
+INFO  16:42:42,212 - #17 )
+INFO  16:42:42,212 - #8 ;
+INFO  16:42:42,212 - #28 print
+INFO  16:42:42,212 - #16 (
+INFO  16:42:42,212 - #48 eol
+INFO  16:42:42,212 - #17 )
+INFO  16:42:42,212 - #8 ;
+INFO  16:42:42,212 - #28 print
+INFO  16:42:42,212 - #16 (
+INFO  16:42:42,212 - #48 arr3
+INFO  16:42:42,212 - #6 ,
+INFO  16:42:42,212 - #49 1
+INFO  16:42:42,212 - #17 )
+INFO  16:42:42,212 - #8 ;
+INFO  16:42:42,212 - #28 print
+INFO  16:42:42,212 - #16 (
+INFO  16:42:42,212 - #48 eol
+INFO  16:42:42,212 - #17 )
+INFO  16:42:42,212 - #8 ;
+INFO  16:42:42,212 - #28 print
+INFO  16:42:42,212 - #16 (
+INFO  16:42:42,212 - #48 eol
+INFO  16:42:42,212 - #17 )
+INFO  16:42:42,212 - #8 ;
+INFO  16:42:42,212 - #48 arr1
+INFO  16:42:42,212 - #9 =
+INFO  16:42:42,212 - #39 range
+INFO  16:42:42,212 - #16 (
+INFO  16:42:42,212 - #31 -
+INFO  16:42:42,212 - #49 6
+INFO  16:42:42,212 - #17 )
+INFO  16:42:42,212 - #8 ;
+INFO  16:42:42,212 - #48 arr1
+INFO  16:42:42,212 - #9 =
+INFO  16:42:42,212 - #39 range
+INFO  16:42:42,212 - #16 (
+INFO  16:42:42,212 - #49 6
+INFO  16:42:42,212 - #17 )
+INFO  16:42:42,212 - #8 ;
+INFO  16:42:42,212 - #48 arr0
+INFO  16:42:42,213 - #9 =
+INFO  16:42:42,213 - #10 [
+INFO  16:42:42,213 - #40 for
+INFO  16:42:42,213 - #48 x
+INFO  16:42:42,213 - #41 in
+INFO  16:42:42,213 - #48 arr1
+INFO  16:42:42,214 - #11 ]
+INFO  16:42:42,214 - #8 ;
+INFO  16:42:42,214 - #48 arr0
+INFO  16:42:42,214 - #9 =
+INFO  16:42:42,214 - #10 [
+INFO  16:42:42,214 - #40 for
+INFO  16:42:42,214 - #48 x
+INFO  16:42:42,214 - #30 +
+INFO  16:42:42,214 - #48 x
+INFO  16:42:42,215 - #41 in
+INFO  16:42:42,215 - #48 arr1
+INFO  16:42:42,215 - #42 if
+INFO  16:42:42,215 - #48 x
+INFO  16:42:42,215 - #24 >
+INFO  16:42:42,215 - #49 1
+INFO  16:42:42,216 - #36 ||
+INFO  16:42:42,217 - #49 2
+INFO  16:42:42,217 - #24 >
+INFO  16:42:42,217 - #49 1
+INFO  16:42:42,217 - #11 ]
+INFO  16:42:42,217 - #8 ;
+INFO  16:42:42,217 - #4 }
+INFO  16:42:42,217 - #4 }
+INFO  16:42:42,223 - Designator arr0 found: Var arr0: Arr of int, 0, 1  ~~~ Line: 11
+INFO  16:42:42,223 - Designator arr1 found: Var arr1: Arr of int, 1, 1  ~~~ Line: 12
+INFO  16:42:42,223 - Designator arr1[] found: arr1[]: int, -1, -1  ~~~ Line: 13
+INFO  16:42:42,223 - Designator arr1[] found: arr1[]: int, -1, -1  ~~~ Line: 14
+INFO  16:42:42,223 - Designator arr1[] found: arr1[]: int, -1, -1  ~~~ Line: 15
+INFO  16:42:42,223 - Designator arr1[] found: arr1[]: int, -1, -1  ~~~ Line: 16
+INFO  16:42:42,223 - Designator arr1 found: Var arr1: Arr of int, 1, 1  ~~~ Line: 17
+INFO  16:42:42,223 - Designator eol found: Con eol: char, 10, 0  ~~~ Line: 17
+INFO  16:42:42,223 - Designator arr1 found: Var arr1: Arr of int, 1, 1  ~~~ Line: 18
+INFO  16:42:42,223 - Designator eol found: Con eol: char, 10, 0  ~~~ Line: 18
+INFO  16:42:42,223 - Designator eol found: Con eol: char, 10, 0  ~~~ Line: 19
+INFO  16:42:42,223 - Designator arr2 found: Var arr2: Arr of bool, 2, 1  ~~~ Line: 21
+INFO  16:42:42,223 - Designator arr2[] found: arr2[]: bool, -1, -1  ~~~ Line: 22
+INFO  16:42:42,223 - Designator arr2[] found: arr2[]: bool, -1, -1  ~~~ Line: 23
+INFO  16:42:42,223 - Designator arr2[] found: arr2[]: bool, -1, -1  ~~~ Line: 24
+INFO  16:42:42,223 - Designator arr2[] found: arr2[]: bool, -1, -1  ~~~ Line: 25
+INFO  16:42:42,223 - Designator arr2[] found: arr2[]: bool, -1, -1  ~~~ Line: 26
+INFO  16:42:42,223 - Designator arr2[] found: arr2[]: bool, -1, -1  ~~~ Line: 27
+INFO  16:42:42,223 - Designator arr2[] found: arr2[]: bool, -1, -1  ~~~ Line: 28
+INFO  16:42:42,223 - Designator arr2 found: Var arr2: Arr of bool, 2, 1  ~~~ Line: 29
+INFO  16:42:42,223 - Designator eol found: Con eol: char, 10, 0  ~~~ Line: 29
+INFO  16:42:42,223 - Designator arr2 found: Var arr2: Arr of bool, 2, 1  ~~~ Line: 30
+INFO  16:42:42,223 - Designator eol found: Con eol: char, 10, 0  ~~~ Line: 30
+INFO  16:42:42,223 - Designator eol found: Con eol: char, 10, 0  ~~~ Line: 31
+INFO  16:42:42,223 - Designator arr3 found: Var arr3: Arr of char, 3, 1  ~~~ Line: 33
+INFO  16:42:42,223 - Designator arr3[] found: arr3[]: char, -1, -1  ~~~ Line: 34
+INFO  16:42:42,223 - Designator arr3[] found: arr3[]: char, -1, -1  ~~~ Line: 35
+INFO  16:42:42,223 - Designator arr3[] found: arr3[]: char, -1, -1  ~~~ Line: 36
+INFO  16:42:42,223 - Designator arr3[] found: arr3[]: char, -1, -1  ~~~ Line: 37
+INFO  16:42:42,223 - Designator arr3[] found: arr3[]: char, -1, -1  ~~~ Line: 38
+INFO  16:42:42,223 - Designator arr3[] found: arr3[]: char, -1, -1  ~~~ Line: 39
+INFO  16:42:42,223 - Designator arr3[] found: arr3[]: char, -1, -1  ~~~ Line: 40
+INFO  16:42:42,223 - Designator arr3[] found: arr3[]: char, -1, -1  ~~~ Line: 41
+INFO  16:42:42,223 - Designator arr3[] found: arr3[]: char, -1, -1  ~~~ Line: 42
+INFO  16:42:42,223 - Designator arr3[] found: arr3[]: char, -1, -1  ~~~ Line: 43
+INFO  16:42:42,223 - Designator arr3[] found: arr3[]: char, -1, -1  ~~~ Line: 44
+INFO  16:42:42,223 - Designator arr3 found: Var arr3: Arr of char, 3, 1  ~~~ Line: 45
+INFO  16:42:42,223 - Designator eol found: Con eol: char, 10, 0  ~~~ Line: 45
+INFO  16:42:42,223 - Designator arr3 found: Var arr3: Arr of char, 3, 1  ~~~ Line: 46
+INFO  16:42:42,223 - Designator eol found: Con eol: char, 10, 0  ~~~ Line: 46
+INFO  16:42:42,223 - Designator eol found: Con eol: char, 10, 0  ~~~ Line: 47
+INFO  16:42:42,223 - Designator arr1 found: Var arr1: Arr of int, 1, 1  ~~~ Line: 51
+INFO  16:42:42,223 - Designator arr1 found: Var arr1: Arr of int, 1, 1  ~~~ Line: 53
+INFO  16:42:42,223 - Designator arr0 found: Var arr0: Arr of int, 0, 1  ~~~ Line: 60
+INFO  16:42:42,223 - Designator x found: Var x: int, 4, 1  ~~~ Line: 60
+INFO  16:42:42,225 - Designator arr1 found: Var arr1: Arr of int, 1, 1  ~~~ Line: 60
+INFO  16:42:42,225 - Designator arr0 found: Var arr0: Arr of int, 0, 1  ~~~ Line: 61
+INFO  16:42:42,225 - Designator x found: Var x: int, 4, 1  ~~~ Line: 61
+INFO  16:42:42,225 - Designator x found: Var x: int, 4, 1  ~~~ Line: 61
+INFO  16:42:42,225 - Designator arr1 found: Var arr1: Arr of int, 1, 1  ~~~ Line: 61
+INFO  16:42:42,225 - Designator x found: Var x: int, 4, 1  ~~~ Line: 61

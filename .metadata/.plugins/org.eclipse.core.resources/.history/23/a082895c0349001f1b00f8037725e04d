@@ -1,0 +1,626 @@
+INFO  16:51:08,542 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_analyzer_6.mj
+INFO  16:51:08,589 - #2 program
+INFO  16:51:08,589 - #48 Example
+INFO  16:51:08,589 - #7 const
+INFO  16:51:08,590 - #48 int
+INFO  16:51:08,590 - #48 MAX_VALUE
+INFO  16:51:08,590 - #9 =
+INFO  16:51:08,590 - #49 100
+INFO  16:51:08,590 - #8 ;
+INFO  16:51:08,590 - #7 const
+INFO  16:51:08,590 - #48 int
+INFO  16:51:08,590 - #48 MAX_INT
+INFO  16:51:08,590 - #9 =
+INFO  16:51:08,590 - #49 5
+INFO  16:51:08,590 - #8 ;
+INFO  16:51:08,590 - #7 const
+INFO  16:51:08,590 - #48 char
+INFO  16:51:08,590 - #48 MAX_CHAR
+INFO  16:51:08,590 - #9 =
+INFO  16:51:08,591 - #51 A
+INFO  16:51:08,591 - #8 ;
+INFO  16:51:08,591 - #7 const
+INFO  16:51:08,591 - #48 bool
+INFO  16:51:08,591 - #48 MAX_BOOL
+INFO  16:51:08,591 - #9 =
+INFO  16:51:08,591 - #50 true
+INFO  16:51:08,591 - #8 ;
+INFO  16:51:08,591 - #12 class
+INFO  16:51:08,591 - #48 MyClass
+INFO  16:51:08,591 - #3 {
+INFO  16:51:08,591 - #14 static
+INFO  16:51:08,591 - #48 int
+INFO  16:51:08,593 - #48 a
+INFO  16:51:08,593 - #6 ,
+INFO  16:51:08,593 - #48 b
+INFO  16:51:08,593 - #6 ,
+INFO  16:51:08,593 - #48 c
+INFO  16:51:08,593 - #10 [
+INFO  16:51:08,593 - #11 ]
+INFO  16:51:08,593 - #8 ;
+INFO  16:51:08,593 - #14 static
+INFO  16:51:08,593 - #48 bool
+INFO  16:51:08,593 - #48 d
+INFO  16:51:08,593 - #6 ,
+INFO  16:51:08,593 - #48 e
+INFO  16:51:08,593 - #10 [
+INFO  16:51:08,593 - #11 ]
+INFO  16:51:08,593 - #8 ;
+INFO  16:51:08,593 - #14 static
+INFO  16:51:08,593 - #48 MyClass
+INFO  16:51:08,593 - #48 g
+INFO  16:51:08,593 - #6 ,
+INFO  16:51:08,593 - #48 f
+INFO  16:51:08,593 - #10 [
+INFO  16:51:08,593 - #11 ]
+INFO  16:51:08,593 - #8 ;
+INFO  16:51:08,593 - #14 static
+INFO  16:51:08,593 - #3 {
+INFO  16:51:08,593 - #48 a
+INFO  16:51:08,593 - #9 =
+INFO  16:51:08,594 - #49 5
+INFO  16:51:08,594 - #8 ;
+INFO  16:51:08,595 - #48 c
+INFO  16:51:08,595 - #10 [
+INFO  16:51:08,595 - #49 1
+INFO  16:51:08,596 - #11 ]
+INFO  16:51:08,596 - #9 =
+INFO  16:51:08,596 - #49 6
+INFO  16:51:08,597 - #8 ;
+INFO  16:51:08,597 - #48 d
+INFO  16:51:08,598 - #9 =
+INFO  16:51:08,598 - #50 false
+INFO  16:51:08,598 - #8 ;
+INFO  16:51:08,598 - #48 e
+INFO  16:51:08,598 - #10 [
+INFO  16:51:08,598 - #49 2
+INFO  16:51:08,598 - #11 ]
+INFO  16:51:08,598 - #9 =
+INFO  16:51:08,598 - #50 true
+INFO  16:51:08,598 - #8 ;
+INFO  16:51:08,598 - #48 MyClass
+INFO  16:51:08,598 - #35 .
+INFO  16:51:08,598 - #48 a
+INFO  16:51:08,598 - #9 =
+INFO  16:51:08,598 - #49 5
+INFO  16:51:08,598 - #8 ;
+INFO  16:51:08,598 - #4 }
+INFO  16:51:08,598 - #48 int
+INFO  16:51:08,599 - #48 myField
+INFO  16:51:08,599 - #6 ,
+INFO  16:51:08,599 - #48 myFieldArr
+INFO  16:51:08,599 - #10 [
+INFO  16:51:08,599 - #11 ]
+INFO  16:51:08,599 - #8 ;
+INFO  16:51:08,599 - #48 char
+INFO  16:51:08,599 - #48 yourField
+INFO  16:51:08,599 - #6 ,
+INFO  16:51:08,599 - #48 yourFieldArr
+INFO  16:51:08,599 - #10 [
+INFO  16:51:08,600 - #11 ]
+INFO  16:51:08,600 - #8 ;
+INFO  16:51:08,600 - #48 bool
+INFO  16:51:08,600 - #48 ourField
+INFO  16:51:08,600 - #6 ,
+INFO  16:51:08,600 - #48 ourFieldArr
+INFO  16:51:08,600 - #10 [
+INFO  16:51:08,600 - #11 ]
+INFO  16:51:08,600 - #8 ;
+INFO  16:51:08,600 - #48 MyClass
+INFO  16:51:08,600 - #48 theirField
+INFO  16:51:08,600 - #6 ,
+INFO  16:51:08,600 - #48 theirFieldArr
+INFO  16:51:08,600 - #10 [
+INFO  16:51:08,600 - #11 ]
+INFO  16:51:08,600 - #8 ;
+INFO  16:51:08,600 - #48 int
+INFO  16:51:08,600 - #48 i
+INFO  16:51:08,600 - #8 ;
+INFO  16:51:08,600 - #3 {
+INFO  16:51:08,600 - #48 MyClass
+INFO  16:51:08,600 - #48 myMethod
+INFO  16:51:08,600 - #16 (
+INFO  16:51:08,600 - #48 int
+INFO  16:51:08,600 - #48 param
+INFO  16:51:08,600 - #17 )
+INFO  16:51:08,602 - #48 int
+INFO  16:51:08,602 - #48 i
+INFO  16:51:08,602 - #8 ;
+INFO  16:51:08,602 - #48 MyClass
+INFO  16:51:08,602 - #48 j
+INFO  16:51:08,602 - #8 ;
+INFO  16:51:08,602 - #3 {
+INFO  16:51:08,602 - #40 for
+INFO  16:51:08,602 - #16 (
+INFO  16:51:08,602 - #48 i
+INFO  16:51:08,603 - #9 =
+INFO  16:51:08,603 - #49 0
+INFO  16:51:08,603 - #8 ;
+INFO  16:51:08,603 - #48 i
+INFO  16:51:08,604 - #26 <
+INFO  16:51:08,604 - #48 param
+INFO  16:51:08,604 - #8 ;
+INFO  16:51:08,605 - #48 i
+INFO  16:51:08,605 - #20 ++
+INFO  16:51:08,605 - #17 )
+INFO  16:51:08,606 - #3 {
+INFO  16:51:08,606 - #42 if
+INFO  16:51:08,606 - #16 (
+INFO  16:51:08,607 - #48 i
+INFO  16:51:08,607 - #34 %
+INFO  16:51:08,607 - #49 2
+INFO  16:51:08,607 - #22 ==
+INFO  16:51:08,608 - #49 0
+INFO  16:51:08,608 - #17 )
+INFO  16:51:08,609 - #3 {
+INFO  16:51:08,609 - #28 print
+INFO  16:51:08,609 - #16 (
+INFO  16:51:08,609 - #48 i
+INFO  16:51:08,609 - #6 ,
+INFO  16:51:08,609 - #49 6
+INFO  16:51:08,609 - #17 )
+INFO  16:51:08,609 - #8 ;
+INFO  16:51:08,609 - #4 }
+INFO  16:51:08,609 - #43 else
+INFO  16:51:08,609 - #3 {
+INFO  16:51:08,609 - #47 read
+INFO  16:51:08,609 - #16 (
+INFO  16:51:08,609 - #48 i
+INFO  16:51:08,609 - #17 )
+INFO  16:51:08,609 - #8 ;
+INFO  16:51:08,609 - #4 }
+INFO  16:51:08,609 - #44 break
+INFO  16:51:08,609 - #8 ;
+INFO  16:51:08,609 - #45 continue
+INFO  16:51:08,610 - #8 ;
+INFO  16:51:08,610 - #40 for
+INFO  16:51:08,610 - #16 (
+INFO  16:51:08,610 - #48 i
+INFO  16:51:08,610 - #9 =
+INFO  16:51:08,610 - #49 2
+INFO  16:51:08,610 - #8 ;
+INFO  16:51:08,610 - #8 ;
+INFO  16:51:08,610 - #17 )
+INFO  16:51:08,610 - #3 {
+INFO  16:51:08,610 - #44 break
+INFO  16:51:08,610 - #8 ;
+INFO  16:51:08,610 - #45 continue
+INFO  16:51:08,610 - #8 ;
+INFO  16:51:08,610 - #4 }
+INFO  16:51:08,610 - #44 break
+INFO  16:51:08,610 - #8 ;
+INFO  16:51:08,610 - #45 continue
+INFO  16:51:08,610 - #8 ;
+INFO  16:51:08,610 - #4 }
+INFO  16:51:08,610 - #48 MyClass
+INFO  16:51:08,611 - #35 .
+INFO  16:51:08,611 - #48 g
+INFO  16:51:08,611 - #35 .
+INFO  16:51:08,611 - #48 myField
+INFO  16:51:08,611 - #9 =
+INFO  16:51:08,611 - #49 2
+INFO  16:51:08,611 - #8 ;
+INFO  16:51:08,611 - #48 g
+INFO  16:51:08,611 - #35 .
+INFO  16:51:08,611 - #48 myFieldArr
+INFO  16:51:08,611 - #10 [
+INFO  16:51:08,611 - #49 2
+INFO  16:51:08,611 - #11 ]
+INFO  16:51:08,611 - #9 =
+INFO  16:51:08,611 - #49 5
+INFO  16:51:08,611 - #8 ;
+INFO  16:51:08,611 - #48 theirField
+INFO  16:51:08,611 - #35 .
+INFO  16:51:08,611 - #48 myField
+INFO  16:51:08,611 - #9 =
+INFO  16:51:08,611 - #49 2
+INFO  16:51:08,611 - #8 ;
+INFO  16:51:08,611 - #48 this
+INFO  16:51:08,611 - #35 .
+INFO  16:51:08,611 - #48 myField
+INFO  16:51:08,611 - #9 =
+INFO  16:51:08,611 - #49 5
+INFO  16:51:08,611 - #8 ;
+INFO  16:51:08,611 - #48 myField
+INFO  16:51:08,611 - #9 =
+INFO  16:51:08,611 - #49 2
+INFO  16:51:08,611 - #8 ;
+INFO  16:51:08,611 - #48 this
+INFO  16:51:08,611 - #35 .
+INFO  16:51:08,611 - #48 theirField
+INFO  16:51:08,611 - #35 .
+INFO  16:51:08,611 - #48 yourField
+INFO  16:51:08,611 - #9 =
+INFO  16:51:08,611 - #51 a
+INFO  16:51:08,611 - #8 ;
+INFO  16:51:08,611 - #48 i
+INFO  16:51:08,611 - #9 =
+INFO  16:51:08,611 - #49 5
+INFO  16:51:08,611 - #8 ;
+INFO  16:51:08,611 - #48 this
+INFO  16:51:08,611 - #35 .
+INFO  16:51:08,611 - #48 i
+INFO  16:51:08,611 - #9 =
+INFO  16:51:08,611 - #49 10
+INFO  16:51:08,611 - #8 ;
+INFO  16:51:08,611 - #46 return
+INFO  16:51:08,611 - #48 j
+INFO  16:51:08,611 - #8 ;
+INFO  16:51:08,611 - #4 }
+INFO  16:51:08,611 - #4 }
+INFO  16:51:08,611 - #4 }
+INFO  16:51:08,611 - #3 {
+INFO  16:51:08,611 - #18 void
+INFO  16:51:08,611 - #48 main
+INFO  16:51:08,612 - #16 (
+INFO  16:51:08,612 - #17 )
+INFO  16:51:08,612 - #48 MyClass
+INFO  16:51:08,612 - #48 obj
+INFO  16:51:08,612 - #8 ;
+INFO  16:51:08,612 - #48 int
+INFO  16:51:08,612 - #48 r
+INFO  16:51:08,612 - #10 [
+INFO  16:51:08,612 - #11 ]
+INFO  16:51:08,612 - #6 ,
+INFO  16:51:08,612 - #48 p
+INFO  16:51:08,612 - #10 [
+INFO  16:51:08,612 - #11 ]
+INFO  16:51:08,612 - #8 ;
+INFO  16:51:08,612 - #48 int
+INFO  16:51:08,612 - #48 a
+INFO  16:51:08,612 - #6 ,
+INFO  16:51:08,612 - #48 b
+INFO  16:51:08,612 - #6 ,
+INFO  16:51:08,612 - #48 c
+INFO  16:51:08,612 - #8 ;
+INFO  16:51:08,612 - #48 MyClass
+INFO  16:51:08,612 - #48 mObj
+INFO  16:51:08,612 - #10 [
+INFO  16:51:08,612 - #11 ]
+INFO  16:51:08,612 - #8 ;
+INFO  16:51:08,612 - #3 {
+INFO  16:51:08,612 - #48 obj
+INFO  16:51:08,612 - #9 =
+INFO  16:51:08,612 - #38 new
+INFO  16:51:08,612 - #48 MyClass
+INFO  16:51:08,612 - #16 (
+INFO  16:51:08,612 - #17 )
+INFO  16:51:08,612 - #8 ;
+INFO  16:51:08,612 - #48 obj
+INFO  16:51:08,612 - #35 .
+INFO  16:51:08,612 - #48 myMethod
+INFO  16:51:08,612 - #16 (
+INFO  16:51:08,612 - #49 10
+INFO  16:51:08,613 - #17 )
+INFO  16:51:08,613 - #8 ;
+INFO  16:51:08,614 - #48 MyClass
+INFO  16:51:08,614 - #35 .
+INFO  16:51:08,614 - #48 g
+INFO  16:51:08,614 - #35 .
+INFO  16:51:08,614 - #48 myField
+INFO  16:51:08,614 - #9 =
+INFO  16:51:08,614 - #49 2
+INFO  16:51:08,614 - #8 ;
+INFO  16:51:08,614 - #48 MyClass
+INFO  16:51:08,614 - #35 .
+INFO  16:51:08,614 - #48 f
+INFO  16:51:08,614 - #10 [
+INFO  16:51:08,614 - #49 1
+INFO  16:51:08,614 - #11 ]
+INFO  16:51:08,614 - #35 .
+INFO  16:51:08,614 - #48 myField
+INFO  16:51:08,614 - #9 =
+INFO  16:51:08,614 - #49 3
+INFO  16:51:08,614 - #8 ;
+INFO  16:51:08,614 - #48 MyClass
+INFO  16:51:08,614 - #35 .
+INFO  16:51:08,614 - #48 g
+INFO  16:51:08,614 - #35 .
+INFO  16:51:08,614 - #48 myFieldArr
+INFO  16:51:08,614 - #10 [
+INFO  16:51:08,614 - #49 2
+INFO  16:51:08,614 - #11 ]
+INFO  16:51:08,614 - #9 =
+INFO  16:51:08,614 - #49 4
+INFO  16:51:08,614 - #8 ;
+INFO  16:51:08,614 - #48 MyClass
+INFO  16:51:08,614 - #35 .
+INFO  16:51:08,614 - #48 f
+INFO  16:51:08,614 - #10 [
+INFO  16:51:08,614 - #49 2
+INFO  16:51:08,614 - #11 ]
+INFO  16:51:08,614 - #35 .
+INFO  16:51:08,614 - #48 myFieldArr
+INFO  16:51:08,614 - #10 [
+INFO  16:51:08,614 - #49 2
+INFO  16:51:08,614 - #11 ]
+INFO  16:51:08,614 - #9 =
+INFO  16:51:08,614 - #49 4
+INFO  16:51:08,614 - #8 ;
+INFO  16:51:08,614 - #48 MyClass
+INFO  16:51:08,614 - #35 .
+INFO  16:51:08,614 - #48 g
+INFO  16:51:08,614 - #35 .
+INFO  16:51:08,614 - #48 myField
+INFO  16:51:08,614 - #20 ++
+INFO  16:51:08,614 - #8 ;
+INFO  16:51:08,614 - #48 MyClass
+INFO  16:51:08,614 - #35 .
+INFO  16:51:08,614 - #48 a
+INFO  16:51:08,614 - #21 --
+INFO  16:51:08,614 - #8 ;
+INFO  16:51:08,615 - #48 MyClass
+INFO  16:51:08,615 - #35 .
+INFO  16:51:08,615 - #48 c
+INFO  16:51:08,615 - #10 [
+INFO  16:51:08,615 - #49 2
+INFO  16:51:08,615 - #11 ]
+INFO  16:51:08,615 - #20 ++
+INFO  16:51:08,615 - #8 ;
+INFO  16:51:08,615 - #10 [
+INFO  16:51:08,615 - #48 a
+INFO  16:51:08,615 - #6 ,
+INFO  16:51:08,615 - #48 b
+INFO  16:51:08,615 - #6 ,
+INFO  16:51:08,615 - #48 c
+INFO  16:51:08,615 - #6 ,
+INFO  16:51:08,615 - #48 r
+INFO  16:51:08,615 - #10 [
+INFO  16:51:08,615 - #49 2
+INFO  16:51:08,615 - #11 ]
+INFO  16:51:08,615 - #6 ,
+INFO  16:51:08,615 - #6 ,
+INFO  16:51:08,616 - #6 ,
+INFO  16:51:08,616 - #48 MyClass
+INFO  16:51:08,616 - #35 .
+INFO  16:51:08,616 - #48 c
+INFO  16:51:08,616 - #10 [
+INFO  16:51:08,616 - #49 2
+INFO  16:51:08,616 - #11 ]
+INFO  16:51:08,616 - #6 ,
+INFO  16:51:08,616 - #48 obj
+INFO  16:51:08,616 - #35 .
+INFO  16:51:08,616 - #48 myField
+INFO  16:51:08,616 - #6 ,
+INFO  16:51:08,616 - #32 *
+INFO  16:51:08,616 - #48 r
+INFO  16:51:08,616 - #11 ]
+INFO  16:51:08,616 - #9 =
+INFO  16:51:08,616 - #48 p
+INFO  16:51:08,616 - #8 ;
+INFO  16:51:08,616 - #10 [
+INFO  16:51:08,616 - #48 obj
+INFO  16:51:08,616 - #6 ,
+INFO  16:51:08,616 - #48 obj
+INFO  16:51:08,616 - #6 ,
+INFO  16:51:08,616 - #6 ,
+INFO  16:51:08,616 - #6 ,
+INFO  16:51:08,616 - #6 ,
+INFO  16:51:08,616 - #6 ,
+INFO  16:51:08,616 - #48 obj
+INFO  16:51:08,616 - #6 ,
+INFO  16:51:08,616 - #48 obj
+INFO  16:51:08,616 - #35 .
+INFO  16:51:08,616 - #48 theirField
+INFO  16:51:08,616 - #35 .
+INFO  16:51:08,616 - #48 theirField
+INFO  16:51:08,616 - #35 .
+INFO  16:51:08,616 - #48 theirFieldArr
+INFO  16:51:08,616 - #10 [
+INFO  16:51:08,616 - #48 obj
+INFO  16:51:08,616 - #35 .
+INFO  16:51:08,616 - #48 myField
+INFO  16:51:08,616 - #11 ]
+INFO  16:51:08,616 - #6 ,
+INFO  16:51:08,616 - #32 *
+INFO  16:51:08,616 - #48 mObj
+INFO  16:51:08,616 - #11 ]
+INFO  16:51:08,616 - #9 =
+INFO  16:51:08,616 - #48 mObj
+INFO  16:51:08,616 - #8 ;
+INFO  16:51:08,616 - #42 if
+INFO  16:51:08,616 - #16 (
+INFO  16:51:08,616 - #48 obj
+INFO  16:51:08,616 - #35 .
+INFO  16:51:08,616 - #48 myField
+INFO  16:51:08,616 - #26 <
+INFO  16:51:08,616 - #48 mObj
+INFO  16:51:08,616 - #10 [
+INFO  16:51:08,616 - #49 1
+INFO  16:51:08,616 - #11 ]
+INFO  16:51:08,616 - #35 .
+INFO  16:51:08,616 - #48 myFieldArr
+INFO  16:51:08,616 - #10 [
+INFO  16:51:08,616 - #49 2
+INFO  16:51:08,616 - #11 ]
+INFO  16:51:08,616 - #17 )
+INFO  16:51:08,616 - #48 c
+INFO  16:51:08,616 - #9 =
+INFO  16:51:08,616 - #49 3
+INFO  16:51:08,616 - #8 ;
+INFO  16:51:08,616 - #43 else
+INFO  16:51:08,616 - #42 if
+INFO  16:51:08,616 - #16 (
+INFO  16:51:08,616 - #48 obj
+INFO  16:51:08,616 - #35 .
+INFO  16:51:08,616 - #48 myFieldArr
+INFO  16:51:08,616 - #22 ==
+INFO  16:51:08,616 - #48 mObj
+INFO  16:51:08,616 - #10 [
+INFO  16:51:08,616 - #49 1
+INFO  16:51:08,616 - #11 ]
+INFO  16:51:08,616 - #35 .
+INFO  16:51:08,616 - #48 myFieldArr
+INFO  16:51:08,616 - #17 )
+INFO  16:51:08,616 - #48 b
+INFO  16:51:08,616 - #9 =
+INFO  16:51:08,616 - #49 2
+INFO  16:51:08,616 - #8 ;
+INFO  16:51:08,616 - #43 else
+INFO  16:51:08,616 - #42 if
+INFO  16:51:08,616 - #16 (
+INFO  16:51:08,616 - #48 obj
+INFO  16:51:08,616 - #35 .
+INFO  16:51:08,616 - #48 myFieldArr
+INFO  16:51:08,616 - #23 !=
+INFO  16:51:08,616 - #48 mObj
+INFO  16:51:08,617 - #10 [
+INFO  16:51:08,617 - #49 1
+INFO  16:51:08,617 - #11 ]
+INFO  16:51:08,617 - #35 .
+INFO  16:51:08,617 - #48 myFieldArr
+INFO  16:51:08,617 - #17 )
+INFO  16:51:08,617 - #48 b
+INFO  16:51:08,617 - #9 =
+INFO  16:51:08,617 - #49 2
+INFO  16:51:08,617 - #8 ;
+INFO  16:51:08,617 - #43 else
+INFO  16:51:08,617 - #3 {
+INFO  16:51:08,617 - #42 if
+INFO  16:51:08,617 - #16 (
+INFO  16:51:08,617 - #48 obj
+INFO  16:51:08,617 - #35 .
+INFO  16:51:08,617 - #48 ourFieldArr
+INFO  16:51:08,617 - #10 [
+INFO  16:51:08,617 - #49 2
+INFO  16:51:08,617 - #11 ]
+INFO  16:51:08,617 - #36 ||
+INFO  16:51:08,617 - #48 obj
+INFO  16:51:08,617 - #35 .
+INFO  16:51:08,617 - #48 ourField
+INFO  16:51:08,617 - #17 )
+INFO  16:51:08,617 - #48 c
+INFO  16:51:08,617 - #9 =
+INFO  16:51:08,617 - #49 3
+INFO  16:51:08,617 - #8 ;
+INFO  16:51:08,617 - #43 else
+INFO  16:51:08,617 - #42 if
+INFO  16:51:08,617 - #16 (
+INFO  16:51:08,617 - #48 obj
+INFO  16:51:08,617 - #35 .
+INFO  16:51:08,617 - #48 ourField
+INFO  16:51:08,617 - #36 ||
+INFO  16:51:08,617 - #48 mObj
+INFO  16:51:08,617 - #10 [
+INFO  16:51:08,617 - #49 2
+INFO  16:51:08,617 - #11 ]
+INFO  16:51:08,617 - #35 .
+INFO  16:51:08,617 - #48 ourFieldArr
+INFO  16:51:08,617 - #10 [
+INFO  16:51:08,617 - #49 2
+INFO  16:51:08,617 - #11 ]
+INFO  16:51:08,617 - #17 )
+INFO  16:51:08,617 - #48 c
+INFO  16:51:08,617 - #9 =
+INFO  16:51:08,617 - #49 5
+INFO  16:51:08,617 - #8 ;
+INFO  16:51:08,617 - #4 }
+INFO  16:51:08,618 - #4 }
+INFO  16:51:08,618 - #4 }
+INFO  16:51:08,624 - Usage found: Stat MyClass::a: int, 0, 0  ~~~ Line: 16
+INFO  16:51:08,624 - Usage found: c[]: int, -1, -1  ~~~ Line: 17
+INFO  16:51:08,624 - Usage found: Stat MyClass::d: bool, 0, 0  ~~~ Line: 18
+INFO  16:51:08,624 - Usage found: e[]: bool, -1, -1  ~~~ Line: 19
+INFO  16:51:08,624 - Usage found: Stat MyClass::a: int, 0, 0  ~~~ Line: 20
+INFO  16:51:08,624 - Usage found: Var i: int, 2, 1  ~~~ Line: 36
+INFO  16:51:08,624 - Usage found: Var i: int, 2, 1  ~~~ Line: 36
+INFO  16:51:08,624 - Usage found: Var param: int, 1, 1  ~~~ Line: 36
+INFO  16:51:08,624 - Usage found: Var i: int, 2, 1  ~~~ Line: 36
+INFO  16:51:08,624 - Usage found: Var i: int, 2, 1  ~~~ Line: 37
+INFO  16:51:08,624 - Usage found: Var i: int, 2, 1  ~~~ Line: 38
+INFO  16:51:08,624 - Usage found: Var i: int, 2, 1  ~~~ Line: 40
+INFO  16:51:08,624 - Usage found: Var i: int, 2, 1  ~~~ Line: 46
+INFO  16:51:08,624 - Usage found: Fld myField: int, 0, 1  ~~~ Line: 55
+INFO  16:51:08,624 - Usage found: g.myFieldArr[]: int, -1, -1  ~~~ Line: 56
+INFO  16:51:08,624 - Usage found: Fld myField: int, 0, 1  ~~~ Line: 57
+INFO  16:51:08,624 - Usage found: Fld myField: int, 0, 1  ~~~ Line: 58
+INFO  16:51:08,625 - Usage found: Fld myField: int, 0, 1  ~~~ Line: 59
+INFO  16:51:08,625 - Usage found: Fld yourField: char, 2, 1  ~~~ Line: 60
+INFO  16:51:08,625 - Usage found: Var i: int, 2, 1  ~~~ Line: 61
+INFO  16:51:08,625 - Usage found: Fld i: int, 8, 1  ~~~ Line: 62
+INFO  16:51:08,625 - Usage found: Var j: Class [], 3, 1  ~~~ Line: 64
+INFO  16:51:08,625 - Usage found: Var obj: Class [Fld myField: int, 0, 1 Fld myFieldArr: Arr of int, 1, 1 Fld yourField: char, 2, 1 Fld yourFieldArr: Arr of char, 3, 1 Fld ourField: bool, 4, 1 Fld ourFieldArr: Arr of bool, 5, 1 Fld theirField: , 6, 1 Fld theirFieldArr: Arr of Class, 7, 1 Fld i: int, 8, 1 Meth myMethod: , 0, 2 
+   Var this: , 0, 1 
+   Var param: int, 1, 1 
+   Var i: int, 2, 1 
+   Var j: , 3, 1 
+], 0, 1  ~~~ Line: 76
+INFO  16:51:08,625 - Usage found: Type MyClass: Class [Fld myField: int, 0, 1 Fld myFieldArr: Arr of int, 1, 1 Fld yourField: char, 2, 1 Fld yourFieldArr: Arr of char, 3, 1 Fld ourField: bool, 4, 1 Fld ourFieldArr: Arr of bool, 5, 1 Fld theirField: , 6, 1 Fld theirFieldArr: Arr of Class, 7, 1 Fld i: int, 8, 1 Meth myMethod: , 0, 2 
+   Var this: , 0, 1 
+   Var param: int, 1, 1 
+   Var i: int, 2, 1 
+   Var j: , 3, 1 
+], 0, 0  ~~~ Line: 76
+INFO  16:51:08,625 - Usage found: Meth myMethod: Class [Fld myField: int, 0, 1 Fld myFieldArr: Arr of int, 1, 1 Fld yourField: char, 2, 1 Fld yourFieldArr: Arr of char, 3, 1 Fld ourField: bool, 4, 1 Fld ourFieldArr: Arr of bool, 5, 1 Fld theirField: , 6, 1 Fld theirFieldArr: Arr of Class, 7, 1 Fld i: int, 8, 1 Meth myMethod: , 0, 2 
+   Var this: , 0, 1 
+   Var param: int, 1, 1 
+   Var i: int, 2, 1 
+   Var j: , 3, 1 
+], 0, 2 
+   Var this: , 0, 1 
+   Var param: int, 1, 1 
+   Var i: int, 2, 1 
+   Var j: Class [Fld myField: int, 0, 1 Fld myFieldArr: Arr of int, 1, 1 Fld yourField: char, 2, 1 Fld yourFieldArr: Arr of char, 3, 1 Fld ourField: bool, 4, 1 Fld ourFieldArr: Arr of bool, 5, 1 Fld theirField: , 6, 1 Fld theirFieldArr: Arr of Class, 7, 1 Fld i: int, 8, 1 Meth myMethod: , 0, 2 
+      Var this: , 0, 1 
+      Var param: int, 1, 1 
+      Var i: int, 2, 1 
+      Var j: , 3, 1 
+], 3, 1 
+ ~~~ Line: 77
+INFO  16:51:08,625 - Usage found: Fld myField: int, 0, 1  ~~~ Line: 78
+INFO  16:51:08,625 - Usage found: Fld myField: int, 0, 1  ~~~ Line: 79
+INFO  16:51:08,625 - Usage found: MyClass.g.myFieldArr[]: int, -1, -1  ~~~ Line: 80
+INFO  16:51:08,625 - Usage found: MyClass.f[].myFieldArr[]: int, -1, -1  ~~~ Line: 81
+INFO  16:51:08,625 - Usage found: Fld myField: int, 0, 1  ~~~ Line: 83
+INFO  16:51:08,625 - Usage found: Stat MyClass::a: int, 0, 0  ~~~ Line: 84
+INFO  16:51:08,625 - Usage found: MyClass.c[]: int, -1, -1  ~~~ Line: 85
+INFO  16:51:08,625 - Usage found: Var a: int, 3, 1  ~~~ Line: 87
+INFO  16:51:08,625 - Usage found: Var b: int, 4, 1  ~~~ Line: 87
+INFO  16:51:08,625 - Usage found: Var c: int, 5, 1  ~~~ Line: 87
+INFO  16:51:08,625 - Usage found: r[]: int, -1, -1  ~~~ Line: 87
+INFO  16:51:08,625 - Usage found: MyClass.c[]: int, -1, -1  ~~~ Line: 87
+INFO  16:51:08,625 - Usage found: Fld myField: int, 0, 1  ~~~ Line: 87
+INFO  16:51:08,625 - Usage found: Var r: Arr of int, 1, 1  ~~~ Line: 87
+INFO  16:51:08,625 - Usage found: Var p: Arr of int, 2, 1  ~~~ Line: 87
+INFO  16:51:08,625 - Usage found: Var obj: Class [Fld myField: int, 0, 1 Fld myFieldArr: Arr of int, 1, 1 Fld yourField: char, 2, 1 Fld yourFieldArr: Arr of char, 3, 1 Fld ourField: bool, 4, 1 Fld ourFieldArr: Arr of bool, 5, 1 Fld theirField: , 6, 1 Fld theirFieldArr: Arr of Class, 7, 1 Fld i: int, 8, 1 Meth myMethod: , 0, 2 
+   Var this: , 0, 1 
+   Var param: int, 1, 1 
+   Var i: int, 2, 1 
+   Var j: , 3, 1 
+], 0, 1  ~~~ Line: 88
+INFO  16:51:08,625 - Usage found: Var obj: Class [Fld myField: int, 0, 1 Fld myFieldArr: Arr of int, 1, 1 Fld yourField: char, 2, 1 Fld yourFieldArr: Arr of char, 3, 1 Fld ourField: bool, 4, 1 Fld ourFieldArr: Arr of bool, 5, 1 Fld theirField: , 6, 1 Fld theirFieldArr: Arr of Class, 7, 1 Fld i: int, 8, 1 Meth myMethod: , 0, 2 
+   Var this: , 0, 1 
+   Var param: int, 1, 1 
+   Var i: int, 2, 1 
+   Var j: , 3, 1 
+], 0, 1  ~~~ Line: 88
+INFO  16:51:08,625 - Usage found: Var obj: Class [Fld myField: int, 0, 1 Fld myFieldArr: Arr of int, 1, 1 Fld yourField: char, 2, 1 Fld yourFieldArr: Arr of char, 3, 1 Fld ourField: bool, 4, 1 Fld ourFieldArr: Arr of bool, 5, 1 Fld theirField: , 6, 1 Fld theirFieldArr: Arr of Class, 7, 1 Fld i: int, 8, 1 Meth myMethod: , 0, 2 
+   Var this: , 0, 1 
+   Var param: int, 1, 1 
+   Var i: int, 2, 1 
+   Var j: , 3, 1 
+], 0, 1  ~~~ Line: 88
+INFO  16:51:08,625 - Usage found: Fld myField: int, 0, 1  ~~~ Line: 88
+INFO  16:51:08,625 - Usage found: obj.theirField.theirField.theirFieldArr[]: Class [Fld myField: int, 0, 1 Fld myFieldArr: Arr of int, 1, 1 Fld yourField: char, 2, 1 Fld yourFieldArr: Arr of char, 3, 1 Fld ourField: bool, 4, 1 Fld ourFieldArr: Arr of bool, 5, 1 Fld theirField: , 6, 1 Fld theirFieldArr: Arr of Class, 7, 1 Fld i: int, 8, 1 Meth myMethod: , 0, 2 
+   Var this: , 0, 1 
+   Var param: int, 1, 1 
+   Var i: int, 2, 1 
+   Var j: , 3, 1 
+], -1, -1  ~~~ Line: 88
+INFO  16:51:08,625 - Usage found: Var mObj: Arr of Class, 6, 1  ~~~ Line: 88
+INFO  16:51:08,625 - Usage found: Var mObj: Arr of Class, 6, 1  ~~~ Line: 88
+INFO  16:51:08,625 - Usage found: Fld myField: int, 0, 1  ~~~ Line: 96
+INFO  16:51:08,625 - Usage found: mObj[].myFieldArr[]: int, -1, -1  ~~~ Line: 96
+INFO  16:51:08,625 - Usage found: Var c: int, 5, 1  ~~~ Line: 96
+INFO  16:51:08,625 - Usage found: Fld myFieldArr: Arr of int, 1, 1  ~~~ Line: 98
+INFO  16:51:08,625 - Usage found: Fld myFieldArr: Arr of int, 1, 1  ~~~ Line: 98
+INFO  16:51:08,625 - Usage found: Var b: int, 4, 1  ~~~ Line: 98
+INFO  16:51:08,625 - Usage found: Fld myFieldArr: Arr of int, 1, 1  ~~~ Line: 99
+INFO  16:51:08,625 - Usage found: Fld myFieldArr: Arr of int, 1, 1  ~~~ Line: 99
+INFO  16:51:08,625 - Usage found: Var b: int, 4, 1  ~~~ Line: 99
+INFO  16:51:08,625 - Usage found: obj.ourFieldArr[]: bool, -1, -1  ~~~ Line: 101
+INFO  16:51:08,625 - Usage found: Fld ourField: bool, 4, 1  ~~~ Line: 101
+INFO  16:51:08,625 - Usage found: Var c: int, 5, 1  ~~~ Line: 101
+INFO  16:51:08,625 - Usage found: Fld ourField: bool, 4, 1  ~~~ Line: 103
+INFO  16:51:08,625 - Usage found: mObj[].ourFieldArr[]: bool, -1, -1  ~~~ Line: 103
+INFO  16:51:08,626 - Usage found: Var c: int, 5, 1  ~~~ Line: 103

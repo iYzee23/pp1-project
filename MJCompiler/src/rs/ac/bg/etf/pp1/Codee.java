@@ -525,7 +525,7 @@ public class Codee extends Code {
 		Codee.put(instr);
 		
 		if (haveElse) {
-			Codee.put(Codee.jmp); Codee.put2(10);
+			Codee.put(Codee.jmp); Codee.put2(11);
 		}
 	}
 	

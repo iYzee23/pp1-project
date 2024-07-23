@@ -1,0 +1,16 @@
+   0   1   2   3   
+0123   
+   
+   1   0   1   0   1   0   1   
+1010101   
+   
+   P   E   D   J   A       P   E   S   I   C   
+PEDJA PESIC   
+   
+   5 100   
+   0   1   2   3   4   5   
+   0   1   2   3   4   5   6   7   
+   0   1   2   3   0   
+   4   6   2   3   0   
+
+Completion took 2 ms
