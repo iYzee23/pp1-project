@@ -1,8 +1,0 @@
-program P 
-{
-	void main() 
-	int a[];
-	{
-		a[5] = 5;
-	}
-}

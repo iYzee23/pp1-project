@@ -25,7 +25,7 @@ public class MJLexerTest {
 		Reader br = null;
 		try {
 			
-			File sourceCode = new File("test/program_lexer.mj");	
+			File sourceCode = new File("test/testovi_avgust/test303.mj");	
 			log.info("Compiling source file: " + sourceCode.getAbsolutePath());
 			
 			br = new BufferedReader(new FileReader(sourceCode));

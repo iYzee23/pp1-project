@@ -1,0 +1,77 @@
+INFO  14:58:52,071 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_parser.mj
+INFO  14:58:52,115 - #2 program
+INFO  14:58:52,115 - #48 MJProgram
+INFO  14:58:52,115 - #48 int
+INFO  14:58:52,116 - #48 x
+INFO  14:58:52,116 - #8 ;
+INFO  14:58:52,116 - #48 int
+INFO  14:58:52,116 - #48 y
+INFO  14:58:52,116 - #8 ;
+INFO  14:58:52,116 - #3 {
+INFO  14:58:52,116 - #48 int
+INFO  14:58:52,116 - #48 main
+INFO  14:58:52,116 - #16 (
+INFO  14:58:52,116 - #17 )
+INFO  14:58:52,116 - #48 int
+INFO  14:58:52,117 - #48 a
+INFO  14:58:52,117 - #6 ,
+INFO  14:58:52,117 - #48 b
+INFO  14:58:52,117 - #6 ,
+INFO  14:58:52,117 - #48 c
+INFO  14:58:52,117 - #6 ,
+INFO  14:58:52,117 - #48 d
+INFO  14:58:52,117 - #8 ;
+INFO  14:58:52,117 - #48 int
+INFO  14:58:52,117 - #48 u1
+INFO  14:58:52,117 - #10 [
+INFO  14:58:52,117 - #11 ]
+INFO  14:58:52,118 - #10 [
+ERROR 14:58:52,118 - Syntax error on line 9
+INFO  14:58:52,118 - #11 ]
+INFO  14:58:52,118 - #8 ;
+INFO  14:58:52,118 - #48 char
+INFO  14:58:52,118 - #48 u2
+INFO  14:58:52,118 - #10 [
+ERROR 14:58:52,118 - Bad declaration of variable. Performed recovery until ; in line 9
+INFO  14:58:52,118 - #11 ]
+INFO  14:58:52,118 - #10 [
+ERROR 14:58:52,118 - Syntax error on line 10
+INFO  14:58:52,118 - #11 ]
+INFO  14:58:52,118 - #8 ;
+INFO  14:58:52,118 - #48 bool
+INFO  14:58:52,118 - #48 u3
+INFO  14:58:52,118 - #10 [
+ERROR 14:58:52,118 - Bad declaration of variable. Performed recovery until ; in line 10
+INFO  14:58:52,118 - #11 ]
+INFO  14:58:52,118 - #10 [
+ERROR 14:58:52,118 - Syntax error on line 11
+INFO  14:58:52,118 - #11 ]
+INFO  14:58:52,118 - #8 ;
+INFO  14:58:52,118 - #3 {
+INFO  14:58:52,118 - #28 print
+INFO  14:58:52,119 - #16 (
+ERROR 14:58:52,119 - Bad declaration of variable. Performed recovery until ; in line 11
+INFO  14:58:52,119 - #49 1
+INFO  14:58:52,119 - #17 )
+INFO  14:58:52,120 - #8 ;
+INFO  14:58:52,120 - #48 x
+INFO  14:58:52,120 - #9 =
+INFO  14:58:52,120 - #48 y
+INFO  14:58:52,121 - #30 +
+INFO  14:58:52,121 - #49 5
+INFO  14:58:52,122 - #8 ;
+INFO  14:58:52,122 - #48 w
+INFO  14:58:52,122 - #9 =
+INFO  14:58:52,122 - #48 z
+INFO  14:58:52,122 - #30 +
+INFO  14:58:52,122 - #48 z
+INFO  14:58:52,122 - #8 ;
+INFO  14:58:52,122 - #28 print
+INFO  14:58:52,122 - #16 (
+INFO  14:58:52,122 - #49 2
+INFO  14:58:52,123 - #17 )
+INFO  14:58:52,123 - #8 ;
+INFO  14:58:52,123 - #4 }
+INFO  14:58:52,123 - #4 }
+INFO  14:58:52,129 - ===================================
+INFO  14:58:52,130 -  Print count calls = 2

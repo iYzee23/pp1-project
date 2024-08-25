@@ -1,0 +1,104 @@
+INFO  14:56:52,791 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_parser.mj
+INFO  14:56:52,833 - #2 program
+INFO  14:56:52,833 - #48 MJProgram
+INFO  14:56:52,833 - #48 int
+INFO  14:56:52,834 - #48 x
+INFO  14:56:52,834 - #8 ;
+INFO  14:56:52,834 - #48 int
+INFO  14:56:52,834 - #48 y
+INFO  14:56:52,834 - #8 ;
+INFO  14:56:52,834 - #48 int
+INFO  14:56:52,834 - #48 t1
+INFO  14:56:52,834 - #10 [
+INFO  14:56:52,834 - #11 ]
+INFO  14:56:52,834 - #10 [
+ERROR 14:56:52,834 - Syntax error on line 3
+INFO  14:56:52,834 - #11 ]
+INFO  14:56:52,834 - #8 ;
+INFO  14:56:52,834 - #48 char
+INFO  14:56:52,835 - #48 t2
+INFO  14:56:52,844 - #10 [
+ERROR 14:56:52,844 - Bad declaration of variable. Performed recovery until ; in line 3
+INFO  14:56:52,844 - #11 ]
+INFO  14:56:52,844 - #10 [
+ERROR 14:56:52,844 - Syntax error on line 4
+INFO  14:56:52,844 - #11 ]
+INFO  14:56:52,844 - #8 ;
+INFO  14:56:52,844 - #48 bool
+INFO  14:56:52,844 - #48 t3
+INFO  14:56:52,844 - #10 [
+ERROR 14:56:52,844 - Bad declaration of variable. Performed recovery until ; in line 4
+INFO  14:56:52,844 - #11 ]
+INFO  14:56:52,844 - #10 [
+ERROR 14:56:52,844 - Syntax error on line 5
+INFO  14:56:52,844 - #11 ]
+INFO  14:56:52,844 - #8 ;
+INFO  14:56:52,844 - #3 {
+INFO  14:56:52,844 - #48 int
+INFO  14:56:52,844 - #48 main
+ERROR 14:56:52,844 - Bad declaration of variable. Performed recovery until ; in line 5
+INFO  14:56:52,845 - #16 (
+INFO  14:56:52,845 - #17 )
+INFO  14:56:52,845 - #48 int
+INFO  14:56:52,845 - #48 a
+INFO  14:56:52,845 - #6 ,
+INFO  14:56:52,845 - #48 b
+INFO  14:56:52,845 - #6 ,
+INFO  14:56:52,845 - #48 c
+INFO  14:56:52,845 - #6 ,
+INFO  14:56:52,845 - #48 d
+INFO  14:56:52,845 - #8 ;
+INFO  14:56:52,845 - #48 int
+INFO  14:56:52,845 - #48 u1
+INFO  14:56:52,845 - #10 [
+INFO  14:56:52,845 - #11 ]
+INFO  14:56:52,845 - #10 [
+ERROR 14:56:52,845 - Syntax error on line 9
+INFO  14:56:52,845 - #11 ]
+INFO  14:56:52,846 - #8 ;
+INFO  14:56:52,846 - #48 char
+INFO  14:56:52,846 - #48 u2
+INFO  14:56:52,846 - #10 [
+ERROR 14:56:52,846 - Bad declaration of variable. Performed recovery until ; in line 9
+INFO  14:56:52,846 - #11 ]
+INFO  14:56:52,846 - #10 [
+ERROR 14:56:52,846 - Syntax error on line 10
+INFO  14:56:52,846 - #11 ]
+INFO  14:56:52,846 - #8 ;
+INFO  14:56:52,846 - #48 bool
+INFO  14:56:52,846 - #48 u3
+INFO  14:56:52,846 - #10 [
+ERROR 14:56:52,846 - Bad declaration of variable. Performed recovery until ; in line 10
+INFO  14:56:52,848 - #11 ]
+INFO  14:56:52,848 - #10 [
+ERROR 14:56:52,848 - Syntax error on line 11
+INFO  14:56:52,848 - #11 ]
+INFO  14:56:52,848 - #8 ;
+INFO  14:56:52,848 - #3 {
+INFO  14:56:52,848 - #28 print
+INFO  14:56:52,848 - #16 (
+ERROR 14:56:52,848 - Bad declaration of variable. Performed recovery until ; in line 11
+INFO  14:56:52,848 - #49 1
+INFO  14:56:52,848 - #17 )
+INFO  14:56:52,849 - #8 ;
+INFO  14:56:52,849 - #48 x
+INFO  14:56:52,849 - #9 =
+INFO  14:56:52,849 - #48 y
+INFO  14:56:52,850 - #30 +
+INFO  14:56:52,850 - #49 5
+INFO  14:56:52,851 - #8 ;
+INFO  14:56:52,851 - #48 w
+INFO  14:56:52,851 - #9 =
+INFO  14:56:52,851 - #48 z
+INFO  14:56:52,851 - #30 +
+INFO  14:56:52,851 - #48 z
+INFO  14:56:52,851 - #8 ;
+INFO  14:56:52,851 - #28 print
+INFO  14:56:52,851 - #16 (
+INFO  14:56:52,851 - #49 2
+INFO  14:56:52,851 - #17 )
+INFO  14:56:52,851 - #8 ;
+INFO  14:56:52,851 - #4 }
+INFO  14:56:52,851 - #4 }
+INFO  14:56:52,857 - ===================================
+INFO  14:56:52,858 -  Print count calls = 2

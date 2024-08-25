@@ -1,0 +1,332 @@
+INFO  14:56:33,523 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_parser.mj
+INFO  14:56:33,569 - #2 program
+INFO  14:56:33,569 - #48 MJProgram
+INFO  14:56:33,569 - #48 int
+INFO  14:56:33,569 - #48 x
+INFO  14:56:33,570 - #8 ;
+INFO  14:56:33,570 - #48 int
+INFO  14:56:33,570 - #48 y
+INFO  14:56:33,570 - #8 ;
+INFO  14:56:33,570 - #48 int
+INFO  14:56:33,570 - #48 t1
+INFO  14:56:33,570 - #10 [
+INFO  14:56:33,570 - #11 ]
+INFO  14:56:33,570 - #10 [
+ERROR 14:56:33,570 - Syntax error on line 3
+INFO  14:56:33,570 - #11 ]
+INFO  14:56:33,570 - #8 ;
+INFO  14:56:33,570 - #48 char
+INFO  14:56:33,570 - #48 t2
+INFO  14:56:33,580 - #10 [
+ERROR 14:56:33,580 - Bad declaration of variable. Performed recovery until ; in line 3
+INFO  14:56:33,580 - #11 ]
+INFO  14:56:33,580 - #10 [
+ERROR 14:56:33,580 - Syntax error on line 4
+INFO  14:56:33,580 - #11 ]
+INFO  14:56:33,580 - #8 ;
+INFO  14:56:33,580 - #48 bool
+INFO  14:56:33,580 - #48 t3
+INFO  14:56:33,580 - #10 [
+ERROR 14:56:33,580 - Bad declaration of variable. Performed recovery until ; in line 4
+INFO  14:56:33,580 - #11 ]
+INFO  14:56:33,580 - #10 [
+ERROR 14:56:33,580 - Syntax error on line 5
+INFO  14:56:33,580 - #11 ]
+INFO  14:56:33,580 - #8 ;
+INFO  14:56:33,580 - #3 {
+INFO  14:56:33,580 - #48 int
+INFO  14:56:33,580 - #48 main
+ERROR 14:56:33,580 - Bad declaration of variable. Performed recovery until ; in line 5
+INFO  14:56:33,580 - #16 (
+INFO  14:56:33,580 - #17 )
+INFO  14:56:33,580 - #48 int
+INFO  14:56:33,581 - #48 a
+INFO  14:56:33,581 - #6 ,
+INFO  14:56:33,581 - #48 b
+INFO  14:56:33,581 - #6 ,
+INFO  14:56:33,581 - #48 c
+INFO  14:56:33,581 - #6 ,
+INFO  14:56:33,581 - #48 d
+INFO  14:56:33,581 - #8 ;
+INFO  14:56:33,581 - #48 int
+INFO  14:56:33,581 - #48 u1
+INFO  14:56:33,581 - #10 [
+INFO  14:56:33,581 - #11 ]
+INFO  14:56:33,581 - #10 [
+ERROR 14:56:33,581 - Syntax error on line 9
+INFO  14:56:33,581 - #11 ]
+INFO  14:56:33,581 - #8 ;
+INFO  14:56:33,581 - #48 char
+INFO  14:56:33,581 - #48 u2
+INFO  14:56:33,581 - #10 [
+ERROR 14:56:33,581 - Bad declaration of variable. Performed recovery until ; in line 9
+INFO  14:56:33,581 - #11 ]
+INFO  14:56:33,581 - #10 [
+ERROR 14:56:33,581 - Syntax error on line 10
+INFO  14:56:33,581 - #11 ]
+INFO  14:56:33,581 - #8 ;
+INFO  14:56:33,581 - #48 bool
+INFO  14:56:33,581 - #48 u3
+INFO  14:56:33,581 - #10 [
+ERROR 14:56:33,581 - Bad declaration of variable. Performed recovery until ; in line 10
+INFO  14:56:33,584 - #11 ]
+INFO  14:56:33,584 - #10 [
+ERROR 14:56:33,584 - Syntax error on line 11
+INFO  14:56:33,584 - #11 ]
+INFO  14:56:33,584 - #8 ;
+INFO  14:56:33,584 - #3 {
+INFO  14:56:33,584 - #28 print
+INFO  14:56:33,584 - #16 (
+ERROR 14:56:33,584 - Bad declaration of variable. Performed recovery until ; in line 11
+INFO  14:56:33,584 - #49 1
+INFO  14:56:33,584 - #17 )
+INFO  14:56:33,585 - #8 ;
+INFO  14:56:33,585 - #48 x
+INFO  14:56:33,585 - #9 =
+INFO  14:56:33,586 - #48 y
+INFO  14:56:33,586 - #30 +
+INFO  14:56:33,586 - #49 5
+INFO  14:56:33,587 - #8 ;
+INFO  14:56:33,587 - #48 w
+INFO  14:56:33,587 - #9 =
+INFO  14:56:33,587 - #48 z
+INFO  14:56:33,587 - #30 +
+INFO  14:56:33,587 - #48 z
+INFO  14:56:33,587 - #8 ;
+INFO  14:56:33,587 - #28 print
+INFO  14:56:33,587 - #16 (
+INFO  14:56:33,587 - #49 2
+INFO  14:56:33,587 - #17 )
+INFO  14:56:33,587 - #8 ;
+INFO  14:56:33,587 - #4 }
+INFO  14:56:33,587 - #4 }
+INFO  14:56:33,593 - Programt(
+  ProgNamet(
+   MJProgram
+  ) [ProgNamet]
+  NamespaceListNo(
+  ) [NamespaceListNo]
+  DeclListVar(
+    DeclListVar(
+      DeclListVar(
+        DeclListVar(
+          DeclListVar(
+            DeclListNo(
+            ) [DeclListNo]
+            VarDeclt(
+              VarDeclSingle(
+                TypeNo(
+                 int
+                ) [TypeNo]
+                VarPartNo(
+                 x
+                ) [VarPartNo]
+              ) [VarDeclSingle]
+            ) [VarDeclt]
+          ) [DeclListVar]
+          VarDeclt(
+            VarDeclSingle(
+              TypeNo(
+               int
+              ) [TypeNo]
+              VarPartNo(
+               y
+              ) [VarPartNo]
+            ) [VarDeclSingle]
+          ) [VarDeclt]
+        ) [DeclListVar]
+        VarDecltError(
+        ) [VarDecltError]
+      ) [DeclListVar]
+      VarDecltError(
+      ) [VarDecltError]
+    ) [DeclListVar]
+    VarDecltError(
+    ) [VarDecltError]
+  ) [DeclListVar]
+  MethodDeclListYes(
+    MethodDeclListNo(
+    ) [MethodDeclListNo]
+    MethodDeclNo(
+      ReturnTypeType(
+        TypeNo(
+         int
+        ) [TypeNo]
+      ) [ReturnTypeType]
+      MethodNamet(
+       main
+      ) [MethodNamet]
+      VarDeclListYes(
+        VarDeclListYes(
+          VarDeclListYes(
+            VarDeclListYes(
+              VarDeclListNo(
+              ) [VarDeclListNo]
+              VarDeclt(
+                VarDeclListParts(
+                  VarDeclListParts(
+                    VarDeclListParts(
+                      VarDeclSingle(
+                        TypeNo(
+                         int
+                        ) [TypeNo]
+                        VarPartNo(
+                         a
+                        ) [VarPartNo]
+                      ) [VarDeclSingle]
+                      VarPartNo(
+                       b
+                      ) [VarPartNo]
+                    ) [VarDeclListParts]
+                    VarPartNo(
+                     c
+                    ) [VarPartNo]
+                  ) [VarDeclListParts]
+                  VarPartNo(
+                   d
+                  ) [VarPartNo]
+                ) [VarDeclListParts]
+              ) [VarDeclt]
+            ) [VarDeclListYes]
+            VarDecltError(
+            ) [VarDecltError]
+          ) [VarDeclListYes]
+          VarDecltError(
+          ) [VarDecltError]
+        ) [VarDeclListYes]
+        VarDecltError(
+        ) [VarDecltError]
+      ) [VarDeclListYes]
+      StatementListYes(
+        StatementListYes(
+          StatementListYes(
+            StatementListYes(
+              StatementListNo(
+              ) [StatementListNo]
+              StmtPrintNo(
+                ExprNo(
+                  Termt(
+                    FactorNum(
+                     1
+                    ) [FactorNum]
+                    MulopFactorListNo(
+                    ) [MulopFactorListNo]
+                  ) [Termt]
+                  AddopTermListNo(
+                  ) [AddopTermListNo]
+                ) [ExprNo]
+              ) [StmtPrintNo]
+            ) [StatementListYes]
+            StmtDesignator(
+              DesignatorStmtFirst(
+                Designatort(
+                  FDesignatorNo(
+                   x
+                  ) [FDesignatorNo]
+                  DesignatorPartsNo(
+                  ) [DesignatorPartsNo]
+                ) [Designatort]
+                OpChoiceExpr(
+                  AssignopAssignt(
+                  ) [AssignopAssignt]
+                  ExprNo(
+                    Termt(
+                      FactorDesignatorThird(
+                        Designatort(
+                          FDesignatorNo(
+                           y
+                          ) [FDesignatorNo]
+                          DesignatorPartsNo(
+                          ) [DesignatorPartsNo]
+                        ) [Designatort]
+                      ) [FactorDesignatorThird]
+                      MulopFactorListNo(
+                      ) [MulopFactorListNo]
+                    ) [Termt]
+                    AddopTermListYes(
+                      AddopTermListNo(
+                      ) [AddopTermListNo]
+                      AddopPlus(
+                      ) [AddopPlus]
+                      Termt(
+                        FactorNum(
+                         5
+                        ) [FactorNum]
+                        MulopFactorListNo(
+                        ) [MulopFactorListNo]
+                      ) [Termt]
+                    ) [AddopTermListYes]
+                  ) [ExprNo]
+                ) [OpChoiceExpr]
+              ) [DesignatorStmtFirst]
+            ) [StmtDesignator]
+          ) [StatementListYes]
+          StmtDesignator(
+            DesignatorStmtFirst(
+              Designatort(
+                FDesignatorNo(
+                 w
+                ) [FDesignatorNo]
+                DesignatorPartsNo(
+                ) [DesignatorPartsNo]
+              ) [Designatort]
+              OpChoiceExpr(
+                AssignopAssignt(
+                ) [AssignopAssignt]
+                ExprNo(
+                  Termt(
+                    FactorDesignatorThird(
+                      Designatort(
+                        FDesignatorNo(
+                         z
+                        ) [FDesignatorNo]
+                        DesignatorPartsNo(
+                        ) [DesignatorPartsNo]
+                      ) [Designatort]
+                    ) [FactorDesignatorThird]
+                    MulopFactorListNo(
+                    ) [MulopFactorListNo]
+                  ) [Termt]
+                  AddopTermListYes(
+                    AddopTermListNo(
+                    ) [AddopTermListNo]
+                    AddopPlus(
+                    ) [AddopPlus]
+                    Termt(
+                      FactorDesignatorThird(
+                        Designatort(
+                          FDesignatorNo(
+                           z
+                          ) [FDesignatorNo]
+                          DesignatorPartsNo(
+                          ) [DesignatorPartsNo]
+                        ) [Designatort]
+                      ) [FactorDesignatorThird]
+                      MulopFactorListNo(
+                      ) [MulopFactorListNo]
+                    ) [Termt]
+                  ) [AddopTermListYes]
+                ) [ExprNo]
+              ) [OpChoiceExpr]
+            ) [DesignatorStmtFirst]
+          ) [StmtDesignator]
+        ) [StatementListYes]
+        StmtPrintNo(
+          ExprNo(
+            Termt(
+              FactorNum(
+               2
+              ) [FactorNum]
+              MulopFactorListNo(
+              ) [MulopFactorListNo]
+            ) [Termt]
+            AddopTermListNo(
+            ) [AddopTermListNo]
+          ) [ExprNo]
+        ) [StmtPrintNo]
+      ) [StatementListYes]
+    ) [MethodDeclNo]
+  ) [MethodDeclListYes]
+) [Programt]
+INFO  14:56:33,593 - ===================================
+INFO  14:56:33,594 -  Print count calls = 2

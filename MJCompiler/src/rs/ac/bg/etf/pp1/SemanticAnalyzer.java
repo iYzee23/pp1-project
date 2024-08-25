@@ -76,6 +76,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	boolean returnFound = false;
 	boolean errorDetected = false;
 	boolean arrayActive = false;
+	boolean matrixActive = false;
 	boolean labelCreationActive = false;
 	
 	// factor & term flags
@@ -84,6 +85,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	boolean hasAddopTerm = false;
 	boolean addopTermError = false;
 	boolean isNewFactorClass = false;
+	boolean isNewFactorMatrix = false;
 	
 	// relation operators processing
 	static final int NOT_USED = 0;
@@ -245,6 +247,38 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		}
 		else if (currClass != null) Tabb.insert(Obj.Fld, localName, arrType);
 		else Tabb.insert(Obj.Var, fullName, arrType);
+	}
+	
+	public void visit(VarPartYesYes varPart) {
+		String localName = varPart.getVarName();
+		String fullName = currNamespace + localName;
+		
+		Obj varObj = null;
+		if (currMethod != null) {
+			varObj = Tabb.findLocal(localName);
+		}
+		else if (currClass != null) {
+			varObj = Tabb.findExactStatic(currClass.getName() + "::" + localName);
+			if (varObj == Tabb.noObj) varObj = Tabb.findLocal(localName); 
+		}
+		else {
+			varObj = Tabb.find(fullName);
+		}
+		
+		if (varObj != Tabb.noObj) {
+			report_error("[Static] variable (matrix) already declared: " + fullName, varPart);
+			return;
+		}
+		
+		Struct arrType = new Struct(Struct.Array, currType);
+		Struct matrixType = new Struct(Struct.Array, arrType);
+		if (currMethod != null) Tabb.insert(Obj.Var, localName, matrixType);
+		else if (currClass != null && staticClassActive) {
+			String statName = currClass.getName() + "::" + localName;
+			Tabb.insertStatic(Objj.Stat, statName, matrixType);
+		}
+		else if (currClass != null) Tabb.insert(Obj.Fld, localName, matrixType);
+		else Tabb.insert(Obj.Var, fullName, matrixType);
 	}
 	
 	public void visit(VarPartNo varPart) {
@@ -446,6 +480,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	// FormPars
 	
+	public void visit(BracketsOptYesYes bracketsOpt) {
+		matrixActive = true;
+	}
+	
 	public void visit(BracketsOptYes bracketsOpt) {
 		arrayActive = true;
 	}
@@ -457,17 +495,39 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (paramObj != Tabb.noObj) {
 			report_error("Formal parameter" + (arrayActive ? " (array) " : " ") + "is already declared: " + paramName, formParam);
 			arrayActive = false;
+			matrixActive = false;
 			currType = null;
 			return;
 		}
 		
 		Struct newType = null;
 		if (arrayActive) newType = new Struct(Struct.Array, formParam.getType().struct);
+		else if (matrixActive) {
+			newType = new Struct(Struct.Array, formParam.getType().struct);
+			newType = new Struct(Struct.Array, newType);
+		}
 		else newType = formParam.getType().struct;
 		
 		Tabb.insert(Obj.Var, paramName, newType);
 		currMethod.setLevel(currMethod.getLevel() + 1);
 		arrayActive = false;
+		matrixActive = false;
+		currType = null;
+	}
+	
+	public void visit(FormParsSingleYesYes formParam) {
+		String paramName = formParam.getParamName();
+		
+		Obj paramObj = Tabb.findLocal(paramName);
+		if (paramObj != Tabb.noObj) {
+			report_error("Formal parameter (array) is already declared: " + paramName, formParam);
+			return;
+		}
+		
+		Struct arrType = new Struct(Struct.Array, formParam.getType().struct);
+		Struct matrixType = new Struct(Struct.Array, arrType);
+		Tabb.insert(Obj.Var, paramName, matrixType);
+		currMethod.setLevel(currMethod.getLevel() + 1);
 		currType = null;
 	}
 	
@@ -565,9 +625,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			report_error("Return must be called inside method or global function", stmt);
 			return;
 		}
-		/*else if (!currMethod.getType().equals(stmt.getExpr().struct)) {
+		/*
+		else if (!currMethod.getType().equals(stmt.getExpr().struct)) {
 			report_error("Type of Expr in Return must be equal to method's type", stmt.getExpr());
-		}*/
+		}
+		*/
 		else if (!Tabb.firstAssignableToSecond(stmt.getExpr().struct, currMethod.getType())) {
 			report_error("Type of Expr in Return must be equal to method's type", stmt.getExpr());
 		}
@@ -592,6 +654,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		if (dsgObj.getKind() != Obj.Var && dsgObj.getKind() != Objj.Stat && dsgObj.getKind() != Obj.Elem && dsgObj.getKind() != Obj.Fld) {
 			report_error("Designator inside parens must be Variable, Array element or Class field: " + dsgObj.getName(), stmt.getDesignator());
+		}
+		else if (dsgObj.getKind() == Obj.Elem && dsgObj.getType().getKind() == Struct.Array) {
+			report_error("Designator inside parens must be Matrix element: " + dsgObj.getName(), stmt.getDesignator());
 		}
 		else if (!dsgObj.getType().equals(Tabb.intType) && !dsgObj.getType().equals(Tabb.charType) && !dsgObj.getType().equals(Tabb.boolType)) {
 			report_error("Type of Designator inside parens must be int, char or bool: " + dsgObj.getName(), stmt.getDesignator());
@@ -699,6 +764,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			 if (dsgObj.getKind() != Obj.Var && dsgObj.getKind() != Objj.Stat && dsgObj.getKind() != Obj.Elem && dsgObj.getKind() != Obj.Fld) {
 				 report_error("Designator must be Var, Array's elem or Field: " + dsgObj.getName(), dsgStmt.getDesignator());
 			 }
+			 else if (dsgObj.getKind() == Obj.Elem && dsgObj.getType().getKind() == Struct.Array) {
+				 report_error("Designator must be matrix'element, cannot be array: " + dsgObj.getName(), dsgStmt.getDesignator());
+			 }
 			 else if (!Tabb.firstAssignableToSecond(currAssignmentExpr, dsgObj.getType())) {
 				 report_error("Expr must be assignable to Designator: " + dsgObj.getName(), dsgStmt.getDesignator());
 			 }
@@ -706,6 +774,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		 else if (designatorStatementKind == INC_DEC) {
 			 if (dsgObj.getKind() != Obj.Var && dsgObj.getKind() != Objj.Stat && dsgObj.getKind() != Obj.Elem && dsgObj.getKind() != Obj.Fld) {
 				 report_error("Designator must be Var, Array's elem or Field: " + dsgObj.getName(), dsgStmt.getDesignator());
+			 }
+			 else if (dsgObj.getKind() == Obj.Elem && dsgObj.getType().getKind() == Struct.Array) {
+				 report_error("Designator must be matrix'element, cannot be array: " + dsgObj.getName(), dsgStmt.getDesignator());
 			 }
 			 else if (!dsgObj.getType().equals(Tabb.intType)) {
 				 report_error("Designator must be type of Integer: " + dsgObj.getName(), dsgStmt.getDesignator());
@@ -744,9 +815,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		else if (lDsgObj.getType().getKind() != Struct.Array) {
 			report_error("Designator after the * must be kind of Array: " + lDsgObj.getName(), dsgStmt.getDesignator());
 		}
-		/*else if (!lDsgObj.getType().getElemType().assignableTo(rDsgObj.getType().getElemType())) {
+		/*
+		else if (!lDsgObj.getType().getElemType().assignableTo(rDsgObj.getType().getElemType())) {
 			report_error("Designator after the * must be assignable to the Designator on the right: " + lDsgObj.getName(), dsgStmt.getDesignator());
-		}*/
+		}
+		*/
 		else if (!Tabb.firstAssignableToSecond(rDsgObj.getType().getElemType(), lDsgObj.getType().getElemType())) {
 			report_error("Designator on the right must be assignable to the Designator after the *: " + rDsgObj.getName(), dsgStmt.getDesignator1());
 		}
@@ -756,9 +829,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 					if (elem.getKind() != Obj.Var && elem.getKind() != Objj.Stat && elem.getKind() != Obj.Elem && elem.getKind() != Obj.Fld) {
 						report_error("Designator before * must be either Var, Array's elem or Field in class: " + elem.getName(), dsgStmt);
 					}
-					/*if (!rDsgObj.getType().getElemType().assignableTo(elem.getType())) {
+					/*
+					if (!rDsgObj.getType().getElemType().assignableTo(elem.getType())) {
 						report_error("Designator on the right must be assignable to each Designator before *: " + elem.getName(), dsgStmt);
-					}*/
+					}
+					*/
 					if (!Tabb.firstAssignableToSecond(rDsgObj.getType().getElemType(), elem.getType())) {
 						report_error("Designator on the right must be assignable to each Designator before *: " + elem.getName(), dsgStmt);
 					}
@@ -1035,8 +1110,19 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		factor.struct = Tabb.boolType;
 	}
 	
+	public void visit(NewChoiceExprExpr expr) {
+		isNewFactorClass = false;
+		isNewFactorMatrix = true;
+		Struct exprType1 = expr.getExpr().struct;
+		Struct exprType2 = expr.getExpr2().struct;
+		if (!exprType1.equals(Tabb.intType) || !exprType2.equals(Tabb.intType)) {
+			report_error("Expr between brackets must be integer", expr.getExpr());
+		}
+	}
+	
 	public void visit(NewChoiceExpr expr) {
 		isNewFactorClass = false;
+		isNewFactorMatrix = false;
 		Struct exprType = expr.getExpr().struct;
 		if (!exprType.equals(Tabb.intType)) {
 			report_error("Expr between brackets must be integer", expr.getExpr());
@@ -1045,10 +1131,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(NewChoiceActParsNo expr) {
 		isNewFactorClass = true;
+		isNewFactorMatrix = false;
 	}
 	
 	public void visit(NewChoiceActParsYes expr) {
 		isNewFactorClass = true;
+		isNewFactorMatrix = false;
 	}
 	
 	public void visit(FactorNew factor) {
@@ -1057,11 +1145,15 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			report_error("Type must be user defined type (class)", factor.getType());
 		}
 		
-		if (!isNewFactorClass) factorType = new Struct(Struct.Array, factorType);
+		if (!isNewFactorClass) {
+			factorType = new Struct(Struct.Array, factorType);
+			if (isNewFactorMatrix) factorType = new Struct(Struct.Array, factorType);
+		}
 		factor.struct = factorType;
 		
 		currType = null;
 		isNewFactorClass = false;
+		isNewFactorMatrix = false;
 	}
 	
 	public void visit(FactorExpr factor) {
@@ -1119,7 +1211,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		dsgName = nspObj.getName() + "::" + dsgName;
 		Obj dsgObj = Tabb.find(dsgName);
-		
 		
 		int dsgKind = dsgObj.getKind();
 		if (dsgObj == Tabb.noObj || (dsgKind != Obj.Var && dsgKind != Obj.Fld && dsgKind != Objj.Stat && dsgKind != Obj.Con && dsgKind != Obj.Meth && dsgObj.getType().getKind() != Struct.Class)) {

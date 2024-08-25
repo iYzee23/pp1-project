@@ -407,6 +407,7 @@ public class Codee extends Code {
 		Codee.put(Codee.putstatic); Codee.put2(2);
 		Codee.put(Codee.const_n);
 		Codee.put(Codee.putstatic); Codee.put2(0);
+		
 		Codee.put(Codee.getstatic); Codee.put2(0);
 		Codee.put(Codee.getstatic); Codee.put2(1);
 		Codee.put(Codee.jcc + Codee.ge); Codee.put2(25);
@@ -562,6 +563,99 @@ public class Codee extends Code {
 		Codee.put(Codee.add);
 		Codee.put(Codee.putstatic); Codee.put2(4);
 		Codee.putJump(CodeGenerator.pcLCCond);
+	}
+	
+	public static void allocateMatrix(boolean ind) {
+		/*
+		 	0 --> nRows
+		 	1 --> nCols
+		 	2 --> adrMat
+		 	3 --> i
+		*/
+		
+		Codee.put(Codee.putstatic); Codee.put2(1);
+		Codee.put(Codee.dup);
+		Codee.put(Codee.putstatic); Codee.put2(0);
+		Codee.put(Codee.newarray); Codee.put(1);
+		Codee.put(Codee.putstatic); Codee.put2(2);
+		
+		Codee.loadConst(0);
+		Codee.put(Codee.putstatic); Codee.put2(3);
+		Codee.put(Codee.getstatic); Codee.put2(3);
+		Codee.put(Codee.getstatic); Codee.put2(0);
+		Codee.put(Codee.jcc + Codee.ge); Codee.put2(26);
+		Codee.put(Codee.getstatic); Codee.put2(2);
+		Codee.put(Codee.getstatic); Codee.put2(3);
+		Codee.put(Codee.getstatic); Codee.put2(1);
+		Codee.put(Codee.newarray);
+		if (ind) Codee.put(1);
+		else Codee.put(0);
+		Codee.put(Codee.astore);
+		Codee.put(Codee.getstatic); Codee.put2(3);
+		Codee.loadConst(1);
+		Codee.put(Codee.add);
+		Codee.put(Codee.putstatic); Codee.put2(3);
+		Codee.put(Codee.jmp); Codee.put2(-29);
+		Codee.put(Codee.getstatic); Codee.put2(2);
+	}
+
+	public static void printMatrix(Struct type) {
+		boolean isChar = type.equals(Tabb.charType);
+		boolean isBool = type.equals(Tabb.boolType);
+		
+		int loadInstr = (isChar || isBool) ? Codee.baload : Codee.aload;
+		int printInstr = isChar ? Codee.bprint : Codee.print;
+		
+		/*
+			0 --> i
+			1 --> j
+			2 --> lenMatr
+			3 --> lenMatrElem
+			4 --> adrMatr
+			5 --> numConst
+		*/
+		
+		Codee.put(Codee.putstatic); Codee.put2(5);
+		Codee.put(Codee.dup);
+		Codee.put(Codee.dup);
+		Codee.put(Codee.putstatic); Codee.put2(4);
+		Codee.put(Codee.arraylength);
+		Codee.put(Codee.putstatic); Codee.put2(2);
+		Codee.loadConst(0);
+		Codee.put(Codee.aload);
+		Codee.put(Codee.arraylength);
+		Codee.put(Codee.putstatic); Codee.put2(3);
+		
+		Codee.loadConst(0);
+		Codee.put(Codee.putstatic); Codee.put2(0);
+		Codee.put(Codee.getstatic); Codee.put2(0);
+		Codee.put(Codee.getstatic); Codee.put2(2);
+		Codee.put(Codee.jcc + Codee.ge); Codee.put2(60);
+		Codee.loadConst(0);
+		Codee.put(Codee.putstatic); Codee.put2(1);
+		Codee.put(Codee.getstatic); Codee.put2(1);
+		Codee.put(Codee.getstatic); Codee.put2(3);
+		Codee.put(Codee.jcc + Codee.ge); Codee.put2(29);
+		Codee.put(Codee.getstatic); Codee.put2(4);
+		Codee.put(Codee.getstatic); Codee.put2(0);
+		Codee.put(Codee.aload);
+		Codee.put(Codee.getstatic); Codee.put2(1);
+		Codee.put(loadInstr);
+		Codee.put(Codee.getstatic); Codee.put2(5);
+		Codee.put(printInstr);
+		Codee.put(Codee.getstatic); Codee.put2(1);
+		Codee.loadConst(1);
+		Codee.put(Codee.add);
+		Codee.put(Codee.putstatic); Codee.put2(1);
+		Codee.put(Codee.jmp); Codee.put2(-32);
+		Codee.loadConst(10);
+		Codee.loadConst(4);
+		Codee.put(Codee.bprint);
+		Codee.put(Codee.getstatic); Codee.put2(0);
+		Codee.loadConst(1);
+		Codee.put(Codee.add);
+		Codee.put(Codee.putstatic); Codee.put2(0);
+		Codee.put(Codee.jmp); Codee.put2(-63);
 	}
 	
 	public static void putTrueJump (int op, int adr) {

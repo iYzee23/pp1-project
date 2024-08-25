@@ -1,0 +1,31 @@
+program PROG
+int mat[][];
+int arr[];
+int x;
+{
+	void main()
+	int mat1[][], mat2[][];
+	{
+		arr = new int[4];
+		mat = new int[2][3+(2-1)];
+		mat[0][3-4+2] = 1;
+		read(mat[0][3+(2-1)]);
+		print(mat[0][3+(2-1)]);
+		
+		if (mat1 == mat2) { x = 5; }
+		if (mat1 != mat2) { x = 10; }
+		
+		// mat = new int[1]['a'];
+		// arr[2][3] = 5;
+		// x[2][3] = 5;
+		// mat[1]['a'] = 1;
+		// read(mat[0]);
+		print(mat[0]);
+		print(mat);
+		
+		// if (mat1 > mat2) { x = 5; }
+		// if (mat1 < arr) { x = 10; }
+		// if (mat1 == arr) { x = 15; }
+		// if (mat1 != arr) { x = 20; }
+	}
+}

@@ -190,7 +190,9 @@ VarParts ::= (VarDeclListParts) VarParts:V1 COMMA VarPart:V2 {: RESULT=new VarDe
 		  |
 		  (VarDeclSingle) Type:T1 VarPart:V2 {: RESULT=new VarDeclSingle(T1, V2); RESULT.setLine(T1left); :};
 
-VarPart ::= (VarPartYes) IDENT:varName LBRACKET RBRACKET {: RESULT=new VarPartYes(varName); RESULT.setLine(varNameleft); :}
+VarPart ::= (VarPartYesYes) IDENT:varName LBRACKET RBRACKET LBRACKET RBRACKET {: RESULT=new VarPartYesYes(varName); RESULT.setLine(varNameleft); :}
+		 |
+		 (VarPartYes) IDENT:varName LBRACKET RBRACKET {: RESULT=new VarPartYes(varName); RESULT.setLine(varNameleft); :}
 		 |
 		 (VarPartNo) IDENT:varName {: RESULT=new VarPartNo(varName); RESULT.setLine(varNameleft); :};
 
@@ -250,11 +252,15 @@ FormPars ::= (FormParsList) FormPars:F1 COMMA Type:T2 IDENT:paramName BracketsOp
 		  |
 		  (FormParsListError) error COMMA:l {: parser.report_error("Bad formal parameters definition. Performed recovery until , in line " + lleft, null); :} Type:T1 IDENT:I2 BracketsOpt:B3 {: RESULT=new FormParsListError(T1, I2, B3); RESULT.setLine(T1left); :}
 		  |
+		  (FormParsSingleYesYes) Type:T1 IDENT:paramName LBRACKET RBRACKET LBRACKET RBRACKET {: RESULT=new FormParsSingleYesYes(T1, paramName); RESULT.setLine(T1left); :}
+		  |
 		  (FormParsSingleYes) Type:T1 IDENT:paramName LBRACKET RBRACKET {: RESULT=new FormParsSingleYes(T1, paramName); RESULT.setLine(T1left); :}
 		  |
 		  (FormParsSingleNo) Type:T1 IDENT:paramName {: RESULT=new FormParsSingleNo(T1, paramName); RESULT.setLine(T1left); :};
 
-BracketsOpt ::= (BracketsOptYes) LBRACKET RBRACKET {: RESULT=new BracketsOptYes(); :}
+BracketsOpt ::= (BracketsOptYesYes) LBRACKET RBRACKET LBRACKET RBRACKET {: RESULT=new BracketsOptYesYes(); :}
+			 | 
+			 (BracketsOptYes) LBRACKET RBRACKET {: RESULT=new BracketsOptYes(); :}
 			 |
 			 (BracketsOptNo) {: RESULT=new BracketsOptNo(); :} /* epsilon */;
 
@@ -410,7 +416,9 @@ Factor ::= (FactorDesignatorFirst) Designator:D1 TLParen:T2 ActPars:A3 TRParen:T
 		|
 		(FactorRange) RANGE LPAREN Expr:E1 RPAREN {: RESULT=new FactorRange(E1); RESULT.setLine(E1left); :};
 
-NewChoice ::= (NewChoiceExpr) NewLBracket:N1 Expr:E2 RBRACKET {: RESULT=new NewChoiceExpr(N1, E2); RESULT.setLine(N1left); :}
+NewChoice ::= (NewChoiceExprExpr) NewLBracket:N1 Expr:E2 RBRACKET NewLBracket:N3 Expr:E4 RBRACKET {: RESULT=new NewChoiceExprExpr(N1, E2, N3, E4); RESULT.setLine(N1left); :} 
+		   |
+		   (NewChoiceExpr) NewLBracket:N1 Expr:E2 RBRACKET {: RESULT=new NewChoiceExpr(N1, E2); RESULT.setLine(N1left); :}
 		   |
 		   (NewChoiceActParsYes) LPAREN ActPars:A1 RPAREN {: RESULT=new NewChoiceActParsYes(A1); RESULT.setLine(A1left); :}
 		   |
@@ -426,7 +434,7 @@ FirstDesignator ::= (FDesignatorYes) IDENT:nspName RESOLUTION IDENT:dsgName {: R
 
 DesignatorParts ::= (DesignatorPartsIdent) DesignatorParts:D1 DOT IDENT:dsgName {: RESULT=new DesignatorPartsIdent(D1, dsgName); RESULT.setLine(D1left); :}
 				 |
-				 (DesignatorPartsExpr) DesignatorParts:D1 TLBracket:T2 Expr:E3 TRBracket:T4 {: RESULT=new DesignatorPartsExpr(D1, T2, E3, T4); RESULT.setLine(D1left); :} 
+				 (DesignatorPartsExpr) DesignatorParts:D1 TLBracket:T2 Expr:E3 TRBracket:T4 {: RESULT=new DesignatorPartsExpr(D1, T2, E3, T4); RESULT.setLine(D1left); :}
 				 |
 				 (DesignatorPartsNo) {: RESULT=new DesignatorPartsNo(); :} /* epsilon */;
 				 

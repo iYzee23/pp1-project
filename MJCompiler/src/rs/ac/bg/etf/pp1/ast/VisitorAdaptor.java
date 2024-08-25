@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 23/6/2024 15:28:50
+// 24/7/2024 15:2:17
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -104,6 +104,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(NewChoiceActParsNo NewChoiceActParsNo) { visit(); }
     public void visit(NewChoiceActParsYes NewChoiceActParsYes) { visit(); }
     public void visit(NewChoiceExpr NewChoiceExpr) { visit(); }
+    public void visit(NewChoiceExprExpr NewChoiceExprExpr) { visit(); }
     public void visit(FactorRange FactorRange) { visit(); }
     public void visit(FactorExpr FactorExpr) { visit(); }
     public void visit(FactorNew FactorNew) { visit(); }
@@ -182,8 +183,10 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(TypeYes TypeYes) { visit(); }
     public void visit(BracketsOptNo BracketsOptNo) { visit(); }
     public void visit(BracketsOptYes BracketsOptYes) { visit(); }
+    public void visit(BracketsOptYesYes BracketsOptYesYes) { visit(); }
     public void visit(FormParsSingleNo FormParsSingleNo) { visit(); }
     public void visit(FormParsSingleYes FormParsSingleYes) { visit(); }
+    public void visit(FormParsSingleYesYes FormParsSingleYesYes) { visit(); }
     public void visit(FormParsListError FormParsListError) { visit(); }
     public void visit(FormParsList FormParsList) { visit(); }
     public void visit(ReturnTypeVoid ReturnTypeVoid) { visit(); }
@@ -214,6 +217,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(ClassDeclYes ClassDeclYes) { visit(); }
     public void visit(VarPartNo VarPartNo) { visit(); }
     public void visit(VarPartYes VarPartYes) { visit(); }
+    public void visit(VarPartYesYes VarPartYesYes) { visit(); }
     public void visit(VarDeclSingle VarDeclSingle) { visit(); }
     public void visit(VarDeclListPartsError VarDeclListPartsError) { visit(); }
     public void visit(VarDeclListParts VarDeclListParts) { visit(); }

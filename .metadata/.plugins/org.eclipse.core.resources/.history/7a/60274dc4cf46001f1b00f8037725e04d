@@ -1,7 +1,0 @@
-package rs.ac.bg.etf.pp1;
-
-import rs.etf.pp1.mj.runtime.Run;
-
-public class Runn extends Run {
-
-}

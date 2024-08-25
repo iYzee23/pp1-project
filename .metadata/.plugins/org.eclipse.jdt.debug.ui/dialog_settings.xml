@@ -16,11 +16,17 @@
 	<section name="org.eclipse.jdt.internal.debug.ui.ExpressionInformationControlCreator$ExpressionInformationControl">
 		<item key="WIDTH" value="614"/>
 		<item key="HEIGHT" value="194"/>
-		<item key="SashWeightTree" value="200"/>
-		<item key="SashWeightDetails" value="200"/>
+		<item key="SashWeightTree" value="500"/>
+		<item key="SashWeightDetails" value="500"/>
 	</section>
 	<section name="conditionHistory">
-		<item key="conditionHistoryEntry_0" value="objToVisit.getName().equals(&quot;NP&quot;)"/>
-		<item key="conditionHistoryEntryCount" value="1"/>
+		<item key="conditionHistoryEntry_0" value="bothDsg == true"/>
+		<item key="conditionHistoryEntryCount" value="7"/>
+		<item key="conditionHistoryEntry_1" value="dsgObj == null || dsgObj.getType() == null"/>
+		<item key="conditionHistoryEntry_2" value="dsgObj == null"/>
+		<item key="conditionHistoryEntry_3" value="varPart.getVarName().equals(&quot;mObj&quot;)"/>
+		<item key="conditionHistoryEntry_4" value="varPart.getVarName().equals(&quot;myObj&quot;)"/>
+		<item key="conditionHistoryEntry_5" value="o.getName().equals(&quot;MyClass&quot;)"/>
+		<item key="conditionHistoryEntry_6" value="objToVisit.getName().equals(&quot;NP&quot;)"/>
 	</section>
 </section>

@@ -135,7 +135,9 @@ VarParts ::= (VarDeclListParts) VarParts COMMA VarPart
 		  |
 		  (VarDeclSingle) Type VarPart;
 
-VarPart ::= (VarPartYes) IDENT:varName LBRACKET RBRACKET
+VarPart ::= (VarPartYesYes) IDENT:varName LBRACKET RBRACKET LBRACKET RBRACKET
+		 |
+		 (VarPartYes) IDENT:varName LBRACKET RBRACKET
 		 |
 		 (VarPartNo) IDENT:varName;
 
@@ -195,11 +197,15 @@ FormPars ::= (FormParsList) FormPars COMMA Type IDENT:paramName BracketsOpt
 		  |
 		  (FormParsListError) error COMMA:l {: parser.report_error("Bad formal parameters definition. Performed recovery until , in line " + lleft, null); :} Type IDENT BracketsOpt
 		  |
+		  (FormParsSingleYesYes) Type IDENT:paramName LBRACKET RBRACKET LBRACKET RBRACKET
+		  |
 		  (FormParsSingleYes) Type IDENT:paramName LBRACKET RBRACKET
 		  |
 		  (FormParsSingleNo) Type IDENT:paramName;
 
-BracketsOpt ::= (BracketsOptYes) LBRACKET RBRACKET
+BracketsOpt ::= (BracketsOptYesYes) LBRACKET RBRACKET LBRACKET RBRACKET
+			 | 
+			 (BracketsOptYes) LBRACKET RBRACKET
 			 |
 			 (BracketsOptNo) /* epsilon */;
 
@@ -355,7 +361,9 @@ Factor ::= (FactorDesignatorFirst) Designator TLParen ActPars TRParen
 		|
 		(FactorRange) RANGE LPAREN Expr RPAREN;
 
-NewChoice ::= (NewChoiceExpr) NewLBracket Expr RBRACKET
+NewChoice ::= (NewChoiceExprExpr) NewLBracket Expr RBRACKET NewLBracket Expr RBRACKET 
+		   |
+		   (NewChoiceExpr) NewLBracket Expr RBRACKET
 		   |
 		   (NewChoiceActParsYes) LPAREN ActPars RPAREN
 		   |
@@ -371,7 +379,7 @@ FirstDesignator ::= (FDesignatorYes) IDENT:nspName RESOLUTION IDENT:dsgName
 
 DesignatorParts ::= (DesignatorPartsIdent) DesignatorParts DOT IDENT:dsgName
 				 |
-				 (DesignatorPartsExpr) DesignatorParts TLBracket Expr TRBracket 
+				 (DesignatorPartsExpr) DesignatorParts TLBracket Expr TRBracket
 				 |
 				 (DesignatorPartsNo) /* epsilon */;
 				 

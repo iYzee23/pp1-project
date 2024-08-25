@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="currNamespace"/>
+		<item key="selection" value="[Static] variable already declared"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="currNamespace"/>
-			<item value="findStatic"/>
-			<item value="insertStatic"/>
-			<item value="VarDeclList"/>
-			<item value="actParsParts"/>
-			<item value="designatorParts"/>
-			<item value="relopKind"/>
-			<item value="assign"/>
-			<item value="currMethod"/>
-			<item value="returnFound"/>
-			<item value="Expr inside brackets must be integer"/>
-			<item value="namesp"/>
-			<item value="NO_VALUE"/>
-			<item value="Struct.Class"/>
-			<item value="Tabb.currentScope"/>
+			<item value="[Static] variable already declared"/>
+			<item value="Print"/>
+			<item value="// Statement"/>
+			<item value="// DesignatorStatement"/>
+			<item value="// Designator"/>
+			<item value="// CondFact"/>
+			<item value="// Cond"/>
+			<item value="// CondFat"/>
+			<item value="DesignatorListYesYes"/>
+			<item value="DesignatorStmtSecond"/>
+			<item value="DesignatorStmtFirst"/>
+			<item value="NewLBrackett"/>
+			<item value="// FormPars"/>
+			<item value="// VarDecl"/>
+			<item value="// Factor"/>
 		</list>
 		<list key="replacehistory">
 			<item value="ASSIGN"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1573"/>
-		<item key="DIALOG_Y_ORIGIN" value="189"/>
+		<item key="DIALOG_X_ORIGIN" value="79"/>
+		<item key="DIALOG_Y_ORIGIN" value="613"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

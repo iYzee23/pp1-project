@@ -16,7 +16,7 @@ public class CodeGenerator extends VisitorAdaptor {
 
 	int mainPc;
 	int globData;
-	static int numTemp = 5;
+	static int numTemp = 6;
 	
 	// general
 	Obj currClass = null;
@@ -679,7 +679,9 @@ public class CodeGenerator extends VisitorAdaptor {
 	public void visit(StmtPrintYes stmt) {
 		Codee.loadConst(stmt.getValue());
 		if (stmt.getExpr().struct.getKind() == Struct.Array) {
-			Codee.printArray(stmt.getExpr().struct.getElemType());
+			Struct elemType = stmt.getExpr().struct.getElemType();
+			if (stmt.getExpr().struct.getElemType().getKind() == Struct.Array) Codee.printMatrix(elemType.getElemType());
+			else Codee.printArray(elemType);
 		}
 		else if (stmt.getExpr().struct.equals(Tabb.charType)) Codee.put(Codee.bprint);
 		else Codee.put(Codee.print);
@@ -688,7 +690,9 @@ public class CodeGenerator extends VisitorAdaptor {
 	public void visit(StmtPrintNo stmt) {
 		Codee.loadConst(4);
 		if (stmt.getExpr().struct.getKind() == Struct.Array) {
-			Codee.printArray(stmt.getExpr().struct.getElemType());
+			Struct elemType = stmt.getExpr().struct.getElemType();
+			if (stmt.getExpr().struct.getElemType().getKind() == Struct.Array) Codee.printMatrix(elemType.getElemType());
+			else Codee.printArray(elemType);
 		}
 		else if (stmt.getExpr().struct.equals(Tabb.charType)) Codee.put(Codee.bprint);
 		else Codee.put(Codee.print);
@@ -1126,6 +1130,10 @@ public class CodeGenerator extends VisitorAdaptor {
 			Codee.put(Codee.newarray);
 			if (!type.equals(Tabb.charType) && !type.equals(Tabb.boolType)) Codee.put(1);
 			else Codee.put(0);
+		}
+		else if (newChoiceNode instanceof NewChoiceExprExpr) {
+			boolean ind = !type.equals(Tabb.charType) && !type.equals(Tabb.boolType);
+			Codee.allocateMatrix(ind);
 		}
 		else {
 			latestNewType = Tabb.findObjForType(type);

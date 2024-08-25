@@ -1,0 +1,68 @@
+INFO  15:00:19,005 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_parser.mj
+INFO  15:00:19,051 - #2 program
+INFO  15:00:19,051 - #48 MJProgram
+INFO  15:00:19,051 - #48 int
+INFO  15:00:19,052 - #48 x
+INFO  15:00:19,052 - #8 ;
+INFO  15:00:19,052 - #48 int
+INFO  15:00:19,052 - #48 y
+INFO  15:00:19,052 - #8 ;
+INFO  15:00:19,052 - #48 int
+INFO  15:00:19,052 - #48 t1
+INFO  15:00:19,052 - #10 [
+INFO  15:00:19,052 - #11 ]
+INFO  15:00:19,052 - #10 [
+ERROR 15:00:19,052 - Syntax error on line 3
+INFO  15:00:19,053 - #11 ]
+INFO  15:00:19,053 - #8 ;
+INFO  15:00:19,053 - #3 {
+INFO  15:00:19,053 - #48 int
+INFO  15:00:19,063 - #48 main
+ERROR 15:00:19,063 - Bad declaration of variable. Performed recovery until ; in line 3
+INFO  15:00:19,063 - #16 (
+INFO  15:00:19,063 - #17 )
+INFO  15:00:19,063 - #48 int
+INFO  15:00:19,064 - #48 a
+INFO  15:00:19,064 - #6 ,
+INFO  15:00:19,064 - #48 b
+INFO  15:00:19,064 - #6 ,
+INFO  15:00:19,064 - #48 c
+INFO  15:00:19,064 - #6 ,
+INFO  15:00:19,064 - #48 d
+INFO  15:00:19,064 - #8 ;
+INFO  15:00:19,064 - #48 int
+INFO  15:00:19,064 - #48 u1
+INFO  15:00:19,064 - #10 [
+INFO  15:00:19,064 - #11 ]
+INFO  15:00:19,064 - #10 [
+ERROR 15:00:19,064 - Syntax error on line 9
+INFO  15:00:19,064 - #11 ]
+INFO  15:00:19,064 - #8 ;
+INFO  15:00:19,064 - #3 {
+INFO  15:00:19,064 - #28 print
+INFO  15:00:19,064 - #16 (
+ERROR 15:00:19,064 - Bad declaration of variable. Performed recovery until ; in line 9
+INFO  15:00:19,065 - #49 1
+INFO  15:00:19,065 - #17 )
+INFO  15:00:19,065 - #8 ;
+INFO  15:00:19,065 - #48 x
+INFO  15:00:19,065 - #9 =
+INFO  15:00:19,066 - #48 y
+INFO  15:00:19,066 - #30 +
+INFO  15:00:19,066 - #49 5
+INFO  15:00:19,067 - #8 ;
+INFO  15:00:19,067 - #48 w
+INFO  15:00:19,067 - #9 =
+INFO  15:00:19,067 - #48 z
+INFO  15:00:19,067 - #30 +
+INFO  15:00:19,067 - #48 z
+INFO  15:00:19,067 - #8 ;
+INFO  15:00:19,067 - #28 print
+INFO  15:00:19,067 - #16 (
+INFO  15:00:19,067 - #49 2
+INFO  15:00:19,067 - #17 )
+INFO  15:00:19,067 - #8 ;
+INFO  15:00:19,067 - #4 }
+INFO  15:00:19,067 - #4 }
+INFO  15:00:19,073 - ===================================
+INFO  15:00:19,074 -  Print count calls = 2

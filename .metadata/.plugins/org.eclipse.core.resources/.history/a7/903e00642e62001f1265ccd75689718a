@@ -1,0 +1,21 @@
+program PROG
+int mat[][];
+int arr[];
+int x;
+{
+	void main()
+	{
+		mat = new int[2][3+(2-1)];
+		mat[0][3-4+2] = 1;
+		read(mat[0][3+(2-1)]);
+		print(mat[0][3+(2-1)]);
+		
+		// mat = new int[1]['a'];
+		arr = new int[4];
+		// arr[2][3] = 5;
+		// x[2][3] = 5;
+		mat[0][3-4+2] = 1;
+		read(mat[0][3+(2-1)]);
+		print(mat[0][3+(2-1)]);
+	}
+}

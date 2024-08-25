@@ -1,0 +1,18 @@
+program MJProgram
+	int x; int y;
+	int t1[][];
+	char t2[][];
+	// bool t3[][];
+{
+	int main()
+	int a,b,c,d;
+	int u1[][];
+	char u2[][];
+	bool u3[][];
+	{
+		print(1);
+		x = y + 5;
+		w = z + z;
+		print(2);
+	}
+}

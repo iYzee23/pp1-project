@@ -1,0 +1,136 @@
+INFO  14:58:59,898 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_parser.mj
+INFO  14:58:59,898 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_parser.mj
+INFO  14:58:59,949 - #2 program
+INFO  14:58:59,949 - #2 program
+INFO  14:58:59,949 - #48 MJProgram
+INFO  14:58:59,949 - #48 MJProgram
+INFO  14:58:59,949 - #48 int
+INFO  14:58:59,949 - #48 int
+INFO  14:58:59,950 - #48 x
+INFO  14:58:59,950 - #8 ;
+INFO  14:58:59,950 - #48 x
+INFO  14:58:59,950 - #48 int
+INFO  14:58:59,950 - #8 ;
+INFO  14:58:59,950 - #48 y
+INFO  14:58:59,950 - #48 int
+INFO  14:58:59,950 - #8 ;
+INFO  14:58:59,950 - #3 {
+INFO  14:58:59,950 - #48 int
+INFO  14:58:59,950 - #48 y
+INFO  14:58:59,950 - #8 ;
+INFO  14:58:59,950 - #3 {
+INFO  14:58:59,950 - #48 int
+INFO  14:58:59,951 - #48 main
+INFO  14:58:59,951 - #16 (
+INFO  14:58:59,951 - #48 main
+INFO  14:58:59,951 - #17 )
+INFO  14:58:59,951 - #48 int
+INFO  14:58:59,951 - #16 (
+INFO  14:58:59,951 - #17 )
+INFO  14:58:59,951 - #48 int
+INFO  14:58:59,951 - #48 a
+INFO  14:58:59,951 - #6 ,
+INFO  14:58:59,951 - #48 b
+INFO  14:58:59,951 - #6 ,
+INFO  14:58:59,951 - #48 c
+INFO  14:58:59,951 - #6 ,
+INFO  14:58:59,951 - #48 a
+INFO  14:58:59,951 - #48 d
+INFO  14:58:59,951 - #8 ;
+INFO  14:58:59,951 - #6 ,
+INFO  14:58:59,951 - #48 char
+INFO  14:58:59,951 - #48 b
+INFO  14:58:59,951 - #6 ,
+INFO  14:58:59,951 - #48 u2
+INFO  14:58:59,951 - #10 [
+INFO  14:58:59,951 - #11 ]
+INFO  14:58:59,951 - #48 c
+INFO  14:58:59,951 - #10 [
+INFO  14:58:59,951 - #6 ,
+ERROR 14:58:59,951 - Syntax error on line 10
+INFO  14:58:59,951 - #48 d
+INFO  14:58:59,951 - #8 ;
+INFO  14:58:59,951 - #11 ]
+INFO  14:58:59,952 - #8 ;
+INFO  14:58:59,952 - #48 char
+INFO  14:58:59,952 - #48 bool
+INFO  14:58:59,952 - #48 u2
+INFO  14:58:59,952 - #10 [
+INFO  14:58:59,952 - #11 ]
+INFO  14:58:59,952 - #10 [
+ERROR 14:58:59,952 - Syntax error on line 10
+INFO  14:58:59,952 - #11 ]
+INFO  14:58:59,952 - #8 ;
+INFO  14:58:59,952 - #48 bool
+INFO  14:58:59,952 - #48 u3
+INFO  14:58:59,952 - #10 [
+ERROR 14:58:59,952 - Bad declaration of variable. Performed recovery until ; in line 10
+INFO  14:58:59,952 - #48 u3
+INFO  14:58:59,952 - #10 [
+ERROR 14:58:59,952 - Bad declaration of variable. Performed recovery until ; in line 10
+INFO  14:58:59,952 - #11 ]
+INFO  14:58:59,952 - #10 [
+ERROR 14:58:59,952 - Syntax error on line 11
+INFO  14:58:59,952 - #11 ]
+INFO  14:58:59,952 - #8 ;
+INFO  14:58:59,952 - #3 {
+INFO  14:58:59,952 - #11 ]
+INFO  14:58:59,952 - #28 print
+INFO  14:58:59,952 - #10 [
+INFO  14:58:59,952 - #16 (
+ERROR 14:58:59,952 - Syntax error on line 11
+ERROR 14:58:59,952 - Bad declaration of variable. Performed recovery until ; in line 11
+INFO  14:58:59,952 - #11 ]
+INFO  14:58:59,953 - #8 ;
+INFO  14:58:59,953 - #3 {
+INFO  14:58:59,953 - #28 print
+INFO  14:58:59,953 - #16 (
+ERROR 14:58:59,953 - Bad declaration of variable. Performed recovery until ; in line 11
+INFO  14:58:59,953 - #49 1
+INFO  14:58:59,953 - #17 )
+INFO  14:58:59,953 - #49 1
+INFO  14:58:59,953 - #17 )
+INFO  14:58:59,954 - #8 ;
+INFO  14:58:59,954 - #48 x
+INFO  14:58:59,954 - #9 =
+INFO  14:58:59,954 - #8 ;
+INFO  14:58:59,954 - #48 x
+INFO  14:58:59,954 - #9 =
+INFO  14:58:59,954 - #48 y
+INFO  14:58:59,955 - #48 y
+INFO  14:58:59,955 - #30 +
+INFO  14:58:59,955 - #49 5
+INFO  14:58:59,955 - #30 +
+INFO  14:58:59,955 - #49 5
+INFO  14:58:59,956 - #8 ;
+INFO  14:58:59,956 - #8 ;
+INFO  14:58:59,956 - #48 w
+INFO  14:58:59,956 - #9 =
+INFO  14:58:59,956 - #48 z
+INFO  14:58:59,956 - #30 +
+INFO  14:58:59,956 - #48 z
+INFO  14:58:59,956 - #8 ;
+INFO  14:58:59,956 - #48 w
+INFO  14:58:59,956 - #28 print
+INFO  14:58:59,956 - #16 (
+INFO  14:58:59,956 - #9 =
+INFO  14:58:59,956 - #48 z
+INFO  14:58:59,956 - #30 +
+INFO  14:58:59,956 - #49 2
+INFO  14:58:59,956 - #48 z
+INFO  14:58:59,956 - #17 )
+INFO  14:58:59,956 - #8 ;
+INFO  14:58:59,956 - #8 ;
+INFO  14:58:59,956 - #28 print
+INFO  14:58:59,956 - #16 (
+INFO  14:58:59,956 - #4 }
+INFO  14:58:59,956 - #49 2
+INFO  14:58:59,956 - #17 )
+INFO  14:58:59,956 - #8 ;
+INFO  14:58:59,956 - #4 }
+INFO  14:58:59,956 - #4 }
+INFO  14:58:59,956 - #4 }
+INFO  14:58:59,962 - ===================================
+INFO  14:58:59,962 - ===================================
+INFO  14:58:59,964 -  Print count calls = 2
+INFO  14:58:59,964 -  Print count calls = 2

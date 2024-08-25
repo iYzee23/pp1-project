@@ -1,0 +1,10 @@
+program MJProgram
+	int x, y;
+	int z[][];
+	char w[][];
+	bool t[][];
+{
+	void main() {
+		if (x||y) print(5);
+	}
+}

@@ -1,5 +1,0 @@
-program P {
-	void main() {
-		int a;
-	}
-}

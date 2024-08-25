@@ -1,0 +1,62 @@
+INFO  15:03:04,469 - Compiling source file: C:\Fakultet\IV godina\VII semestar\Programski prevodioci 1\Projekat\workspace\MJCompiler\test\program_parser.mj
+INFO  15:03:04,514 - #2 program
+INFO  15:03:04,515 - #48 MJProgram
+INFO  15:03:04,515 - #48 int
+INFO  15:03:04,515 - #48 t1
+INFO  15:03:04,515 - #10 [
+INFO  15:03:04,515 - #11 ]
+INFO  15:03:04,515 - #10 [
+ERROR 15:03:04,515 - Syntax error on line 3
+INFO  15:03:04,515 - #11 ]
+INFO  15:03:04,515 - #8 ;
+INFO  15:03:04,515 - #3 {
+INFO  15:03:04,516 - #48 int
+INFO  15:03:04,516 - #48 main
+ERROR 15:03:04,516 - Bad declaration of variable. Performed recovery until ; in line 3
+INFO  15:03:04,516 - #16 (
+INFO  15:03:04,516 - #17 )
+INFO  15:03:04,516 - #48 int
+INFO  15:03:04,518 - #48 a
+INFO  15:03:04,518 - #6 ,
+INFO  15:03:04,518 - #48 b
+INFO  15:03:04,518 - #6 ,
+INFO  15:03:04,518 - #48 c
+INFO  15:03:04,518 - #6 ,
+INFO  15:03:04,518 - #48 d
+INFO  15:03:04,518 - #8 ;
+INFO  15:03:04,518 - #48 int
+INFO  15:03:04,518 - #48 u1
+INFO  15:03:04,518 - #10 [
+INFO  15:03:04,518 - #11 ]
+INFO  15:03:04,518 - #10 [
+ERROR 15:03:04,518 - Syntax error on line 9
+INFO  15:03:04,518 - #11 ]
+INFO  15:03:04,518 - #8 ;
+INFO  15:03:04,518 - #3 {
+INFO  15:03:04,518 - #28 print
+INFO  15:03:04,518 - #16 (
+ERROR 15:03:04,518 - Bad declaration of variable. Performed recovery until ; in line 9
+INFO  15:03:04,519 - #49 1
+INFO  15:03:04,519 - #17 )
+INFO  15:03:04,519 - #8 ;
+INFO  15:03:04,519 - #48 x
+INFO  15:03:04,520 - #9 =
+INFO  15:03:04,520 - #48 y
+INFO  15:03:04,520 - #30 +
+INFO  15:03:04,521 - #49 5
+INFO  15:03:04,521 - #8 ;
+INFO  15:03:04,521 - #48 w
+INFO  15:03:04,521 - #9 =
+INFO  15:03:04,521 - #48 z
+INFO  15:03:04,521 - #30 +
+INFO  15:03:04,521 - #48 z
+INFO  15:03:04,521 - #8 ;
+INFO  15:03:04,521 - #28 print
+INFO  15:03:04,521 - #16 (
+INFO  15:03:04,521 - #49 2
+INFO  15:03:04,521 - #17 )
+INFO  15:03:04,521 - #8 ;
+INFO  15:03:04,521 - #4 }
+INFO  15:03:04,521 - #4 }
+INFO  15:03:04,526 - ===================================
+INFO  15:03:04,528 -  Print count calls = 2

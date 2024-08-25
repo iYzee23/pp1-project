@@ -1,0 +1,8 @@
+program PROG
+int mat[][];
+{
+	void main()
+	{
+		mat = new int[2][3+(2-1)];
+	}
+}
